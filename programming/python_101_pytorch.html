@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Python 101 — PyTorch &amp; AI Engineering Theory</title>
+<meta name="description" content="PyTorch tensors, autograd, neural modules, training loops, and core ML theory: loss functions, optimizers, regularization.">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="python_101_common.css">
+</head>
+<body>
+
+<nav id="sidebar">
+  <div class="sb-logo">
+    <div class="sb-logo-mark">Python 101</div>
+    <div class="sb-logo-sub">Data · ML · AI · Engineering</div>
+  </div>
+  <div class="sb-search">
+    <input type="text" placeholder="Filter topics..." oninput="filterTopics(this.value)">
+  </div>
+  <div class="nav-group">
+    <div class="nav-group-label">Track</div>
+    <a class="nav-link" href="python_101.html"><span class="nav-dot"></span>Hub &amp; core</a>
+    <a class="nav-link" href="python_101_data_ml.html"><span class="nav-dot"></span>Data &amp; ML</a>
+    <a class="nav-link active" href="python_101_pytorch.html"><span class="nav-dot"></span>PyTorch &amp; AI</a>
+    <a class="nav-link" href="python_101_fastapi_eng.html"><span class="nav-dot"></span>FastAPI &amp; eng.</a>
+  </div>
+  <div class="nav-group">
+    <div class="nav-group-label">This page</div>
+    <a class="nav-link" href="#tensor"><span class="nav-dot"></span>Tensors &amp; autograd</a>
+    <a class="nav-link" href="#module"><span class="nav-dot"></span>nn.Module</a>
+    <a class="nav-link" href="#train"><span class="nav-dot"></span>Training loop</a>
+    <a class="nav-link" href="#theory"><span class="nav-dot"></span>Theory</a>
+  </div>
+</nav>
+
+<main id="main">
+<div class="hero">
+  <div class="hero-eyebrow">Page 3 of 4 · <a href="python_101.html" style="color:#fde68a;">← Hub</a></div>
+  <h1>PyTorch &amp; <span class="py-word">deep learning</span> core</h1>
+  <p class="hero-desc">Tensors with automatic differentiation, modular networks, and the standard training loop. Includes a compact theory refresher: loss, optimization, and generalization—what AI engineering interviews often probe alongside code.</p>
+  <div class="hero-chips">
+    <span class="chip chip-gold">torch.nn</span>
+    <span class="chip chip-gold">autograd</span>
+    <span class="chip chip-muted">DataLoader</span>
+    <span class="chip chip-muted">CUDA</span>
+  </div>
+  <div class="hero-stats">
+    <div><div class="stat-n">4</div><div class="stat-l">Topics</div></div>
+    <div><div class="stat-n">→</div><div class="stat-l"><a href="python_101_fastapi_eng.html" style="color:inherit;text-decoration:none;">Deploy next</a></div></div>
+  </div>
+</div>
+
+<div class="content">
+
+<div class="sec-header" id="tensor">
+  <span class="sec-num">01</span>
+  <h2>Tensors &amp; autograd</h2>
+</div>
+
+<div class="topic" data-search="tensor cuda device requires_grad backward">
+  <div class="topic-header" onclick="toggle(this)">
+    <div class="topic-icon" style="background:#fef3c7">🔥</div>
+    <div class="topic-title">
+      <h3>torch.Tensor, devices, gradients</h3>
+      <p>Like NumPy with GPU and derivatives</p>
+    </div>
+    <span class="topic-chev">▼</span>
+  </div>
+  <div class="topic-body">
+    <p class="prose">A tensor is a multi-dimensional array. Set <code>requires_grad=True</code> to track operations for reverse-mode autodiff (<code>.backward()</code>). Use <code>device="cuda"</code> when a GPU is available—keep tensors on one device to avoid silent copies.</p>
+    <div class="code-wrap">
+      <div class="code-header">
+        <div class="code-dots"><div class="code-dot dot-r"></div><div class="code-dot dot-y"></div><div class="code-dot dot-g"></div></div>
+        <span class="code-lang">python</span>
+        <button class="copy-btn" onclick="copyCode(this)">copy</button>
+      </div>
+      <pre><span class="kw">import</span> torch
+
+device = torch.device(<span class="str">"cuda"</span> <span class="kw">if</span> torch.cuda.is_available() <span class="kw">else</span> <span class="str">"cpu"</span>)
+x = torch.linspace(-<span class="num">1</span>, <span class="num">1</span>, steps=<span class="num">100</span>, device=device, requires_grad=<span class="kw">True</span>)
+y = (x * x).sum()
+y.backward()
+<span class="cm"># x.grad holds ∂y/∂x</span></pre>
+    </div>
+  </div>
+</div>
+
+<div class="sec-header" id="module">
+  <span class="sec-num">02</span>
+  <h2>nn.Module &amp; building blocks</h2>
+</div>
+
+<div class="topic" data-search="nn Linear Module parameters state_dict">
+  <div class="topic-header" onclick="toggle(this)">
+    <div class="topic-icon" style="background:#e0f2fe">🧠</div>
+    <div class="topic-title">
+      <h3>Subclassing nn.Module</h3>
+      <p>Layers register parameters automatically</p>
+    </div>
+    <span class="topic-chev">▼</span>
+  </div>
+  <div class="topic-body">
+    <div class="code-wrap">
+      <div class="code-header">
+        <div class="code-dots"><div class="code-dot dot-r"></div><div class="code-dot dot-y"></div><div class="code-dot dot-g"></div></div>
+        <span class="code-lang">python</span>
+        <button class="copy-btn" onclick="copyCode(this)">copy</button>
+      </div>
+      <pre><span class="kw">import</span> torch.nn <span class="kw">as</span> nn
+
+<span class="kw">class</span> <span class="fn">MLP</span>(nn.Module):
+    <span class="kw">def</span> <span class="fn">__init__</span>(self, in_dim: int, hidden: int, out_dim: int):
+        <span class="kw">super</span>().__init__()
+        self.net = nn.Sequential(
+            nn.Linear(in_dim, hidden),
+            nn.ReLU(),
+            nn.Linear(hidden, out_dim),
+        )
+
+    <span class="kw">def</span> <span class="fn">forward</span>(self, x: torch.Tensor) -&gt; torch.Tensor:
+        <span class="kw">return</span> self.net(x)</pre>
+    </div>
+    <div class="alert alert-tip"><span class="alert-icon">✓</span><div class="alert-body">Call <code>model.train()</code> / <code>model.eval()</code> so dropout &amp; batch norm behave correctly. Save checkpoints with <code>torch.save(model.state_dict(), ...)</code>.</div></div>
+  </div>
+</div>
+
+<div class="sec-header" id="train">
+  <span class="sec-num">03</span>
+  <h2>Training loop &amp; DataLoader</h2>
+</div>
+
+<div class="topic" data-search="DataLoader Dataset optimizer zero_grad step">
+  <div class="topic-header" onclick="toggle(this)">
+    <div class="topic-icon" style="background:#e8f5eb">↻</div>
+    <div class="topic-title">
+      <h3>Standard supervised loop</h3>
+      <p>Mini-batches, loss, backward, step</p>
+    </div>
+    <span class="topic-chev">▼</span>
+  </div>
+  <div class="topic-body">
+    <div class="code-wrap">
+      <div class="code-header">
+        <div class="code-dots"><div class="code-dot dot-r"></div><div class="code-dot dot-y"></div><div class="code-dot dot-g"></div></div>
+        <span class="code-lang">python</span>
+        <button class="copy-btn" onclick="copyCode(this)">copy</button>
+      </div>
+      <pre>model = MLP(in_dim, hidden, num_classes).to(device)
+criterion = nn.CrossEntropyLoss()
+optimizer = torch.optim.AdamW(model.parameters(), lr=<span class="num">1e-3</span>, weight_decay=<span class="num">1e-4</span>)
+
+<span class="kw">for</span> epoch <span class="kw">in</span> range(epochs):
+    model.train()
+    <span class="kw">for</span> xb, yb <span class="kw">in</span> train_loader:
+        xb, yb = xb.to(device), yb.to(device)
+        optimizer.zero_grad(set_to_none=<span class="kw">True</span>)
+        logits = model(xb)
+        loss = criterion(logits, yb)
+        loss.backward()
+        optimizer.step()</pre>
+    </div>
+  </div>
+</div>
+
+<div class="sec-header" id="theory">
+  <span class="sec-num">04</span>
+  <h2>Theory — what to articulate in interviews</h2>
+</div>
+
+<div class="topic" data-search="loss overfitting regularization bias variance learning rate">
+  <div class="topic-header" onclick="toggle(this)">
+    <div class="topic-icon" style="background:#fce7f3">📚</div>
+    <div class="topic-title">
+      <h3>Loss, optimization &amp; generalization</h3>
+      <p>Maps directly to knobs in PyTorch</p>
+    </div>
+    <span class="topic-chev">▼</span>
+  </div>
+  <div class="topic-body">
+    <table class="comp-table">
+      <tr><th>Topic</th><th>Short idea</th><th>PyTorch hook</th></tr>
+      <tr><td>Empirical risk</td><td>Train loss approximates expected loss over the data distribution</td><td><code>CrossEntropyLoss</code>, <code>MSELoss</code></td></tr>
+      <tr><td>SGD / Adam</td><td>Stochastic estimates of the gradient; Adam adapts per-parameter steps</td><td><code>torch.optim.*</code></td></tr>
+      <tr><td>Overfitting</td><td>Low train error, high val error — memorization</td><td>Dropout, weight decay, more data, simpler model</td></tr>
+      <tr><td>Regularization</td><td>Add penalty or noise so weights stay small / robust</td><td><code>weight_decay</code>, dropout, early stopping</td></tr>
+      <tr><td>Learning rate</td><td>Too large: unstable; too small: slow</td><td>Schedulers, warmup (see docs), monitor val loss</td></tr>
+    </table>
+    <div class="alert alert-info"><span class="alert-icon">ℹ</span><div class="alert-body">For production, you also care about <strong>latency</strong>, <strong>numerical stability</strong> (mixed precision with <code>torch.cuda.amp</code>), and <strong>reproducibility</strong> (<code>torch.manual_seed</code>, DataLoader workers).</div></div>
+  </div>
+</div>
+
+<div class="cross-ref">
+  <strong>Related pages</strong><br>
+  <a href="python_101_data_ml.html">Data &amp; ML</a> (NumPy / sklearn) ·
+  → <a href="python_101_fastapi_eng.html">FastAPI &amp; engineering</a> (serve checkpoints) ·
+  <a href="python_101.html">Hub</a>
+</div>
+
+</div>
+</main>
+
+<button type="button" id="menu-toggle" onclick="document.getElementById('sidebar').classList.toggle('open')" aria-label="Menu">☰</button>
+
+<script>
+function toggle(header) {
+  const body = header.parentElement.querySelector('.topic-body');
+  const chev = header.querySelector('.topic-chev');
+  const open = body.classList.contains('open');
+  body.classList.toggle('open', !open);
+  chev.classList.toggle('open', !open);
+}
+function copyCode(btn) {
+  const pre = btn.closest('.code-wrap').querySelector('pre');
+  navigator.clipboard.writeText(pre.innerText).then(function () {
+    btn.textContent = 'copied!';
+    btn.classList.add('copied');
+    setTimeout(function () { btn.textContent = 'copy'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+function filterTopics(q) {
+  const lq = q.toLowerCase();
+  document.querySelectorAll('.topic').forEach(function (t) {
+    const text = (t.getAttribute('data-search') || '') + ' ' + (t.querySelector('h3') && t.querySelector('h3').textContent || '');
+    t.classList.toggle('hidden', lq.length > 0 && !text.toLowerCase().includes(lq));
+  });
+}
+</script>
+</body>
+</html>

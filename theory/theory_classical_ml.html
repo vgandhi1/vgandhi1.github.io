@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Theory — Classical Machine Learning (visual notes)</title>
+<meta name="description" content="Classical ML theory: bias-variance, validation, metrics, overfitting, ensembles — with diagrams.">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;0,800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="ml_theory.css">
+</head>
+<body>
+
+<nav id="sidebar">
+  <div class="sb-logo">
+    <div class="sb-logo-mark">Theory · Visuals</div>
+    <div class="sb-logo-sub">ML · DE · AI systems</div>
+  </div>
+  <div class="nav-group">
+    <div class="nav-group-label">Topics</div>
+    <a class="nav-link" href="ml_theory_hub.html"><span class="nav-dot"></span>Hub</a>
+    <a class="nav-link" href="theory_data_engineering.html"><span class="nav-dot"></span>Data engineering</a>
+    <a class="nav-link active" href="theory_classical_ml.html"><span class="nav-dot"></span>Classical ML</a>
+    <a class="nav-link" href="theory_deep_learning.html"><span class="nav-dot"></span>Deep learning &amp; NN</a>
+    <a class="nav-link" href="theory_applied_ai_engineering.html"><span class="nav-dot"></span>Applied AI &amp; AI eng.</a>
+    <a class="nav-link" href="theory_rag_vs_finetune.html"><span class="nav-dot"></span>RAG vs fine-tuning</a>
+    <a class="nav-link" href="theory_mlops.html"><span class="nav-dot"></span>MLOps</a>
+    <a class="nav-link" href="theory_llmops.html"><span class="nav-dot"></span>LLMOps</a>
+    <a class="nav-link" href="theory_devops.html"><span class="nav-dot"></span>DevOps</a>
+  </div>
+</nav>
+
+<main id="main">
+  <header class="hero">
+    <div class="hero-tag"><a href="ml_theory_hub.html" style="color:inherit;text-decoration:none;">← Hub</a> · Classical ML</div>
+    <h1>Classical <em>machine learning</em> — theory essentials</h1>
+    <p class="hero-lead">Supervised learning from tabular or engineered features: the goal is <strong>generalization</strong> to unseen data. These ideas apply to scikit-learn, XGBoost, and as intuition for neural nets.</p>
+  </header>
+
+  <div class="content">
+
+    <section class="sec">
+      <h2><span class="sec-num">01</span> Bias–variance tradeoff</h2>
+      <p class="prose"><strong>High bias</strong> (underfitting): the model class is too simple to capture the signal. <strong>High variance</strong> (overfitting): the model fits noise in the training set. Total error decomposes (conceptually) into bias² + variance + irreducible noise—tuning model complexity balances the first two.</p>
+      <div class="figure">
+        <div class="figure-title">Figure — complexity vs error (schematic)</div>
+        <svg viewBox="0 0 480 200" xmlns="http://www.w3.org/2000/svg">
+          <line x1="40" y1="170" x2="440" y2="170" stroke="#94a3b8" stroke-width="1"/>
+          <line x1="40" y1="170" x2="40" y2="30" stroke="#94a3b8" stroke-width="1"/>
+          <text x="200" y="195" text-anchor="middle" fill="#64748b" font-size="11" font-family="Source Sans 3">Model complexity →</text>
+          <text x="12" y="110" fill="#64748b" font-size="11" font-family="Source Sans 3" transform="rotate(-90 12 110)">Error →</text>
+          <path d="M 50 160 Q 120 40 200 100 T 400 140" fill="none" stroke="#dc2626" stroke-width="2"/>
+          <text x="380" y="135" fill="#dc2626" font-size="10" font-family="JetBrains Mono">train</text>
+          <path d="M 50 155 Q 150 120 220 85 T 420 125" fill="none" stroke="#2563eb" stroke-width="2"/>
+          <text x="380" y="115" fill="#2563eb" font-size="10" font-family="JetBrains Mono">test</text>
+          <circle cx="220" cy="88" r="5" fill="#f59e0b"/>
+          <text x="230" y="82" fill="#b45309" font-size="10" font-family="Source Sans 3">sweet spot</text>
+        </svg>
+        <p class="figure-caption">Training error keeps falling as complexity grows; test error often has a U-shape—early stopping, regularization, and cross-validation hunt the minimum test error region.</p>
+      </div>
+    </section>
+
+    <section class="sec">
+      <h2><span class="sec-num">02</span> Train / validation / test</h2>
+      <p class="prose">Split data so that <strong>hyperparameters</strong> are chosen on validation data, and <strong>final reporting</strong> uses a held-out test set touched only once. <strong>K-fold CV</strong> averages performance across folds when data is scarce—reducing variance in the score estimate.</p>
+      <div class="figure">
+        <div class="figure-title">Figure — three-way holdout</div>
+        <svg viewBox="0 0 520 100" xmlns="http://www.w3.org/2000/svg">
+          <rect x="20" y="30" width="140" height="40" fill="#c7d2fe" stroke="#4f46e5" rx="4"/>
+          <text x="90" y="55" text-anchor="middle" fill="#312e81" font-family="JetBrains Mono" font-size="11">Train</text>
+          <rect x="170" y="30" width="140" height="40" fill="#fde68a" stroke="#d97706" rx="4"/>
+          <text x="240" y="55" text-anchor="middle" fill="#92400e" font-family="JetBrains Mono" font-size="11">Validation</text>
+          <rect x="320" y="30" width="140" height="40" fill="#bbf7d0" stroke="#16a34a" rx="4"/>
+          <text x="390" y="55" text-anchor="middle" fill="#14532d" font-family="JetBrains Mono" font-size="11">Test</text>
+        </svg>
+        <p class="figure-caption">For time-series, validate on future chunks—random splits leak future information into the past.</p>
+      </div>
+    </section>
+
+    <section class="sec">
+      <h2><span class="sec-num">03</span> Metrics (what “good” means)</h2>
+      <table class="theory-table">
+        <tr><th>Setting</th><th>Common metrics</th><th>Notes</th></tr>
+        <tr><td>Binary classification</td><td>ROC-AUC, PR-AUC, F1</td><td>Use PR when classes are imbalanced; ROC can look optimistic.</td></tr>
+        <tr><td>Multi-class</td><td>Macro/micro F1, log loss</td><td>Macro treats classes equally; micro follows global counts.</td></tr>
+        <tr><td>Regression</td><td>RMSE, MAE, MAPE</td><td>MAPE breaks near zero targets; robust losses for outliers.</td></tr>
+      </table>
+      <div class="figure">
+        <div class="figure-title">Figure — ROC space (intuition)</div>
+        <svg viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+          <rect x="20" y="20" width="180" height="180" fill="#f8fafc" stroke="#94a3b8"/>
+          <line x1="20" y1="200" x2="200" y2="20" stroke="#cbd5e1" stroke-dasharray="4"/>
+          <path d="M 20 200 Q 80 120 200 20" fill="none" stroke="#7c3aed" stroke-width="2"/>
+          <text x="25" y="210" fill="#64748b" font-size="10" font-family="JetBrains Mono">FPR</text>
+          <text x="5" y="35" fill="#64748b" font-size="10" font-family="JetBrains Mono">TPR</text>
+          <text x="100" y="115" fill="#5b21b6" font-size="10" font-family="Source Sans 3">better ↑</text>
+        </svg>
+        <p class="figure-caption">AUC summarizes ranking quality across thresholds; it does not replace calibration when you need accurate probabilities.</p>
+      </div>
+    </section>
+
+    <section class="sec">
+      <h2><span class="sec-num">04</span> Ensembles</h2>
+      <p class="prose"><strong>Bagging</strong> (random forests) reduces variance by averaging many high-variance learners. <strong>Boosting</strong> (gradient boosting) reduces bias sequentially by fitting errors—often state-of-the-art on tabular data. <strong>Stacking</strong> learns a meta-model on base predictions—powerful but easier to overfit without careful CV.</p>
+    </section>
+
+    <div class="cross-footer">
+      Next: <a href="theory_deep_learning.html">Deep learning &amp; neural networks</a> ·
+      <a href="ml_theory_hub.html">Theory hub</a>
+    </div>
+  </div>
+</main>
+
+<button type="button" id="menu-toggle" onclick="document.getElementById('sidebar').classList.toggle('open')" aria-label="Menu">☰</button>
+</body>
+</html>

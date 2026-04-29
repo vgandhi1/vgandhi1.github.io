@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vinay Gandhi | Portfolio &amp; guides</title>
+<meta name="description" content="Central index: theory notes, programming guides, interactive tools, and the interactive project hub.">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;0,800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="portfolio_hub.css">
+</head>
+<body>
+
+<nav id="sidebar">
+  <div class="sb-logo">
+    <div class="sb-logo-mark">Portfolio · Guides</div>
+    <div class="sb-logo-sub">Index · Theory · Code · Tools</div>
+  </div>
+  <div class="nav-group">
+    <div class="nav-group-label">Site</div>
+    <a class="nav-link active" href="index.html"><span class="nav-dot"></span>Home</a>
+    <a class="nav-link" href="theory/ml_theory_hub.html"><span class="nav-dot"></span>ML &amp; AI theory hub</a>
+    <a class="nav-link" href="interactive/index.html"><span class="nav-dot"></span>Interactive hub</a>
+  </div>
+  <div class="nav-group">
+    <div class="nav-group-label">Hands-on</div>
+    <a class="nav-link" href="programming/python_101.html"><span class="nav-dot"></span>Python 101</a>
+    <a class="nav-link" href="programming/SQL_Interview_Prep_FactoryAnalytics.html"><span class="nav-dot"></span>SQL prep</a>
+    <a class="nav-link" href="programming/Go_101_Backend_Systems.html"><span class="nav-dot"></span>Go 101</a>
+  </div>
+</nav>
+
+<main id="main">
+  <header class="hero">
+    <div class="hero-tag">Central index · Static pages + interactive hub</div>
+    <h1>Vinay Gandhi — <em>portfolio &amp; guides</em></h1>
+    <p class="hero-lead">AI systems, data engineering, and EV/SDV topics — theory notes, language tutorials, interview prep, single-page tools, and a subfolder with slide decks, Homelab, and external project links.</p>
+  </header>
+
+  <div class="content">
+    <p class="prose">Use the sidebar for shortcuts. Below, everything is grouped by category; each card opens a static HTML page in this repo unless noted.</p>
+
+    <div class="callout callout-info">
+      <div class="callout-title">Theory notes vs projects hub</div>
+      <strong>Theory &amp; reference</strong> pages (the ML/DE/ops illustrated series) use a separate stylesheet — violet sidebar, diagram-heavy layout. <strong>This page</strong> and the <a href="interactive/index.html">interactive hub</a> use the teal <em>projects &amp; demos</em> theme for navigation, repos, and tools.
+    </div>
+
+    <div class="sec">
+      <h2>Interactive project hub</h2>
+      <div class="hub-grid">
+        <a class="hub-card" href="interactive/index.html">
+          <h3>Interactive Project Hub</h3>
+          <p>CV/ML decks, Homelab portal, live demos, GitHub projects, EV &amp; tool links from one page.</p>
+          <div class="hub-meta">→ interactive/index.html</div>
+        </a>
+        <a class="hub-card" href="interactive/Projects/CVML_extensive-report.html">
+          <h3>CVML extensive report</h3>
+          <p>Long-form CV/ML deck in the interactive folder.</p>
+          <div class="hub-meta">→ interactive/Projects/CVML_extensive-report.html</div>
+        </a>
+      </div>
+    </div>
+
+    <div class="sec">
+      <h2>Theory &amp; reference</h2>
+      <p class="prose" style="margin-top:-0.25rem;">Illustrated notes — start at the hub or open a topic directly.</p>
+      <div class="hub-grid">
+        <a class="hub-card" href="theory/ml_theory_hub.html">
+          <h3>ML &amp; AI theory hub</h3>
+          <p>Overview and navigation for all theory pages.</p>
+          <div class="hub-meta">→ theory/ml_theory_hub.html</div>
+        </a>
+        <a class="hub-card" href="theory/theory_data_engineering.html">
+          <h3>Data engineering</h3>
+          <p>Pipelines, warehouses, medallion layers, batch vs stream.</p>
+          <div class="hub-meta">→ theory/theory_data_engineering.html</div>
+        </a>
+        <a class="hub-card" href="theory/theory_classical_ml.html">
+          <h3>Classical ML</h3>
+          <p>Bias–variance, validation, metrics, ensembles.</p>
+          <div class="hub-meta">→ theory/theory_classical_ml.html</div>
+        </a>
+        <a class="hub-card" href="theory/theory_deep_learning.html">
+          <h3>Deep learning &amp; NN</h3>
+          <p>Layers, activations, training loop, inductive biases.</p>
+          <div class="hub-meta">→ theory/theory_deep_learning.html</div>
+        </a>
+        <a class="hub-card" href="theory/theory_applied_ai_engineering.html">
+          <h3>Applied AI &amp; AI engineering</h3>
+          <p>Prototype to production, evaluation, roles.</p>
+          <div class="hub-meta">→ theory/theory_applied_ai_engineering.html</div>
+        </a>
+        <a class="hub-card" href="theory/theory_rag_vs_finetune.html">
+          <h3>RAG vs fine-tuning</h3>
+          <p>When to retrieve vs update weights.</p>
+          <div class="hub-meta">→ theory/theory_rag_vs_finetune.html</div>
+        </a>
+        <a class="hub-card" href="theory/theory_mlops.html">
+          <h3>MLOps</h3>
+          <p>Registry, pipelines, deploy, monitor, retrain.</p>
+          <div class="hub-meta">→ theory/theory_mlops.html</div>
+        </a>
+        <a class="hub-card" href="theory/theory_llmops.html">
+          <h3>LLMOps</h3>
+          <p>Prompts, RAG, eval, cost, safety.</p>
+          <div class="hub-meta">→ theory/theory_llmops.html</div>
+        </a>
+        <a class="hub-card" href="theory/theory_devops.html">
+          <h3>DevOps</h3>
+          <p>CI/CD, IaC, observability — base for MLOps/LLMOps.</p>
+          <div class="hub-meta">→ theory/theory_devops.html</div>
+        </a>
+      </div>
+    </div>
+
+    <div class="sec">
+      <h2>Programming &amp; interview guides</h2>
+      <div class="hub-grid">
+        <a class="hub-card" href="programming/python_101.html">
+          <h3>Python 101 hub</h3>
+          <p>Code-first tutorials and track navigation.</p>
+          <div class="hub-meta">→ programming/python_101.html</div>
+        </a>
+        <a class="hub-card" href="programming/python_101_data_ml.html">
+          <h3>Python — Data &amp; ML</h3>
+          <p>NumPy, pandas, scikit-learn orientation.</p>
+          <div class="hub-meta">→ programming/python_101_data_ml.html</div>
+        </a>
+        <a class="hub-card" href="programming/python_101_pytorch.html">
+          <h3>Python — PyTorch</h3>
+          <p>Tensors, modules, training basics.</p>
+          <div class="hub-meta">→ programming/python_101_pytorch.html</div>
+        </a>
+        <a class="hub-card" href="programming/python_101_fastapi_eng.html">
+          <h3>Python — FastAPI &amp; engineering</h3>
+          <p>APIs, async, project structure.</p>
+          <div class="hub-meta">→ programming/python_101_fastapi_eng.html</div>
+        </a>
+        <a class="hub-card" href="programming/Go_101_Backend_Systems.html">
+          <h3>Go 101 — backend systems</h3>
+          <p>Language essentials and backend patterns.</p>
+          <div class="hub-meta">→ programming/Go_101_Backend_Systems.html</div>
+        </a>
+        <a class="hub-card" href="programming/SQL_Interview_Prep_FactoryAnalytics.html">
+          <h3>SQL interview prep</h3>
+          <p>Analytics engineering / factory-style SQL.</p>
+          <div class="hub-meta">→ programming/SQL_Interview_Prep_FactoryAnalytics.html</div>
+        </a>
+      </div>
+    </div>
+
+    <div class="sec">
+      <h2>Interactive tools &amp; glossaries</h2>
+      <p class="prose" style="margin-top:-0.25rem;">Single-page apps and references in <code style="font-family:JetBrains Mono,monospace;font-size:12px;">interactive/</code>.</p>
+      <div class="hub-grid">
+        <a class="hub-card" href="interactive/DSA.html">
+          <h3>DSA Architect</h3>
+          <p>Data structures &amp; algorithms reference.</p>
+          <div class="hub-meta">→ interactive/DSA.html</div>
+        </a>
+        <a class="hub-card" href="interactive/uv-guide.html">
+          <h3>Mastering uv</h3>
+          <p>Python package manager guide.</p>
+          <div class="hub-meta">→ interactive/uv-guide.html</div>
+        </a>
+        <a class="hub-card" href="interactive/AI-terminology.html">
+          <h3>AI glossary</h3>
+          <p>LLM terminology with search and filters.</p>
+          <div class="hub-meta">→ interactive/AI-terminology.html</div>
+        </a>
+        <a class="hub-card" href="interactive/AI-buzzwords.html">
+          <h3>AI buzzwords</h3>
+          <p>Interactive concept visualizations.</p>
+          <div class="hub-meta">→ interactive/AI-buzzwords.html</div>
+        </a>
+        <a class="hub-card" href="interactive/hedging_simulator.html">
+          <h3>Hedging simulator</h3>
+          <p>Stock and put-option P/L scenarios.</p>
+          <div class="hub-meta">→ interactive/hedging_simulator.html</div>
+        </a>
+      </div>
+    </div>
+
+    <div class="sec">
+      <h2>EV / SDV deep dives</h2>
+      <div class="hub-grid">
+        <a class="hub-card" href="interactive/ev_protocols.html">
+          <h3>EV protocols</h3>
+          <p>CAN, LIN, FlexRay, DoIP overview.</p>
+          <div class="hub-meta">→ interactive/ev_protocols.html</div>
+        </a>
+        <a class="hub-card" href="interactive/ev-cybersecurity.html">
+          <h3>EV cybersecurity</h3>
+          <p>SecOC, secure boot, regulations, OTA security.</p>
+          <div class="hub-meta">→ interactive/ev-cybersecurity.html</div>
+        </a>
+      </div>
+    </div>
+
+    <div class="callout callout-info">
+      <div class="callout-title">Repo layout</div>
+      This file is the site root for <strong>vgandhi1.github.io</strong>. Layout: <code style="font-family:JetBrains Mono,monospace;font-size:11px;">theory/</code>, <code style="font-family:JetBrains Mono,monospace;font-size:11px;">programming/</code>, <code style="font-family:JetBrains Mono,monospace;font-size:11px;">interactive/</code> (project hub + tools + EV pages). Upstream repo: <a href="https://github.com/vgandhi1/web-interactive-collection" target="_blank" rel="noopener">web-interactive-collection</a>.
+    </div>
+
+    <div class="cross-footer">
+      Theory detail pages also link from <a href="theory/ml_theory_hub.html">ML &amp; AI theory hub</a> · Interactive entry: <a href="interactive/index.html">Interactive Project Hub</a>
+    </div>
+  </div>
+</main>
+
+<button type="button" id="menu-toggle" onclick="document.getElementById('sidebar').classList.toggle('open')" aria-label="Menu">☰</button>
+</body>
+</html>

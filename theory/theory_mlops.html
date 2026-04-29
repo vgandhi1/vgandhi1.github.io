@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Theory — MLOps (visual notes)</title>
+<meta name="description" content="MLOps: ML lifecycle automation, model registry, training and serving pipelines, monitoring, and feedback loops — illustrated.">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;0,800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="ml_theory.css">
+</head>
+<body>
+
+<nav id="sidebar">
+  <div class="sb-logo">
+    <div class="sb-logo-mark">Theory · Visuals</div>
+    <div class="sb-logo-sub">ML · DE · AI systems</div>
+  </div>
+  <div class="nav-group">
+    <div class="nav-group-label">Topics</div>
+    <a class="nav-link" href="ml_theory_hub.html"><span class="nav-dot"></span>Hub</a>
+    <a class="nav-link" href="theory_data_engineering.html"><span class="nav-dot"></span>Data engineering</a>
+    <a class="nav-link" href="theory_classical_ml.html"><span class="nav-dot"></span>Classical ML</a>
+    <a class="nav-link" href="theory_deep_learning.html"><span class="nav-dot"></span>Deep learning &amp; NN</a>
+    <a class="nav-link" href="theory_applied_ai_engineering.html"><span class="nav-dot"></span>Applied AI &amp; AI eng.</a>
+    <a class="nav-link" href="theory_rag_vs_finetune.html"><span class="nav-dot"></span>RAG vs fine-tuning</a>
+    <a class="nav-link active" href="theory_mlops.html"><span class="nav-dot"></span>MLOps</a>
+    <a class="nav-link" href="theory_llmops.html"><span class="nav-dot"></span>LLMOps</a>
+    <a class="nav-link" href="theory_devops.html"><span class="nav-dot"></span>DevOps</a>
+  </div>
+</nav>
+
+<main id="main">
+  <header class="hero">
+    <div class="hero-tag"><a href="ml_theory_hub.html" style="color:inherit;text-decoration:none;">← Hub</a> · MLOps</div>
+    <h1><em>MLOps</em> — ML in production</h1>
+    <p class="hero-lead"><strong>MLOps</strong> is the set of practices that automates and governs the end-to-end machine learning lifecycle: data → training → validation → deployment → monitoring → retraining—with the same rigor as software delivery.</p>
+  </header>
+
+  <div class="content">
+
+    <section class="sec">
+      <h2><span class="sec-num">01</span> Why MLOps exists</h2>
+      <p class="prose">Shipping a model once is easy; keeping it <strong>correct, safe, and cost-effective</strong> over time is not. Data drifts, schemas change, dependencies age, and business metrics shift. MLOps borrows from DevOps (CI/CD, IaC, observability) but adds ML-specific concerns: experiment tracking, reproducible training, model artifacts, and evaluation beyond unit tests.</p>
+    </section>
+
+    <section class="sec">
+      <h2><span class="sec-num">02</span> Lifecycle loop</h2>
+      <div class="figure">
+        <div class="figure-title">Figure — closed-loop MLOps (conceptual)</div>
+        <svg viewBox="0 0 420 220" xmlns="http://www.w3.org/2000/svg" width="100%">
+          <ellipse cx="210" cy="110" rx="185" ry="88" fill="none" stroke="#c4b5fd" stroke-width="2" stroke-dasharray="6 4"/>
+          <text x="210" y="38" text-anchor="middle" fill="#5b21b6" font-family="JetBrains Mono" font-size="11" font-weight="700">DATA &amp; FEATURES</text>
+          <text x="360" y="118" text-anchor="middle" fill="#0369a1" font-family="JetBrains Mono" font-size="11" font-weight="700">TRAIN</text>
+          <text x="210" y="198" text-anchor="middle" fill="#c2410c" font-family="JetBrains Mono" font-size="11" font-weight="700">DEPLOY</text>
+          <text x="55" y="118" text-anchor="middle" fill="#0d9488" font-family="JetBrains Mono" font-size="11" font-weight="700">MONITOR</text>
+          <circle cx="210" cy="110" r="14" fill="#fde68a" stroke="#ca8a04"/>
+          <text x="210" y="114" text-anchor="middle" font-size="9" fill="#854d0e" font-family="JetBrains Mono">CI</text>
+        </svg>
+        <p class="figure-caption">Monitoring closes the loop: latency, errors, data drift, and business KPIs trigger investigations—sometimes leading to new training runs or rollbacks.</p>
+      </div>
+    </section>
+
+    <section class="sec">
+      <h2><span class="sec-num">03</span> Typical components</h2>
+      <table class="theory-table">
+        <tr><th>Area</th><th>Examples</th></tr>
+        <tr><td>Versioning</td><td>Data snapshots, feature definitions, code, hyperparameters, model weights (often in a <strong>model registry</strong>).</td></tr>
+        <tr><td>Training pipeline</td><td>Scheduled or triggered jobs; reproducible environments (containers); evaluation gates before promotion.</td></tr>
+        <tr><td>Serving</td><td>Batch scoring, online APIs, edge—consistent preprocessing between train and serve.</td></tr>
+        <tr><td>Quality</td><td>Data validation tests, model cards, bias/fairness analysis where required.</td></tr>
+        <tr><td>Operations</td><td>Alerts, dashboards, tracing; avoid logging sensitive payloads in clear text.</td></tr>
+      </table>
+    </section>
+
+    <section class="sec">
+      <h2><span class="sec-num">04</span> CI/CD for ML vs pure software</h2>
+      <div class="figure">
+        <div class="figure-title">Figure — extra gates for ML</div>
+        <svg viewBox="0 0 480 100" xmlns="http://www.w3.org/2000/svg">
+          <rect x="10" y="30" width="90" height="44" rx="6" fill="#e0e7ff" stroke="#6366f1"/>
+          <text x="55" y="56" text-anchor="middle" font-size="10" fill="#3730a3" font-family="JetBrains Mono">Code</text>
+          <path d="M105 52 L125 52" stroke="#94a3b8"/>
+          <text x="135" y="48" font-size="9" fill="#64748b" font-family="Source Sans 3">build</text>
+          <path d="M165 52 L185 52" stroke="#94a3b8"/>
+          <rect x="185" y="30" width="100" height="44" rx="6" fill="#fef3c7" stroke="#d97706"/>
+          <text x="235" y="52" text-anchor="middle" font-size="9" fill="#92400e" font-family="JetBrains Mono">Eval metrics</text>
+          <text x="235" y="64" text-anchor="middle" font-size="8" fill="#92400e" font-family="JetBrains Mono">+ data checks</text>
+          <path d="M290 52 L310 52" stroke="#94a3b8"/>
+          <rect x="310" y="30" width="90" height="44" rx="6" fill="#ccfbf1" stroke="#0d9488"/>
+          <text x="355" y="56" text-anchor="middle" font-size="10" fill="#0f766e" font-family="JetBrains Mono">Promote</text>
+        </svg>
+        <p class="figure-caption">Promotion often requires both <strong>statistical</strong> thresholds (AUC, calibration) and <strong>operational</strong> checks (latency budget, canary success).</p>
+      </div>
+    </section>
+
+    <div class="callout callout-info">
+      <div class="callout-title">Related</div>
+      <p class="prose" style="margin:0;"><strong>LLMOps</strong> adds prompt/version management, RAG indices, LLM eval harnesses, and cost controls—see <a href="theory_llmops.html">LLMOps</a>. Foundation: <a href="theory_devops.html">DevOps</a>.</p>
+    </div>
+
+    <div class="cross-footer">
+      Next: <a href="theory_llmops.html">LLMOps</a> ·
+      <a href="theory_devops.html">DevOps</a> ·
+      <a href="ml_theory_hub.html">Theory hub</a>
+    </div>
+  </div>
+</main>
+
+<button type="button" id="menu-toggle" onclick="document.getElementById('sidebar').classList.toggle('open')" aria-label="Menu">☰</button>
+</body>
+</html>

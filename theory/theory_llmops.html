@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Theory — LLMOps (visual notes)</title>
+<meta name="description" content="LLMOps: operating large language models in production—prompts, RAG, evaluation, safety, cost, and feedback—with diagrams.">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;0,800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="ml_theory.css">
+</head>
+<body>
+
+<nav id="sidebar">
+  <div class="sb-logo">
+    <div class="sb-logo-mark">Theory · Visuals</div>
+    <div class="sb-logo-sub">ML · DE · AI systems</div>
+  </div>
+  <div class="nav-group">
+    <div class="nav-group-label">Topics</div>
+    <a class="nav-link" href="ml_theory_hub.html"><span class="nav-dot"></span>Hub</a>
+    <a class="nav-link" href="theory_data_engineering.html"><span class="nav-dot"></span>Data engineering</a>
+    <a class="nav-link" href="theory_classical_ml.html"><span class="nav-dot"></span>Classical ML</a>
+    <a class="nav-link" href="theory_deep_learning.html"><span class="nav-dot"></span>Deep learning &amp; NN</a>
+    <a class="nav-link" href="theory_applied_ai_engineering.html"><span class="nav-dot"></span>Applied AI &amp; AI eng.</a>
+    <a class="nav-link" href="theory_rag_vs_finetune.html"><span class="nav-dot"></span>RAG vs fine-tuning</a>
+    <a class="nav-link" href="theory_mlops.html"><span class="nav-dot"></span>MLOps</a>
+    <a class="nav-link active" href="theory_llmops.html"><span class="nav-dot"></span>LLMOps</a>
+    <a class="nav-link" href="theory_devops.html"><span class="nav-dot"></span>DevOps</a>
+  </div>
+</nav>
+
+<main id="main">
+  <header class="hero">
+    <div class="hero-tag"><a href="ml_theory_hub.html" style="color:inherit;text-decoration:none;">← Hub</a> · LLMOps</div>
+    <h1><em>LLMOps</em> — operating language models</h1>
+    <p class="hero-lead"><strong>LLMOps</strong> extends MLOps for systems built on LLMs: versioning <em>prompts</em> and tools, maintaining <strong>retrieval</strong> corpora, running <strong>task-specific evaluations</strong>, controlling <strong>cost and latency</strong>, and governing <strong>safety</strong> (PII, toxicity, policy).</p>
+  </header>
+
+  <div class="content">
+
+    <section class="sec">
+      <h2><span class="sec-num">01</span> What LLMOps adds to MLOps</h2>
+      <p class="prose">Classical MLOps centers on numeric metrics and fixed schemas. LLM applications add <strong>non-determinism</strong>, long prompts, multi-step chains, external retrieval, and subjective quality—so you need eval harnesses (golden sets, LLM-as-judge with caution, human review), prompt regression tests, and tracing per request.</p>
+    </section>
+
+    <section class="sec">
+      <h2><span class="sec-num">02</span> Reference architecture (simplified)</h2>
+      <div class="figure">
+        <div class="figure-title">Figure — LLM application stack</div>
+        <svg viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg" width="100%">
+          <rect x="20" y="20" width="460" height="36" rx="6" fill="#ede9fe" stroke="#7c3aed"/>
+          <text x="250" y="42" text-anchor="middle" font-size="10" fill="#5b21b6" font-family="JetBrains Mono">Gateway · auth · rate limits · routing</text>
+          <rect x="20" y="68" width="220" height="50" rx="6" fill="#fef3c7" stroke="#d97706"/>
+          <text x="130" y="92" text-anchor="middle" font-size="10" fill="#92400e" font-family="JetBrains Mono">Orchestration / agents</text>
+          <text x="130" y="106" text-anchor="middle" font-size="8" fill="#92400e" font-family="JetBrains Mono">prompt templates · tools</text>
+          <rect x="260" y="68" width="220" height="50" rx="6" fill="#ccfbf1" stroke="#0d9488"/>
+          <text x="370" y="92" text-anchor="middle" font-size="10" fill="#0f766e" font-family="JetBrains Mono">RAG · vector index</text>
+          <text x="370" y="106" text-anchor="middle" font-size="8" fill="#0f766e" font-family="JetBrains Mono">chunking · refresh</text>
+          <rect x="120" y="132" width="260" height="44" rx="6" fill="#e0e7ff" stroke="#4f46e5"/>
+          <text x="250" y="158" text-anchor="middle" font-size="10" fill="#312e81" font-family="JetBrains Mono">Model API · routing · fallback models</text>
+        </svg>
+        <p class="figure-caption">Each layer needs versioning, monitoring, and failure modes (timeouts, empty retrieval, policy refusals).</p>
+      </div>
+    </section>
+
+    <section class="sec">
+      <h2><span class="sec-num">03</span> Evaluation &amp; feedback</h2>
+      <div class="figure">
+        <div class="figure-title">Figure — eval + human-in-the-loop</div>
+        <svg viewBox="0 0 440 120" xmlns="http://www.w3.org/2000/svg">
+          <rect x="20" y="40" width="100" height="44" rx="6" fill="#f1f5f9" stroke="#64748b"/>
+          <text x="70" y="66" text-anchor="middle" font-size="10" fill="#334155" font-family="JetBrains Mono">Traffic</text>
+          <path d="M125 62 L160 62" stroke="#94a3b8"/>
+          <rect x="160" y="35" width="120" height="54" rx="6" fill="#ecfdf5" stroke="#16a34a"/>
+          <text x="220" y="58" text-anchor="middle" font-size="9" fill="#14532d" font-family="JetBrains Mono">Auto eval</text>
+          <text x="220" y="74" text-anchor="middle" font-size="8" fill="#14532d" font-family="JetBrains Mono">task success · safety</text>
+          <path d="M285 62 L320 62" stroke="#94a3b8"/>
+          <rect x="320" y="40" width="100" height="44" rx="6" fill="#fff7ed" stroke="#ea580c"/>
+          <text x="370" y="66" text-anchor="middle" font-size="10" fill="#9a3412" font-family="JetBrains Mono">Human review</text>
+        </svg>
+        <p class="figure-caption">Thumbs-up/down and escalation queues feed improved prompts, few-shot examples, or fine-tuning datasets—closing the product loop.</p>
+      </div>
+    </section>
+
+    <section class="sec">
+      <h2><span class="sec-num">04</span> Cost &amp; reliability</h2>
+      <p class="prose">Token usage drives spend; caching, smaller models for easy subtasks, and summarization of long contexts help. Set <strong>budgets</strong>, alert on anomaly spikes, and design <strong>degraded modes</strong> when the model or retrieval is unavailable.</p>
+    </section>
+
+    <div class="callout callout-warn">
+      <div class="callout-title">Governance</div>
+      <p class="prose" style="margin:0;">Treat prompts and retrieved text as sensitive where applicable; redact logs appropriately and document data retention for customer content.</p>
+    </div>
+
+    <div class="cross-footer">
+      <a href="theory_mlops.html">← MLOps</a> ·
+      <a href="theory_devops.html">DevOps</a> ·
+      <a href="theory_rag_vs_finetune.html">RAG vs fine-tuning</a> ·
+      <a href="ml_theory_hub.html">Hub</a>
+    </div>
+  </div>
+</main>
+
+<button type="button" id="menu-toggle" onclick="document.getElementById('sidebar').classList.toggle('open')" aria-label="Menu">☰</button>
+</body>
+</html>

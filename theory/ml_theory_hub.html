@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ML &amp; AI Theory — Visual notes hub</title>
+<meta name="description" content="Static theory notes with diagrams: data engineering, ML, deep learning, applied AI, RAG vs fine-tuning, MLOps, LLMOps, DevOps.">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;0,800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="ml_theory.css">
+</head>
+<body>
+
+<nav id="sidebar">
+  <div class="sb-logo">
+    <div class="sb-logo-mark">Theory · Visuals</div>
+    <div class="sb-logo-sub">ML · DE · AI systems</div>
+  </div>
+  <div class="nav-group">
+    <div class="nav-group-label">Topics</div>
+    <a class="nav-link active" href="ml_theory_hub.html"><span class="nav-dot"></span>Hub</a>
+    <a class="nav-link" href="theory_data_engineering.html"><span class="nav-dot"></span>Data engineering</a>
+    <a class="nav-link" href="theory_classical_ml.html"><span class="nav-dot"></span>Classical ML</a>
+    <a class="nav-link" href="theory_deep_learning.html"><span class="nav-dot"></span>Deep learning &amp; NN</a>
+    <a class="nav-link" href="theory_applied_ai_engineering.html"><span class="nav-dot"></span>Applied AI &amp; AI eng.</a>
+    <a class="nav-link" href="theory_rag_vs_finetune.html"><span class="nav-dot"></span>RAG vs fine-tuning</a>
+    <a class="nav-link" href="theory_mlops.html"><span class="nav-dot"></span>MLOps</a>
+    <a class="nav-link" href="theory_llmops.html"><span class="nav-dot"></span>LLMOps</a>
+    <a class="nav-link" href="theory_devops.html"><span class="nav-dot"></span>DevOps</a>
+  </div>
+  <div class="nav-group">
+    <div class="nav-group-label">Also</div>
+    <a class="nav-link" href="../index.html"><span class="nav-dot"></span>Portfolio index</a>
+    <a class="nav-link" href="../interactive/index.html"><span class="nav-dot"></span>Interactive hub</a>
+    <a class="nav-link" href="../programming/python_101.html"><span class="nav-dot"></span>Python 101</a>
+  </div>
+</nav>
+
+<main id="main">
+  <header class="hero">
+    <div class="hero-tag">Static reference · Inline SVG figures</div>
+    <h1>Machine learning &amp; <em>AI theory</em> — illustrated</h1>
+    <p class="hero-lead">Conceptual notes for data engineering, classical machine learning, neural networks, production AI, <strong>RAG vs fine-tuning</strong>, and operations: <strong>MLOps</strong>, <strong>LLMOps</strong>, and foundational <strong>DevOps</strong>. Each page is self-contained with diagrams you can screenshot or print.</p>
+  </header>
+
+  <div class="content">
+    <p class="prose">Use the cards below in any order. The <strong>RAG vs fine-tuning</strong> page is especially useful when choosing how to inject domain knowledge into language models.</p>
+
+    <div class="hub-grid">
+      <a class="hub-card current" href="ml_theory_hub.html">
+        <h3>Hub</h3>
+        <p>Overview and navigation — you are here.</p>
+        <div class="hub-meta">ml_theory_hub.html</div>
+      </a>
+      <a class="hub-card" href="theory_data_engineering.html">
+        <h3>Data engineering</h3>
+        <p>Pipelines, warehouses, medallion layers, batch vs stream.</p>
+        <div class="hub-meta">→ theory_data_engineering.html</div>
+      </a>
+      <a class="hub-card" href="theory_classical_ml.html">
+        <h3>Classical ML</h3>
+        <p>Bias–variance, validation, metrics, ensembles — theory + visuals.</p>
+        <div class="hub-meta">→ theory_classical_ml.html</div>
+      </a>
+      <a class="hub-card" href="theory_deep_learning.html">
+        <h3>Deep learning &amp; NN</h3>
+        <p>Neurons, layers, activations, training loop, inductive biases.</p>
+        <div class="hub-meta">→ theory_deep_learning.html</div>
+      </a>
+      <a class="hub-card" href="theory_applied_ai_engineering.html">
+        <h3>Applied AI &amp; AI engineering</h3>
+        <p>From prototype to production: roles, MLOps loop, evaluation.</p>
+        <div class="hub-meta">→ theory_applied_ai_engineering.html</div>
+      </a>
+      <a class="hub-card" href="theory_rag_vs_finetune.html">
+        <h3>RAG vs fine-tuning</h3>
+        <p>When to retrieve vs when to update weights — decision view.</p>
+        <div class="hub-meta">→ theory_rag_vs_finetune.html</div>
+      </a>
+      <a class="hub-card" href="theory_mlops.html">
+        <h3>MLOps</h3>
+        <p>ML lifecycle: registry, training pipelines, deploy, monitor, retrain.</p>
+        <div class="hub-meta">→ theory_mlops.html</div>
+      </a>
+      <a class="hub-card" href="theory_llmops.html">
+        <h3>LLMOps</h3>
+        <p>Operating LLMs: prompts, RAG, eval harnesses, cost, safety.</p>
+        <div class="hub-meta">→ theory_llmops.html</div>
+      </a>
+      <a class="hub-card" href="theory_devops.html">
+        <h3>DevOps</h3>
+        <p>CI/CD, IaC, observability — the base for MLOps and LLMOps.</p>
+        <div class="hub-meta">→ theory_devops.html</div>
+      </a>
+    </div>
+
+    <div class="callout callout-info">
+      <div class="callout-title">How these relate</div>
+      <strong>Data engineering</strong> moves and shapes data; <strong>classical ML</strong> often runs on tabular features in a warehouse; <strong>deep learning</strong> learns representations from raw signals; <strong>AI engineering</strong> ships and monitors models; <strong>RAG</strong> and <strong>fine-tuning</strong> specialize LLMs. <strong>DevOps</strong> enables reliable delivery; <strong>MLOps</strong> and <strong>LLMOps</strong> add ML- and LLM-specific automation on top.</div>
+
+    <div class="cross-footer">
+      Code-first tutorials: <a href="../programming/python_101.html">Python 101</a> ·
+      SQL: <a href="../programming/SQL_Interview_Prep_FactoryAnalytics.html">Analytics SQL prep</a>
+    </div>
+  </div>
+</main>
+
+<button type="button" id="menu-toggle" onclick="document.getElementById('sidebar').classList.toggle('open')" aria-label="Menu">☰</button>
+</body>
+</html>

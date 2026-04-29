@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Python 101 — FastAPI &amp; Data / AI Engineering</title>
+<meta name="description" content="FastAPI, Pydantic, async Python, serving ML models, and data engineering touchpoints: batches, orchestration, observability.">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="python_101_common.css">
+</head>
+<body>
+
+<nav id="sidebar">
+  <div class="sb-logo">
+    <div class="sb-logo-mark">Python 101</div>
+    <div class="sb-logo-sub">Data · ML · AI · Engineering</div>
+  </div>
+  <div class="sb-search">
+    <input type="text" placeholder="Filter topics..." oninput="filterTopics(this.value)">
+  </div>
+  <div class="nav-group">
+    <div class="nav-group-label">Track</div>
+    <a class="nav-link" href="python_101.html"><span class="nav-dot"></span>Hub &amp; core</a>
+    <a class="nav-link" href="python_101_data_ml.html"><span class="nav-dot"></span>Data &amp; ML</a>
+    <a class="nav-link" href="python_101_pytorch.html"><span class="nav-dot"></span>PyTorch &amp; AI</a>
+    <a class="nav-link active" href="python_101_fastapi_eng.html"><span class="nav-dot"></span>FastAPI &amp; eng.</a>
+  </div>
+  <div class="nav-group">
+    <div class="nav-group-label">This page</div>
+    <a class="nav-link" href="#fastapi"><span class="nav-dot"></span>FastAPI</a>
+    <a class="nav-link" href="#pydantic"><span class="nav-dot"></span>Pydantic</a>
+    <a class="nav-link" href="#serve"><span class="nav-dot"></span>Serving ML</a>
+    <a class="nav-link" href="#de"><span class="nav-dot"></span>Data engineering</a>
+  </div>
+</nav>
+
+<main id="main">
+<div class="hero">
+  <div class="hero-eyebrow">Page 4 of 4 · <a href="python_101.html" style="color:#fde68a;">← Hub</a></div>
+  <h1>FastAPI &amp; <span class="py-word">engineering</span></h1>
+  <p class="hero-desc">Build HTTP APIs with automatic OpenAPI docs, validated payloads, and async I/O. Patterns for loading PyTorch or sklearn models, batch prediction, and how this connects to batch/stream data pipelines in production.</p>
+  <div class="hero-chips">
+    <span class="chip chip-gold">FastAPI</span>
+    <span class="chip chip-gold">Pydantic v2</span>
+    <span class="chip chip-muted">uvicorn</span>
+    <span class="chip chip-muted">async</span>
+  </div>
+  <div class="hero-stats">
+    <div><div class="stat-n">4</div><div class="stat-l">Topics</div></div>
+    <div><div class="stat-n">⌂</div><div class="stat-l"><a href="python_101.html" style="color:inherit;text-decoration:none;">Back to hub</a></div></div>
+  </div>
+</div>
+
+<div class="content">
+
+<div class="sec-header" id="fastapi">
+  <span class="sec-num">01</span>
+  <h2>FastAPI basics</h2>
+</div>
+
+<div class="topic" data-search="fastapi app get post router dependency">
+  <div class="topic-header" onclick="toggle(this)">
+    <div class="topic-icon" style="background:#e0f2fe">⚡</div>
+    <div class="topic-title">
+      <h3>App, routes, and automatic OpenAPI</h3>
+      <p>Run with uvicorn for ASGI</p>
+    </div>
+    <span class="topic-chev">▼</span>
+  </div>
+  <div class="topic-body">
+    <p class="prose">FastAPI is built on Starlette + Pydantic. Type hints on parameters drive validation and generated <strong>/docs</strong>. Use APIRouter to split large services.</p>
+    <div class="code-wrap">
+      <div class="code-header">
+        <div class="code-dots"><div class="code-dot dot-r"></div><div class="code-dot dot-y"></div><div class="code-dot dot-g"></div></div>
+        <span class="code-lang">python</span>
+        <button class="copy-btn" onclick="copyCode(this)">copy</button>
+      </div>
+      <pre><span class="kw">from</span> fastapi <span class="kw">import</span> FastAPI
+
+app = FastAPI(title=<span class="str">"Scoring API"</span>, version=<span class="str">"1.0.0"</span>)
+
+@app.get(<span class="str">"/health"</span>)
+<span class="kw">def</span> <span class="fn">health</span>() -&gt; dict[<span class="fn">str</span>, <span class="fn">str</span>]:
+    <span class="kw">return</span> {<span class="str">"status"</span>: <span class="str">"ok"</span>}</pre>
+    </div>
+    <div class="alert alert-tip"><span class="alert-icon">✓</span><div class="alert-body">Run locally: <code>uvicorn module:app --reload</code>. Behind production, put gunicorn+uvicorn workers or a managed container platform in front.</div></div>
+  </div>
+</div>
+
+<div class="sec-header" id="pydantic">
+  <span class="sec-num">02</span>
+  <h2>Pydantic models</h2>
+</div>
+
+<div class="topic" data-search="pydantic BaseModel Field validator">
+  <div class="topic-header" onclick="toggle(this)">
+    <div class="topic-icon" style="background:#fff7ed">✓</div>
+    <div class="topic-title">
+      <h3>Request / response schemas</h3>
+      <p>Validation before your handler runs</p>
+    </div>
+    <span class="topic-chev">▼</span>
+  </div>
+  <div class="topic-body">
+    <div class="code-wrap">
+      <div class="code-header">
+        <div class="code-dots"><div class="code-dot dot-r"></div><div class="code-dot dot-y"></div><div class="code-dot dot-g"></div></div>
+        <span class="code-lang">python</span>
+        <button class="copy-btn" onclick="copyCode(this)">copy</button>
+      </div>
+      <pre><span class="kw">from</span> pydantic <span class="kw">import</span> BaseModel, Field
+
+<span class="kw">class</span> <span class="fn">PredictIn</span>(BaseModel):
+    features: list[float] = Field(..., min_length=<span class="num">1</span>, max_length=<span class="num">10_000</span>)
+
+<span class="kw">class</span> <span class="fn">PredictOut</span>(BaseModel):
+    score: float
+
+@app.post(<span class="str">"/predict"</span>, response_model=PredictOut)
+<span class="kw">def</span> <span class="fn">predict</span>(body: PredictIn) -&gt; PredictOut:
+    <span class="cm"># body.features is already validated</span>
+    ...</pre>
+    </div>
+  </div>
+</div>
+
+<div class="sec-header" id="serve">
+  <span class="sec-num">03</span>
+  <h2>Serving ML models</h2>
+</div>
+
+<div class="topic" data-search="torch load state_dict inference batch singleton lifespan">
+  <div class="topic-header" onclick="toggle(this)">
+    <div class="topic-icon" style="background:#fce7f3">🎯</div>
+    <div class="topic-title">
+      <h3>Load once, infer many times</h3>
+      <p>Lifespan hooks &amp; thread safety</p>
+    </div>
+    <span class="topic-chev">▼</span>
+  </div>
+  <div class="topic-body">
+    <p class="prose">Load model weights when the process starts (FastAPI <code>lifespan</code> context), not per request. For PyTorch, set <code>model.eval()</code> and wrap inference in <code>torch.no_grad()</code>. Batch inputs when possible to amortize GPU kernel launch.</p>
+    <div class="code-wrap">
+      <div class="code-header">
+        <div class="code-dots"><div class="code-dot dot-r"></div><div class="code-dot dot-y"></div><div class="code-dot dot-g"></div></div>
+        <span class="code-lang">python</span>
+        <button class="copy-btn" onclick="copyCode(this)">copy</button>
+      </div>
+      <pre><span class="kw">from</span> contextlib <span class="kw">import</span> asynccontextmanager
+
+@asynccontextmanager
+<span class="kw">async</span> <span class="kw">def</span> <span class="fn">lifespan</span>(app: FastAPI):
+    <span class="cm"># load model, connect pools</span>
+    app.state.model = load_model(<span class="str">"weights.pt"</span>)
+    <span class="kw">yield</span>
+    <span class="cm"># cleanup</span>
+
+app = FastAPI(lifespan=lifespan)</pre>
+    </div>
+    <div class="alert alert-warn"><span class="alert-icon">⚠</span><div class="alert-body">If multiple workers process share the same GPU, coordinate memory—often one model replica per GPU. For sklearn, joblib-loaded pipelines are typical; watch pickling compatibility across versions.</div></div>
+  </div>
+</div>
+
+<div class="sec-header" id="de">
+  <span class="sec-num">04</span>
+  <h2>Data engineering touchpoints</h2>
+</div>
+
+<div class="topic" data-search="spark airflow polars batch streaming observability">
+  <div class="topic-header" onclick="toggle(this)">
+    <div class="topic-icon" style="background:#e8f5eb">🔗</div>
+    <div class="topic-title">
+      <h3>Beyond the API layer</h3>
+      <p>Where features and labels come from</p>
+    </div>
+    <span class="topic-chev">▼</span>
+  </div>
+  <div class="topic-body">
+    <div class="two-col">
+      <div class="info-card">
+        <div class="info-card-title">Batch</div>
+        <p>Scheduled ETL/ELT (Airflow, Dagster, dbt) materializes tables your API or batch scorer reads. <strong>Polars</strong> and <strong>PySpark</strong> handle large extracts before they touch FastAPI.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-title">Streaming</div>
+        <p>Kafka / Redpanda + consumers for near-real-time features; still often land in a store the API queries. Design <strong>idempotent</strong> consumers and monitor lag.</p>
+      </div>
+    </div>
+    <p class="prose">Operationally: structured logging (no secrets/PII in clear text), metrics (latency, error rate), traces across services, and health checks align with platform rules for production ML.</p>
+  </div>
+</div>
+
+<div class="cross-ref">
+  <strong>Related pages</strong><br>
+  <a href="python_101.html">Hub &amp; Python core</a> ·
+  <a href="python_101_data_ml.html">Data &amp; ML</a> ·
+  <a href="python_101_pytorch.html">PyTorch &amp; AI</a>
+</div>
+
+</div>
+</main>
+
+<button type="button" id="menu-toggle" onclick="document.getElementById('sidebar').classList.toggle('open')" aria-label="Menu">☰</button>
+
+<script>
+function toggle(header) {
+  const body = header.parentElement.querySelector('.topic-body');
+  const chev = header.querySelector('.topic-chev');
+  const open = body.classList.contains('open');
+  body.classList.toggle('open', !open);
+  chev.classList.toggle('open', !open);
+}
+function copyCode(btn) {
+  const pre = btn.closest('.code-wrap').querySelector('pre');
+  navigator.clipboard.writeText(pre.innerText).then(function () {
+    btn.textContent = 'copied!';
+    btn.classList.add('copied');
+    setTimeout(function () { btn.textContent = 'copy'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+function filterTopics(q) {
+  const lq = q.toLowerCase();
+  document.querySelectorAll('.topic').forEach(function (t) {
+    const text = (t.getAttribute('data-search') || '') + ' ' + (t.querySelector('h3') && t.querySelector('h3').textContent || '');
+    t.classList.toggle('hidden', lq.length > 0 && !text.toLowerCase().includes(lq));
+  });
+}
+</script>
+</body>
+</html>

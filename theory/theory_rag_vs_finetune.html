@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Theory — RAG vs Fine-Tuning (visual notes)</title>
+<meta name="description" content="Retrieval-augmented generation vs fine-tuning: architectures, tradeoffs, when to combine — illustrated.">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;0,800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="ml_theory.css">
+</head>
+<body>
+
+<nav id="sidebar">
+  <div class="sb-logo">
+    <div class="sb-logo-mark">Theory · Visuals</div>
+    <div class="sb-logo-sub">ML · DE · AI systems</div>
+  </div>
+  <div class="nav-group">
+    <div class="nav-group-label">Topics</div>
+    <a class="nav-link" href="ml_theory_hub.html"><span class="nav-dot"></span>Hub</a>
+    <a class="nav-link" href="theory_data_engineering.html"><span class="nav-dot"></span>Data engineering</a>
+    <a class="nav-link" href="theory_classical_ml.html"><span class="nav-dot"></span>Classical ML</a>
+    <a class="nav-link" href="theory_deep_learning.html"><span class="nav-dot"></span>Deep learning &amp; NN</a>
+    <a class="nav-link" href="theory_applied_ai_engineering.html"><span class="nav-dot"></span>Applied AI &amp; AI eng.</a>
+    <a class="nav-link active" href="theory_rag_vs_finetune.html"><span class="nav-dot"></span>RAG vs fine-tuning</a>
+    <a class="nav-link" href="theory_mlops.html"><span class="nav-dot"></span>MLOps</a>
+    <a class="nav-link" href="theory_llmops.html"><span class="nav-dot"></span>LLMOps</a>
+    <a class="nav-link" href="theory_devops.html"><span class="nav-dot"></span>DevOps</a>
+  </div>
+</nav>
+
+<main id="main">
+  <header class="hero">
+    <div class="hero-tag"><a href="ml_theory_hub.html" style="color:inherit;text-decoration:none;">← Hub</a> · RAG vs fine-tuning</div>
+    <h1>RAG <em>vs</em> fine-tuning</h1>
+    <p class="hero-lead"><strong>RAG</strong> injects external, up-to-date context at inference time by retrieving documents. <strong>Fine-tuning</strong> updates model weights on a task-specific dataset so behavior is “baked in.” They solve different problems and are often <strong>combined</strong>.</p>
+  </header>
+
+  <div class="content">
+
+    <section class="sec">
+      <h2><span class="sec-num">01</span> Retrieval-augmented generation (RAG)</h2>
+      <p class="prose">A user query is embedded, matched against a vector index (or hybrid search), and the top passages are <strong>prepended</strong> to the prompt. The LLM conditions on this evidence—reducing hallucination when the corpus is trustworthy and well-chunked.</p>
+      <div class="figure">
+        <div class="figure-title">Figure — RAG flow</div>
+        <svg viewBox="0 0 560 200" xmlns="http://www.w3.org/2000/svg">
+          <rect x="20" y="70" width="90" height="44" rx="6" fill="#ede9fe" stroke="#7c3aed"/>
+          <text x="65" y="96" text-anchor="middle" font-size="10" fill="#5b21b6" font-family="JetBrains Mono">Query</text>
+          <path d="M115 92 L150 92" stroke="#64748b" stroke-width="2"/>
+          <rect x="150" y="55" width="110" height="74" rx="6" fill="#fef3c7" stroke="#d97706"/>
+          <text x="205" y="82" text-anchor="middle" font-size="9" fill="#92400e" font-family="JetBrains Mono">Embed</text>
+          <text x="205" y="98" text-anchor="middle" font-size="9" fill="#92400e" font-family="JetBrains Mono">+ retrieve</text>
+          <text x="205" y="114" text-anchor="middle" font-size="8" fill="#92400e" font-family="JetBrains Mono">(vector DB)</text>
+          <path d="M265 92 L300 92" stroke="#64748b" stroke-width="2"/>
+          <rect x="300" y="60" width="100" height="64" rx="6" fill="#ccfbf1" stroke="#0d9488"/>
+          <text x="350" y="88" text-anchor="middle" font-size="9" fill="#0f766e" font-family="JetBrains Mono">Augmented</text>
+          <text x="350" y="104" text-anchor="middle" font-size="9" fill="#0f766e" font-family="JetBrains Mono">prompt</text>
+          <path d="M405 92 L440 92" stroke="#64748b" stroke-width="2"/>
+          <rect x="440" y="65" width="100" height="54" rx="6" fill="#e0e7ff" stroke="#4f46e5"/>
+          <text x="490" y="96" text-anchor="middle" font-size="10" fill="#312e81" font-family="JetBrains Mono">LLM</text>
+        </svg>
+        <p class="figure-caption">Strengths: fresh facts without retraining, citations possible, good for proprietary docs. Weaknesses: retrieval quality becomes the ceiling; chunking and hybrid search matter a lot.</p>
+      </div>
+    </section>
+
+    <section class="sec">
+      <h2><span class="sec-num">02</span> Fine-tuning (supervised / preference)</h2>
+      <p class="prose">You continue training (or LoRA/QLoRA adapters) on curated examples—instruction-output pairs, preference rankings (RLHF/DPO), or domain text. The model <strong>internalizes</strong> style, format, and domain vocabulary; weights change, so versioning and evaluation are essential.</p>
+      <div class="figure">
+        <div class="figure-title">Figure — fine-tuning (conceptual)</div>
+        <svg viewBox="0 0 520 120" xmlns="http://www.w3.org/2000/svg">
+          <rect x="30" y="40" width="100" height="50" rx="6" fill="#e0e7ff" stroke="#4f46e5"/>
+          <text x="80" y="70" text-anchor="middle" font-size="10" fill="#312e81" font-family="JetBrains Mono">Base LLM</text>
+          <text x="80" y="88" text-anchor="middle" font-size="8" fill="#6366f1" font-family="JetBrains Mono">θ</text>
+          <path d="M135 65 L175 65" stroke="#64748b" stroke-width="2"/>
+          <rect x="175" y="25" width="160" height="80" rx="6" fill="#fef3c7" stroke="#d97706"/>
+          <text x="255" y="52" text-anchor="middle" font-size="9" fill="#92400e" font-family="JetBrains Mono">Task data · loss</text>
+          <text x="255" y="70" text-anchor="middle" font-size="9" fill="#92400e" font-family="JetBrains Mono">(SFT / DPO / etc.)</text>
+          <path d="M340 65 L380 65" stroke="#64748b" stroke-width="2"/>
+          <rect x="380" y="40" width="110" height="50" rx="6" fill="#bbf7d0" stroke="#16a34a"/>
+          <text x="435" y="70" text-anchor="middle" font-size="10" fill="#14532d" font-family="JetBrains Mono">θ′ adapted</text>
+        </svg>
+        <p class="figure-caption">Strengths: stable behavior, specific output formats, can reduce prompt length. Weaknesses: data must be high quality; risk of forgetting; update cycle slower than editing a doc store.</p>
+      </div>
+    </section>
+
+    <section class="sec">
+      <h2><span class="sec-num">03</span> Side-by-side</h2>
+      <table class="theory-table">
+        <tr><th>Dimension</th><th>RAG</th><th>Fine-tuning</th></tr>
+        <tr><td>Factual freshness</td><td>Strong — update the corpus/index</td><td>Weak — need retrain for new facts</td></tr>
+        <tr><td>Style / tone / format</td><td>Prompt-dependent</td><td>Strong — if reflected in data</td></tr>
+        <tr><td>Latency &amp; cost</td><td>Extra retrieval step + longer context</td><td>Inference like base model (after tuning)</td></tr>
+        <tr><td>Privacy / compliance</td><td>Control access at index layer</td><td>Data in training pipeline; audit training sets</td></tr>
+        <tr><td>When data is scarce</td><td>Works if docs exist</td><td>Risk of overfitting; prefer parameter-efficient methods</td></tr>
+      </table>
+    </section>
+
+    <section class="sec">
+      <h2><span class="sec-num">04</span> Decision sketch</h2>
+      <div class="figure">
+        <div class="figure-title">Figure — coarse decision flow</div>
+        <svg viewBox="0 0 480 220" xmlns="http://www.w3.org/2000/svg">
+          <rect x="160" y="10" width="160" height="36" rx="6" fill="#ede9fe" stroke="#7c3aed"/>
+          <text x="240" y="32" text-anchor="middle" font-size="10" fill="#5b21b6" font-family="JetBrains Mono">Need up-to-date facts?</text>
+          <path d="M240 46 L240 58" stroke="#64748b"/>
+          <text x="80" y="78" font-size="9" fill="#16a34a" font-family="JetBrains Mono">yes → prioritize RAG</text>
+          <text x="320" y="78" font-size="9" fill="#b45309" font-family="JetBrains Mono">no / stable policy</text>
+          <path d="M200 58 L120 90" stroke="#64748b"/>
+          <path d="M280 58 L360 90" stroke="#64748b"/>
+          <rect x="40" y="95" width="160" height="44" rx="6" fill="#dcfce7" stroke="#16a34a"/>
+          <text x="120" y="118" text-anchor="middle" font-size="9" fill="#14532d" font-family="JetBrains Mono">Index docs + evaluate</text>
+          <text x="120" y="132" text-anchor="middle" font-size="8" fill="#14532d" font-family="JetBrains Mono">retrieval quality</text>
+          <rect x="280" y="95" width="160" height="44" rx="6" fill="#fef3c7" stroke="#d97706"/>
+          <text x="360" y="118" text-anchor="middle" font-size="9" fill="#92400e" font-family="JetBrains Mono">Collect task-specific</text>
+          <text x="360" y="132" text-anchor="middle" font-size="8" fill="#92400e" font-family="JetBrains Mono">examples → consider FT</text>
+          <text x="240" y="185" text-anchor="middle" font-size="10" fill="#475569" font-family="Source Sans 3">Often: RAG + light FT + strong eval</text>
+        </svg>
+        <p class="figure-caption">Many products use <strong>RAG for grounding</strong> and <strong>fine-tuning (or adapters) for tone and tool-use format</strong>. Evaluate end-to-end task success, not single-component accuracy alone.</p>
+      </div>
+    </section>
+
+    <div class="cross-footer">
+      <a href="theory_applied_ai_engineering.html">← Applied AI &amp; AI engineering</a> ·
+      <a href="ml_theory_hub.html">Theory hub</a> ·
+      <a href="../programming/python_101_pytorch.html">PyTorch notes (code)</a>
+    </div>
+  </div>
+</main>
+
+<button type="button" id="menu-toggle" onclick="document.getElementById('sidebar').classList.toggle('open')" aria-label="Menu">☰</button>
+</body>
+</html>

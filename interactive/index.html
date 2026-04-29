@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vinay Gandhi | Interactive Project Hub</title>
+<meta name="description" content="Interactive hub: Homelab, CV/ML decks, demos, and links to projects and parent-site tools.">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;0,800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../portfolio_hub.css">
+</head>
+<body>
+
+<nav id="sidebar">
+  <div class="sb-logo">
+    <div class="sb-logo-mark">Interactive · Hub</div>
+    <div class="sb-logo-sub">CV/ML · Homelab · Demos</div>
+  </div>
+  <div class="nav-group">
+    <div class="nav-group-label">Site</div>
+    <a class="nav-link" href="../index.html"><span class="nav-dot"></span>Portfolio home</a>
+    <a class="nav-link" href="../theory/ml_theory_hub.html"><span class="nav-dot"></span>ML &amp; AI theory hub</a>
+    <a class="nav-link active" href="index.html"><span class="nav-dot"></span>Interactive hub</a>
+  </div>
+  <div class="nav-group">
+    <div class="nav-group-label">This folder</div>
+    <a class="nav-link" href="Homelab/HomelabPortal.html"><span class="nav-dot"></span>Homelab portal</a>
+    <a class="nav-link" href="Projects/CVML_Project_Overview.html"><span class="nav-dot"></span>CVML overview</a>
+  </div>
+  <div class="nav-group">
+    <div class="nav-group-label">Parent site tools</div>
+    <a class="nav-link" href="../programming/python_101.html"><span class="nav-dot"></span>Python 101</a>
+    <a class="nav-link" href="DSA.html"><span class="nav-dot"></span>DSA Architect</a>
+  </div>
+</nav>
+
+<main id="main">
+  <header class="hero">
+    <div class="hero-tag">Subfolder · Decks · External repos</div>
+    <h1>Interactive <em>Project Hub</em></h1>
+    <p class="hero-lead">Artifacts, machine learning writeups, and interactive tools — local HTML decks in this folder, live demos and source on GitHub, and deep-dive pages served from the parent portfolio site.</p>
+  </header>
+
+  <div class="content">
+    <p class="prose">Use <strong>Portfolio home</strong> in the sidebar to return to the full site index. Standalone tools and EV guides below live in this <code style="font-family:JetBrains Mono,monospace;font-size:12px;background:#f1f5f9;padding:2px 6px;border-radius:4px;">interactive/</code> folder alongside decks and Homelab.</p>
+
+    <div class="callout callout-info">
+      <div class="callout-title">This hub vs theory notes</div>
+      This page is the <strong>projects &amp; demos</strong> theme (teal) — repos, live apps, and local decks. For <strong>illustrated theory</strong> (violet layout, diagrams on ML/data/ops), open <a href="../theory/ml_theory_hub.html">ML &amp; AI theory hub</a>. Cards with a <strong>teal left border</strong> open GitHub or a hosted demo in a new tab.
+    </div>
+
+    <div class="sec">
+      <h2>Hardware &amp; local HTML</h2>
+      <div class="hub-grid">
+        <a class="hub-card" href="Homelab/HomelabPortal.html">
+          <h3>Homelab portal</h3>
+          <p>Raspberry Pi, Cloudflare Tunnel, Tailscale, self-hosted services.</p>
+          <div class="hub-meta">→ Homelab/HomelabPortal.html</div>
+        </a>
+        <a class="hub-card" href="Projects/CVML_Project_Overview.html">
+          <h3>CVML — manufacturing QA</h3>
+          <p>Slide deck: edge CV, MQTT, AWS ML, MES/SCADA.</p>
+          <div class="hub-meta">→ Projects/CVML_Project_Overview.html</div>
+        </a>
+        <a class="hub-card" href="Projects/monitron-IIoT-sensors.html">
+          <h3>Amazon Monitron TE1A001</h3>
+          <p>IIoT sensor demo: vibration, gateway, AWS Monitron.</p>
+          <div class="hub-meta">→ Projects/monitron-IIoT-sensors.html</div>
+        </a>
+        <a class="hub-card" href="Projects/CVML_extensive-report.html">
+          <h3>CVML extensive report</h3>
+          <p>Long-form CV/ML deck.</p>
+          <div class="hub-meta">→ Projects/CVML_extensive-report.html</div>
+        </a>
+      </div>
+    </div>
+
+    <div class="sec">
+      <h2>Live apps &amp; repositories</h2>
+      <p class="prose" style="margin-top:-0.25rem;">Opens in a new tab — source or hosted demo on GitHub / Pages.</p>
+      <div class="hub-grid">
+        <a class="hub-card hub-card-external" href="https://vgandhi1.github.io/weather-WebApp/" target="_blank" rel="noopener">
+          <h3>Weather WebApp</h3>
+          <p>Real-time forecasting visualization.</p>
+          <div class="hub-meta">vgandhi1.github.io/weather-WebApp</div>
+        </a>
+        <a class="hub-card hub-card-external" href="https://github.com/vgandhi1/rag-qa-system" target="_blank" rel="noopener">
+          <h3>RAG QA system</h3>
+          <p>Retrieval-augmented generation demo.</p>
+          <div class="hub-meta">github.com/vgandhi1/rag-qa-system</div>
+        </a>
+        <a class="hub-card hub-card-external" href="https://github.com/vgandhi1/ToDoApp" target="_blank" rel="noopener">
+          <h3>ToDoApp — FARM stack</h3>
+          <p>FastAPI, React, MongoDB task tracker.</p>
+          <div class="hub-meta">github.com/vgandhi1/ToDoApp</div>
+        </a>
+        <a class="hub-card hub-card-external" href="https://github.com/vgandhi1/data-analytics-ai-agents" target="_blank" rel="noopener">
+          <h3>Data analytics AI agents</h3>
+          <p>AutoGen-style agents for files, code, and charts.</p>
+          <div class="hub-meta">github.com/vgandhi1/data-analytics-ai-agents</div>
+        </a>
+      </div>
+    </div>
+
+    <div class="sec">
+      <h2>Research &amp; data pipelines</h2>
+      <div class="hub-grid">
+        <a class="hub-card hub-card-external" href="https://github.com/vgandhi1/Big-Data-Analytics-in-Healthcare/tree/main" target="_blank" rel="noopener">
+          <h3>Healthcare analytics</h3>
+          <p>ETL and deep learning (PyTorch/PySpark) for healthcare data.</p>
+          <div class="hub-meta">github.com · Big-Data-Analytics-in-Healthcare</div>
+        </a>
+        <a class="hub-card hub-card-external" href="https://github.com/vgandhi1/LLSPIN-Project" target="_blank" rel="noopener">
+          <h3>LLSPIN project</h3>
+          <p>Interpretable neural networks for feature selection.</p>
+          <div class="hub-meta">github.com/vgandhi1/LLSPIN-Project</div>
+        </a>
+        <a class="hub-card hub-card-external" href="https://github.com/vgandhi1/MARKET_MOOD_RING" target="_blank" rel="noopener">
+          <h3>Market Mood Ring</h3>
+          <p>Kafka, Flink, Postgres, Ollama — real-time finance analytics.</p>
+          <div class="hub-meta">github.com/vgandhi1/MARKET_MOOD_RING</div>
+        </a>
+        <a class="hub-card hub-card-external" href="https://github.com/vgandhi1/Crypto-Data-ETL" target="_blank" rel="noopener">
+          <h3>Crypto data ETL</h3>
+          <p>End-to-end cryptocurrency data pipeline.</p>
+          <div class="hub-meta">github.com/vgandhi1/Crypto-Data-ETL</div>
+        </a>
+      </div>
+    </div>
+
+    <div class="sec">
+      <h2>EV / SDV</h2>
+      <div class="hub-grid">
+        <a class="hub-card" href="ev_protocols.html">
+          <h3>EV protocols</h3>
+          <p>CAN, LIN, FlexRay, DoIP — reference for software-defined vehicles.</p>
+          <div class="hub-meta">→ ev_protocols.html</div>
+        </a>
+        <a class="hub-card" href="ev-cybersecurity.html">
+          <h3>EV cybersecurity</h3>
+          <p>SecOC, secure boot, UN R155/R156, ISO 21434, OTA.</p>
+          <div class="hub-meta">→ ev-cybersecurity.html</div>
+        </a>
+      </div>
+    </div>
+
+    <div class="sec">
+      <h2>Tools &amp; simulators</h2>
+      <div class="hub-grid">
+        <a class="hub-card" href="AI-buzzwords.html">
+          <h3>AI buzzwords</h3>
+          <p>Transformers, temperature, RAG, agents — interactive visuals.</p>
+          <div class="hub-meta">→ AI-buzzwords.html</div>
+        </a>
+        <a class="hub-card" href="DSA.html">
+          <h3>DSA Architect</h3>
+          <p>Data structures &amp; algorithms reference.</p>
+          <div class="hub-meta">→ DSA.html</div>
+        </a>
+        <a class="hub-card" href="AI-terminology.html">
+          <h3>AI glossary</h3>
+          <p>LLM terminology with search and categories.</p>
+          <div class="hub-meta">→ AI-terminology.html</div>
+        </a>
+        <a class="hub-card" href="uv-guide.html">
+          <h3>Mastering uv</h3>
+          <p>Python package manager walkthrough.</p>
+          <div class="hub-meta">→ uv-guide.html</div>
+        </a>
+        <a class="hub-card" href="hedging_simulator.html">
+          <h3>Hedging simulator</h3>
+          <p>Stock and put-option P/L scenarios.</p>
+          <div class="hub-meta">→ hedging_simulator.html</div>
+        </a>
+      </div>
+    </div>
+
+    <div class="callout callout-info">
+      <div class="callout-title">Navigation</div>
+      Full categorized list: <a href="../index.html">Portfolio home</a>. Source repo: <a href="https://github.com/vgandhi1/web-interactive-collection" target="_blank" rel="noopener">web-interactive-collection</a> (merged into this site’s <code style="font-family:JetBrains Mono,monospace;font-size:11px;">interactive/</code> folder).
+    </div>
+
+    <div class="cross-footer">
+      <a href="../index.html">← Portfolio home</a> · <a href="../theory/ml_theory_hub.html">ML &amp; AI theory hub</a> · © Vinay Gandhi
+    </div>
+  </div>
+</main>
+
+<button type="button" id="menu-toggle" onclick="document.getElementById('sidebar').classList.toggle('open')" aria-label="Menu">☰</button>
+</body>
+</html>

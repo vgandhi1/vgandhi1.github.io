@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Theory — Data Engineering (visual notes)</title>
+<meta name="description" content="Data engineering concepts: pipelines, ELT, medallion architecture, warehouses, batch vs streaming — with diagrams.">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;0,800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="ml_theory.css">
+</head>
+<body>
+
+<nav id="sidebar">
+  <div class="sb-logo">
+    <div class="sb-logo-mark">Theory · Visuals</div>
+    <div class="sb-logo-sub">ML · DE · AI systems</div>
+  </div>
+  <div class="nav-group">
+    <div class="nav-group-label">Topics</div>
+    <a class="nav-link" href="ml_theory_hub.html"><span class="nav-dot"></span>Hub</a>
+    <a class="nav-link active" href="theory_data_engineering.html"><span class="nav-dot"></span>Data engineering</a>
+    <a class="nav-link" href="theory_classical_ml.html"><span class="nav-dot"></span>Classical ML</a>
+    <a class="nav-link" href="theory_deep_learning.html"><span class="nav-dot"></span>Deep learning &amp; NN</a>
+    <a class="nav-link" href="theory_applied_ai_engineering.html"><span class="nav-dot"></span>Applied AI &amp; AI eng.</a>
+    <a class="nav-link" href="theory_rag_vs_finetune.html"><span class="nav-dot"></span>RAG vs fine-tuning</a>
+    <a class="nav-link" href="theory_mlops.html"><span class="nav-dot"></span>MLOps</a>
+    <a class="nav-link" href="theory_llmops.html"><span class="nav-dot"></span>LLMOps</a>
+    <a class="nav-link" href="theory_devops.html"><span class="nav-dot"></span>DevOps</a>
+  </div>
+</nav>
+
+<main id="main">
+  <header class="hero">
+    <div class="hero-tag"><a href="ml_theory_hub.html" style="color:inherit;text-decoration:none;">← Hub</a> · Data engineering</div>
+    <h1>Data <em>engineering</em> — moving data at scale</h1>
+    <p class="hero-lead">Data engineers build reliable paths from raw sources to analytics and ML consumers: ingestion, transformation, storage, and delivery—with clear contracts (schemas), observability, and cost control.</p>
+  </header>
+
+  <div class="content">
+
+    <section class="sec">
+      <h2><span class="sec-num">01</span> ETL vs ELT</h2>
+      <p class="prose"><strong>ETL</strong> (extract → transform → load) applies business rules before landing in the warehouse—good when the target schema is fixed. <strong>ELT</strong> loads raw or lightly cleaned data first, then transforms inside the warehouse using SQL/Spark—scales with modern warehouses and keeps raw history for reprocessing.</p>
+      <div class="figure">
+        <div class="figure-title">Figure — two pipeline shapes</div>
+        <svg class="svg-wrap" viewBox="0 0 720 160" xmlns="http://www.w3.org/2000/svg" aria-label="ETL vs ELT comparison">
+          <text x="8" y="22" fill="#312e81" font-family="JetBrains Mono, monospace" font-size="11" font-weight="700">ETL</text>
+          <rect x="8" y="32" width="100" height="44" rx="6" fill="#ede9fe" stroke="#7c3aed"/>
+          <text x="58" y="58" text-anchor="middle" fill="#5b21b6" font-family="JetBrains Mono" font-size="10">Sources</text>
+          <path d="M118 54 L148 54" stroke="#64748b" stroke-width="2" marker-end="url(#arr)"/>
+          <rect x="150" y="32" width="110" height="44" rx="6" fill="#fef3c7" stroke="#d97706"/>
+          <text x="205" y="58" text-anchor="middle" fill="#b45309" font-family="JetBrains Mono" font-size="10">Transform</text>
+          <path d="M270 54 L300 54" stroke="#64748b" stroke-width="2"/>
+          <rect x="302" y="32" width="120" height="44" rx="6" fill="#ccfbf1" stroke="#0d9488"/>
+          <text x="362" y="58" text-anchor="middle" fill="#0f766e" font-family="JetBrains Mono" font-size="10">Warehouse</text>
+
+          <text x="8" y="108" fill="#312e81" font-family="JetBrains Mono" font-size="11" font-weight="700">ELT</text>
+          <rect x="8" y="118" width="100" height="44" rx="6" fill="#ede9fe" stroke="#7c3aed"/>
+          <text x="58" y="144" text-anchor="middle" fill="#5b21b6" font-family="JetBrains Mono" font-size="10">Sources</text>
+          <path d="M118 140 L148 140" stroke="#64748b" stroke-width="2"/>
+          <rect x="150" y="118" width="120" height="44" rx="6" fill="#ccfbf1" stroke="#0d9488"/>
+          <text x="210" y="144" text-anchor="middle" fill="#0f766e" font-family="JetBrains Mono" font-size="10">Lake / WH</text>
+          <path d="M280 140 L310 140" stroke="#64748b" stroke-width="2"/>
+          <rect x="312" y="118" width="110" height="44" rx="6" fill="#fef3c7" stroke="#d97706"/>
+          <text x="367" y="144" text-anchor="middle" fill="#b45309" font-family="JetBrains Mono" font-size="10">Transform in SQL</text>
+          <defs>
+            <marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#64748b"/></marker>
+          </defs>
+        </svg>
+        <p class="figure-caption">ELT keeps raw data close to the warehouse so you can replay transformations when definitions change—common in analytics engineering and feature pipelines.</p>
+      </div>
+    </section>
+
+    <section class="sec">
+      <h2><span class="sec-num">02</span> Medallion architecture</h2>
+      <p class="prose">A layered lakehouse pattern: <strong>Bronze</strong> = immutable raw ingest (append-only), <strong>Silver</strong> = cleaned, conformed, deduplicated entities, <strong>Gold</strong> = business aggregates and curated marts for BI/ML. Each layer reduces ambiguity and cost for downstream users.</p>
+      <div class="figure">
+        <div class="figure-title">Figure — bronze → silver → gold</div>
+        <svg viewBox="0 0 560 200" xmlns="http://www.w3.org/2000/svg" width="100%" height="auto">
+          <rect x="40" y="120" width="480" height="56" rx="8" fill="#fef3c7" stroke="#b45309" stroke-width="2"/>
+          <text x="280" y="152" text-anchor="middle" fill="#92400e" font-family="JetBrains Mono" font-size="11" font-weight="700">GOLD — curated marts, metrics, features</text>
+          <rect x="60" y="60" width="440" height="52" rx="8" fill="#e0e7ff" stroke="#6366f1" stroke-width="2"/>
+          <text x="280" y="90" text-anchor="middle" fill="#3730a3" font-family="JetBrains Mono" font-size="11" font-weight="700">SILVER — conformed dimensions, deduped facts</text>
+          <rect x="80" y="8" width="400" height="44" rx="8" fill="#fecaca" stroke="#dc2626" stroke-width="2"/>
+          <text x="280" y="35" text-anchor="middle" fill="#991b1b" font-family="JetBrains Mono" font-size="11" font-weight="700">BRONZE — raw landing (JSON, CDC, logs)</text>
+          <text x="280" y="188" text-anchor="middle" fill="#64748b" font-family="Source Sans 3, sans-serif" font-size="11">Quality &amp; documentation increase ↑ · Flexibility &amp; replayability decrease ↓</text>
+        </svg>
+        <p class="figure-caption">Not every org names layers this way, but the <em>progressive refinement</em> idea is universal: isolate ingestion bugs in bronze before they pollute gold KPIs.</p>
+      </div>
+    </section>
+
+    <section class="sec">
+      <h2><span class="sec-num">03</span> Batch vs streaming</h2>
+      <p class="prose"><strong>Batch</strong> jobs (hourly, daily) maximize throughput and simplify correctness with idempotent partitions. <strong>Streaming</strong> (event-by-event or micro-batch) minimizes latency for alerts and near-real-time features—at the cost of operational complexity (watermarks, late data, exactly-once semantics).</p>
+      <div class="figure">
+        <div class="figure-title">Figure — latency vs simplicity (conceptual)</div>
+        <svg viewBox="0 0 520 140" xmlns="http://www.w3.org/2000/svg">
+          <text x="10" y="24" fill="#334155" font-family="Source Sans 3" font-size="12" font-weight="700">Batch</text>
+          <rect x="10" y="34" width="200" height="28" fill="#cbd5e1" rx="4"/>
+          <rect x="10" y="34" width="40" fill="#64748b" rx="4"/>
+          <text x="220" y="52" fill="#64748b" font-size="11" font-family="Source Sans 3">High latency · simpler ops</text>
+          <text x="10" y="94" fill="#334155" font-family="Source Sans 3" font-size="12" font-weight="700">Stream</text>
+          <rect x="10" y="104" width="200" height="28" fill="#cbd5e1" rx="4"/>
+          <rect x="10" y="104" width="180" fill="#0d9488" rx="4"/>
+          <text x="220" y="122" fill="#0f766e" font-size="11" font-family="Source Sans 3">Low latency · stateful consumers</text>
+        </svg>
+        <p class="figure-caption">Hybrid is common: stream into a real-time store for online features, batch into the warehouse for training sets and reporting.</p>
+      </div>
+      <div class="pill-row">
+        <span class="pill">Airflow / Dagster / dbt</span>
+        <span class="pill">Kafka / Flink / Spark Streaming</span>
+        <span class="pill">Data contracts</span>
+        <span class="pill">Observability (data quality SLAs)</span>
+      </div>
+    </section>
+
+    <section class="sec">
+      <h2><span class="sec-num">04</span> Mental model</h2>
+      <p class="prose">Good data engineering makes <strong>ML and analytics</strong> possible: without reliable grain, timestamps, and joins, models learn noise. Invest in <strong>lineage</strong> (where did this column come from?), <strong>tests</strong> (unique keys, not-null), and <strong>cost-aware</strong> storage (partitioning, clustering, lifecycle policies).</p>
+      <div class="callout callout-warn">
+        <div class="callout-title">Common pitfall</div>
+        Training-serving skew: features computed differently offline vs online break deployed models—keep transformation logic as shared as possible.</div>
+    </section>
+
+    <div class="cross-footer">
+      Next: <a href="theory_classical_ml.html">Classical ML theory</a> ·
+      <a href="ml_theory_hub.html">Theory hub</a>
+    </div>
+  </div>
+</main>
+
+<button type="button" id="menu-toggle" onclick="document.getElementById('sidebar').classList.toggle('open')" aria-label="Menu">☰</button>
+</body>
+</html>

@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Python 101 — Hub | Data, ML &amp; AI Engineering</title>
+<meta name="description" content="Python for data science, machine learning, data engineering, and AI: environments, core syntax, and links to NumPy/Pandas, PyTorch, and FastAPI guides.">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="python_101_common.css">
+</head>
+<body>
+
+<nav id="sidebar">
+  <div class="sb-logo">
+    <div class="sb-logo-mark">Python 101</div>
+    <div class="sb-logo-sub">Data · ML · AI · Engineering</div>
+  </div>
+  <div class="sb-search">
+    <input type="text" id="search" placeholder="Filter topics..." oninput="filterTopics(this.value)">
+  </div>
+  <div class="nav-group">
+    <div class="nav-group-label">Track</div>
+    <a class="nav-link active" href="python_101.html"><span class="nav-dot"></span>Hub &amp; core</a>
+    <a class="nav-link" href="python_101_data_ml.html"><span class="nav-dot"></span>Data &amp; ML</a>
+    <a class="nav-link" href="python_101_pytorch.html"><span class="nav-dot"></span>PyTorch &amp; AI</a>
+    <a class="nav-link" href="python_101_fastapi_eng.html"><span class="nav-dot"></span>FastAPI &amp; eng.</a>
+  </div>
+  <div class="nav-group">
+    <div class="nav-group-label">This page</div>
+    <a class="nav-link" href="#track" onclick="document.getElementById('track').scrollIntoView({behavior:'smooth'});return false;"><span class="nav-dot"></span>Learning track</a>
+    <a class="nav-link" href="#env" onclick="document.getElementById('env').scrollIntoView({behavior:'smooth'});return false;"><span class="nav-dot"></span>Environments</a>
+    <a class="nav-link" href="#syntax" onclick="document.getElementById('syntax').scrollIntoView({behavior:'smooth'});return false;"><span class="nav-dot"></span>Syntax &amp; types</a>
+    <a class="nav-link" href="#structure" onclick="document.getElementById('structure').scrollIntoView({behavior:'smooth'});return false;"><span class="nav-dot"></span>Modules &amp; tests</a>
+  </div>
+</nav>
+
+<main id="main">
+<div class="hero">
+  <div class="hero-eyebrow">Multi-page course · Cross-linked</div>
+  <h1>Python for <span class="py-word">data &amp; AI</span> systems</h1>
+  <p class="hero-desc">A practical path from environments and idiomatic Python to the stacks used in data science, classical ML, deep learning with <strong>PyTorch</strong>, and production APIs with <strong>FastAPI</strong>. Use this hub to navigate four pages—each deepens a different slice of the ecosystem.</p>
+  <div class="hero-chips">
+    <span class="chip chip-gold">venv / pip</span>
+    <span class="chip chip-gold">typing</span>
+    <span class="chip chip-muted">NumPy / Pandas</span>
+    <span class="chip chip-muted">scikit-learn</span>
+    <span class="chip chip-muted">PyTorch</span>
+    <span class="chip chip-muted">FastAPI</span>
+  </div>
+  <div class="hero-stats">
+    <div><div class="stat-n">4</div><div class="stat-l">Pages</div></div>
+    <div><div class="stat-n">∞</div><div class="stat-l">Ecosystem</div></div>
+  </div>
+</div>
+
+<div class="content">
+
+<div class="sec-header" id="track">
+  <span class="sec-num">00</span>
+  <h2>Learning track — pick your next page</h2>
+</div>
+
+<p class="prose">Start here for <strong>environments and core language habits</strong>, then branch. Each page is self-contained but assumes you can run Python 3.10+ locally.</p>
+
+<div class="hub-grid">
+  <a class="hub-card current" href="python_101.html">
+    <div class="hub-card-icon">🐍</div>
+    <h3>Hub &amp; Python core</h3>
+    <p>Virtual environments, pip, syntax, data structures, functions, classes, packages, and testing basics.</p>
+    <div class="hub-meta">You are here · python_101.html</div>
+  </a>
+  <a class="hub-card" href="python_101_data_ml.html">
+    <div class="hub-card-icon">📊</div>
+    <h3>Data science &amp; ML</h3>
+    <p>NumPy, Pandas, visualization, scikit-learn pipelines, and the classical ML workflow.</p>
+    <div class="hub-meta">→ python_101_data_ml.html</div>
+  </a>
+  <a class="hub-card" href="python_101_pytorch.html">
+    <div class="hub-card-icon">🔥</div>
+    <h3>PyTorch &amp; theory</h3>
+    <p>Tensors, autograd, <code>nn.Module</code>, training loops, loss, optimizers, regularization.</p>
+    <div class="hub-meta">→ python_101_pytorch.html</div>
+  </a>
+  <a class="hub-card" href="python_101_fastapi_eng.html">
+    <div class="hub-card-icon">⚡</div>
+    <h3>FastAPI &amp; engineering</h3>
+    <p>REST APIs, Pydantic, async I/O, serving models, batch/streaming and ops touchpoints.</p>
+    <div class="hub-meta">→ python_101_fastapi_eng.html</div>
+  </a>
+</div>
+
+<div class="alert alert-info">
+  <span class="alert-icon">ℹ</span>
+  <div class="alert-body">Prefer a linear path? Go <strong>Hub → Data &amp; ML → PyTorch → FastAPI</strong>. If you already know Pandas, jump straight to PyTorch, then learn how to <em>deploy</em> models on the FastAPI page.</div>
+</div>
+
+<div class="sec-header" id="env">
+  <span class="sec-num">01</span>
+  <h2>Environments &amp; tooling</h2>
+</div>
+
+<div class="topic" data-search="venv pip conda uv virtualenv pyproject">
+  <div class="topic-header" onclick="toggle(this)">
+    <div class="topic-icon" style="background:#e0f2fe">📦</div>
+    <div class="topic-title">
+      <h3>Virtual environments &amp; installs</h3>
+      <p>Isolate dependencies per project — non-negotiable for ML stacks</p>
+    </div>
+    <span class="topic-chev">▼</span>
+  </div>
+  <div class="topic-body">
+    <div class="tag-row"><span class="tag">tooling</span><span class="tag">reproducibility</span></div>
+    <p class="prose">Never install PyTorch or Pandas into the system Python on your laptop. Use a <strong>venv</strong> (stdlib) or <strong>conda</strong>/<strong>mamba</strong> for scientific stacks, or <strong>uv</strong> for fast installs. Pin versions in <code>requirements.txt</code> or <code>pyproject.toml</code> for anything you ship.</p>
+    <div class="code-wrap">
+      <div class="code-header">
+        <div class="code-dots"><div class="code-dot dot-r"></div><div class="code-dot dot-y"></div><div class="code-dot dot-g"></div></div>
+        <span class="code-lang">bash</span>
+        <button class="copy-btn" onclick="copyCode(this)">copy</button>
+      </div>
+      <pre><span class="cm"># Create and activate (Windows PowerShell)</span>
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+
+<span class="cm"># macOS / Linux</span>
+python3 -m venv .venv
+source .venv/bin/activate
+
+pip install --upgrade pip
+pip install numpy pandas scikit-learn torch fastapi uvicorn
+pip freeze &gt; requirements.txt</pre>
+    </div>
+    <div class="alert alert-tip"><span class="alert-icon">✓</span><div class="alert-body">Commit <code>requirements.txt</code> or lockfile; add <code>.venv/</code> to <code>.gitignore</code>. For GPU PyTorch, follow the official install matrix (CUDA vs CPU).</div></div>
+  </div>
+</div>
+
+<div class="sec-header" id="syntax">
+  <span class="sec-num">02</span>
+  <h2>Syntax, types &amp; collections</h2>
+</div>
+
+<div class="topic" data-search="list dict comprehension slice walrus">
+  <div class="topic-header" onclick="toggle(this)">
+    <div class="topic-icon" style="background:#fff7ed">🧩</div>
+    <div class="topic-title">
+      <h3>Idioms you will see everywhere</h3>
+      <p>List/dict comprehensions, unpacking, f-strings</p>
+    </div>
+    <span class="topic-chev">▼</span>
+  </div>
+  <div class="topic-body">
+    <div class="tag-row"><span class="tag">basics</span></div>
+    <div class="code-wrap">
+      <div class="code-header">
+        <div class="code-dots"><div class="code-dot dot-r"></div><div class="code-dot dot-y"></div><div class="code-dot dot-g"></div></div>
+        <span class="code-lang">python</span>
+        <button class="copy-btn" onclick="copyCode(this)">copy</button>
+      </div>
+      <pre><span class="cm"># Comprehensions — prefer over map/filter for readability</span>
+squares = [x * x <span class="kw">for</span> x <span class="kw">in</span> range(<span class="num">10</span>) <span class="kw">if</span> x % <span class="num">2</span> == <span class="num">0</span>]
+
+<span class="cm"># Dict &amp; set comprehensions</span>
+word_lengths = {w: len(w) <span class="kw">for</span> w <span class="kw">in</span> [<span class="str">"ai"</span>, <span class="str">"ml"</span>, <span class="str">"de"</span>]}
+
+<span class="cm"># Unpacking</span>
+first, *rest, last = [<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>, <span class="num">4</span>, <span class="num">5</span>]
+
+<span class="cm"># f-strings (Python 3.8+)</span>
+name, loss = <span class="str">"train"</span>, <span class="num">0.42</span>
+<span class="kw">print</span>(<span class="str">f"epoch={name!r} loss={loss:.4f}"</span>)</pre>
+    </div>
+    <p class="prose">For data work you will live in <strong>iterables</strong> and <strong>generators</strong> when files or streams are too large to load at once—see the FastAPI page for streaming responses.</p>
+  </div>
+</div>
+
+<div class="topic" data-search="type hint Optional Callable Protocol">
+  <div class="topic-header" onclick="toggle(this)">
+    <div class="topic-icon" style="background:#e8f5eb">✏</div>
+    <div class="topic-title">
+      <h3>Type hints &amp; data classes</h3>
+      <p>Readable APIs — pairs well with Pydantic on the FastAPI page</p>
+    </div>
+    <span class="topic-chev">▼</span>
+  </div>
+  <div class="topic-body">
+    <div class="code-wrap">
+      <div class="code-header">
+        <div class="code-dots"><div class="code-dot dot-r"></div><div class="code-dot dot-y"></div><div class="code-dot dot-g"></div></div>
+        <span class="code-lang">python</span>
+        <button class="copy-btn" onclick="copyCode(this)">copy</button>
+      </div>
+      <pre><span class="kw">from</span> dataclasses <span class="kw">import</span> dataclass
+<span class="kw">from</span> typing <span class="kw">import</span> Optional, Sequence
+
+@dataclass
+<span class="kw">class</span> <span class="fn">BatchConfig</span>:
+    batch_size: int = <span class="num">32</span>
+    shuffle: bool = <span class="kw">True</span>
+    drop_last: Optional[bool] = <span class="kw">None</span>
+
+<span class="kw">def</span> <span class="fn">moving_average</span>(xs: Sequence[<span class="fn">float</span>], window: int) -&gt; list[<span class="fn">float</span>]:
+    <span class="cm">"""Hints document intent; mypy/pyright catch mistakes."""</span>
+    ...</pre>
+    </div>
+    <div class="alert alert-warn"><span class="alert-icon">⚠</span><div class="alert-body">Hints are optional at runtime. Libraries like <strong>Pydantic</strong> enforce validation when you opt in—essential for ML APIs.</div></div>
+  </div>
+</div>
+
+<div class="sec-header" id="structure">
+  <span class="sec-num">03</span>
+  <h2>Project layout &amp; testing</h2>
+</div>
+
+<div class="topic" data-search="pytest __init__ package src">
+  <div class="topic-header" onclick="toggle(this)">
+    <div class="topic-icon" style="background:#fef3c7">🗂</div>
+    <div class="topic-title">
+      <h3>Packages, <code>src/</code> layout &amp; pytest</h3>
+      <p>How ML repos are usually organized</p>
+    </div>
+    <span class="topic-chev">▼</span>
+  </div>
+  <div class="topic-body">
+    <div class="two-col">
+      <div class="info-card">
+        <div class="info-card-title">Typical layout</div>
+        <code style="font-size:11px;line-height:1.5;display:block;white-space:pre-wrap">project/
+  pyproject.toml
+  src/mypkg/
+    __init__.py
+    train.py
+  tests/test_train.py</code>
+      </div>
+      <div class="info-card">
+        <div class="info-card-title">Why tests matter in ML</div>
+        <p>Assert data transforms, metric computation, and inference code—models are hard to test end-to-end, but <strong>pure functions</strong> should be deterministic.</p>
+      </div>
+    </div>
+    <div class="code-wrap">
+      <div class="code-header">
+        <div class="code-dots"><div class="code-dot dot-r"></div><div class="code-dot dot-y"></div><div class="code-dot dot-g"></div></div>
+        <span class="code-lang">python</span>
+        <button class="copy-btn" onclick="copyCode(this)">copy</button>
+      </div>
+      <pre><span class="cm"># tests/test_metrics.py — example pattern</span>
+<span class="kw">import</span> pytest
+
+<span class="kw">def</span> <span class="fn">accuracy</span>(y_true, y_pred):
+    <span class="kw">return</span> sum(a == b <span class="kw">for</span> a, b <span class="kw">in</span> zip(y_true, y_pred)) / len(y_true)
+
+<span class="kw">def</span> <span class="fn">test_accuracy_perfect</span>():
+    y_true = [<span class="num">0</span>, <span class="num">1</span>, <span class="num">1</span>]
+    y_pred = [<span class="num">0</span>, <span class="num">1</span>, <span class="num">1</span>]
+    <span class="kw">assert</span> accuracy(y_true, y_pred) == pytest.approx(<span class="num">1.0</span>)</pre>
+    </div>
+  </div>
+</div>
+
+<div class="cross-ref">
+  <strong>Next steps</strong><br>
+  → <a href="python_101_data_ml.html">Data &amp; ML</a> — NumPy, Pandas, scikit-learn<br>
+  → <a href="python_101_pytorch.html">PyTorch &amp; AI</a> — deep learning core<br>
+  → <a href="python_101_fastapi_eng.html">FastAPI &amp; engineering</a> — ship models behind HTTP<br>
+  <span style="opacity:.85">Theory (visuals):</span> <a href="../theory/ml_theory_hub.html">ML &amp; AI theory hub</a>
+</div>
+
+</div>
+</main>
+
+<button type="button" id="menu-toggle" onclick="document.getElementById('sidebar').classList.toggle('open')" aria-label="Menu">☰</button>
+
+<script>
+function toggle(header) {
+  const body = header.parentElement.querySelector('.topic-body');
+  const chev = header.querySelector('.topic-chev');
+  const open = body.classList.contains('open');
+  body.classList.toggle('open', !open);
+  chev.classList.toggle('open', !open);
+}
+
+function copyCode(btn) {
+  const pre = btn.closest('.code-wrap').querySelector('pre');
+  navigator.clipboard.writeText(pre.innerText).then(function () {
+    btn.textContent = 'copied!';
+    btn.classList.add('copied');
+    setTimeout(function () { btn.textContent = 'copy'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+
+function filterTopics(q) {
+  const lq = q.toLowerCase();
+  document.querySelectorAll('.topic').forEach(function (t) {
+    const text = (t.getAttribute('data-search') || '') + ' ' + (t.querySelector('h3') && t.querySelector('h3').textContent || '');
+    t.classList.toggle('hidden', lq.length > 0 && !text.toLowerCase().includes(lq));
+  });
+}
+</script>
+</body>
+</html>

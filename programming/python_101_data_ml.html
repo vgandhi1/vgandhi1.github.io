@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Python 101 — Data Science &amp; Machine Learning</title>
+<meta name="description" content="NumPy, Pandas, visualization, and scikit-learn: the Python data science and classical ML stack for analytics and modeling.">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="python_101_common.css">
+</head>
+<body>
+
+<nav id="sidebar">
+  <div class="sb-logo">
+    <div class="sb-logo-mark">Python 101</div>
+    <div class="sb-logo-sub">Data · ML · AI · Engineering</div>
+  </div>
+  <div class="sb-search">
+    <input type="text" placeholder="Filter topics..." oninput="filterTopics(this.value)">
+  </div>
+  <div class="nav-group">
+    <div class="nav-group-label">Track</div>
+    <a class="nav-link" href="python_101.html"><span class="nav-dot"></span>Hub &amp; core</a>
+    <a class="nav-link active" href="python_101_data_ml.html"><span class="nav-dot"></span>Data &amp; ML</a>
+    <a class="nav-link" href="python_101_pytorch.html"><span class="nav-dot"></span>PyTorch &amp; AI</a>
+    <a class="nav-link" href="python_101_fastapi_eng.html"><span class="nav-dot"></span>FastAPI &amp; eng.</a>
+  </div>
+  <div class="nav-group">
+    <div class="nav-group-label">This page</div>
+    <a class="nav-link" href="#numpy"><span class="nav-dot"></span>NumPy</a>
+    <a class="nav-link" href="#pandas"><span class="nav-dot"></span>Pandas</a>
+    <a class="nav-link" href="#viz"><span class="nav-dot"></span>Visualization</a>
+    <a class="nav-link" href="#sklearn"><span class="nav-dot"></span>scikit-learn</a>
+  </div>
+</nav>
+
+<main id="main">
+<div class="hero">
+  <div class="hero-eyebrow">Page 2 of 4 · <a href="python_101.html" style="color:#fde68a;">← Hub</a></div>
+  <h1>Data science &amp; <span class="py-word">classical ML</span></h1>
+  <p class="hero-desc">NumPy for numerical arrays, Pandas for labeled tables, Matplotlib/Seaborn for plots, and scikit-learn for preprocessing and traditional ML models. This stack is the default for analytics engineering and feature work before deep learning.</p>
+  <div class="hero-chips">
+    <span class="chip chip-gold">NumPy</span>
+    <span class="chip chip-gold">Pandas</span>
+    <span class="chip chip-muted">matplotlib</span>
+    <span class="chip chip-muted">scikit-learn</span>
+  </div>
+  <div class="hero-stats">
+    <div><div class="stat-n">4</div><div class="stat-l">Topics</div></div>
+    <div><div class="stat-n">→</div><div class="stat-l"><a href="python_101_pytorch.html" style="color:inherit;text-decoration:none;">PyTorch next</a></div></div>
+  </div>
+</div>
+
+<div class="content">
+
+<div class="sec-header" id="numpy">
+  <span class="sec-num">01</span>
+  <h2>NumPy — array computing</h2>
+</div>
+
+<div class="topic" data-search="numpy array broadcast vectorization axis dtype">
+  <div class="topic-header" onclick="toggle(this)">
+    <div class="topic-icon" style="background:#e0f2fe">▦</div>
+    <div class="topic-title">
+      <h3>ndarray, dtypes, broadcasting</h3>
+      <p>Foundation for Pandas and PyTorch tensors</p>
+    </div>
+    <span class="topic-chev">▼</span>
+  </div>
+  <div class="topic-body">
+    <p class="prose">NumPy arrays are <strong>homogeneous</strong> (one dtype per array), stored contiguously for speed. <strong>Vectorization</strong> avoids Python loops; <strong>broadcasting</strong> applies binary ops across compatible shapes. Axis <code>0</code> is usually “down rows” for 2-D arrays.</p>
+    <div class="code-wrap">
+      <div class="code-header">
+        <div class="code-dots"><div class="code-dot dot-r"></div><div class="code-dot dot-y"></div><div class="code-dot dot-g"></div></div>
+        <span class="code-lang">python</span>
+        <button class="copy-btn" onclick="copyCode(this)">copy</button>
+      </div>
+      <pre><span class="kw">import</span> numpy <span class="kw">as</span> np
+
+x = np.array([[<span class="num">1.</span>, <span class="num">2.</span>], [<span class="num">3.</span>, <span class="num">4.</span>]])
+<span class="cm"># column means — axis=0 aggregates over rows</span>
+col_mean = x.mean(axis=<span class="num">0</span>)
+
+<span class="cm"># broadcasting: (2,2) + (2,) adds row-wise</span>
+y = x + np.array([<span class="num">10</span>, <span class="num">20</span>])
+
+<span class="cm"># Masking — keep values where condition holds</span>
+mask = x &gt; <span class="num">2</span>
+z = x[mask]</pre>
+    </div>
+    <div class="alert alert-tip"><span class="alert-icon">✓</span><div class="alert-body">Prefer NumPy for numeric kernels; for labeled tables use Pandas. PyTorch tensors are conceptually similar—see the <a href="python_101_pytorch.html">PyTorch page</a>.</div></div>
+  </div>
+</div>
+
+<div class="sec-header" id="pandas">
+  <span class="sec-num">02</span>
+  <h2>Pandas — tables &amp; time series</h2>
+</div>
+
+<div class="topic" data-search="pandas dataframe series groupby merge pivot datetime">
+  <div class="topic-header" onclick="toggle(this)">
+    <div class="topic-icon" style="background:#fff7ed">▤</div>
+    <div class="topic-title">
+      <h3>DataFrame, groupby, joins</h3>
+      <p>Analytics engineering bread and butter</p>
+    </div>
+    <span class="topic-chev">▼</span>
+  </div>
+  <div class="topic-body">
+    <p class="prose">A <strong>DataFrame</strong> is columnar; each column is a <strong>Series</strong> with a shared index. <code>groupby</code> splits-apply-combine; <code>merge</code> is SQL-like joins. Always know your <strong>grain</strong> (one row = one what?) before aggregating.</p>
+    <div class="code-wrap">
+      <div class="code-header">
+        <div class="code-dots"><div class="code-dot dot-r"></div><div class="code-dot dot-y"></div><div class="code-dot dot-g"></div></div>
+        <span class="code-lang">python</span>
+        <button class="copy-btn" onclick="copyCode(this)">copy</button>
+      </div>
+      <pre><span class="kw">import</span> pandas <span class="kw">as</span> pd
+
+df = pd.read_parquet(<span class="str">"events.parquet"</span>)
+daily = (
+    df.groupby([<span class="str">"user_id"</span>, df[<span class="str">"ts"</span>].dt.date])
+      .agg(events=(<span class="str">"event_id"</span>, <span class="str">"count"</span>))
+      .reset_index()
+)
+<span class="cm"># Join to dim table — mind duplicate keys</span>
+out = daily.merge(users, on=<span class="str">"user_id"</span>, how=<span class="str">"left"</span>)</pre>
+    </div>
+    <div class="alert alert-warn"><span class="alert-icon">⚠</span><div class="alert-body">Chained indexing (<code>df[a][b]</code>) can return copies vs views—use <code>.loc[row, col]</code> for assignment. For large data consider <strong>Polars</strong> (see FastAPI &amp; engineering page).</div></div>
+  </div>
+</div>
+
+<div class="sec-header" id="viz">
+  <span class="sec-num">03</span>
+  <h2>Visualization</h2>
+</div>
+
+<div class="topic" data-search="matplotlib seaborn plot exploratory">
+  <div class="topic-header" onclick="toggle(this)">
+    <div class="topic-icon" style="background:#fce7f3">📈</div>
+    <div class="topic-title">
+      <h3>Matplotlib &amp; Seaborn</h3>
+      <p>EDA before modeling</p>
+    </div>
+    <span class="topic-chev">▼</span>
+  </div>
+  <div class="topic-body">
+    <p class="prose">Use plots to catch distribution shift, outliers, and label noise. Seaborn builds on Matplotlib with nicer defaults for statistical charts.</p>
+    <div class="code-wrap">
+      <div class="code-header">
+        <div class="code-dots"><div class="code-dot dot-r"></div><div class="code-dot dot-y"></div><div class="code-dot dot-g"></div></div>
+        <span class="code-lang">python</span>
+        <button class="copy-btn" onclick="copyCode(this)">copy</button>
+      </div>
+      <pre><span class="kw">import</span> matplotlib.pyplot <span class="kw">as</span> plt
+<span class="kw">import</span> seaborn <span class="kw">as</span> sns
+
+fig, ax = plt.subplots(figsize=(<span class="num">8</span>, <span class="num">4</span>))
+sns.histplot(df[<span class="str">"score"</span>], kde=<span class="kw">True</span>, ax=ax)
+ax.set_title(<span class="str">"Score distribution"</span>)
+plt.tight_layout()</pre>
+    </div>
+  </div>
+</div>
+
+<div class="sec-header" id="sklearn">
+  <span class="sec-num">04</span>
+  <h2>scikit-learn — pipelines &amp; models</h2>
+</div>
+
+<div class="topic" data-search="sklearn pipeline fit transform estimator train_test_split metrics">
+  <div class="topic-header" onclick="toggle(this)">
+    <div class="topic-icon" style="background:#e8f5eb">⚙</div>
+    <div class="topic-title">
+      <h3>Estimator API &amp; Pipeline</h3>
+      <p>Fit on train only; preprocess inside the pipeline</p>
+    </div>
+    <span class="topic-chev">▼</span>
+  </div>
+  <div class="topic-body">
+    <p class="prose">All estimators implement <code>fit</code> / <code>predict</code> (or <code>transform</code>). <strong>Pipeline</strong> chains steps so cross-validation does not leak information from validation folds into preprocessing. Compare models with proper metrics (ROC-AUC, log loss, RMSE) on held-out data.</p>
+    <div class="code-wrap">
+      <div class="code-header">
+        <div class="code-dots"><div class="code-dot dot-r"></div><div class="code-dot dot-y"></div><div class="code-dot dot-g"></div></div>
+        <span class="code-lang">python</span>
+        <button class="copy-btn" onclick="copyCode(this)">copy</button>
+      </div>
+      <pre><span class="kw">from</span> sklearn.compose <span class="kw">import</span> ColumnTransformer
+<span class="kw">from</span> sklearn.pipeline <span class="kw">import</span> Pipeline
+<span class="kw">from</span> sklearn.preprocessing <span class="kw">import</span> StandardScaler, OneHotEncoder
+<span class="kw">from</span> sklearn.ensemble <span class="kw">import</span> RandomForestClassifier
+<span class="kw">from</span> sklearn.model_selection <span class="kw">import</span> train_test_split
+
+<span class="cm"># X, y from your feature matrix and labels</span>
+<span class="cm"># preprocessor = ColumnTransformer([...])  # numeric scale + categorical one-hot</span>
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=<span class="num">0.2</span>, random_state=<span class="num">42</span>)
+
+pipe = Pipeline([
+    (<span class="str">"prep"</span>, preprocessor),  <span class="cm"># fit on train only inside CV</span>
+    (<span class="str">"clf"</span>, RandomForestClassifier(n_estimators=<span class="num">200</span>, random_state=<span class="num">42</span>)),
+])
+pipe.fit(X_train, y_train)</pre>
+    </div>
+    <div class="alert alert-info"><span class="alert-icon">ℹ</span><div class="alert-body">When data is tabular and samples are modest in size, <strong>gradient boosting</strong> (XGBoost, LightGBM, CatBoost) often beats random forests—still use pipelines and careful validation.</div></div>
+  </div>
+</div>
+
+<div class="cross-ref">
+  <strong>Related pages</strong><br>
+  ← <a href="python_101.html">Hub &amp; Python core</a> ·
+  → <a href="python_101_pytorch.html">PyTorch &amp; AI</a> (deep learning) ·
+  <a href="python_101_fastapi_eng.html">FastAPI &amp; engineering</a> (serve models)
+</div>
+
+</div>
+</main>
+
+<button type="button" id="menu-toggle" onclick="document.getElementById('sidebar').classList.toggle('open')" aria-label="Menu">☰</button>
+
+<script>
+function toggle(header) {
+  const body = header.parentElement.querySelector('.topic-body');
+  const chev = header.querySelector('.topic-chev');
+  const open = body.classList.contains('open');
+  body.classList.toggle('open', !open);
+  chev.classList.toggle('open', !open);
+}
+function copyCode(btn) {
+  const pre = btn.closest('.code-wrap').querySelector('pre');
+  navigator.clipboard.writeText(pre.innerText).then(function () {
+    btn.textContent = 'copied!';
+    btn.classList.add('copied');
+    setTimeout(function () { btn.textContent = 'copy'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+function filterTopics(q) {
+  const lq = q.toLowerCase();
+  document.querySelectorAll('.topic').forEach(function (t) {
+    const text = (t.getAttribute('data-search') || '') + ' ' + (t.querySelector('h3') && t.querySelector('h3').textContent || '');
+    t.classList.toggle('hidden', lq.length > 0 && !text.toLowerCase().includes(lq));
+  });
+}
+</script>
+</body>
+</html>

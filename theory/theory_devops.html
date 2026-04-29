@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Theory — DevOps (visual notes)</title>
+<meta name="description" content="DevOps: culture and automation for delivery—CI/CD, infrastructure as code, observability—and how it enables MLOps and LLMOps.">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;0,800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="ml_theory.css">
+</head>
+<body>
+
+<nav id="sidebar">
+  <div class="sb-logo">
+    <div class="sb-logo-mark">Theory · Visuals</div>
+    <div class="sb-logo-sub">ML · DE · AI systems</div>
+  </div>
+  <div class="nav-group">
+    <div class="nav-group-label">Topics</div>
+    <a class="nav-link" href="ml_theory_hub.html"><span class="nav-dot"></span>Hub</a>
+    <a class="nav-link" href="theory_data_engineering.html"><span class="nav-dot"></span>Data engineering</a>
+    <a class="nav-link" href="theory_classical_ml.html"><span class="nav-dot"></span>Classical ML</a>
+    <a class="nav-link" href="theory_deep_learning.html"><span class="nav-dot"></span>Deep learning &amp; NN</a>
+    <a class="nav-link" href="theory_applied_ai_engineering.html"><span class="nav-dot"></span>Applied AI &amp; AI eng.</a>
+    <a class="nav-link" href="theory_rag_vs_finetune.html"><span class="nav-dot"></span>RAG vs fine-tuning</a>
+    <a class="nav-link" href="theory_mlops.html"><span class="nav-dot"></span>MLOps</a>
+    <a class="nav-link" href="theory_llmops.html"><span class="nav-dot"></span>LLMOps</a>
+    <a class="nav-link active" href="theory_devops.html"><span class="nav-dot"></span>DevOps</a>
+  </div>
+</nav>
+
+<main id="main">
+  <header class="hero">
+    <div class="hero-tag"><a href="ml_theory_hub.html" style="color:inherit;text-decoration:none;">← Hub</a> · DevOps</div>
+    <h1><em>DevOps</em> — delivery &amp; reliability culture</h1>
+    <p class="hero-lead"><strong>DevOps</strong> is a set of cultural principles and technical practices that shorten the path from commit to production: automation, fast feedback, shared ownership between dev and ops, and continuous improvement. It is the <strong>foundation</strong> on which MLOps and LLMOps build.</p>
+  </header>
+
+  <div class="content">
+
+    <section class="sec">
+      <h2><span class="sec-num">01</span> Core themes (CALMS, summarized)</h2>
+      <ul class="prose" style="list-style:disc;padding-left:1.2rem;">
+        <li><strong>Culture:</strong> blameless postmortems, small batches, collaboration across roles.</li>
+        <li><strong>Automation:</strong> build, test, deploy, provision—repeatable pipelines.</li>
+        <li><strong>Lean flow:</strong> limit work in progress; visualize bottlenecks.</li>
+        <li><strong>Measurement:</strong> SLIs/SLOs, metrics, logs, traces—not vanity dashboards.</li>
+        <li><strong>Sharing:</strong> knowledge spread via runbooks and tooling—reduces bus factor.</li>
+      </ul>
+    </section>
+
+    <section class="sec">
+      <h2><span class="sec-num">02</span> Typical delivery pipeline</h2>
+      <div class="figure">
+        <div class="figure-title">Figure — CI/CD trunk</div>
+        <svg viewBox="0 0 520 90" xmlns="http://www.w3.org/2000/svg" width="100%">
+          <rect x="10" y="28" width="85" height="40" rx="6" fill="#dbeafe" stroke="#2563eb"/>
+          <text x="52" y="52" text-anchor="middle" font-size="10" fill="#1e40af" font-family="JetBrains Mono">Commit</text>
+          <path d="M98 48 L118 48" stroke="#94a3b8"/>
+          <rect x="118" y="28" width="85" height="40" rx="6" fill="#e0e7ff" stroke="#6366f1"/>
+          <text x="160" y="52" text-anchor="middle" font-size="10" fill="#3730a3" font-family="JetBrains Mono">Build</text>
+          <path d="M206 48 L226 48" stroke="#94a3b8"/>
+          <rect x="226" y="28" width="85" height="40" rx="6" fill="#fef3c7" stroke="#d97706"/>
+          <text x="268" y="52" text-anchor="middle" font-size="10" fill="#92400e" font-family="JetBrains Mono">Test</text>
+          <path d="M314 48 L334 48" stroke="#94a3b8"/>
+          <rect x="334" y="28" width="85" height="40" rx="6" fill="#ccfbf1" stroke="#0d9488"/>
+          <text x="376" y="52" text-anchor="middle" font-size="10" fill="#0f766e" font-family="JetBrains Mono">Deploy</text>
+          <path d="M422 48 L442 48" stroke="#94a3b8"/>
+          <rect x="442" y="28" width="68" height="40" rx="6" fill="#f1f5f9" stroke="#64748b"/>
+          <text x="476" y="52" text-anchor="middle" font-size="9" fill="#334155" font-family="JetBrains Mono">Observe</text>
+        </svg>
+        <p class="figure-caption">Infrastructure as code (Terraform, Pulumi, etc.) keeps environments reproducible; feature flags and canaries reduce deploy risk.</p>
+      </div>
+    </section>
+
+    <section class="sec">
+      <h2><span class="sec-num">03</span> How DevOps relates to MLOps / LLMOps</h2>
+      <div class="figure">
+        <div class="figure-title">Figure — layering</div>
+        <svg viewBox="0 0 400 130" xmlns="http://www.w3.org/2000/svg">
+          <rect x="40" y="10" width="320" height="36" rx="6" fill="#f1f5f9" stroke="#64748b"/>
+          <text x="200" y="32" text-anchor="middle" font-size="11" fill="#334155" font-family="JetBrains Mono">DevOps — CI/CD, IaC, SRE practices</text>
+          <rect x="60" y="52" width="280" height="36" rx="6" fill="#dbeafe" stroke="#2563eb"/>
+          <text x="200" y="74" text-anchor="middle" font-size="11" fill="#1e40af" font-family="JetBrains Mono">MLOps — models, data, eval gates</text>
+          <rect x="90" y="94" width="220" height="32" rx="6" fill="#ede9fe" stroke="#7c3aed"/>
+          <text x="200" y="114" text-anchor="middle" font-size="10" fill="#5b21b6" font-family="JetBrains Mono">LLMOps — prompts, RAG, LLM eval</text>
+        </svg>
+        <p class="figure-caption">You rarely choose “DevOps or MLOps”—you need both: generic delivery discipline plus ML- or LLM-specific tooling and governance.</p>
+      </div>
+    </section>
+
+    <section class="sec">
+      <h2><span class="sec-num">04</span> Observability trio</h2>
+      <p class="prose"><strong>Metrics</strong> (aggregates over time), <strong>logs</strong> (discrete events—avoid secrets in messages), and <strong>traces</strong> (request paths across services) together explain production behavior. MLOps adds model-specific signals; LLMOps adds token usage and retrieval hit rates.</p>
+    </section>
+
+    <div class="cross-footer">
+      <a href="theory_llmops.html">← LLMOps</a> ·
+      <a href="theory_mlops.html">MLOps</a> ·
+      <a href="../programming/python_101_fastapi_eng.html">FastAPI (code)</a> ·
+      <a href="ml_theory_hub.html">Theory hub</a>
+    </div>
+  </div>
+</main>
+
+<button type="button" id="menu-toggle" onclick="document.getElementById('sidebar').classList.toggle('open')" aria-label="Menu">☰</button>
+</body>
+</html>

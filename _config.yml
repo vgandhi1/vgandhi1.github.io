@@ -1,0 +1,25 @@
+# Site — https://vgandhi1.github.io/
+title: Vinay Gandhi
+description: >-
+  AI systems, data engineering, EV systems, and intelligent products — portfolio
+  and technical notes.
+author:
+  name: Vinay Gandhi
+
+url: "https://vgandhi1.github.io"
+baseurl: ""
+
+# GitHub Pages ships Minima 2.5.x with `theme: minima`, which has no dark skin.
+# Pull Minima 3+ from GitHub so `skin` works (requires jekyll-remote-theme).
+remote_theme: jekyll/minima
+
+minima:
+  skin: dark
+  date_format: "%b %-d, %Y"
+
+plugins:
+  - jekyll-remote-theme
+  - jekyll-feed
+  - jekyll-seo-tag
+
+show_excerpts: true

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Theory — Applied AI &amp; AI Engineering (visual notes)</title>
+<meta name="description" content="Applied AI vs AI engineering: shipping models, MLOps loop, evaluation in production, safety and monitoring — with diagrams.">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;0,800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="ml_theory.css">
+</head>
+<body>
+
+<nav id="sidebar">
+  <div class="sb-logo">
+    <div class="sb-logo-mark">Theory · Visuals</div>
+    <div class="sb-logo-sub">ML · DE · AI systems</div>
+  </div>
+  <div class="nav-group">
+    <div class="nav-group-label">Topics</div>
+    <a class="nav-link" href="ml_theory_hub.html"><span class="nav-dot"></span>Hub</a>
+    <a class="nav-link" href="theory_data_engineering.html"><span class="nav-dot"></span>Data engineering</a>
+    <a class="nav-link" href="theory_classical_ml.html"><span class="nav-dot"></span>Classical ML</a>
+    <a class="nav-link" href="theory_deep_learning.html"><span class="nav-dot"></span>Deep learning &amp; NN</a>
+    <a class="nav-link active" href="theory_applied_ai_engineering.html"><span class="nav-dot"></span>Applied AI &amp; AI eng.</a>
+    <a class="nav-link" href="theory_rag_vs_finetune.html"><span class="nav-dot"></span>RAG vs fine-tuning</a>
+    <a class="nav-link" href="theory_mlops.html"><span class="nav-dot"></span>MLOps</a>
+    <a class="nav-link" href="theory_llmops.html"><span class="nav-dot"></span>LLMOps</a>
+    <a class="nav-link" href="theory_devops.html"><span class="nav-dot"></span>DevOps</a>
+  </div>
+</nav>
+
+<main id="main">
+  <header class="hero">
+    <div class="hero-tag"><a href="ml_theory_hub.html" style="color:inherit;text-decoration:none;">← Hub</a> · Applied AI &amp; AI eng.</div>
+    <h1>Applied AI &amp; <em>AI engineering</em></h1>
+    <p class="hero-lead"><strong>Applied AI</strong> emphasizes outcomes: solving business problems with models under constraints. <strong>AI engineering</strong> is the discipline of building reliable systems—data, training, deployment, monitoring, and governance—so those models work in production, not only in notebooks.</p>
+  </header>
+
+  <div class="content">
+
+    <section class="sec">
+      <h2><span class="sec-num">01</span> Roles (overlapping)</h2>
+      <div class="compare-2">
+        <div class="figure" style="margin:0;">
+          <div class="figure-title">Applied AI / ML</div>
+          <p class="prose" style="margin:0;">Problem framing, baselines, metrics tied to decisions, stakeholder communication, often notebook-to-first-deploy.</p>
+        </div>
+        <div class="figure" style="margin:0;">
+          <div class="figure-title">AI / ML engineering</div>
+          <p class="prose" style="margin:0;">Scalable training &amp; inference, CI/CD for ML, feature stores, latency/cost SLOs, on-call, safe rollbacks.</p>
+        </div>
+      </div>
+      <div class="figure">
+        <div class="figure-title">Figure — shared production loop</div>
+        <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="200" cy="100" rx="170" ry="75" fill="none" stroke="#a5b4fc" stroke-width="2" stroke-dasharray="6 4"/>
+          <text x="200" y="35" text-anchor="middle" fill="#3730a3" font-family="JetBrains Mono" font-size="11" font-weight="700">DATA</text>
+          <text x="340" y="105" text-anchor="middle" fill="#0d9488" font-family="JetBrains Mono" font-size="11" font-weight="700">TRAIN</text>
+          <text x="200" y="185" text-anchor="middle" fill="#b45309" font-family="JetBrains Mono" font-size="11" font-weight="700">DEPLOY</text>
+          <text x="55" y="105" text-anchor="middle" fill="#7c3aed" font-family="JetBrains Mono" font-size="11" font-weight="700">MONITOR</text>
+          <circle cx="200" cy="100" r="8" fill="#fde68a" stroke="#ca8a04"/>
+          <text x="200" y="104" text-anchor="middle" font-size="8" fill="#854d0e" font-family="JetBrains Mono">CI</text>
+        </svg>
+        <p class="figure-caption">Iteration is closed-loop: monitoring reveals drift and errors, feeding back into data and retraining—see also <a href="theory_data_engineering.html">data engineering</a>.</p>
+      </div>
+    </section>
+
+    <section class="sec">
+      <h2><span class="sec-num">02</span> What “production” adds</h2>
+      <table class="theory-table">
+        <tr><th>Concern</th><th>Why it matters</th></tr>
+        <tr><td>Latency &amp; throughput</td><td>User-facing APIs and batch scoring have SLOs; batching and hardware matter.</td></tr>
+        <tr><td>Reliability</td><td>Retries, fallbacks, idempotent consumers, health checks.</td></tr>
+        <tr><td>Observability</td><td>Structured logs (no secrets), metrics, traces—debug without PII in plain text.</td></tr>
+        <tr><td>Evaluation</td><td>Offline metrics + online A/B or shadow traffic; slice analysis for fairness gaps.</td></tr>
+        <tr><td>Governance</td><td>Model cards, access control, audit trails for regulated domains.</td></tr>
+      </table>
+    </section>
+
+    <section class="sec">
+      <h2><span class="sec-num">03</span> Applied AI in the LLM era</h2>
+      <p class="prose">Product teams combine <strong>foundation models</strong> with retrieval, tools, and guardrails. Success is less about raw perplexity and more about task success rate, safety, and cost per request. The comparison <a href="theory_rag_vs_finetune.html">RAG vs fine-tuning</a> is central to system design.</p>
+      <div class="pill-row">
+        <span class="pill">Prompting</span>
+        <span class="pill">RAG</span>
+        <span class="pill">Fine-tuning</span>
+        <span class="pill">Tool use / agents</span>
+        <span class="pill">Eval harnesses</span>
+      </div>
+    </section>
+
+    <div class="cross-footer">
+      Next: <a href="theory_rag_vs_finetune.html">RAG vs fine-tuning</a> ·
+      <a href="../programming/python_101_fastapi_eng.html">FastAPI &amp; engineering (code)</a>
+    </div>
+  </div>
+</main>
+
+<button type="button" id="menu-toggle" onclick="document.getElementById('sidebar').classList.toggle('open')" aria-label="Menu">☰</button>
+</body>
+</html>
