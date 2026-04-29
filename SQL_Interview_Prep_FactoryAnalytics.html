@@ -1,0 +1,1700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SQL Interview Prep — Factory Analytics Edition</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=DM+Sans:wght@300;400;500;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0d1117;
+  --surface: #161b22;
+  --surface2: #1c2128;
+  --surface3: #21262d;
+  --border: #30363d;
+  --text: #e6edf3;
+  --text2: #8b949e;
+  --text3: #6e7681;
+  --accent: #f0883e;
+  --accent2: #79c0ff;
+  --accent3: #56d364;
+  --accent4: #ff7b72;
+  --accent5: #d2a8ff;
+  --yellow: #e3b341;
+  --teal: #39d0d8;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+/* ── SIDEBAR ── */
+#sidebar {
+  position: fixed;
+  left: 0; top: 0; bottom: 0;
+  width: 260px;
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  overflow-y: auto;
+  z-index: 100;
+  padding: 0 0 2rem;
+}
+
+#sidebar::-webkit-scrollbar { width: 4px; }
+#sidebar::-webkit-scrollbar-track { background: transparent; }
+#sidebar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+.sidebar-header {
+  padding: 1.5rem 1.25rem 1rem;
+  border-bottom: 1px solid var(--border);
+  position: sticky; top: 0;
+  background: var(--surface);
+  z-index: 1;
+}
+
+.sidebar-header h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.1rem;
+  color: var(--accent);
+  line-height: 1.3;
+}
+
+.sidebar-header p {
+  font-size: 11px;
+  color: var(--text3);
+  margin-top: 4px;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.nav-section {
+  padding: 0.75rem 0 0.25rem;
+}
+
+.nav-section-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--text3);
+  padding: 0 1.25rem;
+  margin-bottom: 4px;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 1.25rem;
+  font-size: 13px;
+  color: var(--text2);
+  cursor: pointer;
+  transition: all .15s;
+  border-left: 2px solid transparent;
+  text-decoration: none;
+}
+
+.nav-item:hover { color: var(--text); background: var(--surface2); }
+.nav-item.active { color: var(--accent); border-left-color: var(--accent); background: rgba(240,136,62,.06); }
+
+.nav-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--border);
+  flex-shrink: 0;
+}
+
+.nav-item.active .nav-dot { background: var(--accent); }
+
+/* ── MAIN ── */
+#main {
+  margin-left: 260px;
+  min-height: 100vh;
+}
+
+/* ── HERO ── */
+.hero {
+  background: linear-gradient(135deg, #0d1117 0%, #1a1f2e 50%, #0f1923 100%);
+  padding: 4rem 3rem 3rem;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 300px; height: 300px;
+  background: radial-gradient(circle, rgba(240,136,62,.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero::after {
+  content: 'SELECT * FROM knowledge;';
+  position: absolute;
+  bottom: 1.5rem; right: 2rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--text3);
+  opacity: .5;
+}
+
+.hero-tag {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  background: rgba(240,136,62,.15);
+  color: var(--accent);
+  border: 1px solid rgba(240,136,62,.3);
+  padding: 3px 10px;
+  border-radius: 20px;
+  margin-bottom: 1rem;
+}
+
+.hero h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 2.8rem;
+  line-height: 1.15;
+  color: var(--text);
+  max-width: 640px;
+}
+
+.hero h1 span { color: var(--accent); }
+
+.hero p {
+  margin-top: 1rem;
+  color: var(--text2);
+  max-width: 560px;
+  font-size: 15px;
+}
+
+.hero-stats {
+  display: flex;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.stat { display: flex; flex-direction: column; }
+.stat-num { font-size: 1.6rem; font-weight: 700; color: var(--accent2); font-family: 'JetBrains Mono', monospace; }
+.stat-label { font-size: 11px; color: var(--text3); text-transform: uppercase; letter-spacing: .06em; }
+
+/* ── CONTENT ── */
+.content { padding: 2.5rem 3rem 4rem; max-width: 900px; }
+
+/* ── SECTION TITLE ── */
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 1.75rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+
+.section-header:first-child { border-top: none; margin-top: 0; padding-top: 0; }
+
+.section-icon {
+  width: 36px; height: 36px;
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+.section-header h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.5rem;
+  color: var(--text);
+}
+
+.section-header .section-count {
+  font-size: 12px;
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--text3);
+  margin-left: auto;
+}
+
+/* ── Q CARD ── */
+.q-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  margin-bottom: 16px;
+  overflow: hidden;
+  transition: border-color .2s;
+}
+
+.q-card:hover { border-color: #444c56; }
+
+.q-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 1rem 1.25rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.q-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 5px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.q-text {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text);
+  flex: 1;
+  line-height: 1.5;
+}
+
+.q-chevron {
+  color: var(--text3);
+  font-size: 11px;
+  margin-top: 4px;
+  transition: transform .2s;
+  flex-shrink: 0;
+}
+
+.q-chevron.open { transform: rotate(180deg); }
+
+.q-body {
+  display: none;
+  padding: 0 1.25rem 1.25rem;
+  border-top: 1px solid var(--border);
+}
+
+.q-body.open { display: block; }
+
+/* ── TAGS ── */
+.tag-row { display: flex; gap: 6px; flex-wrap: wrap; margin: 10px 0; }
+.tag {
+  font-size: 11px;
+  font-family: 'JetBrains Mono', monospace;
+  padding: 2px 8px;
+  border-radius: 4px;
+  border: 1px solid;
+}
+.tag-blue { background: rgba(121,192,255,.1); color: var(--accent2); border-color: rgba(121,192,255,.25); }
+.tag-green { background: rgba(86,211,100,.1); color: var(--accent3); border-color: rgba(86,211,100,.25); }
+.tag-orange { background: rgba(240,136,62,.1); color: var(--accent); border-color: rgba(240,136,62,.25); }
+.tag-purple { background: rgba(210,168,255,.1); color: var(--accent5); border-color: rgba(210,168,255,.25); }
+.tag-red { background: rgba(255,123,114,.1); color: var(--accent4); border-color: rgba(255,123,114,.25); }
+.tag-teal { background: rgba(57,208,216,.1); color: var(--teal); border-color: rgba(57,208,216,.25); }
+
+/* ── PROSE ── */
+.prose { font-size: 13.5px; color: var(--text2); line-height: 1.75; margin: 10px 0; }
+.prose strong { color: var(--text); font-weight: 600; }
+.prose code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  background: var(--surface3);
+  padding: 1px 5px;
+  border-radius: 3px;
+  color: var(--accent2);
+}
+
+/* ── CODE BLOCK ── */
+.code-block {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin: 12px 0;
+  overflow: hidden;
+}
+
+.code-block-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 14px;
+  background: var(--surface3);
+  border-bottom: 1px solid var(--border);
+}
+
+.code-block-header span {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--text3);
+}
+
+.copy-btn {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--text3);
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 2px 8px;
+  cursor: pointer;
+  transition: all .15s;
+}
+
+.copy-btn:hover { color: var(--text); border-color: #444c56; }
+.copy-btn.copied { color: var(--accent3); border-color: var(--accent3); }
+
+pre {
+  padding: 1rem 1.25rem;
+  overflow-x: auto;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12.5px;
+  line-height: 1.65;
+  color: var(--text);
+}
+
+pre::-webkit-scrollbar { height: 4px; }
+pre::-webkit-scrollbar-track { background: transparent; }
+pre::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+/* SQL syntax highlight */
+.kw { color: #ff7b72; } /* keywords */
+.fn { color: #d2a8ff; } /* functions */
+.str { color: #a5d6ff; } /* strings */
+.cm { color: #8b949e; font-style: italic; } /* comments */
+.num { color: #79c0ff; } /* numbers */
+.op { color: #ff7b72; } /* operators */
+.col { color: #e6edf3; } /* column names */
+.tbl { color: #ffa657; } /* table names */
+
+/* ── VISUAL DIAGRAMS ── */
+.visual-box {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin: 14px 0;
+}
+
+.visual-box h4 {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 1rem;
+}
+
+/* Join Venn */
+.venn-row {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.venn-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  min-width: 120px;
+  max-width: 160px;
+}
+
+.venn-item svg { width: 100%; height: auto; }
+
+.venn-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  text-align: center;
+}
+
+/* Rank comparison table */
+.rank-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+}
+
+.rank-table th {
+  background: var(--surface3);
+  padding: 8px 12px;
+  text-align: center;
+  color: var(--text2);
+  font-size: 11px;
+  border: 1px solid var(--border);
+}
+
+.rank-table td {
+  padding: 8px 12px;
+  text-align: center;
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+
+.rank-table tr:nth-child(even) td { background: rgba(255,255,255,.02); }
+.cell-highlight { background: rgba(240,136,62,.15) !important; color: var(--accent) !important; font-weight: 700; }
+
+/* Window frame diagram */
+.window-diagram {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.wd-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+}
+
+.wd-label { width: 80px; text-align: right; color: var(--text3); font-size: 11px; }
+
+.wd-cell {
+  width: 36px; height: 28px;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+  background: var(--surface3);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px;
+  color: var(--text3);
+  transition: all .2s;
+}
+
+.wd-cell.in-window { background: rgba(121,192,255,.15); border-color: rgba(121,192,255,.4); color: var(--accent2); }
+.wd-cell.current { background: rgba(240,136,62,.2); border-color: rgba(240,136,62,.5); color: var(--accent); font-weight: 700; }
+
+/* Layers */
+.layer-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.layer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border-radius: 7px;
+  border-left: 3px solid;
+}
+
+.layer-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  width: 28px;
+  flex-shrink: 0;
+}
+
+.layer-content { flex: 1; }
+.layer-title { font-size: 13px; font-weight: 600; margin-bottom: 2px; }
+.layer-desc { font-size: 12px; opacity: .75; }
+
+.layer-1 { background: rgba(86,211,100,.06); border-color: var(--accent3); }
+.layer-1 .layer-num, .layer-1 .layer-title { color: var(--accent3); }
+.layer-2 { background: rgba(121,192,255,.06); border-color: var(--accent2); }
+.layer-2 .layer-num, .layer-2 .layer-title { color: var(--accent2); }
+.layer-3 { background: rgba(240,136,62,.06); border-color: var(--accent); }
+.layer-3 .layer-num, .layer-3 .layer-title { color: var(--accent); }
+.layer-4 { background: rgba(255,123,114,.06); border-color: var(--accent4); }
+.layer-4 .layer-num, .layer-4 .layer-title { color: var(--accent4); }
+
+/* Alert boxes */
+.alert {
+  display: flex;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 7px;
+  margin: 12px 0;
+  font-size: 13px;
+}
+
+.alert-icon { font-size: 14px; flex-shrink: 0; margin-top: 1px; }
+.alert-tip { background: rgba(86,211,100,.08); border: 1px solid rgba(86,211,100,.2); color: #a8e6b0; }
+.alert-warn { background: rgba(227,179,65,.08); border: 1px solid rgba(227,179,65,.2); color: #f0d080; }
+.alert-info { background: rgba(121,192,255,.08); border: 1px solid rgba(121,192,255,.2); color: #a0d0ff; }
+
+/* Progress bar */
+.progress-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+  font-size: 12px;
+}
+
+.progress-label { width: 110px; color: var(--text2); font-family: 'JetBrains Mono', monospace; }
+.progress-bar-wrap { flex: 1; background: var(--surface3); border-radius: 3px; height: 6px; }
+.progress-bar { height: 6px; border-radius: 3px; transition: width 1s ease; }
+.progress-val { width: 32px; text-align: right; color: var(--text3); }
+
+/* Quick ref table */
+.ref-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  margin: 12px 0;
+}
+
+.ref-table th {
+  background: var(--surface3);
+  padding: 9px 14px;
+  text-align: left;
+  color: var(--text2);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  border: 1px solid var(--border);
+}
+
+.ref-table td {
+  padding: 9px 14px;
+  border: 1px solid var(--border);
+  vertical-align: top;
+  color: var(--text2);
+}
+
+.ref-table tr:hover td { background: var(--surface2); }
+.ref-table td:first-child { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--accent2); font-weight: 700; }
+
+/* OEE diagram */
+.oee-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1px;
+  background: var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 12px 0;
+}
+
+.oee-cell {
+  background: var(--surface2);
+  padding: 1rem;
+  text-align: center;
+}
+
+.oee-cell.header { background: var(--surface3); }
+.oee-formula { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text3); margin-top: 4px; }
+.oee-val { font-size: 1.4rem; font-weight: 700; font-family: 'JetBrains Mono', monospace; }
+.oee-name { font-size: 12px; font-weight: 600; margin-bottom: 4px; }
+.oee-times { color: var(--text3); font-size: 18px; font-weight: 300; display: flex; align-items: center; justify-content: center; }
+
+/* Star schema */
+.star-schema {
+  display: grid;
+  grid-template-areas:
+    ". dim-top ."
+    "dim-left fact dim-right"
+    ". dim-bottom .";
+  gap: 8px;
+  align-items: center;
+  justify-items: center;
+  margin: 12px 0;
+}
+
+.schema-box {
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 12px;
+  font-family: 'JetBrains Mono', monospace;
+  text-align: center;
+  border: 1px solid;
+  min-width: 120px;
+}
+
+.fact-box {
+  grid-area: fact;
+  background: rgba(240,136,62,.1);
+  border-color: var(--accent);
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 13px;
+  padding: 14px 18px;
+}
+
+.dim-box {
+  background: rgba(121,192,255,.06);
+  border-color: rgba(121,192,255,.3);
+  color: var(--accent2);
+}
+
+/* Arrows between schema boxes */
+.schema-arrow {
+  color: var(--text3);
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Search */
+#search-input {
+  width: 100%;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 8px 12px 8px 32px;
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  outline: none;
+  margin-top: 10px;
+  transition: border-color .2s;
+}
+
+#search-input:focus { border-color: var(--accent); }
+#search-input::placeholder { color: var(--text3); }
+.search-wrap { position: relative; padding: 0 1.25rem; }
+.search-icon { position: absolute; left: 1.85rem; top: 50%; transform: translateY(-50%); color: var(--text3); font-size: 13px; pointer-events: none; }
+
+/* Difficulty badge */
+.diff-badge {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 4px;
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+
+.diff-easy { background: rgba(86,211,100,.15); color: var(--accent3); }
+.diff-medium { background: rgba(227,179,65,.15); color: var(--yellow); }
+.diff-hard { background: rgba(255,123,114,.15); color: var(--accent4); }
+
+/* Mobile toggle */
+#menu-toggle { display: none; }
+
+@media (max-width: 768px) {
+  #sidebar { transform: translateX(-100%); transition: transform .3s; }
+  #sidebar.open { transform: translateX(0); }
+  #main { margin-left: 0; }
+  .hero { padding: 2rem 1.5rem; }
+  .hero h1 { font-size: 1.8rem; }
+  .content { padding: 1.5rem; }
+  #menu-toggle {
+    display: flex;
+    position: fixed;
+    bottom: 1.5rem; right: 1.5rem;
+    width: 48px; height: 48px;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    cursor: pointer;
+    z-index: 200;
+    box-shadow: 0 4px 16px rgba(0,0,0,.4);
+  }
+}
+
+.hidden { display: none !important; }
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<nav id="sidebar">
+  <div class="sidebar-header">
+    <h1>SQL Interview Prep</h1>
+    <p>Factory Analytics Edition</p>
+  </div>
+  <div class="search-wrap" style="padding-top:12px">
+    <span class="search-icon">⌕</span>
+    <input type="text" id="search-input" placeholder="Search questions..." oninput="filterCards(this.value)">
+  </div>
+  <div class="nav-section">
+    <div class="nav-section-label">Sections</div>
+    <a class="nav-item active" onclick="scrollTo('fundamentals')"><span class="nav-dot"></span>Fundamentals</a>
+    <a class="nav-item" onclick="scrollTo('aggregation')"><span class="nav-dot"></span>Aggregation</a>
+    <a class="nav-item" onclick="scrollTo('window')"><span class="nav-dot"></span>Window Functions</a>
+    <a class="nav-item" onclick="scrollTo('cte')"><span class="nav-dot"></span>CTEs & Subqueries</a>
+    <a class="nav-item" onclick="scrollTo('quality')"><span class="nav-dot"></span>Data Quality</a>
+    <a class="nav-item" onclick="scrollTo('performance')"><span class="nav-dot"></span>Performance</a>
+    <a class="nav-item" onclick="scrollTo('factory')"><span class="nav-dot"></span>Factory Patterns</a>
+  </div>
+  <div class="nav-section">
+    <div class="nav-section-label">Quick Ref</div>
+    <a class="nav-item" onclick="scrollTo('quickref')"><span class="nav-dot"></span>Cheat Sheet</a>
+  </div>
+  <div class="nav-section" style="padding:1rem 1.25rem 0; border-top:1px solid var(--border); margin-top:1rem;">
+    <div style="font-size:11px;color:var(--text3);margin-bottom:8px;">Difficulty</div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap">
+      <span class="diff-badge diff-easy">Easy</span>
+      <span class="diff-badge diff-medium">Medium</span>
+      <span class="diff-badge diff-hard">Hard</span>
+    </div>
+    <div style="font-size:11px;color:var(--text3);margin-top:12px;line-height:1.5">Click any question to expand answer + code</div>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<main id="main">
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-tag">Form Energy · Factory Analytics · Interview Prep</div>
+  <h1>SQL Interview<br><span>Q&A + Visual Guide</span></h1>
+  <p>20 questions, code examples, visual diagrams, and factory-context answers. Click any question to expand.</p>
+  <div class="hero-stats">
+    <div class="stat"><span class="stat-num">20</span><span class="stat-label">Questions</span></div>
+    <div class="stat"><span class="stat-num">7</span><span class="stat-label">Topics</span></div>
+    <div class="stat"><span class="stat-num">∞</span><span class="stat-label">Practice</span></div>
+  </div>
+</div>
+
+<div class="content">
+
+<!-- ══ FUNDAMENTALS ══════════════════════════════════ -->
+<div class="section-header" id="fundamentals">
+  <div class="section-icon" style="background:rgba(86,211,100,.1)">📐</div>
+  <h2>Fundamentals</h2>
+  <span class="section-count">Q1–Q5</span>
+</div>
+
+<!-- Q1 -->
+<div class="q-card" data-search="where having filter aggregate group">
+  <div class="q-header" onclick="toggle(this)">
+    <span class="q-num tag-green">Q1</span>
+    <span class="diff-badge diff-easy">Easy</span>
+    <span class="q-text">What is the difference between WHERE and HAVING?</span>
+    <span class="q-chevron">▼</span>
+  </div>
+  <div class="q-body">
+    <div class="tag-row"><span class="tag tag-green">Filtering</span><span class="tag tag-blue">Aggregation</span></div>
+    <p class="prose"><strong>WHERE</strong> filters rows <em>before</em> aggregation. <strong>HAVING</strong> filters groups <em>after</em> aggregation. You cannot use aggregate functions inside WHERE.</p>
+    <div class="visual-box">
+      <h4>Execution order visualization</h4>
+      <div class="layer-stack">
+        <div class="layer layer-1"><span class="layer-num">①</span><div class="layer-content"><div class="layer-title">FROM + JOIN</div><div class="layer-desc">All source rows assembled</div></div></div>
+        <div class="layer layer-2"><span class="layer-num">②</span><div class="layer-content"><div class="layer-title">WHERE</div><div class="layer-desc">Row-level filter — no aggregates allowed here</div></div></div>
+        <div class="layer layer-3"><span class="layer-num">③</span><div class="layer-content"><div class="layer-title">GROUP BY + Aggregate</div><div class="layer-desc">Groups formed, COUNT/SUM/AVG computed</div></div></div>
+        <div class="layer layer-4"><span class="layer-num">④</span><div class="layer-content"><div class="layer-title">HAVING</div><div class="layer-desc">Group-level filter — aggregates are available here</div></div></div>
+      </div>
+    </div>
+    <div class="code-block">
+      <div class="code-block-header"><span>sql</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+      <pre><span class="cm">-- ❌ WRONG — can't use COUNT() in WHERE</span>
+<span class="kw">SELECT</span> machine_id, <span class="fn">COUNT</span>(*) <span class="kw">FROM</span> <span class="tbl">downtime_events</span>
+<span class="kw">WHERE</span> <span class="fn">COUNT</span>(*) > <span class="num">5</span> <span class="kw">GROUP BY</span> machine_id;
+
+<span class="cm">-- ✅ CORRECT</span>
+<span class="kw">SELECT</span> machine_id, <span class="fn">COUNT</span>(*) <span class="kw">AS</span> event_count
+<span class="kw">FROM</span> <span class="tbl">downtime_events</span>
+<span class="kw">WHERE</span> shift_date >= <span class="str">'2024-01-01'</span>   <span class="cm">-- row-level filter ✓</span>
+<span class="kw">GROUP BY</span> machine_id
+<span class="kw">HAVING</span> <span class="fn">COUNT</span>(*) > <span class="num">5</span>;              <span class="cm">-- group-level filter ✓</span></pre>
+    </div>
+    <div class="alert alert-tip"><span class="alert-icon">💡</span>Memory trick: <strong>WHERE filters rows before they're grouped. HAVING filters groups after they're counted.</strong></div>
+  </div>
+</div>
+
+<!-- Q2 -->
+<div class="q-card" data-search="inner left right full outer join">
+  <div class="q-header" onclick="toggle(this)">
+    <span class="q-num tag-green">Q2</span>
+    <span class="diff-badge diff-easy">Easy</span>
+    <span class="q-text">What is the difference between INNER JOIN, LEFT JOIN, and FULL OUTER JOIN?</span>
+    <span class="q-chevron">▼</span>
+  </div>
+  <div class="q-body">
+    <div class="tag-row"><span class="tag tag-blue">Joins</span><span class="tag tag-green">Fundamentals</span></div>
+    <div class="visual-box">
+      <h4>Visual — shaded region = rows returned</h4>
+      <div class="venn-row">
+        <div class="venn-item">
+          <svg viewBox="0 0 120 70" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="42" cy="35" r="28" fill="none" stroke="#30363d" stroke-width="1.5"/>
+            <circle cx="78" cy="35" r="28" fill="none" stroke="#30363d" stroke-width="1.5"/>
+            <clipPath id="c1"><circle cx="42" cy="35" r="28"/></clipPath>
+            <circle cx="78" cy="35" r="28" fill="#79c0ff" fill-opacity=".3" clip-path="url(#c1)"/>
+            <text x="60" y="65" text-anchor="middle" fill="#79c0ff" font-family="JetBrains Mono" font-size="9" font-weight="700">INNER JOIN</text>
+            <text x="35" y="35" text-anchor="middle" fill="#6e7681" font-family="JetBrains Mono" font-size="8">A</text>
+            <text x="85" y="35" text-anchor="middle" fill="#6e7681" font-family="JetBrains Mono" font-size="8">B</text>
+          </svg>
+          <span class="venn-label" style="color:var(--accent2);font-size:10px">Matches only</span>
+        </div>
+        <div class="venn-item">
+          <svg viewBox="0 0 120 70" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="42" cy="35" r="28" fill="#56d364" fill-opacity=".2" stroke="#56d364" stroke-width="1.5" stroke-opacity=".5"/>
+            <circle cx="78" cy="35" r="28" fill="none" stroke="#30363d" stroke-width="1.5"/>
+            <clipPath id="c2"><circle cx="42" cy="35" r="28"/></clipPath>
+            <circle cx="78" cy="35" r="28" fill="#56d364" fill-opacity=".2" clip-path="url(#c2)"/>
+            <text x="60" y="65" text-anchor="middle" fill="#56d364" font-family="JetBrains Mono" font-size="9" font-weight="700">LEFT JOIN</text>
+            <text x="35" y="35" text-anchor="middle" fill="#6e7681" font-family="JetBrains Mono" font-size="8">A</text>
+            <text x="85" y="35" text-anchor="middle" fill="#6e7681" font-family="JetBrains Mono" font-size="8">B</text>
+          </svg>
+          <span class="venn-label" style="color:var(--accent3);font-size:10px">All left + matches</span>
+        </div>
+        <div class="venn-item">
+          <svg viewBox="0 0 120 70" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="42" cy="35" r="28" fill="#f0883e" fill-opacity=".2" stroke="#f0883e" stroke-width="1.5" stroke-opacity=".5"/>
+            <circle cx="78" cy="35" r="28" fill="#f0883e" fill-opacity=".2" stroke="#f0883e" stroke-width="1.5" stroke-opacity=".5"/>
+            <text x="60" y="65" text-anchor="middle" fill="#f0883e" font-family="JetBrains Mono" font-size="8" font-weight="700">FULL OUTER</text>
+            <text x="35" y="35" text-anchor="middle" fill="#6e7681" font-family="JetBrains Mono" font-size="8">A</text>
+            <text x="85" y="35" text-anchor="middle" fill="#6e7681" font-family="JetBrains Mono" font-size="8">B</text>
+          </svg>
+          <span class="venn-label" style="color:var(--accent);font-size:10px">All rows both sides</span>
+        </div>
+      </div>
+    </div>
+    <div class="code-block">
+      <div class="code-block-header"><span>sql — factory context</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+      <pre><span class="cm">-- INNER: only machines that have had downtime events</span>
+<span class="kw">SELECT</span> m.machine_name, <span class="fn">COUNT</span>(d.event_id)
+<span class="kw">FROM</span> <span class="tbl">machines</span> m <span class="kw">INNER JOIN</span> <span class="tbl">downtime_events</span> d <span class="kw">ON</span> m.id = d.machine_id
+<span class="kw">GROUP BY</span> m.machine_name;
+
+<span class="cm">-- LEFT: ALL machines, NULL count if no downtime events</span>
+<span class="kw">SELECT</span> m.machine_name, <span class="fn">COUNT</span>(d.event_id) <span class="kw">AS</span> event_count
+<span class="kw">FROM</span> <span class="tbl">machines</span> m <span class="kw">LEFT JOIN</span> <span class="tbl">downtime_events</span> d <span class="kw">ON</span> m.id = d.machine_id
+<span class="kw">GROUP BY</span> m.machine_name;
+<span class="cm">-- Zero-downtime machines show count = 0, not missing</span></pre>
+    </div>
+    <div class="alert alert-info"><span class="alert-icon">ℹ</span>In factory analytics, <strong>LEFT JOIN is your default</strong>. You almost always want all machines / all shifts in your report, even ones with no events — otherwise you hide zero-defect successes.</div>
+  </div>
+</div>
+
+<!-- Q3 -->
+<div class="q-card" data-search="union union all duplicate">
+  <div class="q-header" onclick="toggle(this)">
+    <span class="q-num tag-green">Q3</span>
+    <span class="diff-badge diff-easy">Easy</span>
+    <span class="q-text">What is the difference between UNION and UNION ALL?</span>
+    <span class="q-chevron">▼</span>
+  </div>
+  <div class="q-body">
+    <div class="tag-row"><span class="tag tag-green">Set Operations</span></div>
+    <p class="prose"><code>UNION</code> removes duplicates — requires a sort pass, slower. <code>UNION ALL</code> keeps all rows including duplicates — no sort, faster. <strong>Use UNION ALL by default</strong> unless you specifically need deduplication.</p>
+    <div class="code-block">
+      <div class="code-block-header"><span>sql</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+      <pre><span class="cm">-- Combine downtime events from two shifts</span>
+<span class="cm">-- UNION ALL: keep all (may include duplicates if data is duped)</span>
+<span class="kw">SELECT</span> machine_id, event_time, reason <span class="kw">FROM</span> <span class="tbl">shift_1_events</span>
+<span class="kw">UNION ALL</span>
+<span class="kw">SELECT</span> machine_id, event_time, reason <span class="kw">FROM</span> <span class="tbl">shift_2_events</span>;
+
+<span class="cm">-- UNION: deduplicate (slower — only use when needed)</span>
+<span class="kw">SELECT</span> machine_id, event_time, reason <span class="kw">FROM</span> <span class="tbl">shift_1_events</span>
+<span class="kw">UNION</span>
+<span class="kw">SELECT</span> machine_id, event_time, reason <span class="kw">FROM</span> <span class="tbl">shift_2_events</span>;</pre>
+    </div>
+    <div class="alert alert-tip"><span class="alert-icon">💡</span>Both queries must have the <strong>same number of columns in the same order with compatible data types</strong>.</div>
+  </div>
+</div>
+
+<!-- Q4 -->
+<div class="q-card" data-search="coalesce null replace default">
+  <div class="q-header" onclick="toggle(this)">
+    <span class="q-num tag-green">Q4</span>
+    <span class="diff-badge diff-easy">Easy</span>
+    <span class="q-text">What does COALESCE do? Give a practical factory example.</span>
+    <span class="q-chevron">▼</span>
+  </div>
+  <div class="q-body">
+    <div class="tag-row"><span class="tag tag-green">NULL Handling</span></div>
+    <p class="prose">Returns the <strong>first non-NULL value</strong> from its argument list. Essential for handling sensor dropouts, missing readings, or LEFT JOIN NULLs.</p>
+    <div class="code-block">
+      <div class="code-block-header"><span>sql</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+      <pre><span class="cm">-- Sensor dropout: fall back to previous reading, then to 0</span>
+<span class="kw">SELECT</span>
+    sensor_id,
+    recorded_at,
+    <span class="fn">COALESCE</span>(current_reading, prev_reading, <span class="num">0</span>) <span class="kw">AS</span> display_value,
+    <span class="kw">CASE WHEN</span> current_reading <span class="kw">IS NULL THEN</span> <span class="str">'IMPUTED'</span> <span class="kw">ELSE</span> <span class="str">'ACTUAL'</span> <span class="kw">END</span> <span class="kw">AS</span> data_source
+<span class="kw">FROM</span> <span class="tbl">sensor_readings</span>;
+
+<span class="cm">-- NULL-safe division (avoid division-by-zero)</span>
+<span class="fn">COALESCE</span>(units_good * <span class="num">1.0</span> / <span class="fn">NULLIF</span>(units_total, <span class="num">0</span>), <span class="num">0</span>) <span class="kw">AS</span> quality_rate</pre>
+    </div>
+    <div class="alert alert-warn"><span class="alert-icon">⚠</span><strong>NULLIF(a, b)</strong> returns NULL if a = b, otherwise returns a. Pair it with COALESCE to prevent division-by-zero: <code>COALESCE(value / NULLIF(denominator, 0), 0)</code></div>
+  </div>
+</div>
+
+<!-- Q5 -->
+<div class="q-card" data-search="delete truncate drop table">
+  <div class="q-header" onclick="toggle(this)">
+    <span class="q-num tag-green">Q5</span>
+    <span class="diff-badge diff-easy">Easy</span>
+    <span class="q-text">What is the difference between DELETE, TRUNCATE, and DROP?</span>
+    <span class="q-chevron">▼</span>
+  </div>
+  <div class="q-body">
+    <div class="tag-row"><span class="tag tag-red">DDL / DML</span></div>
+    <table class="ref-table">
+      <tr><th>Command</th><th>What it removes</th><th>Rollback?</th><th>Speed</th><th>Factory rule</th></tr>
+      <tr><td>DELETE</td><td>Specific rows (WHERE)</td><td>Yes</td><td>Slow (logged)</td><td>Use for archiving specific records</td></tr>
+      <tr><td>TRUNCATE</td><td>All rows, keeps structure</td><td>No (usually)</td><td>Fast</td><td>Almost never — destroys raw event history</td></tr>
+      <tr><td>DROP</td><td>Entire table + structure</td><td>No</td><td>Instant</td><td>Never on production tables</td></tr>
+    </table>
+    <div class="alert alert-warn"><span class="alert-icon">⚠</span>In a factory analytics context, <strong>never TRUNCATE or DROP raw event tables</strong>. Always archive with a flag or move to a cold storage partition — sensor drift history is valuable for quality correlation analysis.</div>
+  </div>
+</div>
+
+<!-- ══ AGGREGATION ══════════════════════════════════ -->
+<div class="section-header" id="aggregation">
+  <div class="section-icon" style="background:rgba(121,192,255,.1)">∑</div>
+  <h2>Aggregation & Grouping</h2>
+  <span class="section-count">Q6–Q9</span>
+</div>
+
+<!-- Q6 -->
+<div class="q-card" data-search="rank top n partition dense_rank row_number">
+  <div class="q-header" onclick="toggle(this)">
+    <span class="q-num tag-blue">Q6</span>
+    <span class="diff-badge diff-medium">Medium</span>
+    <span class="q-text">Write a query to find the top 3 machines by total downtime per shift.</span>
+    <span class="q-chevron">▼</span>
+  </div>
+  <div class="q-body">
+    <div class="tag-row"><span class="tag tag-blue">Window Functions</span><span class="tag tag-orange">Factory KPI</span></div>
+    <div class="code-block">
+      <div class="code-block-header"><span>sql</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+      <pre><span class="kw">SELECT</span> shift_id, machine_id, total_downtime, rnk
+<span class="kw">FROM</span> (
+    <span class="kw">SELECT</span>
+        shift_id,
+        machine_id,
+        <span class="fn">SUM</span>(down_mins) <span class="kw">AS</span> total_downtime,
+        <span class="fn">RANK</span>() <span class="kw">OVER</span> (
+            <span class="kw">PARTITION BY</span> shift_id
+            <span class="kw">ORDER BY</span> <span class="fn">SUM</span>(down_mins) <span class="kw">DESC</span>
+        ) <span class="kw">AS</span> rnk
+    <span class="kw">FROM</span> <span class="tbl">production_events</span>
+    <span class="kw">GROUP BY</span> shift_id, machine_id
+) ranked
+<span class="kw">WHERE</span> rnk <= <span class="num">3</span>
+<span class="kw">ORDER BY</span> shift_id, rnk;
+
+<span class="cm">-- Snowflake shorthand: QUALIFY instead of subquery</span>
+<span class="kw">SELECT</span> shift_id, machine_id, <span class="fn">SUM</span>(down_mins) <span class="kw">AS</span> total_downtime,
+       <span class="fn">RANK</span>() <span class="kw">OVER</span> (<span class="kw">PARTITION BY</span> shift_id <span class="kw">ORDER BY</span> <span class="fn">SUM</span>(down_mins) <span class="kw">DESC</span>) <span class="kw">AS</span> rnk
+<span class="kw">FROM</span> <span class="tbl">production_events</span>
+<span class="kw">GROUP BY</span> shift_id, machine_id
+<span class="kw">QUALIFY</span> rnk <= <span class="num">3</span>;</pre>
+    </div>
+    <div class="alert alert-info"><span class="alert-icon">ℹ</span><strong>QUALIFY</strong> is Snowflake/BigQuery syntax that filters on window function results — cleaner than a subquery. Mention it in a Snowflake interview.</div>
+  </div>
+</div>
+
+<!-- Q7 -->
+<div class="q-card" data-search="rank dense_rank row_number difference tie">
+  <div class="q-header" onclick="toggle(this)">
+    <span class="q-num tag-blue">Q7</span>
+    <span class="diff-badge diff-medium">Medium</span>
+    <span class="q-text">What is the difference between RANK(), DENSE_RANK(), and ROW_NUMBER()?</span>
+    <span class="q-chevron">▼</span>
+  </div>
+  <div class="q-body">
+    <div class="tag-row"><span class="tag tag-blue">Window Functions</span><span class="tag tag-purple">Ranking</span></div>
+    <div class="visual-box">
+      <h4>Given values: 100, 100, 90 — how each function ranks them</h4>
+      <table class="rank-table">
+        <tr><th>Score</th><th>ROW_NUMBER()</th><th>RANK()</th><th>DENSE_RANK()</th></tr>
+        <tr><td>100</td><td>1</td><td class="cell-highlight">1</td><td class="cell-highlight">1</td></tr>
+        <tr><td>100</td><td>2</td><td class="cell-highlight">1</td><td class="cell-highlight">1</td></tr>
+        <tr><td>90</td><td>3</td><td style="color:var(--accent4);font-weight:700">3 (skipped 2)</td><td style="color:var(--accent3);font-weight:700">2</td></tr>
+      </table>
+    </div>
+    <p class="prose" style="margin-top:10px"><strong>ROW_NUMBER</strong> — always unique. Tie-breaking is arbitrary (non-deterministic). <strong>RANK</strong> — ties get same rank, then skips. <strong>DENSE_RANK</strong> — ties get same rank, no skip. For factory use: use DENSE_RANK when ranking machines by defect count — rank 2 should mean second worst, not third worst because two tied for first.</p>
+    <div class="code-block">
+      <div class="code-block-header"><span>sql — when to use each</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+      <pre><span class="cm">-- ROW_NUMBER: deduplicate — get exactly one row per machine</span>
+<span class="kw">SELECT</span> * <span class="kw">FROM</span> (
+    <span class="kw">SELECT</span> *, <span class="fn">ROW_NUMBER</span>() <span class="kw">OVER</span> (<span class="kw">PARTITION BY</span> machine_id <span class="kw">ORDER BY</span> ts <span class="kw">DESC</span>) <span class="kw">AS</span> rn
+    <span class="kw">FROM</span> <span class="tbl">sensor_readings</span>
+) <span class="kw">WHERE</span> rn = <span class="num">1</span>;   <span class="cm">-- latest reading per machine</span>
+
+<span class="cm">-- DENSE_RANK: rank machines by defect count</span>
+<span class="fn">DENSE_RANK</span>() <span class="kw">OVER</span> (<span class="kw">ORDER BY</span> defect_count <span class="kw">DESC</span>) <span class="kw">AS</span> defect_rank</pre>
+    </div>
+  </div>
+</div>
+
+<!-- Q8 -->
+<div class="q-card" data-search="rolling average moving window rows preceding">
+  <div class="q-header" onclick="toggle(this)">
+    <span class="q-num tag-blue">Q8</span>
+    <span class="diff-badge diff-medium">Medium</span>
+    <span class="q-text">Write a query to calculate a 7-day rolling average of daily defect counts.</span>
+    <span class="q-chevron">▼</span>
+  </div>
+  <div class="q-body">
+    <div class="tag-row"><span class="tag tag-blue">Window Functions</span><span class="tag tag-orange">Time Series</span></div>
+    <div class="visual-box">
+      <h4>ROWS frame — what's "in the window" for row 5 (today)</h4>
+      <div class="window-diagram">
+        <div class="wd-row">
+          <span class="wd-label">6 back</span>
+          <div class="wd-cell in-window">Day 1</div><div class="wd-cell in-window">Day 2</div><div class="wd-cell in-window">Day 3</div><div class="wd-cell in-window">Day 4</div><div class="wd-cell in-window">Day 5</div><div class="wd-cell in-window">Day 6</div><div class="wd-cell current">Today</div>
+          <span style="font-size:11px;color:var(--accent);font-family:'JetBrains Mono',monospace;margin-left:8px">← AVG these 7</span>
+        </div>
+      </div>
+      <p style="font-size:12px;color:var(--text3);margin-top:8px;font-family:'JetBrains Mono',monospace">ROWS BETWEEN 6 PRECEDING AND CURRENT ROW</p>
+    </div>
+    <div class="code-block">
+      <div class="code-block-header"><span>sql</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+      <pre><span class="kw">SELECT</span>
+    event_date,
+    daily_defects,
+    <span class="fn">AVG</span>(daily_defects) <span class="kw">OVER</span> (
+        <span class="kw">ORDER BY</span> event_date
+        <span class="kw">ROWS BETWEEN</span> <span class="num">6</span> <span class="kw">PRECEDING AND CURRENT ROW</span>
+    ) <span class="kw">AS</span> rolling_7day_avg,
+    <span class="cm">-- Calendar-based (handles missing dates differently):</span>
+    <span class="fn">AVG</span>(daily_defects) <span class="kw">OVER</span> (
+        <span class="kw">ORDER BY</span> event_date
+        <span class="kw">RANGE BETWEEN INTERVAL</span> <span class="str">'6 days'</span> <span class="kw">PRECEDING AND CURRENT ROW</span>
+    ) <span class="kw">AS</span> rolling_7day_calendar_avg
+<span class="kw">FROM</span> <span class="tbl">daily_quality_summary</span>
+<span class="kw">ORDER BY</span> event_date;</pre>
+    </div>
+    <div class="alert alert-info"><span class="alert-icon">ℹ</span><strong>ROWS vs RANGE:</strong> ROWS counts physical rows (always exactly 7). RANGE uses the ORDER BY value — all rows within 6 days are included, which handles missing dates more naturally for time-series data.</div>
+  </div>
+</div>
+
+<!-- Q9 -->
+<div class="q-card" data-search="duplicate rows find detect">
+  <div class="q-header" onclick="toggle(this)">
+    <span class="q-num tag-blue">Q9</span>
+    <span class="diff-badge diff-medium">Medium</span>
+    <span class="q-text">How do you find and remove duplicate rows in a table?</span>
+    <span class="q-chevron">▼</span>
+  </div>
+  <div class="q-body">
+    <div class="tag-row"><span class="tag tag-blue">Data Quality</span><span class="tag tag-purple">Deduplication</span></div>
+    <div class="code-block">
+      <div class="code-block-header"><span>sql</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+      <pre><span class="cm">-- Step 1: Find duplicates</span>
+<span class="kw">SELECT</span> machine_id, event_timestamp, <span class="fn">COUNT</span>(*) <span class="kw">AS</span> occurrences
+<span class="kw">FROM</span> <span class="tbl">sensor_readings</span>
+<span class="kw">GROUP BY</span> machine_id, event_timestamp
+<span class="kw">HAVING</span> <span class="fn">COUNT</span>(*) > <span class="num">1</span>;
+
+<span class="cm">-- Step 2: Keep only the latest row per (machine, timestamp)</span>
+<span class="kw">WITH</span> deduped <span class="kw">AS</span> (
+    <span class="kw">SELECT</span> *,
+           <span class="fn">ROW_NUMBER</span>() <span class="kw">OVER</span> (
+               <span class="kw">PARTITION BY</span> machine_id, event_timestamp
+               <span class="kw">ORDER BY</span> ingested_at <span class="kw">DESC</span>
+           ) <span class="kw">AS</span> rn
+    <span class="kw">FROM</span> <span class="tbl">sensor_readings</span>
+)
+<span class="kw">SELECT</span> * <span class="kw">FROM</span> deduped <span class="kw">WHERE</span> rn = <span class="num">1</span>;</pre>
+    </div>
+  </div>
+</div>
+
+<!-- ══ WINDOW FUNCTIONS ══════════════════════════════════ -->
+<div class="section-header" id="window">
+  <div class="section-icon" style="background:rgba(210,168,255,.1)">⧉</div>
+  <h2>Window Functions</h2>
+  <span class="section-count">Q10–Q12</span>
+</div>
+
+<!-- Q10 -->
+<div class="q-card" data-search="latest most recent row_number partition">
+  <div class="q-header" onclick="toggle(this)">
+    <span class="q-num tag-purple">Q10</span>
+    <span class="diff-badge diff-medium">Medium</span>
+    <span class="q-text">Write a query to get each machine's most recent sensor reading.</span>
+    <span class="q-chevron">▼</span>
+  </div>
+  <div class="q-body">
+    <div class="tag-row"><span class="tag tag-purple">Window Functions</span><span class="tag tag-orange">Latest Record</span></div>
+    <div class="code-block">
+      <div class="code-block-header"><span>sql</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+      <pre><span class="cm">-- ROW_NUMBER approach (preferred — deterministic)</span>
+<span class="kw">SELECT</span> machine_id, sensor_type, reading_value, recorded_at
+<span class="kw">FROM</span> (
+    <span class="kw">SELECT</span> *,
+           <span class="fn">ROW_NUMBER</span>() <span class="kw">OVER</span> (
+               <span class="kw">PARTITION BY</span> machine_id, sensor_type
+               <span class="kw">ORDER BY</span> recorded_at <span class="kw">DESC</span>
+           ) <span class="kw">AS</span> rn
+    <span class="kw">FROM</span> <span class="tbl">sensor_readings</span>
+    <span class="kw">WHERE</span> dq_flag = <span class="str">'GOOD'</span>
+) t
+<span class="kw">WHERE</span> rn = <span class="num">1</span>;
+
+<span class="cm">-- Snowflake shorthand with QUALIFY</span>
+<span class="kw">SELECT</span> machine_id, sensor_type, reading_value, recorded_at
+<span class="kw">FROM</span> <span class="tbl">sensor_readings</span>
+<span class="kw">WHERE</span> dq_flag = <span class="str">'GOOD'</span>
+<span class="kw">QUALIFY</span> <span class="fn">ROW_NUMBER</span>() <span class="kw">OVER</span> (<span class="kw">PARTITION BY</span> machine_id, sensor_type <span class="kw">ORDER BY</span> recorded_at <span class="kw">DESC</span>) = <span class="num">1</span>;</pre>
+    </div>
+  </div>
+</div>
+
+<!-- Q11 -->
+<div class="q-card" data-search="lag lead previous next row time between">
+  <div class="q-header" onclick="toggle(this)">
+    <span class="q-num tag-purple">Q11</span>
+    <span class="diff-badge diff-medium">Medium</span>
+    <span class="q-text">What is LAG() and LEAD()? Calculate time between consecutive downtime events.</span>
+    <span class="q-chevron">▼</span>
+  </div>
+  <div class="q-body">
+    <div class="tag-row"><span class="tag tag-purple">Window Functions</span><span class="tag tag-orange">Time Between Events</span></div>
+    <p class="prose"><code>LAG()</code> accesses the <strong>previous row's value</strong>. <code>LEAD()</code> accesses the <strong>next row's value</strong>. Both accept an offset and a default for when no prior/next row exists.</p>
+    <div class="code-block">
+      <div class="code-block-header"><span>sql</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+      <pre><span class="kw">SELECT</span>
+    machine_id,
+    event_start,
+    <span class="fn">LAG</span>(event_start) <span class="kw">OVER</span> (
+        <span class="kw">PARTITION BY</span> machine_id
+        <span class="kw">ORDER BY</span> event_start
+    ) <span class="kw">AS</span> prev_event_start,
+    <span class="fn">DATEDIFF</span>(<span class="str">'minute'</span>,
+        <span class="fn">LAG</span>(event_start) <span class="kw">OVER</span> (<span class="kw">PARTITION BY</span> machine_id <span class="kw">ORDER BY</span> event_start),
+        event_start
+    ) <span class="kw">AS</span> mins_since_last_downtime,
+    <span class="fn">LEAD</span>(event_start) <span class="kw">OVER</span> (
+        <span class="kw">PARTITION BY</span> machine_id
+        <span class="kw">ORDER BY</span> event_start
+    ) <span class="kw">AS</span> next_event_start
+<span class="kw">FROM</span> <span class="tbl">downtime_events</span>
+<span class="kw">ORDER BY</span> machine_id, event_start;</pre>
+    </div>
+    <div class="alert alert-tip"><span class="alert-icon">💡</span>MTBF (Mean Time Between Failures) is just <code>AVG(mins_since_last_downtime)</code> on top of this query — a key factory reliability metric.</div>
+  </div>
+</div>
+
+<!-- Q12 -->
+<div class="q-card" data-search="rows range window frame preceding following">
+  <div class="q-header" onclick="toggle(this)">
+    <span class="q-num tag-purple">Q12</span>
+    <span class="diff-badge diff-hard">Hard</span>
+    <span class="q-text">What is the difference between ROWS and RANGE in a window frame?</span>
+    <span class="q-chevron">▼</span>
+  </div>
+  <div class="q-body">
+    <div class="tag-row"><span class="tag tag-purple">Window Frames</span><span class="tag tag-red">Advanced</span></div>
+    <p class="prose"><strong>ROWS</strong> is physical — counts actual row positions. <strong>RANGE</strong> is logical — groups rows with the same ORDER BY value, or uses an interval for date/numeric ranges.</p>
+    <div class="visual-box">
+      <h4>ROWS vs RANGE — 3-day window with a missing date</h4>
+      <table class="rank-table">
+        <tr><th>Date</th><th>Value</th><th>ROWS (3 PREC)</th><th>RANGE (2 days)</th></tr>
+        <tr><td>Jan 1</td><td>10</td><td>AVG(10)</td><td>AVG(10)</td></tr>
+        <tr><td>Jan 2</td><td>20</td><td>AVG(10,20)</td><td>AVG(10,20)</td></tr>
+        <tr><td class="cell-highlight">Jan 4 (gap!)</td><td>30</td><td>AVG(10,20,30)</td><td class="cell-highlight">AVG(20,30) only</td></tr>
+        <tr><td>Jan 5</td><td>40</td><td>AVG(20,30,40)</td><td>AVG(30,40)</td></tr>
+      </table>
+    </div>
+    <div class="code-block">
+      <div class="code-block-header"><span>sql</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+      <pre><span class="cm">-- ROWS: exactly 3 preceding rows regardless of date gaps</span>
+<span class="fn">AVG</span>(reading) <span class="kw">OVER</span> (<span class="kw">ORDER BY</span> ts <span class="kw">ROWS BETWEEN</span> <span class="num">3</span> <span class="kw">PRECEDING AND CURRENT ROW</span>)
+
+<span class="cm">-- RANGE: all rows within a 3-hour interval (handles gaps correctly)</span>
+<span class="fn">AVG</span>(reading) <span class="kw">OVER</span> (
+    <span class="kw">ORDER BY</span> ts
+    <span class="kw">RANGE BETWEEN INTERVAL</span> <span class="str">'3 hours'</span> <span class="kw">PRECEDING AND CURRENT ROW</span>
+)</pre>
+    </div>
+    <div class="alert alert-info"><span class="alert-icon">ℹ</span>For sensor time-series with potential dropout gaps, <strong>RANGE with an interval</strong> usually gives more meaningful averages — it respects calendar time, not row count.</div>
+  </div>
+</div>
+
+<!-- ══ CTEs ══════════════════════════════════ -->
+<div class="section-header" id="cte">
+  <div class="section-icon" style="background:rgba(57,208,216,.1)">⟳</div>
+  <h2>CTEs & Subqueries</h2>
+  <span class="section-count">Q13–Q14</span>
+</div>
+
+<!-- Q13 -->
+<div class="q-card" data-search="cte with subquery common table expression">
+  <div class="q-header" onclick="toggle(this)">
+    <span class="q-num tag-teal">Q13</span>
+    <span class="diff-badge diff-medium">Medium</span>
+    <span class="q-text">What is a CTE and when would you use one over a subquery?</span>
+    <span class="q-chevron">▼</span>
+  </div>
+  <div class="q-body">
+    <div class="tag-row"><span class="tag tag-teal">CTEs</span><span class="tag tag-blue">Readability</span></div>
+    <p class="prose">A CTE (<code>WITH</code> clause) names an intermediate result you can reference multiple times. Prefer CTEs when: the same intermediate result is used more than once, the logic is complex enough that naming it improves readability, or you need recursion (CTEs only).</p>
+    <div class="code-block">
+      <div class="code-block-header"><span>sql — OEE with CTE</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+      <pre><span class="kw">WITH</span> shift_oee <span class="kw">AS</span> (
+    <span class="kw">SELECT</span>
+        pe.shift_id,
+        pe.machine_id,
+        <span class="fn">SUM</span>(pe.run_mins) * <span class="num">1.0</span> / <span class="fn">MAX</span>(s.planned_mins)    <span class="kw">AS</span> availability,
+        <span class="fn">SUM</span>(pe.units_good) * <span class="num">1.0</span>
+            / <span class="fn">NULLIF</span>(<span class="fn">SUM</span>(pe.units_total), <span class="num">0</span>)              <span class="kw">AS</span> quality,
+        <span class="fn">SUM</span>(pe.units_total * dm.ideal_cycle_secs)
+            / <span class="fn">NULLIF</span>(<span class="fn">SUM</span>(pe.run_mins) * <span class="num">60</span>, <span class="num">0</span>)             <span class="kw">AS</span> performance
+    <span class="kw">FROM</span> <span class="tbl">production_events</span> pe
+    <span class="kw">JOIN</span> <span class="tbl">dim_shift</span> s  <span class="kw">ON</span> pe.shift_id  = s.shift_id
+    <span class="kw">JOIN</span> <span class="tbl">dim_machine</span> dm <span class="kw">ON</span> pe.machine_id = dm.machine_id
+    <span class="kw">GROUP BY</span> pe.shift_id, pe.machine_id
+)
+<span class="kw">SELECT</span>
+    shift_id,
+    machine_id,
+    <span class="fn">ROUND</span>(availability * <span class="num">100</span>, <span class="num">1</span>)               <span class="kw">AS</span> avail_pct,
+    <span class="fn">ROUND</span>(performance * <span class="num">100</span>, <span class="num">1</span>)               <span class="kw">AS</span> perf_pct,
+    <span class="fn">ROUND</span>(quality * <span class="num">100</span>, <span class="num">1</span>)                  <span class="kw">AS</span> qual_pct,
+    <span class="fn">ROUND</span>(availability * performance * quality * <span class="num">100</span>, <span class="num">1</span>) <span class="kw">AS</span> oee_pct
+<span class="kw">FROM</span> shift_oee
+<span class="kw">WHERE</span> availability < <span class="num">0.75</span>   <span class="cm">-- flag underperforming shifts</span>
+<span class="kw">ORDER BY</span> oee_pct;</pre>
+    </div>
+  </div>
+</div>
+
+<!-- Q14 -->
+<div class="q-card" data-search="recursive cte org chart hierarchy manager employee">
+  <div class="q-header" onclick="toggle(this)">
+    <span class="q-num tag-teal">Q14</span>
+    <span class="diff-badge diff-hard">Hard</span>
+    <span class="q-text">Write a recursive CTE to traverse an employee org chart.</span>
+    <span class="q-chevron">▼</span>
+  </div>
+  <div class="q-body">
+    <div class="tag-row"><span class="tag tag-teal">Recursive CTE</span><span class="tag tag-red">Advanced</span></div>
+    <div class="visual-box">
+      <h4>How the recursion works</h4>
+      <div class="layer-stack">
+        <div class="layer layer-1"><span class="layer-num">①</span><div class="layer-content"><div class="layer-title">Anchor member</div><div class="layer-desc">SELECT root rows WHERE manager_id IS NULL — the CEO / top node</div></div></div>
+        <div class="layer layer-2"><span class="layer-num">②</span><div class="layer-content"><div class="layer-title">Recursive member</div><div class="layer-desc">UNION ALL — join each employee to their parent row from the previous iteration</div></div></div>
+        <div class="layer layer-3"><span class="layer-num">③</span><div class="layer-content"><div class="layer-title">Termination</div><div class="layer-desc">Recursion stops when no new rows match — leaf nodes have no children</div></div></div>
+      </div>
+    </div>
+    <div class="code-block">
+      <div class="code-block-header"><span>sql</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+      <pre><span class="kw">WITH RECURSIVE</span> org <span class="kw">AS</span> (
+    <span class="cm">-- Anchor: root nodes (no manager)</span>
+    <span class="kw">SELECT</span>
+        employee_id,
+        employee_name,
+        manager_id,
+        <span class="num">0</span>                                    <span class="kw">AS</span> depth,
+        employee_name                         <span class="kw">AS</span> path
+    <span class="kw">FROM</span> <span class="tbl">employees</span>
+    <span class="kw">WHERE</span> manager_id <span class="kw">IS NULL</span>
+
+    <span class="kw">UNION ALL</span>
+
+    <span class="cm">-- Recursive: each employee joins to their manager's row</span>
+    <span class="kw">SELECT</span>
+        e.employee_id,
+        e.employee_name,
+        e.manager_id,
+        o.depth + <span class="num">1</span>,
+        o.path || <span class="str">' > '</span> || e.employee_name
+    <span class="kw">FROM</span> <span class="tbl">employees</span> e
+    <span class="kw">JOIN</span> org o <span class="kw">ON</span> e.manager_id = o.employee_id
+)
+<span class="kw">SELECT</span> employee_id, employee_name, depth, path
+<span class="kw">FROM</span> org
+<span class="kw">ORDER BY</span> path;
+
+<span class="cm">-- Sample output:
+-- Alice        | depth 0 | Alice
+-- Bob          | depth 1 | Alice > Bob
+-- Dana         | depth 2 | Alice > Bob > Dana
+-- Eve          | depth 2 | Alice > Bob > Eve
+-- Carol        | depth 1 | Alice > Carol</span></pre>
+    </div>
+  </div>
+</div>
+
+<!-- ══ DATA QUALITY ══════════════════════════════════ -->
+<div class="section-header" id="quality">
+  <div class="section-icon" style="background:rgba(255,123,114,.1)">⚑</div>
+  <h2>Data Quality & Real-World Problems</h2>
+  <span class="section-count">Q15–Q17</span>
+</div>
+
+<!-- Q15 -->
+<div class="q-card" data-search="stuck sensor same value consecutive flatline islands gaps">
+  <div class="q-header" onclick="toggle(this)">
+    <span class="q-num tag-red">Q15</span>
+    <span class="diff-badge diff-hard">Hard</span>
+    <span class="q-text">How do you detect a "stuck sensor" that has returned the same value for 10+ consecutive readings?</span>
+    <span class="q-chevron">▼</span>
+  </div>
+  <div class="q-body">
+    <div class="tag-row"><span class="tag tag-red">Data Quality</span><span class="tag tag-purple">Islands & Gaps</span></div>
+    <p class="prose">Classic <strong>islands and gaps</strong> technique. Subtracting two row numbers creates a constant group ID for consecutive identical values.</p>
+    <div class="visual-box">
+      <h4>How the group ID works</h4>
+      <table class="rank-table">
+        <tr><th>Value</th><th>RN overall</th><th>RN per value</th><th>RN - RN_val = group_id</th></tr>
+        <tr><td>21.5</td><td>1</td><td>1</td><td class="cell-highlight">0</td></tr>
+        <tr><td>21.5</td><td>2</td><td>2</td><td class="cell-highlight">0</td></tr>
+        <tr><td>21.5</td><td>3</td><td>3</td><td class="cell-highlight">0</td></tr>
+        <tr><td>22.1</td><td>4</td><td>1</td><td>3 (new group)</td></tr>
+        <tr><td>21.5</td><td>5</td><td>4</td><td>1 (new group)</td></tr>
+      </table>
+    </div>
+    <div class="code-block">
+      <div class="code-block-header"><span>sql</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+      <pre><span class="kw">WITH</span> grouped <span class="kw">AS</span> (
+    <span class="kw">SELECT</span>
+        sensor_id, reading_value, recorded_at,
+        <span class="fn">ROW_NUMBER</span>() <span class="kw">OVER</span> (<span class="kw">PARTITION BY</span> sensor_id <span class="kw">ORDER BY</span> recorded_at)
+        - <span class="fn">ROW_NUMBER</span>() <span class="kw">OVER</span> (<span class="kw">PARTITION BY</span> sensor_id, reading_value <span class="kw">ORDER BY</span> recorded_at)
+        <span class="kw">AS</span> grp_id
+    <span class="kw">FROM</span> <span class="tbl">sensor_readings</span>
+),
+consecutive_counts <span class="kw">AS</span> (
+    <span class="kw">SELECT</span>
+        sensor_id, reading_value, grp_id,
+        <span class="fn">COUNT</span>(*) <span class="kw">AS</span> consecutive_count,
+        <span class="fn">MIN</span>(recorded_at) <span class="kw">AS</span> streak_start,
+        <span class="fn">MAX</span>(recorded_at) <span class="kw">AS</span> streak_end
+    <span class="kw">FROM</span> grouped
+    <span class="kw">GROUP BY</span> sensor_id, reading_value, grp_id
+)
+<span class="kw">SELECT</span> sensor_id, reading_value, consecutive_count, streak_start, streak_end
+<span class="kw">FROM</span> consecutive_counts
+<span class="kw">WHERE</span> consecutive_count >= <span class="num">10</span>
+<span class="kw">ORDER BY</span> consecutive_count <span class="kw">DESC</span>;</pre>
+    </div>
+    <div class="alert alert-tip"><span class="alert-icon">💡</span>This is the most sophisticated SQL pattern in factory analytics. Knowing the islands/gaps technique by name and being able to explain the subtraction trick will impress any interviewer.</div>
+  </div>
+</div>
+
+<!-- Q16 -->
+<div class="q-card" data-search="outlier z-score standard deviation 3 sigma flag anomaly">
+  <div class="q-header" onclick="toggle(this)">
+    <span class="q-num tag-red">Q16</span>
+    <span class="diff-badge diff-hard">Hard</span>
+    <span class="q-text">Flag sensor readings that are more than 3 standard deviations from the mean (Z-score outlier detection).</span>
+    <span class="q-chevron">▼</span>
+  </div>
+  <div class="q-body">
+    <div class="tag-row"><span class="tag tag-red">Statistical QC</span><span class="tag tag-purple">SPC</span></div>
+    <div class="code-block">
+      <div class="code-block-header"><span>sql</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+      <pre><span class="kw">WITH</span> sensor_stats <span class="kw">AS</span> (
+    <span class="cm">-- Compute baseline stats on GOOD readings only</span>
+    <span class="kw">SELECT</span>
+        sensor_id,
+        <span class="fn">AVG</span>(reading_value)    <span class="kw">AS</span> mean_val,
+        <span class="fn">STDDEV</span>(reading_value) <span class="kw">AS</span> stddev_val
+    <span class="kw">FROM</span> <span class="tbl">sensor_readings</span>
+    <span class="kw">WHERE</span> dq_flag = <span class="str">'GOOD'</span>
+    <span class="kw">GROUP BY</span> sensor_id
+)
+<span class="kw">SELECT</span>
+    r.sensor_id,
+    r.reading_value,
+    r.recorded_at,
+    <span class="fn">ROUND</span>(s.mean_val, <span class="num">3</span>)                                          <span class="kw">AS</span> mean_val,
+    <span class="fn">ROUND</span>(<span class="fn">ABS</span>(r.reading_value - s.mean_val)
+        / <span class="fn">NULLIF</span>(s.stddev_val, <span class="num">0</span>), <span class="num">2</span>)                            <span class="kw">AS</span> z_score,
+    <span class="kw">CASE</span>
+        <span class="kw">WHEN</span> <span class="fn">ABS</span>(r.reading_value - s.mean_val)
+            / <span class="fn">NULLIF</span>(s.stddev_val, <span class="num">0</span>) > <span class="num">3</span>  <span class="kw">THEN</span> <span class="str">'SUSPECT'</span>
+        <span class="kw">ELSE</span> <span class="str">'GOOD'</span>
+    <span class="kw">END</span>                                                               <span class="kw">AS</span> dq_flag
+<span class="kw">FROM</span> <span class="tbl">sensor_readings</span> r
+<span class="kw">JOIN</span> sensor_stats s <span class="kw">ON</span> r.sensor_id = s.sensor_id;</pre>
+    </div>
+    <div class="alert alert-warn"><span class="alert-icon">⚠</span>Always compute baseline stats on <strong>verified GOOD readings only</strong>, not all readings. If you include outliers in the baseline, the mean and stddev shift — making the threshold less sensitive to the anomalies you're trying to catch.</div>
+  </div>
+</div>
+
+<!-- Q17 -->
+<div class="q-card" data-search="overlap interval start end time machine events">
+  <div class="q-header" onclick="toggle(this)">
+    <span class="q-num tag-red">Q17</span>
+    <span class="diff-badge diff-hard">Hard</span>
+    <span class="q-text">Find overlapping downtime events for the same machine.</span>
+    <span class="q-chevron">▼</span>
+  </div>
+  <div class="q-body">
+    <div class="tag-row"><span class="tag tag-red">Interval Logic</span><span class="tag tag-orange">Self Join</span></div>
+    <p class="prose">Two intervals <strong>[A_start, A_end]</strong> and <strong>[B_start, B_end]</strong> overlap if and only if: <code>A_start &lt; B_end AND A_end &gt; B_start</code></p>
+    <div class="visual-box">
+      <h4>Overlap condition — visualized</h4>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text2)">
+        <div style="margin-bottom:8px">Event A: |——————|</div>
+        <div style="margin-bottom:8px;color:var(--accent3)">Event B: &nbsp;&nbsp;&nbsp;&nbsp;|——————|  ← overlaps (B starts before A ends)</div>
+        <div style="color:var(--accent4)">Event C: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|——|  ← no overlap (C starts after A ends)</div>
+      </div>
+    </div>
+    <div class="code-block">
+      <div class="code-block-header"><span>sql</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+      <pre><span class="kw">SELECT</span>
+    a.machine_id,
+    a.event_id      <span class="kw">AS</span> event_a,
+    b.event_id      <span class="kw">AS</span> event_b,
+    a.start_time    <span class="kw">AS</span> a_start,
+    a.end_time      <span class="kw">AS</span> a_end,
+    b.start_time    <span class="kw">AS</span> b_start,
+    b.end_time      <span class="kw">AS</span> b_end
+<span class="kw">FROM</span> <span class="tbl">downtime_events</span> a
+<span class="kw">JOIN</span> <span class="tbl">downtime_events</span> b
+    <span class="kw">ON</span>  a.machine_id = b.machine_id
+    <span class="kw">AND</span> a.event_id   < b.event_id     <span class="cm">-- avoid self-join & duplicate pairs</span>
+    <span class="kw">AND</span> a.start_time < b.end_time     <span class="cm">-- overlap condition part 1</span>
+    <span class="kw">AND</span> a.end_time   > b.start_time;  <span class="cm">-- overlap condition part 2</span></pre>
+    </div>
+  </div>
+</div>
+
+<!-- ══ PERFORMANCE ══════════════════════════════════ -->
+<div class="section-header" id="performance">
+  <div class="section-icon" style="background:rgba(227,179,65,.1)">⚡</div>
+  <h2>Performance & Design</h2>
+  <span class="section-count">Q18–Q20</span>
+</div>
+
+<!-- Q18 -->
+<div class="q-card" data-search="index clustered non-clustered snowflake cluster key">
+  <div class="q-header" onclick="toggle(this)">
+    <span class="q-num tag-orange">Q18</span>
+    <span class="diff-badge diff-medium">Medium</span>
+    <span class="q-text">What is the difference between a clustered and non-clustered index? What's the Snowflake equivalent?</span>
+    <span class="q-chevron">▼</span>
+  </div>
+  <div class="q-body">
+    <div class="tag-row"><span class="tag tag-orange">Indexes</span><span class="tag tag-teal">Snowflake</span></div>
+    <p class="prose"><strong>Clustered index</strong> — physically sorts table rows by the index key. One per table. <strong>Non-clustered index</strong> — separate structure pointing back to rows. Multiple allowed.</p>
+    <p class="prose">In <strong>Snowflake</strong>, data is stored in micro-partitions automatically. The equivalent is a <strong>cluster key</strong> — defining one causes Snowflake to sort data within micro-partitions, enabling more aggressive partition pruning on your most common filter columns.</p>
+    <div class="code-block">
+      <div class="code-block-header"><span>sql — Snowflake cluster key</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+      <pre><span class="cm">-- Define cluster key on most common filter columns</span>
+<span class="kw">ALTER TABLE</span> <span class="tbl">production_events</span>
+<span class="kw">CLUSTER BY</span> (shift_date, machine_id);
+
+<span class="cm">-- Check clustering information</span>
+<span class="kw">SELECT</span> <span class="fn">SYSTEM$CLUSTERING_INFORMATION</span>(<span class="str">'production_events'</span>);</pre>
+    </div>
+    <div class="alert alert-tip"><span class="alert-icon">💡</span>In a factory analytics context: cluster on <code>shift_date</code> and <code>machine_id</code> — these are the most common filter columns in OEE, downtime, and quality queries. Snowflake will prune micro-partitions that don't match, making queries dramatically faster at scale.</div>
+  </div>
+</div>
+
+<!-- Q19 -->
+<div class="q-card" data-search="slow query performance diagnose explain plan execution">
+  <div class="q-header" onclick="toggle(this)">
+    <span class="q-num tag-orange">Q19</span>
+    <span class="diff-badge diff-medium">Medium</span>
+    <span class="q-text">A dashboard query that ran in 2 seconds now takes 45 seconds. How do you diagnose it?</span>
+    <span class="q-chevron">▼</span>
+  </div>
+  <div class="q-body">
+    <div class="tag-row"><span class="tag tag-orange">Query Optimization</span><span class="tag tag-red">Troubleshooting</span></div>
+    <div class="layer-stack">
+      <div class="layer layer-1"><span class="layer-num">①</span><div class="layer-content"><div class="layer-title">Run EXPLAIN / Query Profile</div><div class="layer-desc">Snowflake Query Profile, PostgreSQL EXPLAIN ANALYZE — look for full table scans, cartesian products, spill to disk</div></div></div>
+      <div class="layer layer-2"><span class="layer-num">②</span><div class="layer-content"><div class="layer-title">Check data volume growth</div><div class="layer-desc">Did the table 10x in size? Did a new partition get added? Row count explosion from a bad JOIN?</div></div></div>
+      <div class="layer layer-3"><span class="layer-num">③</span><div class="layer-content"><div class="layer-title">Check for schema changes</div><div class="layer-desc">Did a column type change break a partition filter? Did a JOIN key become nullable?</div></div></div>
+      <div class="layer layer-4"><span class="layer-num">④</span><div class="layer-content"><div class="layer-title">Fix in order</div><div class="layer-desc">Filter pushdown first → index/cluster key → query rewrite → pre-aggregation table</div></div></div>
+    </div>
+    <div class="alert alert-warn"><span class="alert-icon">⚠</span>The most common cause of sudden slowdowns in factory analytics is a <strong>cartesian product from an ambiguous JOIN</strong> — e.g., joining on machine_id without also joining on shift_date, causing every machine row to match every shift row.</div>
+  </div>
+</div>
+
+<!-- Q20 -->
+<div class="q-card" data-search="explain analyze plan execution real vs estimated">
+  <div class="q-header" onclick="toggle(this)">
+    <span class="q-num tag-orange">Q20</span>
+    <span class="diff-badge diff-medium">Medium</span>
+    <span class="q-text">What is the difference between EXPLAIN and EXPLAIN ANALYZE?</span>
+    <span class="q-chevron">▼</span>
+  </div>
+  <div class="q-body">
+    <div class="tag-row"><span class="tag tag-orange">Query Planning</span></div>
+    <table class="ref-table">
+      <tr><th>Command</th><th>Runs query?</th><th>Shows</th><th>When to use</th></tr>
+      <tr><td>EXPLAIN</td><td>No</td><td>Estimated plan, estimated row counts</td><td>Query too expensive to run speculatively</td></tr>
+      <tr><td>EXPLAIN ANALYZE</td><td>Yes</td><td>Actual plan, actual row counts, actual time per node, spills</td><td>Diagnosing a slow query already in production</td></tr>
+      <tr><td>Snowflake Query Profile</td><td>Yes (post-run)</td><td>Node-level stats, spill to disk, partition pruning ratio</td><td>Always use after any Snowflake query optimization</td></tr>
+    </table>
+    <div class="alert alert-tip"><span class="alert-icon">💡</span>The <strong>partition pruning ratio</strong> in Snowflake's Query Profile is the most useful single metric — if you're scanning 800 of 800 micro-partitions on a table filtered by date, your cluster key is wrong or missing.</div>
+  </div>
+</div>
+
+<!-- ══ FACTORY PATTERNS ══════════════════════════════════ -->
+<div class="section-header" id="factory">
+  <div class="section-icon" style="background:rgba(240,136,62,.1)">🏭</div>
+  <h2>Factory Analytics Patterns</h2>
+  <span class="section-count">OEE + Star Schema</span>
+</div>
+
+<div class="visual-box">
+  <h4>OEE = Availability × Performance × Quality</h4>
+  <div class="oee-grid">
+    <div class="oee-cell">
+      <div class="oee-name" style="color:var(--accent3)">Availability</div>
+      <div class="oee-val" style="color:var(--accent3)">A</div>
+      <div class="oee-formula">run_mins ÷ planned_mins</div>
+    </div>
+    <div class="oee-cell oee-times">×</div>
+    <div class="oee-cell">
+      <div class="oee-name" style="color:var(--accent2)">Performance</div>
+      <div class="oee-val" style="color:var(--accent2)">P</div>
+      <div class="oee-formula">actual_rate ÷ ideal_rate</div>
+    </div>
+    <div class="oee-cell oee-times">×</div>
+    <div class="oee-cell">
+      <div class="oee-name" style="color:var(--accent5)">Quality</div>
+      <div class="oee-val" style="color:var(--accent5)">Q</div>
+      <div class="oee-formula">units_good ÷ units_total</div>
+    </div>
+    <div class="oee-cell oee-times">=</div>
+    <div class="oee-cell" style="background:rgba(240,136,62,.08)">
+      <div class="oee-name" style="color:var(--accent)">OEE</div>
+      <div class="oee-val" style="color:var(--accent)">A×P×Q</div>
+      <div class="oee-formula">world-class ≥ 85%</div>
+    </div>
+  </div>
+</div>
+
+<div class="visual-box">
+  <h4>Star schema — fact_production_event</h4>
+  <div class="star-schema">
+    <div style="grid-area:dim-top" class="schema-box dim-box">dim_shift<br><span style="color:var(--text3);font-size:10px">id · date · planned_mins</span></div>
+    <div style="grid-area:dim-left" class="schema-box dim-box">dim_machine<br><span style="color:var(--text3);font-size:10px">id · name · ideal_rate</span></div>
+    <div style="grid-area:fact" class="schema-box fact-box">fact_production_event<br><span style="font-size:10px;color:rgba(240,136,62,.7)">run_mins · down_mins<br>units_good · actual_rate</span></div>
+    <div style="grid-area:dim-right" class="schema-box dim-box">dim_product<br><span style="color:var(--text3);font-size:10px">sku · spec_rate</span></div>
+    <div style="grid-area:dim-bottom" class="schema-box dim-box">dim_downtime_reason<br><span style="color:var(--text3);font-size:10px">code · category · planned?</span></div>
+  </div>
+</div>
+
+<div class="code-block">
+  <div class="code-block-header"><span>sql — full OEE query from star schema</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+  <pre><span class="kw">WITH</span> oee_calc <span class="kw">AS</span> (
+    <span class="kw">SELECT</span>
+        s.shift_date,
+        pe.machine_id,
+        m.machine_name,
+        <span class="fn">SUM</span>(pe.run_mins) * <span class="num">1.0</span> / <span class="fn">MAX</span>(s.planned_mins)        <span class="kw">AS</span> availability,
+        <span class="fn">SUM</span>(pe.units_total * m.ideal_cycle_secs / <span class="num">60.0</span>)
+          / <span class="fn">NULLIF</span>(<span class="fn">SUM</span>(pe.run_mins), <span class="num">0</span>)                      <span class="kw">AS</span> performance,
+        <span class="fn">SUM</span>(pe.units_good) * <span class="num">1.0</span>
+          / <span class="fn">NULLIF</span>(<span class="fn">SUM</span>(pe.units_total), <span class="num">0</span>)                  <span class="kw">AS</span> quality,
+        <span class="fn">COUNT</span>(<span class="kw">CASE WHEN</span> pe.dq_flag = <span class="str">'GOOD'</span> <span class="kw">THEN</span> <span class="num">1</span> <span class="kw">END</span>) * <span class="num">1.0</span>
+          / <span class="fn">NULLIF</span>(<span class="fn">COUNT</span>(*), <span class="num">0</span>)                              <span class="kw">AS</span> data_quality_score
+    <span class="kw">FROM</span> <span class="tbl">fact_production_event</span> pe
+    <span class="kw">JOIN</span> <span class="tbl">dim_shift</span>   s <span class="kw">ON</span> pe.shift_id   = s.shift_id
+    <span class="kw">JOIN</span> <span class="tbl">dim_machine</span> m <span class="kw">ON</span> pe.machine_id = m.machine_id
+    <span class="kw">WHERE</span> s.shift_date >= <span class="fn">DATEADD</span>(<span class="str">'day'</span>, -<span class="num">30</span>, <span class="fn">CURRENT_DATE</span>())
+    <span class="kw">GROUP BY</span> s.shift_date, pe.machine_id, m.machine_name
+)
+<span class="kw">SELECT</span>
+    shift_date,
+    machine_id,
+    machine_name,
+    <span class="fn">ROUND</span>(availability  * <span class="num">100</span>, <span class="num">1</span>) <span class="kw">AS</span> avail_pct,
+    <span class="fn">ROUND</span>(performance   * <span class="num">100</span>, <span class="num">1</span>) <span class="kw">AS</span> perf_pct,
+    <span class="fn">ROUND</span>(quality       * <span class="num">100</span>, <span class="num">1</span>) <span class="kw">AS</span> qual_pct,
+    <span class="fn">ROUND</span>(availability * performance * quality * <span class="num">100</span>, <span class="num">1</span>) <span class="kw">AS</span> oee_pct,
+    <span class="fn">ROUND</span>(data_quality_score * <span class="num">100</span>, <span class="num">1</span>)                 <span class="kw">AS</span> dq_score_pct,
+    <span class="cm">-- Rolling 7-day OEE trend</span>
+    <span class="fn">AVG</span>(availability * performance * quality) <span class="kw">OVER</span> (
+        <span class="kw">PARTITION BY</span> machine_id
+        <span class="kw">ORDER BY</span> shift_date
+        <span class="kw">ROWS BETWEEN</span> <span class="num">6</span> <span class="kw">PRECEDING AND CURRENT ROW</span>
+    ) * <span class="num">100</span>                                           <span class="kw">AS</span> oee_7day_rolling_avg
+<span class="kw">FROM</span> oee_calc
+<span class="kw">ORDER BY</span> shift_date, oee_pct;</pre>
+</div>
+
+<!-- ══ QUICK REF ══════════════════════════════════ -->
+<div class="section-header" id="quickref">
+  <div class="section-icon" style="background:rgba(57,208,216,.1)">≡</div>
+  <h2>Cheat Sheet</h2>
+</div>
+
+<table class="ref-table">
+  <tr><th>Function</th><th>Purpose</th><th>Key gotcha</th></tr>
+  <tr><td>WHERE</td><td>Filter rows before GROUP BY</td><td>Cannot use aggregate functions</td></tr>
+  <tr><td>HAVING</td><td>Filter groups after GROUP BY</td><td>Requires GROUP BY (or window context)</td></tr>
+  <tr><td>COALESCE(a,b,c)</td><td>First non-NULL value</td><td>Evaluates left to right, stops at first non-NULL</td></tr>
+  <tr><td>NULLIF(a,b)</td><td>Return NULL if a=b, else a</td><td>Pair with COALESCE for safe division</td></tr>
+  <tr><td>ROW_NUMBER()</td><td>Unique row rank (no ties)</td><td>Tie-breaking is non-deterministic</td></tr>
+  <tr><td>RANK()</td><td>Rank with ties, skips next</td><td>Gaps in sequence when ties occur</td></tr>
+  <tr><td>DENSE_RANK()</td><td>Rank with ties, no skip</td><td>Use for factory machine rankings</td></tr>
+  <tr><td>LAG(col, n, default)</td><td>Previous row value</td><td>Returns NULL if no prior row (set default)</td></tr>
+  <tr><td>LEAD(col, n, default)</td><td>Next row value</td><td>Returns NULL if no next row (set default)</td></tr>
+  <tr><td>ROWS BETWEEN</td><td>Physical row count window</td><td>Always exact N rows regardless of date gaps</td></tr>
+  <tr><td>RANGE BETWEEN</td><td>Logical value-based window</td><td>Use with INTERVAL for time-series</td></tr>
+  <tr><td>WITH RECURSIVE</td><td>Hierarchical traversal</td><td>Must use UNION ALL, not UNION</td></tr>
+  <tr><td>QUALIFY</td><td>Filter on window function result</td><td>Snowflake / BigQuery only</td></tr>
+  <tr><td>UNION ALL</td><td>Combine results, keep dupes</td><td>Faster than UNION — use by default</td></tr>
+  <tr><td>EXPLAIN ANALYZE</td><td>Actual execution stats</td><td>Actually runs the query — use on slow prod queries</td></tr>
+</table>
+
+<div style="margin-top:3rem;padding:1.5rem;background:var(--surface);border:1px solid var(--border);border-radius:10px;text-align:center">
+  <p style="font-family:'DM Serif Display',serif;font-size:1.1rem;color:var(--accent);margin-bottom:8px">Form Energy Interview Tip</p>
+  <p style="font-size:13px;color:var(--text2);max-width:600px;margin:0 auto">Be ready to write the full OEE query live — Availability × Performance × Quality from a star schema, with a rolling window for trend analysis. That is the most likely live-coding question for a factory analytics role.</p>
+</div>
+
+</div>
+</main>
+
+<button id="menu-toggle" onclick="toggleSidebar()">☰</button>
+
+<script>
+function toggle(header) {
+  const body = header.parentElement.querySelector('.q-body');
+  const chev = header.querySelector('.q-chevron');
+  const isOpen = body.classList.contains('open');
+  body.classList.toggle('open', !isOpen);
+  chev.classList.toggle('open', !isOpen);
+}
+
+function scrollTo(id) {
+  const el = document.getElementById(id);
+  if (el) { el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  event.currentTarget.classList.add('active');
+}
+
+function copyCode(btn) {
+  const pre = btn.closest('.code-block').querySelector('pre');
+  const text = pre.innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = 'copied!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'copy'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+
+function filterCards(query) {
+  const q = query.toLowerCase();
+  document.querySelectorAll('.q-card').forEach(card => {
+    const text = (card.getAttribute('data-search') || '') + ' ' + card.querySelector('.q-text').textContent.toLowerCase();
+    card.classList.toggle('hidden', q.length > 0 && !text.includes(q));
+  });
+}
+
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('open');
+}
+
+// Highlight active nav on scroll
+const sections = ['fundamentals','aggregation','window','cte','quality','performance','factory','quickref'];
+window.addEventListener('scroll', () => {
+  let current = sections[0];
+  sections.forEach(id => {
+    const el = document.getElementById(id);
+    if (el && window.scrollY >= el.offsetTop - 120) current = id;
+  });
+  document.querySelectorAll('.nav-item').forEach((item, i) => {
+    if (i < sections.length) item.classList.toggle('active', sections[i] === current);
+  });
+});
+</script>
+</body>
+</html>
