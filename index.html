@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Vinay Gandhi | Portfolio &amp; guides</title>
-<meta name="description" content="Central index: theory notes, programming guides, interactive tools, and the interactive project hub.">
+<meta name="description" content="Portfolio home: featured repositories, interactive project hub, theory notes, programming guides, and static tools.">
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;0,800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="portfolio_hub.css">
 </head>
@@ -18,8 +18,9 @@
   <div class="nav-group">
     <div class="nav-group-label">Site</div>
     <a class="nav-link active" href="index.html"><span class="nav-dot"></span>Home</a>
+    <a class="nav-link" href="https://vgandhi1.github.io/web-interactive-collection/" target="_blank" rel="noopener"><span class="nav-dot"></span>Static hub (sub-site)</a>
+    <a class="nav-link" href="interactive/index.html"><span class="nav-dot"></span>Interactive (mirror)</a>
     <a class="nav-link" href="theory/ml_theory_hub.html"><span class="nav-dot"></span>ML &amp; AI theory hub</a>
-    <a class="nav-link" href="interactive/index.html"><span class="nav-dot"></span>Interactive hub</a>
   </div>
   <div class="nav-group">
     <div class="nav-group-label">Hands-on</div>
@@ -31,30 +32,169 @@
 
 <main id="main">
   <header class="hero">
-    <div class="hero-tag">Central index · Static pages + interactive hub</div>
+    <div class="hero-tag">Portfolio home · Static guides + hosted demos</div>
     <h1>Vinay Gandhi — <em>portfolio &amp; guides</em></h1>
-    <p class="hero-lead">AI systems, data engineering, and EV/SDV topics — theory notes, language tutorials, interview prep, single-page tools, and a subfolder with slide decks, Homelab, and external project links.</p>
+    <p class="hero-lead">AI systems, data engineering, factory analytics, ML/CV, and EV/SDV work — repository and live-app index on this page; static HTML decks, EV references, and tools on the interactive sub-site.</p>
+    <div class="hero-actions">
+      <a class="hero-cta-primary" href="https://vgandhi1.github.io/web-interactive-collection/" target="_blank" rel="noopener">Static decks &amp; tools →</a>
+      <a class="hero-cta-secondary" href="https://github.com/vgandhi1" target="_blank" rel="noopener">GitHub profile</a>
+    </div>
   </header>
 
   <div class="content">
-    <p class="prose">Use the sidebar for shortcuts. Below, everything is grouped by category; each card opens a static HTML page in this repo unless noted.</p>
+    <p class="prose">The <strong>web-interactive-collection</strong> sub-site (<a href="https://vgandhi1.github.io/web-interactive-collection/" target="_blank" rel="noopener">vgandhi1.github.io/web-interactive-collection</a>) hosts <strong>static HTML only</strong>: Homelab portal, CV/ML and Monitron decks, EV protocol and security pages, DSA, glossaries, and simulators. <strong>This page</strong> is the portfolio root for <strong>GitHub repositories, live demos, and research/ETL</strong> links, plus theory and programming tracks in-repo. Source: <a href="https://github.com/vgandhi1/web-interactive-collection" target="_blank" rel="noopener">github.com/vgandhi1/web-interactive-collection</a>.</p>
 
     <div class="callout callout-info">
-      <div class="callout-title">Theory notes vs projects hub</div>
-      <strong>Theory &amp; reference</strong> pages (the ML/DE/ops illustrated series) use a separate stylesheet — violet sidebar, diagram-heavy layout. <strong>This page</strong> and the <a href="interactive/index.html">interactive hub</a> use the teal <em>projects &amp; demos</em> theme for navigation, repos, and tools.
+      <div class="callout-title">How the two sites relate</div>
+      <strong>Root site (this page):</strong> all important <strong>repo and hosted-app</strong> links, illustrated theory (<code style="font-family:JetBrains Mono,monospace;font-size:11px;">theory/</code>), tutorials (<code style="font-family:JetBrains Mono,monospace;font-size:11px;">programming/</code>), and a mirrored <code style="font-family:JetBrains Mono,monospace;font-size:11px;">interactive/</code> copy of the static tools. <strong>Sub-site:</strong> Tailwind index for browsing <strong>local pages only</strong> (no duplicate GitHub project grid). Same files also live under <code style="font-family:JetBrains Mono,monospace;font-size:11px;">interactive/</code> here with the sidebar layout.
+    </div>
+
+    <div class="sec">
+      <h2>Featured repositories</h2>
+      <p class="prose" style="margin-top:-0.25rem;">Active work on GitHub — factory systems, ML/CV, EV tooling, web apps, and product experiments. Opens in a new tab.</p>
+
+      <div class="sec-sub">Factory &amp; OT</div>
+      <div class="hub-grid">
+        <a class="hub-card hub-card-external" href="https://github.com/vgandhi1/aegis" target="_blank" rel="noopener">
+          <h3>AEGIS</h3>
+          <p>Manufacturing correlation engine — PLC telemetry, MES work orders, streaming ML inference.</p>
+          <div class="hub-meta">github.com/vgandhi1/aegis</div>
+        </a>
+        <a class="hub-card hub-card-external" href="https://github.com/vgandhi1/SentinelFlow" target="_blank" rel="noopener">
+          <h3>SentinelFlow</h3>
+          <p>IIoT telemetry platform — PLCs, OPC UA, Kafka, GraphQL for digital twin style dashboards.</p>
+          <div class="hub-meta">github.com/vgandhi1/SentinelFlow</div>
+        </a>
+      </div>
+
+      <div class="sec-sub">ML &amp; computer vision</div>
+      <div class="hub-grid">
+        <a class="hub-card hub-card-external" href="https://github.com/vgandhi1/automotive-visual-qa-engine" target="_blank" rel="noopener">
+          <h3>Automotive visual QA engine</h3>
+          <p>Edge CLIP inspection, AWS serverless path, MES-style FastAPI — visual quality and rework routing.</p>
+          <div class="hub-meta">github.com/…/automotive-visual-qa-engine</div>
+        </a>
+        <a class="hub-card hub-card-external" href="https://github.com/vgandhi1/CLaimLens" target="_blank" rel="noopener">
+          <h3>CLaimLens</h3>
+          <p>VLM-powered vehicle damage assessment — AWS Glue, SageMaker, structured damage intelligence.</p>
+          <div class="hub-meta">github.com/vgandhi1/CLaimLens</div>
+        </a>
+      </div>
+
+      <div class="sec-sub">Research &amp; analytics</div>
+      <div class="hub-grid">
+        <a class="hub-card hub-card-external" href="https://github.com/vgandhi1/Big-Data-Analytics-in-Healthcare/tree/main" target="_blank" rel="noopener">
+          <h3>Healthcare analytics</h3>
+          <p>ETL and deep learning (PyTorch/PySpark) for healthcare-scale data and pipelines.</p>
+          <div class="hub-meta">github.com/…/Big-Data-Analytics-in-Healthcare</div>
+        </a>
+        <a class="hub-card hub-card-external" href="https://github.com/vgandhi1/LLSPIN-Project" target="_blank" rel="noopener">
+          <h3>LLSPIN project</h3>
+          <p>Interpretable neural networks for feature selection and high-stakes prediction.</p>
+          <div class="hub-meta">github.com/vgandhi1/LLSPIN-Project</div>
+        </a>
+      </div>
+
+      <div class="sec-sub">Data engineering &amp; ETL</div>
+      <div class="hub-grid">
+        <a class="hub-card hub-card-external" href="https://github.com/vgandhi1/MARKET_MOOD_RING" target="_blank" rel="noopener">
+          <h3>Market Mood Ring</h3>
+          <p>Real-time finance analytics — Kafka, Flink, Postgres, Ollama, RAG-style analyst.</p>
+          <div class="hub-meta">github.com/vgandhi1/MARKET_MOOD_RING</div>
+        </a>
+        <a class="hub-card hub-card-external" href="https://github.com/vgandhi1/Crypto-Data-ETL" target="_blank" rel="noopener">
+          <h3>Crypto data ETL</h3>
+          <p>End-to-end cryptocurrency extraction, transformation, and loading pipeline.</p>
+          <div class="hub-meta">github.com/vgandhi1/Crypto-Data-ETL</div>
+        </a>
+      </div>
+
+      <div class="sec-sub">EV &amp; automotive security</div>
+      <div class="hub-grid">
+        <a class="hub-card hub-card-external" href="https://github.com/vgandhi1/Overdrive-OTA-Manager" target="_blank" rel="noopener">
+          <h3>Overdrive OTA Manager</h3>
+          <p>OTA campaign and firmware delivery workflows.</p>
+          <div class="hub-meta">github.com/vgandhi1/Overdrive-OTA-Manager</div>
+        </a>
+        <a class="hub-card hub-card-external" href="https://github.com/vgandhi1/automotive-key-provission" target="_blank" rel="noopener">
+          <h3>Automotive key provisioning</h3>
+          <p>Key lifecycle and provisioning utilities for automotive stacks.</p>
+          <div class="hub-meta">github.com/vgandhi1/automotive-key-provission</div>
+        </a>
+        <a class="hub-card hub-card-external" href="https://github.com/vgandhi1/OTA-firmware-verifier" target="_blank" rel="noopener">
+          <h3>OTA firmware verifier</h3>
+          <p>Verification tooling for OTA firmware packages.</p>
+          <div class="hub-meta">github.com/vgandhi1/OTA-firmware-verifier</div>
+        </a>
+      </div>
+
+      <div class="sec-sub">Agents &amp; full-stack</div>
+      <div class="hub-grid">
+        <a class="hub-card hub-card-external" href="https://github.com/vgandhi1/rag-qa-system" target="_blank" rel="noopener">
+          <h3>RAG QA system</h3>
+          <p>Retrieval-augmented generation demo and assistant patterns.</p>
+          <div class="hub-meta">github.com/vgandhi1/rag-qa-system</div>
+        </a>
+        <a class="hub-card hub-card-external" href="https://github.com/vgandhi1/ToDoApp" target="_blank" rel="noopener">
+          <h3>ToDoApp (FARM)</h3>
+          <p>FastAPI, React, and MongoDB task tracker.</p>
+          <div class="hub-meta">github.com/vgandhi1/ToDoApp</div>
+        </a>
+        <a class="hub-card hub-card-external" href="https://github.com/vgandhi1/data-analytics-ai-agents" target="_blank" rel="noopener">
+          <h3>Data analytics AI agents</h3>
+          <p>AutoGen-style agents for files, code generation, and visualizations.</p>
+          <div class="hub-meta">github.com/vgandhi1/data-analytics-ai-agents</div>
+        </a>
+      </div>
+
+      <div class="sec-sub">Web &amp; product</div>
+      <div class="hub-grid">
+        <a class="hub-card hub-card-external" href="https://vgandhi1.github.io/weather-WebApp/" target="_blank" rel="noopener">
+          <h3>Weather WebApp</h3>
+          <p>Live GitHub Pages demo — real-time conditions and forecast.</p>
+          <div class="hub-meta">vgandhi1.github.io/weather-WebApp</div>
+        </a>
+        <a class="hub-card hub-card-external" href="https://github.com/vgandhi1/Job-board-projects/tree/main/SmartFound" target="_blank" rel="noopener">
+          <h3>SmartFound</h3>
+          <p>Job-board / discovery project — planned public site.</p>
+          <div class="hub-meta">Job-board-projects / SmartFound</div>
+        </a>
+        <a class="hub-card hub-card-external" href="https://github.com/vgandhi1/HabitArc" target="_blank" rel="noopener">
+          <h3>HabitArc</h3>
+          <p>Habit tracking application — product-style UX experiment.</p>
+          <div class="hub-meta">github.com/vgandhi1/HabitArc</div>
+        </a>
+        <a class="hub-card hub-card-external" href="https://github.com/vgandhi1/Motel-web-portal" target="_blank" rel="noopener">
+          <h3>Motel Web Portal</h3>
+          <p>Private full-stack motel operations demo (React, Node, Docker). Screen recording below.</p>
+          <div class="hub-meta">github.com/vgandhi1/Motel-web-portal</div>
+        </a>
+      </div>
+
+      <figure class="demo-figure">
+        <div class="demo-media-wrap">
+          <img src="assets/demos/motel-portal-demo.gif" alt="Screen recording of the Motel Web Portal dashboard and room flows" loading="lazy">
+        </div>
+        <figcaption>Motel Web Portal — UI walkthrough (hosted asset; repository may be private on GitHub).</figcaption>
+      </figure>
     </div>
 
     <div class="sec">
       <h2>Interactive project hub</h2>
       <div class="hub-grid">
+        <a class="hub-card hub-card-external" href="https://vgandhi1.github.io/web-interactive-collection/" target="_blank" rel="noopener">
+          <h3>Static hub (sub-site)</h3>
+          <p>Homelab, CV/ML and Monitron decks, EV HTML guides, DSA, AI glossaries, uv guide, hedging simulator — Tailwind index for local pages only.</p>
+          <div class="hub-meta">vgandhi1.github.io/web-interactive-collection</div>
+        </a>
         <a class="hub-card" href="interactive/index.html">
-          <h3>Interactive Project Hub</h3>
-          <p>CV/ML decks, Homelab portal, live demos, GitHub projects, EV &amp; tool links from one page.</p>
+          <h3>Mirror in this repo</h3>
+          <p>Same HTML collection under <code style="font-family:JetBrains Mono,monospace;font-size:11px;">interactive/</code> with the portfolio sidebar theme.</p>
           <div class="hub-meta">→ interactive/index.html</div>
         </a>
         <a class="hub-card" href="interactive/Projects/CVML_extensive-report.html">
           <h3>CVML extensive report</h3>
-          <p>Long-form CV/ML deck in the interactive folder.</p>
+          <p>Long-form CV/ML deck in the mirrored folder.</p>
           <div class="hub-meta">→ interactive/Projects/CVML_extensive-report.html</div>
         </a>
       </div>
@@ -150,7 +290,7 @@
 
     <div class="sec">
       <h2>Interactive tools &amp; glossaries</h2>
-      <p class="prose" style="margin-top:-0.25rem;">Single-page apps and references in <code style="font-family:JetBrains Mono,monospace;font-size:12px;">interactive/</code>.</p>
+      <p class="prose" style="margin-top:-0.25rem;">Single-page apps and references in <code style="font-family:JetBrains Mono,monospace;font-size:12px;">interactive/</code> (mirrored from <a href="https://github.com/vgandhi1/web-interactive-collection" target="_blank" rel="noopener">web-interactive-collection</a>).</p>
       <div class="hub-grid">
         <a class="hub-card" href="interactive/DSA.html">
           <h3>DSA Architect</h3>
@@ -198,11 +338,11 @@
 
     <div class="callout callout-info">
       <div class="callout-title">Repo layout</div>
-      This file is the site root for <strong>vgandhi1.github.io</strong>. Layout: <code style="font-family:JetBrains Mono,monospace;font-size:11px;">theory/</code>, <code style="font-family:JetBrains Mono,monospace;font-size:11px;">programming/</code>, <code style="font-family:JetBrains Mono,monospace;font-size:11px;">interactive/</code> (project hub + tools + EV pages). Upstream repo: <a href="https://github.com/vgandhi1/web-interactive-collection" target="_blank" rel="noopener">web-interactive-collection</a>.
+      This file is the site root for <strong>vgandhi1.github.io</strong>. Layout: <code style="font-family:JetBrains Mono,monospace;font-size:11px;">theory/</code>, <code style="font-family:JetBrains Mono,monospace;font-size:11px;">programming/</code>, <code style="font-family:JetBrains Mono,monospace;font-size:11px;">interactive/</code> (mirror of tools + decks), <code style="font-family:JetBrains Mono,monospace;font-size:11px;">assets/</code> for shared media. Canonical interactive landing: <a href="https://vgandhi1.github.io/web-interactive-collection/" target="_blank" rel="noopener">web-interactive-collection</a> on GitHub Pages.
     </div>
 
     <div class="cross-footer">
-      Theory detail pages also link from <a href="theory/ml_theory_hub.html">ML &amp; AI theory hub</a> · Interactive entry: <a href="interactive/index.html">Interactive Project Hub</a>
+      Theory: <a href="theory/ml_theory_hub.html">ML &amp; AI theory hub</a> · Full interactive hub: <a href="https://vgandhi1.github.io/web-interactive-collection/" target="_blank" rel="noopener">web-interactive-collection</a>
     </div>
   </div>
 </main>
