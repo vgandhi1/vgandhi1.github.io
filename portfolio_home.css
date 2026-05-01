@@ -353,20 +353,44 @@ body.portfolio-landing {
 
 .pl-more {
   margin-top: 1rem;
-  padding: 1rem 1.15rem;
+  padding: 1.25rem;
   border-radius: 12px;
-  background: rgba(248, 250, 252, 0.9);
+  background: rgba(255, 255, 255, 0.5);
   border: 1px solid var(--pl-border);
   font-size: 14px;
   line-height: 1.55;
   color: #475569;
   max-width: 52rem;
 }
+.pl-more > p {
+  margin: 0 0 0.65rem;
+}
+.pl-more > p.pl-more-tail {
+  margin: 1rem 0 0;
+}
+.pl-more ul {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+  padding: 0;
+  margin: 0.35rem 0 0;
+}
+.pl-more ul li {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 13px;
+}
+.pl-more ul li a {
+  color: var(--pl-accent);
+  text-decoration: none;
+  font-weight: 600;
+}
 .pl-more a {
   color: var(--pl-accent);
   font-weight: 600;
   text-decoration: none;
 }
+.pl-more ul li a:hover,
 .pl-more a:hover {
   text-decoration: underline;
 }
