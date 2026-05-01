@@ -1,6 +1,6 @@
 /*
  * ML & AI theory — illustrated notes only (theory/ml_theory_hub.html + theory/theory_*.html).
- * Portfolio / interactive project hubs use portfolio_hub.css at site root instead.
+ * Portfolio landing uses portfolio_home.css; older teal theme was portfolio_hub.css.
  */
 :root {
   --th-violet: #7c3aed;

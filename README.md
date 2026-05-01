@@ -2,7 +2,7 @@
 
 **Live site:** [https://vgandhi1.github.io/](https://vgandhi1.github.io/)
 
-Personal portfolio and learning notes published with [GitHub Pages](https://pages.github.com/). The root site uses the [Minima](https://github.com/jekyll/minima) theme via Jekyll (`_config.yml`).
+Personal portfolio and learning notes published with [GitHub Pages](https://pages.github.com/). The root site uses the [Minima](https://github.com/jekyll/minima) theme via Jekyll (`_config.yml`). The **portfolio home** (`index.html`) is a standalone landing page (`portfolio_home.css`); Jekyll-generated posts (if any) use Minima separately.
 
 ---
 
@@ -10,19 +10,17 @@ Personal portfolio and learning notes published with [GitHub Pages](https://page
 
 | File | Description |
 |------|-------------|
-| [`index.html`](index.html) | Portfolio index: theory, programming, interactive hubs. |
+| [`index.html`](index.html) | Portfolio landing — repos, demos, Motel GIF, links to static library, theory & programming. |
+| [`portfolio_home.css`](portfolio_home.css) | Styles for the portfolio landing only. |
+| [`portfolio_hub.css`](portfolio_hub.css) | Legacy teal sidebar theme (still used only if you reintroduce sidebar pages). |
 | [`_config.yml`](_config.yml) | Jekyll settings: site title, description, Minima theme. |
 | [`theory/`](theory/) | Illustrated ML/DE/ops theory notes (`ml_theory.css`). |
-| [`programming/`](programming/) | Python 101 track, Go 101, SQL interview prep. |
-| [`interactive/`](interactive/) | **HTML only** — mirror of tools and decks (Homelab, CV/ML, DSA, EV pages); same sources as web-interactive-collection. |
-| [`interactive-support/`](interactive-support/) | Non-page assets for the collection: Homelab compose/cheatsheets, collection README (not published as Pages routes). |
-| [`assets/demos/`](assets/demos/) | Shared demo media for the portfolio index (e.g. Motel Web Portal screen recording). |
+| [`programming/`](programming/) | Python 101 track, Go 101, SQL prep. |
+| [`assets/demos/`](assets/demos/) | Optional media for the portfolio index (e.g. Motel Web Portal screen recording). |
 
-### Interactive hub (GitHub Pages)
+### Static HTML library (separate repo)
 
-- **Canonical hub (sub-site):** [https://vgandhi1.github.io/web-interactive-collection/](https://vgandhi1.github.io/web-interactive-collection/) — primary Tailwind landing page for demos and repo highlights.  
-- **Mirror in this repo:** [https://vgandhi1.github.io/interactive/](https://vgandhi1.github.io/interactive/) — same HTML with the portfolio sidebar theme.  
-- **Source:** [web-interactive-collection](https://github.com/vgandhi1/web-interactive-collection).
+Decks, Homelab portal, Monitron, EV reference pages, DSA, glossaries, and simulators live only in **[web-interactive-collection](https://github.com/vgandhi1/web-interactive-collection)** and are published at **[vgandhi1.github.io/web-interactive-collection/](https://vgandhi1.github.io/web-interactive-collection/)**. This user repo **does not** mirror that HTML under `interactive/` anymore.
 
 ---
 

@@ -3,350 +3,287 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vinay Gandhi | Portfolio &amp; guides</title>
-<meta name="description" content="Portfolio home: featured repositories, interactive project hub, theory notes, programming guides, and static tools.">
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;0,800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="portfolio_hub.css">
+<title>Vinay Gandhi | Portfolio</title>
+<meta name="description" content="Portfolio: manufacturing AI, ML/CV, data engineering, EV tooling, and apps. Theory, programming tracks, and static tools on GitHub Pages.">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;0,800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="portfolio_home.css">
 </head>
-<body>
+<body class="portfolio-landing">
 
-<nav id="sidebar">
-  <div class="sb-logo">
-    <div class="sb-logo-mark">Portfolio · Guides</div>
-    <div class="sb-logo-sub">Index · Theory · Code · Tools</div>
+<header class="pl-top" role="banner">
+  <div class="pl-top-inner">
+    <a class="pl-brand" href="index.html">Vinay<span>.</span>Gandhi</a>
+    <nav class="pl-nav" aria-label="Primary">
+      <a href="#work">Work</a>
+      <a href="#static">Static library</a>
+      <a href="#learn">Learn</a>
+      <a href="theory/ml_theory_hub.html">Theory hub</a>
+      <a href="programming/python_101.html">Code tracks</a>
+      <a class="pl-nav-cta" href="https://vgandhi1.github.io/web-interactive-collection/" target="_blank" rel="noopener">Static library →</a>
+      <a href="https://github.com/vgandhi1" target="_blank" rel="noopener">GitHub</a>
+    </nav>
   </div>
-  <div class="nav-group">
-    <div class="nav-group-label">Site</div>
-    <a class="nav-link active" href="index.html"><span class="nav-dot"></span>Home</a>
-    <a class="nav-link" href="https://vgandhi1.github.io/web-interactive-collection/" target="_blank" rel="noopener"><span class="nav-dot"></span>Static hub (sub-site)</a>
-    <a class="nav-link" href="interactive/index.html"><span class="nav-dot"></span>Interactive (mirror)</a>
-    <a class="nav-link" href="theory/ml_theory_hub.html"><span class="nav-dot"></span>ML &amp; AI theory hub</a>
+</header>
+
+<div class="pl-wrap">
+  <section class="pl-hero">
+    <p class="pl-hero-badge">Portfolio · GitHub Pages</p>
+    <h1>AI systems, <em>factories</em>, and EV platforms</h1>
+    <p class="pl-hero-lead">Hands-on work across OT correlation, IIoT telemetry, ML/CV for quality, data pipelines, OTA tooling, and full-stack demos — with long-form theory and language tracks hosted here, and slide decks plus browser tools in the static collection.</p>
+    <div class="pl-hero-actions">
+      <a class="pl-btn pl-btn-primary" href="https://vgandhi1.github.io/web-interactive-collection/" target="_blank" rel="noopener">Open static library</a>
+      <a class="pl-btn pl-btn-ghost" href="https://github.com/vgandhi1" target="_blank" rel="noopener">All repositories</a>
+    </div>
+  </section>
+
+  <div class="pl-callout">
+    <strong>This site</strong> lists repositories, live demos, and the Motel walkthrough. <strong><a href="https://vgandhi1.github.io/web-interactive-collection/" target="_blank" rel="noopener">web-interactive-collection</a></strong> hosts Homelab, CV/ML decks, Monitron, EV reference pages, DSA, glossaries, and simulators — single source for that HTML (<a href="https://github.com/vgandhi1/web-interactive-collection" target="_blank" rel="noopener">source repo</a>).
   </div>
-  <div class="nav-group">
-    <div class="nav-group-label">Hands-on</div>
-    <a class="nav-link" href="programming/python_101.html"><span class="nav-dot"></span>Python 101</a>
-    <a class="nav-link" href="programming/SQL_Interview_Prep_FactoryAnalytics.html"><span class="nav-dot"></span>SQL prep</a>
-    <a class="nav-link" href="programming/Go_101_Backend_Systems.html"><span class="nav-dot"></span>Go 101</a>
-  </div>
-</nav>
 
-<main id="main">
-  <header class="hero">
-    <div class="hero-tag">Portfolio home · Static guides + hosted demos</div>
-    <h1>Vinay Gandhi — <em>portfolio &amp; guides</em></h1>
-    <p class="hero-lead">AI systems, data engineering, factory analytics, ML/CV, and EV/SDV work — repository and live-app index on this page; static HTML decks, EV references, and tools on the interactive sub-site.</p>
-    <div class="hero-actions">
-      <a class="hero-cta-primary" href="https://vgandhi1.github.io/web-interactive-collection/" target="_blank" rel="noopener">Static decks &amp; tools →</a>
-      <a class="hero-cta-secondary" href="https://github.com/vgandhi1" target="_blank" rel="noopener">GitHub profile</a>
-    </div>
-  </header>
-
-  <div class="content">
-    <p class="prose">The <strong>web-interactive-collection</strong> sub-site (<a href="https://vgandhi1.github.io/web-interactive-collection/" target="_blank" rel="noopener">vgandhi1.github.io/web-interactive-collection</a>) hosts <strong>static HTML only</strong>: Homelab portal, CV/ML and Monitron decks, EV protocol and security pages, DSA, glossaries, and simulators. <strong>This page</strong> is the portfolio root for <strong>GitHub repositories, live demos, and research/ETL</strong> links, plus theory and programming tracks in-repo. Source: <a href="https://github.com/vgandhi1/web-interactive-collection" target="_blank" rel="noopener">github.com/vgandhi1/web-interactive-collection</a>.</p>
-
-    <div class="callout callout-info">
-      <div class="callout-title">How the two sites relate</div>
-      <strong>Root site (this page):</strong> all important <strong>repo and hosted-app</strong> links, illustrated theory (<code style="font-family:JetBrains Mono,monospace;font-size:11px;">theory/</code>), tutorials (<code style="font-family:JetBrains Mono,monospace;font-size:11px;">programming/</code>), and a mirrored <code style="font-family:JetBrains Mono,monospace;font-size:11px;">interactive/</code> copy of the static tools. <strong>Sub-site:</strong> Tailwind index for browsing <strong>local pages only</strong> (no duplicate GitHub project grid). Same files also live under <code style="font-family:JetBrains Mono,monospace;font-size:11px;">interactive/</code> here with the sidebar layout.
+  <section id="work" class="pl-section" aria-labelledby="work-heading">
+    <div class="pl-sec-head">
+      <h2 id="work-heading">Selected work</h2>
+      <p>Grouped by domain. External links open in a new tab.</p>
     </div>
 
-    <div class="sec">
-      <h2>Featured repositories</h2>
-      <p class="prose" style="margin-top:-0.25rem;">Active work on GitHub — factory systems, ML/CV, EV tooling, web apps, and product experiments. Opens in a new tab.</p>
-
-      <div class="sec-sub">Factory &amp; OT</div>
-      <div class="hub-grid">
-        <a class="hub-card hub-card-external" href="https://github.com/vgandhi1/aegis" target="_blank" rel="noopener">
-          <h3>AEGIS</h3>
-          <p>Manufacturing correlation engine — PLC telemetry, MES work orders, streaming ML inference.</p>
-          <div class="hub-meta">github.com/vgandhi1/aegis</div>
-        </a>
-        <a class="hub-card hub-card-external" href="https://github.com/vgandhi1/SentinelFlow" target="_blank" rel="noopener">
-          <h3>SentinelFlow</h3>
-          <p>IIoT telemetry platform — PLCs, OPC UA, Kafka, GraphQL for digital twin style dashboards.</p>
-          <div class="hub-meta">github.com/vgandhi1/SentinelFlow</div>
-        </a>
-      </div>
-
-      <div class="sec-sub">ML &amp; computer vision</div>
-      <div class="hub-grid">
-        <a class="hub-card hub-card-external" href="https://github.com/vgandhi1/automotive-visual-qa-engine" target="_blank" rel="noopener">
-          <h3>Automotive visual QA engine</h3>
-          <p>Edge CLIP inspection, AWS serverless path, MES-style FastAPI — visual quality and rework routing.</p>
-          <div class="hub-meta">github.com/…/automotive-visual-qa-engine</div>
-        </a>
-        <a class="hub-card hub-card-external" href="https://github.com/vgandhi1/CLaimLens" target="_blank" rel="noopener">
-          <h3>CLaimLens</h3>
-          <p>VLM-powered vehicle damage assessment — AWS Glue, SageMaker, structured damage intelligence.</p>
-          <div class="hub-meta">github.com/vgandhi1/CLaimLens</div>
-        </a>
-      </div>
-
-      <div class="sec-sub">Research &amp; analytics</div>
-      <div class="hub-grid">
-        <a class="hub-card hub-card-external" href="https://github.com/vgandhi1/Big-Data-Analytics-in-Healthcare/tree/main" target="_blank" rel="noopener">
-          <h3>Healthcare analytics</h3>
-          <p>ETL and deep learning (PyTorch/PySpark) for healthcare-scale data and pipelines.</p>
-          <div class="hub-meta">github.com/…/Big-Data-Analytics-in-Healthcare</div>
-        </a>
-        <a class="hub-card hub-card-external" href="https://github.com/vgandhi1/LLSPIN-Project" target="_blank" rel="noopener">
-          <h3>LLSPIN project</h3>
-          <p>Interpretable neural networks for feature selection and high-stakes prediction.</p>
-          <div class="hub-meta">github.com/vgandhi1/LLSPIN-Project</div>
-        </a>
-      </div>
-
-      <div class="sec-sub">Data engineering &amp; ETL</div>
-      <div class="hub-grid">
-        <a class="hub-card hub-card-external" href="https://github.com/vgandhi1/MARKET_MOOD_RING" target="_blank" rel="noopener">
-          <h3>Market Mood Ring</h3>
-          <p>Real-time finance analytics — Kafka, Flink, Postgres, Ollama, RAG-style analyst.</p>
-          <div class="hub-meta">github.com/vgandhi1/MARKET_MOOD_RING</div>
-        </a>
-        <a class="hub-card hub-card-external" href="https://github.com/vgandhi1/Crypto-Data-ETL" target="_blank" rel="noopener">
-          <h3>Crypto data ETL</h3>
-          <p>End-to-end cryptocurrency extraction, transformation, and loading pipeline.</p>
-          <div class="hub-meta">github.com/vgandhi1/Crypto-Data-ETL</div>
-        </a>
-      </div>
-
-      <div class="sec-sub">EV &amp; automotive security</div>
-      <div class="hub-grid">
-        <a class="hub-card hub-card-external" href="https://github.com/vgandhi1/Overdrive-OTA-Manager" target="_blank" rel="noopener">
-          <h3>Overdrive OTA Manager</h3>
-          <p>OTA campaign and firmware delivery workflows.</p>
-          <div class="hub-meta">github.com/vgandhi1/Overdrive-OTA-Manager</div>
-        </a>
-        <a class="hub-card hub-card-external" href="https://github.com/vgandhi1/automotive-key-provission" target="_blank" rel="noopener">
-          <h3>Automotive key provisioning</h3>
-          <p>Key lifecycle and provisioning utilities for automotive stacks.</p>
-          <div class="hub-meta">github.com/vgandhi1/automotive-key-provission</div>
-        </a>
-        <a class="hub-card hub-card-external" href="https://github.com/vgandhi1/OTA-firmware-verifier" target="_blank" rel="noopener">
-          <h3>OTA firmware verifier</h3>
-          <p>Verification tooling for OTA firmware packages.</p>
-          <div class="hub-meta">github.com/vgandhi1/OTA-firmware-verifier</div>
-        </a>
-      </div>
-
-      <div class="sec-sub">Agents &amp; full-stack</div>
-      <div class="hub-grid">
-        <a class="hub-card hub-card-external" href="https://github.com/vgandhi1/rag-qa-system" target="_blank" rel="noopener">
-          <h3>RAG QA system</h3>
-          <p>Retrieval-augmented generation demo and assistant patterns.</p>
-          <div class="hub-meta">github.com/vgandhi1/rag-qa-system</div>
-        </a>
-        <a class="hub-card hub-card-external" href="https://github.com/vgandhi1/ToDoApp" target="_blank" rel="noopener">
-          <h3>ToDoApp (FARM)</h3>
-          <p>FastAPI, React, and MongoDB task tracker.</p>
-          <div class="hub-meta">github.com/vgandhi1/ToDoApp</div>
-        </a>
-        <a class="hub-card hub-card-external" href="https://github.com/vgandhi1/data-analytics-ai-agents" target="_blank" rel="noopener">
-          <h3>Data analytics AI agents</h3>
-          <p>AutoGen-style agents for files, code generation, and visualizations.</p>
-          <div class="hub-meta">github.com/vgandhi1/data-analytics-ai-agents</div>
-        </a>
-      </div>
-
-      <div class="sec-sub">Web &amp; product</div>
-      <div class="hub-grid">
-        <a class="hub-card hub-card-external" href="https://vgandhi1.github.io/weather-WebApp/" target="_blank" rel="noopener">
-          <h3>Weather WebApp</h3>
-          <p>Live GitHub Pages demo — real-time conditions and forecast.</p>
-          <div class="hub-meta">vgandhi1.github.io/weather-WebApp</div>
-        </a>
-        <a class="hub-card hub-card-external" href="https://github.com/vgandhi1/Job-board-projects/tree/main/SmartFound" target="_blank" rel="noopener">
-          <h3>SmartFound</h3>
-          <p>Job-board / discovery project — planned public site.</p>
-          <div class="hub-meta">Job-board-projects / SmartFound</div>
-        </a>
-        <a class="hub-card hub-card-external" href="https://github.com/vgandhi1/HabitArc" target="_blank" rel="noopener">
-          <h3>HabitArc</h3>
-          <p>Habit tracking application — product-style UX experiment.</p>
-          <div class="hub-meta">github.com/vgandhi1/HabitArc</div>
-        </a>
-        <a class="hub-card hub-card-external" href="https://github.com/vgandhi1/Motel-web-portal" target="_blank" rel="noopener">
-          <h3>Motel Web Portal</h3>
-          <p>Private full-stack motel operations demo (React, Node, Docker). Screen recording below.</p>
-          <div class="hub-meta">github.com/vgandhi1/Motel-web-portal</div>
-        </a>
-      </div>
-
-      <figure class="demo-figure">
-        <div class="demo-media-wrap">
-          <img src="assets/demos/motel-portal-demo.gif" alt="Screen recording of the Motel Web Portal dashboard and room flows" loading="lazy">
-        </div>
-        <figcaption>Motel Web Portal — UI walkthrough (hosted asset; repository may be private on GitHub).</figcaption>
-      </figure>
+    <p class="pl-pill">Manufacturing &amp; IIoT</p>
+    <div class="pl-grid">
+      <a class="pl-card pl-card-ext" href="https://github.com/vgandhi1/aegis" target="_blank" rel="noopener">
+        <h3>AEGIS</h3>
+        <p>Manufacturing correlation engine — PLC telemetry, MES work orders, streaming ML inference.</p>
+        <div class="pl-card-meta">github.com/vgandhi1/aegis</div>
+      </a>
+      <a class="pl-card pl-card-ext" href="https://github.com/vgandhi1/SentinelFlow" target="_blank" rel="noopener">
+        <h3>SentinelFlow</h3>
+        <p>IIoT telemetry — PLCs, OPC UA, Kafka, GraphQL for digital-twin style dashboards.</p>
+        <div class="pl-card-meta">github.com/vgandhi1/SentinelFlow</div>
+      </a>
+      <a class="pl-card" href="https://vgandhi1.github.io/web-interactive-collection/Homelab/HomelabPortal.html" target="_blank" rel="noopener">
+        <h3>Homelab portal</h3>
+        <p>Self-hosted stack walkthrough (Tailwind deck in the static library).</p>
+        <div class="pl-card-meta">…/Homelab/HomelabPortal.html</div>
+      </a>
+      <a class="pl-card" href="https://vgandhi1.github.io/web-interactive-collection/CVML_Project_Overview.html" target="_blank" rel="noopener">
+        <h3>CVML manufacturing QA</h3>
+        <p>Slide deck — edge CV, MQTT, AWS ML, MES/SCADA.</p>
+        <div class="pl-card-meta">…/CVML_Project_Overview.html</div>
+      </a>
+      <a class="pl-card" href="https://vgandhi1.github.io/web-interactive-collection/monitron-IIoT-sensors.html" target="_blank" rel="noopener">
+        <h3>Monitron IIoT demo</h3>
+        <p>Amazon Monitron TE1A001 vibration / gateway narrative.</p>
+        <div class="pl-card-meta">…/monitron-IIoT-sensors.html</div>
+      </a>
     </div>
 
-    <div class="sec">
-      <h2>Interactive project hub</h2>
-      <div class="hub-grid">
-        <a class="hub-card hub-card-external" href="https://vgandhi1.github.io/web-interactive-collection/" target="_blank" rel="noopener">
-          <h3>Static hub (sub-site)</h3>
-          <p>Homelab, CV/ML and Monitron decks, EV HTML guides, DSA, AI glossaries, uv guide, hedging simulator — Tailwind index for local pages only.</p>
-          <div class="hub-meta">vgandhi1.github.io/web-interactive-collection</div>
-        </a>
-        <a class="hub-card" href="interactive/index.html">
-          <h3>Mirror in this repo</h3>
-          <p>Same HTML collection under <code style="font-family:JetBrains Mono,monospace;font-size:11px;">interactive/</code> with the portfolio sidebar theme.</p>
-          <div class="hub-meta">→ interactive/index.html</div>
-        </a>
-        <a class="hub-card" href="interactive/Projects/CVML_extensive-report.html">
-          <h3>CVML extensive report</h3>
-          <p>Long-form CV/ML deck in the mirrored folder.</p>
-          <div class="hub-meta">→ interactive/Projects/CVML_extensive-report.html</div>
-        </a>
+    <p class="pl-sub">ML, vision &amp; research</p>
+    <div class="pl-grid">
+      <a class="pl-card pl-card-ext" href="https://github.com/vgandhi1/automotive-visual-qa-engine" target="_blank" rel="noopener">
+        <h3>Automotive visual QA engine</h3>
+        <p>Edge CLIP, AWS serverless path, MES-style FastAPI.</p>
+        <div class="pl-card-meta">github.com/…/automotive-visual-qa-engine</div>
+      </a>
+      <a class="pl-card pl-card-ext" href="https://github.com/vgandhi1/CLaimLens" target="_blank" rel="noopener">
+        <h3>CLaimLens</h3>
+        <p>VLM vehicle damage assessment — Glue, SageMaker, structured outputs.</p>
+        <div class="pl-card-meta">github.com/vgandhi1/CLaimLens</div>
+      </a>
+      <a class="pl-card pl-card-ext" href="https://github.com/vgandhi1/Big-Data-Analytics-in-Healthcare/tree/main" target="_blank" rel="noopener">
+        <h3>Healthcare analytics</h3>
+        <p>ETL and deep learning at scale (PyTorch / PySpark).</p>
+        <div class="pl-card-meta">github.com/…/Big-Data-Analytics-in-Healthcare</div>
+      </a>
+      <a class="pl-card pl-card-ext" href="https://github.com/vgandhi1/LLSPIN-Project" target="_blank" rel="noopener">
+        <h3>LLSPIN</h3>
+        <p>Interpretable neural nets for feature selection and prediction.</p>
+        <div class="pl-card-meta">github.com/vgandhi1/LLSPIN-Project</div>
+      </a>
+    </div>
+
+    <p class="pl-sub">Data engineering &amp; ETL</p>
+    <div class="pl-grid">
+      <a class="pl-card pl-card-ext" href="https://github.com/vgandhi1/MARKET_MOOD_RING" target="_blank" rel="noopener">
+        <h3>Market Mood Ring</h3>
+        <p>Kafka, Flink, Postgres, Ollama — real-time finance + RAG analyst.</p>
+        <div class="pl-card-meta">github.com/vgandhi1/MARKET_MOOD_RING</div>
+      </a>
+      <a class="pl-card pl-card-ext" href="https://github.com/vgandhi1/Crypto-Data-ETL" target="_blank" rel="noopener">
+        <h3>Crypto data ETL</h3>
+        <p>End-to-end extraction, transform, load for market data.</p>
+        <div class="pl-card-meta">github.com/vgandhi1/Crypto-Data-ETL</div>
+      </a>
+    </div>
+
+    <p class="pl-sub">EV, OTA &amp; security</p>
+    <div class="pl-grid">
+      <a class="pl-card pl-card-ext" href="https://github.com/vgandhi1/Overdrive-OTA-Manager" target="_blank" rel="noopener">
+        <h3>Overdrive OTA Manager</h3>
+        <p>OTA campaign and firmware delivery workflows.</p>
+        <div class="pl-card-meta">github.com/vgandhi1/Overdrive-OTA-Manager</div>
+      </a>
+      <a class="pl-card pl-card-ext" href="https://github.com/vgandhi1/automotive-key-provission" target="_blank" rel="noopener">
+        <h3>Automotive key provisioning</h3>
+        <p>Key lifecycle utilities for automotive stacks.</p>
+        <div class="pl-card-meta">github.com/vgandhi1/automotive-key-provission</div>
+      </a>
+      <a class="pl-card pl-card-ext" href="https://github.com/vgandhi1/OTA-firmware-verifier" target="_blank" rel="noopener">
+        <h3>OTA firmware verifier</h3>
+        <p>Package verification for OTA payloads.</p>
+        <div class="pl-card-meta">github.com/vgandhi1/OTA-firmware-verifier</div>
+      </a>
+    </div>
+    <p class="pl-ev-note">Vehicle protocol architecture and EV cybersecurity (HTML guides) are linked from the <a href="https://vgandhi1.github.io/web-interactive-collection/#portfolio" target="_blank" rel="noopener">static library</a> under EV, OTA &amp; security — not duplicated here.</p>
+
+    <p class="pl-sub">Agents, apps &amp; product</p>
+    <div class="pl-grid">
+      <a class="pl-card pl-card-ext" href="https://github.com/vgandhi1/rag-qa-system" target="_blank" rel="noopener">
+        <h3>RAG QA system</h3>
+        <p>Retrieval-augmented assistant patterns.</p>
+        <div class="pl-card-meta">github.com/vgandhi1/rag-qa-system</div>
+      </a>
+      <a class="pl-card pl-card-ext" href="https://github.com/vgandhi1/ToDoApp" target="_blank" rel="noopener">
+        <h3>ToDoApp (FARM)</h3>
+        <p>FastAPI, React, MongoDB task tracker.</p>
+        <div class="pl-card-meta">github.com/vgandhi1/ToDoApp</div>
+      </a>
+      <a class="pl-card pl-card-ext" href="https://github.com/vgandhi1/data-analytics-ai-agents" target="_blank" rel="noopener">
+        <h3>Data analytics AI agents</h3>
+        <p>Multi-agent flows for files, code, and charts.</p>
+        <div class="pl-card-meta">github.com/vgandhi1/data-analytics-ai-agents</div>
+      </a>
+      <a class="pl-card pl-card-ext" href="https://vgandhi1.github.io/weather-WebApp/" target="_blank" rel="noopener">
+        <h3>Weather WebApp</h3>
+        <p>Live Pages demo — conditions and forecast.</p>
+        <div class="pl-card-meta">vgandhi1.github.io/weather-WebApp</div>
+      </a>
+      <a class="pl-card pl-card-ext" href="https://github.com/vgandhi1/Job-board-projects/tree/main/SmartFound" target="_blank" rel="noopener">
+        <h3>SmartFound</h3>
+        <p>Job-board / discovery — upcoming public site.</p>
+        <div class="pl-card-meta">Job-board-projects / SmartFound</div>
+      </a>
+      <a class="pl-card pl-card-ext" href="https://github.com/vgandhi1/HabitArc" target="_blank" rel="noopener">
+        <h3>HabitArc</h3>
+        <p>Habit tracking product experiment.</p>
+        <div class="pl-card-meta">github.com/vgandhi1/HabitArc</div>
+      </a>
+      <a class="pl-card pl-card-ext" href="https://github.com/vgandhi1/Motel-web-portal" target="_blank" rel="noopener">
+        <h3>Motel Web Portal</h3>
+        <p>Private full-stack demo (React, Node, Docker). Recording below.</p>
+        <div class="pl-card-meta">github.com/vgandhi1/Motel-web-portal</div>
+      </a>
+    </div>
+
+    <div class="pl-demo" aria-label="Motel Web Portal demo recording">
+      <div class="pl-demo-inner">
+        <img src="assets/demos/motel-portal-demo.gif" alt="Screen recording of the Motel Web Portal dashboard and room flows" loading="lazy">
       </div>
+      <p class="pl-demo-cap">Motel Web Portal — UI walkthrough (hosted on this site; GitHub repo may be private).</p>
     </div>
+  </section>
 
-    <div class="sec">
-      <h2>Theory &amp; reference</h2>
-      <p class="prose" style="margin-top:-0.25rem;">Illustrated notes — start at the hub or open a topic directly.</p>
-      <div class="hub-grid">
-        <a class="hub-card" href="theory/ml_theory_hub.html">
-          <h3>ML &amp; AI theory hub</h3>
-          <p>Overview and navigation for all theory pages.</p>
-          <div class="hub-meta">→ theory/ml_theory_hub.html</div>
-        </a>
-        <a class="hub-card" href="theory/theory_data_engineering.html">
-          <h3>Data engineering</h3>
-          <p>Pipelines, warehouses, medallion layers, batch vs stream.</p>
-          <div class="hub-meta">→ theory/theory_data_engineering.html</div>
-        </a>
-        <a class="hub-card" href="theory/theory_classical_ml.html">
-          <h3>Classical ML</h3>
-          <p>Bias–variance, validation, metrics, ensembles.</p>
-          <div class="hub-meta">→ theory/theory_classical_ml.html</div>
-        </a>
-        <a class="hub-card" href="theory/theory_deep_learning.html">
-          <h3>Deep learning &amp; NN</h3>
-          <p>Layers, activations, training loop, inductive biases.</p>
-          <div class="hub-meta">→ theory/theory_deep_learning.html</div>
-        </a>
-        <a class="hub-card" href="theory/theory_applied_ai_engineering.html">
-          <h3>Applied AI &amp; AI engineering</h3>
-          <p>Prototype to production, evaluation, roles.</p>
-          <div class="hub-meta">→ theory/theory_applied_ai_engineering.html</div>
-        </a>
-        <a class="hub-card" href="theory/theory_rag_vs_finetune.html">
-          <h3>RAG vs fine-tuning</h3>
-          <p>When to retrieve vs update weights.</p>
-          <div class="hub-meta">→ theory/theory_rag_vs_finetune.html</div>
-        </a>
-        <a class="hub-card" href="theory/theory_mlops.html">
-          <h3>MLOps</h3>
-          <p>Registry, pipelines, deploy, monitor, retrain.</p>
-          <div class="hub-meta">→ theory/theory_mlops.html</div>
-        </a>
-        <a class="hub-card" href="theory/theory_llmops.html">
-          <h3>LLMOps</h3>
-          <p>Prompts, RAG, eval, cost, safety.</p>
-          <div class="hub-meta">→ theory/theory_llmops.html</div>
-        </a>
-        <a class="hub-card" href="theory/theory_devops.html">
-          <h3>DevOps</h3>
-          <p>CI/CD, IaC, observability — base for MLOps/LLMOps.</p>
-          <div class="hub-meta">→ theory/theory_devops.html</div>
-        </a>
-      </div>
+  <section id="static" class="pl-section" aria-labelledby="static-heading">
+    <div class="pl-sec-head">
+      <h2 id="static-heading">Static library</h2>
+      <p>Deck-style pages for Homelab, CVML, and Monitron are linked under work above. DSA Architect, AI glossaries, uv guide, and simulators live only on the hub — use the links below instead of duplicating them here.</p>
     </div>
-
-    <div class="sec">
-      <h2>Programming &amp; interview guides</h2>
-      <div class="hub-grid">
-        <a class="hub-card" href="programming/python_101.html">
-          <h3>Python 101 hub</h3>
-          <p>Code-first tutorials and track navigation.</p>
-          <div class="hub-meta">→ programming/python_101.html</div>
-        </a>
-        <a class="hub-card" href="programming/python_101_data_ml.html">
-          <h3>Python — Data &amp; ML</h3>
-          <p>NumPy, pandas, scikit-learn orientation.</p>
-          <div class="hub-meta">→ programming/python_101_data_ml.html</div>
-        </a>
-        <a class="hub-card" href="programming/python_101_pytorch.html">
-          <h3>Python — PyTorch</h3>
-          <p>Tensors, modules, training basics.</p>
-          <div class="hub-meta">→ programming/python_101_pytorch.html</div>
-        </a>
-        <a class="hub-card" href="programming/python_101_fastapi_eng.html">
-          <h3>Python — FastAPI &amp; engineering</h3>
-          <p>APIs, async, project structure.</p>
-          <div class="hub-meta">→ programming/python_101_fastapi_eng.html</div>
-        </a>
-        <a class="hub-card" href="programming/Go_101_Backend_Systems.html">
-          <h3>Go 101 — backend systems</h3>
-          <p>Language essentials and backend patterns.</p>
-          <div class="hub-meta">→ programming/Go_101_Backend_Systems.html</div>
-        </a>
-        <a class="hub-card" href="programming/SQL_Interview_Prep_FactoryAnalytics.html">
-          <h3>SQL interview prep</h3>
-          <p>Analytics engineering / factory-style SQL.</p>
-          <div class="hub-meta">→ programming/SQL_Interview_Prep_FactoryAnalytics.html</div>
-        </a>
-      </div>
+    <p class="pl-pill">Open on hub</p>
+    <div class="pl-tool-row">
+      <a href="https://vgandhi1.github.io/web-interactive-collection/" target="_blank" rel="noopener">Hub index</a>
+      <a href="https://vgandhi1.github.io/web-interactive-collection/#tools" target="_blank" rel="noopener">Tools &amp; simulators</a>
     </div>
+  </section>
 
-    <div class="sec">
-      <h2>Interactive tools &amp; glossaries</h2>
-      <p class="prose" style="margin-top:-0.25rem;">Single-page apps and references in <code style="font-family:JetBrains Mono,monospace;font-size:12px;">interactive/</code> (mirrored from <a href="https://github.com/vgandhi1/web-interactive-collection" target="_blank" rel="noopener">web-interactive-collection</a>).</p>
-      <div class="hub-grid">
-        <a class="hub-card" href="interactive/DSA.html">
-          <h3>DSA Architect</h3>
-          <p>Data structures &amp; algorithms reference.</p>
-          <div class="hub-meta">→ interactive/DSA.html</div>
-        </a>
-        <a class="hub-card" href="interactive/uv-guide.html">
-          <h3>Mastering uv</h3>
-          <p>Python package manager guide.</p>
-          <div class="hub-meta">→ interactive/uv-guide.html</div>
-        </a>
-        <a class="hub-card" href="interactive/AI-terminology.html">
-          <h3>AI glossary</h3>
-          <p>LLM terminology with search and filters.</p>
-          <div class="hub-meta">→ interactive/AI-terminology.html</div>
-        </a>
-        <a class="hub-card" href="interactive/AI-buzzwords.html">
-          <h3>AI buzzwords</h3>
-          <p>Interactive concept visualizations.</p>
-          <div class="hub-meta">→ interactive/AI-buzzwords.html</div>
-        </a>
-        <a class="hub-card" href="interactive/hedging_simulator.html">
-          <h3>Hedging simulator</h3>
-          <p>Stock and put-option P/L scenarios.</p>
-          <div class="hub-meta">→ interactive/hedging_simulator.html</div>
-        </a>
-      </div>
+  <section id="learn" class="pl-section" aria-labelledby="learn-heading">
+    <div class="pl-sec-head">
+      <h2 id="learn-heading">Learn on this site</h2>
+      <p>Illustrated theory and programming tracks stay in-repo (no duplicate HTML).</p>
     </div>
-
-    <div class="sec">
-      <h2>EV / SDV deep dives</h2>
-      <div class="hub-grid">
-        <a class="hub-card" href="interactive/ev_protocols.html">
-          <h3>EV protocols</h3>
-          <p>CAN, LIN, FlexRay, DoIP overview.</p>
-          <div class="hub-meta">→ interactive/ev_protocols.html</div>
-        </a>
-        <a class="hub-card" href="interactive/ev-cybersecurity.html">
-          <h3>EV cybersecurity</h3>
-          <p>SecOC, secure boot, regulations, OTA security.</p>
-          <div class="hub-meta">→ interactive/ev-cybersecurity.html</div>
-        </a>
-      </div>
+    <p class="pl-sub">Theory</p>
+    <div class="pl-grid">
+      <a class="pl-card" href="theory/ml_theory_hub.html">
+        <h3>ML &amp; AI theory hub</h3>
+        <p>Hub page for all illustrated theory topics.</p>
+        <div class="pl-card-meta">→ theory/ml_theory_hub.html</div>
+      </a>
+      <a class="pl-card" href="theory/theory_data_engineering.html">
+        <h3>Data engineering</h3>
+        <p>Pipelines, warehouses, medallion, batch vs stream.</p>
+        <div class="pl-card-meta">→ theory/theory_data_engineering.html</div>
+      </a>
+      <a class="pl-card" href="theory/theory_classical_ml.html">
+        <h3>Classical ML</h3>
+        <p>Bias–variance, validation, metrics, ensembles.</p>
+        <div class="pl-card-meta">→ theory/theory_classical_ml.html</div>
+      </a>
+      <a class="pl-card" href="theory/theory_deep_learning.html">
+        <h3>Deep learning</h3>
+        <p>Layers, activations, training loop.</p>
+        <div class="pl-card-meta">→ theory/theory_deep_learning.html</div>
+      </a>
+      <a class="pl-card" href="theory/theory_applied_ai_engineering.html">
+        <h3>Applied AI engineering</h3>
+        <p>Prototype to production, evaluation, roles.</p>
+        <div class="pl-card-meta">→ theory/theory_applied_ai_engineering.html</div>
+      </a>
+      <a class="pl-card" href="theory/theory_rag_vs_finetune.html">
+        <h3>RAG vs fine-tuning</h3>
+        <p>When to retrieve vs update weights.</p>
+        <div class="pl-card-meta">→ theory/theory_rag_vs_finetune.html</div>
+      </a>
+      <a class="pl-card" href="theory/theory_mlops.html">
+        <h3>MLOps</h3>
+        <p>Registry, pipelines, deploy, monitor.</p>
+        <div class="pl-card-meta">→ theory/theory_mlops.html</div>
+      </a>
+      <a class="pl-card" href="theory/theory_llmops.html">
+        <h3>LLMOps</h3>
+        <p>Prompts, RAG, eval, cost, safety.</p>
+        <div class="pl-card-meta">→ theory/theory_llmops.html</div>
+      </a>
+      <a class="pl-card" href="theory/theory_devops.html">
+        <h3>DevOps</h3>
+        <p>CI/CD, IaC, observability.</p>
+        <div class="pl-card-meta">→ theory/theory_devops.html</div>
+      </a>
     </div>
-
-    <div class="callout callout-info">
-      <div class="callout-title">Repo layout</div>
-      This file is the site root for <strong>vgandhi1.github.io</strong>. Layout: <code style="font-family:JetBrains Mono,monospace;font-size:11px;">theory/</code>, <code style="font-family:JetBrains Mono,monospace;font-size:11px;">programming/</code>, <code style="font-family:JetBrains Mono,monospace;font-size:11px;">interactive/</code> (mirror of tools + decks), <code style="font-family:JetBrains Mono,monospace;font-size:11px;">assets/</code> for shared media. Canonical interactive landing: <a href="https://vgandhi1.github.io/web-interactive-collection/" target="_blank" rel="noopener">web-interactive-collection</a> on GitHub Pages.
+    <p class="pl-sub">Programming</p>
+    <div class="pl-grid">
+      <a class="pl-card" href="programming/python_101.html">
+        <h3>Python 101</h3>
+        <p>Track hub and tutorials.</p>
+        <div class="pl-card-meta">→ programming/python_101.html</div>
+      </a>
+      <a class="pl-card" href="programming/python_101_data_ml.html">
+        <h3>Python — Data &amp; ML</h3>
+        <p>NumPy, pandas, scikit-learn.</p>
+        <div class="pl-card-meta">→ programming/python_101_data_ml.html</div>
+      </a>
+      <a class="pl-card" href="programming/python_101_pytorch.html">
+        <h3>Python — PyTorch</h3>
+        <p>Tensors, modules, training basics.</p>
+        <div class="pl-card-meta">→ programming/python_101_pytorch.html</div>
+      </a>
+      <a class="pl-card" href="programming/python_101_fastapi_eng.html">
+        <h3>Python — FastAPI</h3>
+        <p>APIs, async, structure.</p>
+        <div class="pl-card-meta">→ programming/python_101_fastapi_eng.html</div>
+      </a>
+      <a class="pl-card" href="programming/Go_101_Backend_Systems.html">
+        <h3>Go 101 — backend</h3>
+        <p>Language essentials and patterns.</p>
+        <div class="pl-card-meta">→ programming/Go_101_Backend_Systems.html</div>
+      </a>
+      <a class="pl-card" href="programming/SQL_Interview_Prep_FactoryAnalytics.html">
+        <h3>SQL — factory analytics</h3>
+        <p>Interview-style manufacturing SQL.</p>
+        <div class="pl-card-meta">→ programming/SQL_Interview_Prep_FactoryAnalytics.html</div>
+      </a>
     </div>
+  </section>
 
-    <div class="cross-footer">
-      Theory: <a href="theory/ml_theory_hub.html">ML &amp; AI theory hub</a> · Full interactive hub: <a href="https://vgandhi1.github.io/web-interactive-collection/" target="_blank" rel="noopener">web-interactive-collection</a>
-    </div>
-  </div>
-</main>
+  <footer class="pl-footer">
+    <p>Repository: <a href="https://github.com/vgandhi1/vgandhi1.github.io" target="_blank" rel="noopener">vgandhi1/vgandhi1.github.io</a> · Static library: <a href="https://github.com/vgandhi1/web-interactive-collection" target="_blank" rel="noopener">web-interactive-collection</a></p>
+  </footer>
+</div>
 
-<button type="button" id="menu-toggle" onclick="document.getElementById('sidebar').classList.toggle('open')" aria-label="Menu">☰</button>
 </body>
 </html>
