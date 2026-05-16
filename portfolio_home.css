@@ -730,3 +730,67 @@ section[id].pl-section {
   .pl-nav { width: 100%; }
 }
 
+/* === Domain legend === */
+.pl-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding: 0.875rem 1.25rem;
+  background: var(--pl-surface);
+  border-radius: 10px;
+  border: 1px solid var(--pl-border);
+}
+
+.pl-legend::before {
+  content: 'Domain';
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--pl-muted);
+  margin-right: 0.25rem;
+}
+
+.pl-cat {
+  display: inline-block;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.65rem;
+  border-radius: 999px;
+  color: #fff;
+  white-space: nowrap;
+}
+
+.pl-cat-agentic   { background: #7c3aed; }
+.pl-cat-aiml      { background: #0891b2; }
+.pl-cat-robotics  { background: #059669; }
+.pl-cat-industrial{ background: #d97706; }
+.pl-cat-software  { background: #2563eb; }
+.pl-cat-elt       { background: #db2777; }
+.pl-cat-pm        { background: #dc2626; }
+
+/* === Project groups === */
+.pl-group {
+  margin-bottom: 2.75rem;
+}
+
+.pl-group-label {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  margin-bottom: 1.25rem;
+}
+
+.pl-group-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: #e2e8f0;
+}
+
