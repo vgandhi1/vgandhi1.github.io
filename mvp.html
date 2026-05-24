@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MVP Demos | Vinay Gandhi</title>
+<meta name="description" content="Live MVP product demos — web applications with walkthrough recordings and GitHub source.">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;0,800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="portfolio_home.css">
+</head>
+<body class="portfolio-landing">
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<header class="pl-top" role="banner">
+  <div class="pl-top-inner">
+    <a class="pl-brand" href="index.html">Vinay<span>.</span>Gandhi</a>
+    <nav class="pl-nav" aria-label="Primary">
+      <a href="index.html">Portfolio</a>
+      <a href="factory-ai.html">Factory AI</a>
+      <a href="mvp.html" class="pl-nav-active">MVP</a>
+      <a href="index.html#projects">Projects</a>
+      <a href="project_execution.html">Roadmap</a>
+      <a href="https://vgandhi1.github.io/web-interactive-collection/" target="_blank" rel="noopener" class="pl-nav-cta">Interactive lab →</a>
+      <a href="https://github.com/vgandhi1" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main-content" class="pl-wrap">
+
+  <section class="pl-section mvp-page" aria-labelledby="mvp-heading">
+    <div class="pl-sec-head">
+      <h2 id="mvp-heading">MVP Demos</h2>
+      <p>Shipped product-style web apps with UI walkthroughs. More demos will be added here over time.</p>
+    </div>
+
+    <div class="mvp-grid">
+
+      <article class="mvp-card mvp-card-live" id="motel-portal">
+        <div class="mvp-card-head">
+          <div class="mvp-card-title">
+            <span class="mvp-card-icon" aria-hidden="true">🏨</span>
+            <h3>Motel Web Portal</h3>
+          </div>
+          <span class="mvp-badge mvp-badge-live">Live demo</span>
+        </div>
+        <p class="mvp-card-desc">Real-time room management for motel operations — role-based access, live sync, and guest ID uploads.</p>
+        <p class="mvp-card-stack">React 19 · Node.js · Socket.IO · PostgreSQL · Docker Compose</p>
+        <div class="pl-demo mvp-demo" aria-label="Motel Web Portal demo recording">
+          <div class="pl-demo-inner">
+            <picture>
+              <source srcset="assets/demos/motel-portal-demo.webp" type="image/webp">
+              <img src="assets/demos/motel-portal-demo.gif" alt="Screen recording of the Motel Web Portal dashboard" loading="lazy" width="400" height="694">
+            </picture>
+          </div>
+        </div>
+        <div class="mvp-card-actions">
+          <a class="pl-btn pl-btn-primary" href="https://github.com/vgandhi1/Motel-web-portal" target="_blank" rel="noopener">Source on GitHub ↗</a>
+        </div>
+      </article>
+
+      <article class="mvp-card mvp-card-soon" aria-label="More demos coming soon">
+        <div class="mvp-card-head">
+          <div class="mvp-card-title">
+            <span class="mvp-card-icon" aria-hidden="true">➕</span>
+            <h3>More MVPs coming</h3>
+          </div>
+          <span class="mvp-badge mvp-badge-soon">Planned</span>
+        </div>
+        <p class="mvp-card-desc">Additional product demos (dashboards, tools, and full-stack apps) will be published here as they reach demo-ready state.</p>
+        <ul class="mvp-soon-list">
+          <li>Weather WebApp — live on GitHub Pages</li>
+          <li>SmartFound — Industry 4.0 job board</li>
+          <li>Overdrive OTA — command center UI</li>
+        </ul>
+        <p class="mvp-card-note">See <a href="index.html#projects">all projects</a> or the <a href="project_execution.html">roadmap</a> for work in progress.</p>
+      </article>
+
+    </div>
+  </section>
+
+  <footer class="pl-footer">
+    <nav class="pl-footer-nav" aria-label="Footer">
+      <div class="pl-footer-col">
+        <h3 class="pl-footer-col-title">Explore</h3>
+        <ul class="pl-footer-list">
+          <li><a href="index.html">Portfolio home</a></li>
+          <li><a href="factory-ai.html">Factory AI Platform</a></li>
+          <li><a href="project_execution.html">Project roadmap</a></li>
+        </ul>
+      </div>
+    </nav>
+    <p class="pl-footer-copy">&copy; 2026 Vinay Gandhi · <a href="index.html">← Back to portfolio</a></p>
+  </footer>
+
+</main>
+</body>
+</html>

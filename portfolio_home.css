@@ -1408,7 +1408,7 @@ section[id].pl-section {
   margin-top: 0 !important;
 }
 
-/* ── Flagship card variant (links to #factory-ai from the project grid) ── */
+/* ── Flagship card variant (links to factory-ai.html from the project grid) ── */
 .pl-card-flagship {
   cursor: pointer;
 }
@@ -1430,6 +1430,110 @@ section[id].pl-section {
 .pl-card-flagship:hover p { color: #0f172a !important; }
 
 .pl-card-flagship:hover .pl-card-meta { color: #4f46e5 !important; }
+
+/* —— Spotlight cards (index → detail pages) —— */
+.pl-spotlight-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+}
+.pl-spotlight-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  padding: 1.35rem 1.4rem;
+  border-radius: 14px;
+  text-decoration: none;
+  color: inherit;
+  border: 1px solid var(--pl-border);
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow: 0 2px 12px rgba(99, 102, 241, 0.06);
+  transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
+  min-height: 11rem;
+}
+.pl-spotlight-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(99, 102, 241, 0.12);
+  border-color: rgba(99, 102, 241, 0.28);
+}
+.pl-spotlight-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+.pl-spotlight-icon { font-size: 1.75rem; line-height: 1; }
+.pl-spotlight-badge {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0.25rem 0.5rem;
+  border-radius: 5px;
+  white-space: nowrap;
+}
+.pl-spotlight-fai .pl-spotlight-badge { background: rgba(79, 70, 229, 0.12); color: #4338ca; }
+.pl-spotlight-mvp .pl-spotlight-badge { background: rgba(8, 145, 178, 0.12); color: #0e7490; }
+.pl-spotlight-card h3 { font-size: 1.15rem; font-weight: 800; letter-spacing: -0.02em; }
+.pl-spotlight-card p { font-size: 0.92rem; color: var(--pl-muted); line-height: 1.45; flex: 1; }
+.pl-spotlight-cta { font-family: "JetBrains Mono", monospace; font-size: 11px; font-weight: 600; color: var(--pl-accent); }
+.pl-spotlight-fai { border-left: 4px solid #6366f1; }
+.pl-spotlight-mvp { border-left: 4px solid #0891b2; }
+
+/* —— MVP demos page —— */
+.mvp-page .pl-sec-head { margin-bottom: 1.25rem; }
+.mvp-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.25rem;
+  align-items: start;
+}
+.mvp-card {
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid var(--pl-border);
+  border-radius: 14px;
+  padding: 1.25rem;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+}
+.mvp-card-soon { border-style: dashed; background: rgba(248, 250, 255, 0.6); }
+.mvp-card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+.mvp-card-title { display: flex; align-items: center; gap: 0.6rem; }
+.mvp-card-title h3 { font-size: 1.1rem; font-weight: 800; }
+.mvp-card-icon { font-size: 1.5rem; }
+.mvp-badge {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.2rem 0.45rem;
+  border-radius: 4px;
+}
+.mvp-badge-live { background: rgba(5, 150, 105, 0.12); color: #047857; }
+.mvp-badge-soon { background: rgba(100, 116, 139, 0.12); color: #475569; }
+.mvp-card-desc { font-size: 0.92rem; color: var(--pl-muted); margin-bottom: 0.5rem; }
+.mvp-card-stack {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+  color: var(--pl-accent);
+  margin-bottom: 0.85rem;
+}
+.mvp-demo { margin: 0 0 1rem; }
+.mvp-card-actions { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.mvp-soon-list { margin: 0.5rem 0 0.75rem; padding-left: 1.15rem; font-size: 0.9rem; color: var(--pl-muted); }
+.mvp-soon-list li { margin: 0.25rem 0; }
+.mvp-card-note { font-size: 0.88rem; color: var(--pl-muted); }
+.mvp-card-note a { color: var(--pl-accent); font-weight: 600; text-decoration: none; }
+.mvp-card-note a:hover { text-decoration: underline; }
+
+.pl-nav .pl-nav-active { color: var(--pl-text); background: var(--pl-surface); font-weight: 600; }
 
 /* ── Responsive ── */
 @media (max-width: 760px) {

@@ -21,6 +21,9 @@ The landing page (`index.html`) is a **custom static** experience (not a Jekyll 
 | **Projects** | `#projects` | Curated GitHub work by domain (industrial AI, agentic/RAG, ML/CV, robotics, streaming, data/ELT, product) |
 | **Learn** | `#learn` | Links to theory notes and programming tracks on this domain |
 | **Interactive lab** | — | External hub for decks, EV docs, and simulators |
+| **Project execution guide** | [project_execution.html](project_execution.html) | Visual roadmap — recommended project order |
+| **Factory AI Platform** | [factory-ai.html](factory-ai.html) | Flagship build deep-dive (AEGIS / SentinelFlow) |
+| **MVP demos** | [mvp.html](mvp.html) | Live product walkthroughs |
 
 **Project domains** on the landing page include Industrial & Manufacturing Systems, Agentic AI & RAG, AI/ML & Computer Vision, Robotics & Embodied AI, Software Systems & Streaming, Data/ELT, and Product Management — with quick links to additional repos (EV/OTA, healthcare, web apps).
 
@@ -48,7 +51,11 @@ vgandhi1.github.io/
 │   └── SQL_Interview_Prep_FactoryAnalytics.html
 ├── Go_101_Backend_Systems.html              # Legacy copies at repo root
 ├── SQL_Interview_Prep_FactoryAnalytics.html
-└── ml_theory_hub.html                       # Legacy redirect/hub at root
+├── ml_theory_hub.html                       # Legacy redirect/hub at root
+├── project_execution.html                   # Visual portfolio roadmap
+├── project_execution.css                    # Roadmap page styles
+├── factory-ai.html                          # Factory AI Platform deep-dive
+└── mvp.html                                 # MVP product demos
 ```
 
 ### Theory hub (`theory/`)
