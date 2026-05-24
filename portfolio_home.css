@@ -18,6 +18,30 @@
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
+/* ── Skip-to-main accessibility link ── */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  z-index: 9999;
+  background: #4f46e5;
+  color: #fff;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  padding: 0.55rem 1rem;
+  border-radius: 0 0 10px 10px;
+  box-shadow: 0 4px 16px rgba(79, 70, 229, 0.35);
+  transition: top 0.12s ease;
+}
+.skip-link:focus {
+  top: 0;
+  outline: 2px solid #818cf8;
+  outline-offset: 2px;
+}
+
 html { scroll-behavior: smooth; }
 
 body.portfolio-landing {
@@ -792,5 +816,805 @@ section[id].pl-section {
   flex: 1;
   height: 1px;
   background: #e2e8f0;
+}
+
+/* —— About section —— */
+.pl-about {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 1.75rem;
+  align-items: start;
+}
+
+.pl-about-bio {
+  font-size: 15px;
+  color: var(--pl-muted);
+  line-height: 1.65;
+  margin-bottom: 1.1rem;
+}
+
+.pl-about-skills {
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid var(--pl-border);
+  border-radius: 12px;
+  padding: 0.95rem 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.pl-about-skill-row {
+  display: grid;
+  grid-template-columns: 9rem 1fr;
+  gap: 0.5rem;
+  align-items: baseline;
+}
+
+.pl-about-skill-area {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--pl-accent2);
+}
+
+.pl-about-skill-list {
+  font-size: 12.5px;
+  color: var(--pl-muted);
+  line-height: 1.45;
+}
+
+.pl-about-right {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.pl-about-stat {
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid var(--pl-border);
+  border-radius: 12px;
+  padding: 0.95rem 1.1rem;
+}
+
+.pl-about-stat-active {
+  border-left: 3px solid #0369a1;
+  background: #f0f9ff;
+}
+
+.pl-about-stat-label {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--pl-muted);
+  margin-bottom: 0.3rem;
+}
+
+.pl-about-stat-value {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--pl-text);
+  line-height: 1.35;
+  margin-bottom: 0.2rem;
+}
+
+.pl-about-stat-sub {
+  font-size: 12px;
+  color: var(--pl-muted);
+  margin-bottom: 0.4rem;
+}
+
+.pl-about-stat-link {
+  display: inline-block;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 11px;
+  color: var(--pl-accent);
+  text-decoration: none;
+  font-weight: 600;
+}
+.pl-about-stat-link:hover { text-decoration: underline; }
+
+.pl-about-links {
+  background: var(--pl-surface);
+  border: 1px solid var(--pl-border);
+  border-radius: 12px;
+  padding: 0.85rem 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.pl-about-links a {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--pl-accent);
+  text-decoration: none;
+  padding: 0.3rem 0.45rem;
+  margin: 0 -0.45rem;
+  border-radius: 6px;
+  transition: background 0.15s, color 0.15s;
+}
+
+.pl-about-links a:hover {
+  background: rgba(8, 145, 178, 0.08);
+  color: #0e7490;
+}
+
+@media (max-width: 720px) {
+  .pl-about {
+    grid-template-columns: 1fr;
+  }
+  .pl-about-skill-row {
+    grid-template-columns: 7.5rem 1fr;
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   Factory AI Platform — Flagship ongoing project section
+   ══════════════════════════════════════════════════════════════ */
+
+/* Live badge next to the section heading */
+.fai-live-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #15803d;
+  background: #dcfce7;
+  border: 1px solid rgba(22, 163, 74, 0.28);
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  vertical-align: middle;
+  margin-left: 0.6rem;
+  position: relative;
+  top: -2px;
+}
+
+/* ── Hero panel ── */
+.fai-hero-panel {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 1.75rem;
+  align-items: center;
+  background: linear-gradient(135deg, #0f172a 0%, #1a2744 55%, #0f2640 100%);
+  border-radius: 16px;
+  padding: 1.75rem 2rem;
+  color: #fff;
+  margin-bottom: 1.25rem;
+  border: 1px solid rgba(99, 102, 241, 0.22);
+  box-shadow: 0 8px 40px rgba(15, 23, 42, 0.22);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Cyan ambient glow top-right */
+.fai-hero-panel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 55%;
+  height: 100%;
+  background: radial-gradient(ellipse at top right, rgba(8, 145, 178, 0.18), transparent 65%);
+  pointer-events: none;
+}
+
+/* Subtle grid texture */
+.fai-hero-panel::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(99, 102, 241, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(99, 102, 241, 0.04) 1px, transparent 1px);
+  background-size: 28px 28px;
+  pointer-events: none;
+}
+
+.fai-hero-left {
+  position: relative;
+  z-index: 1;
+}
+
+.fai-label {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(34, 211, 238, 0.75);
+  margin-bottom: 0.5rem;
+}
+
+.fai-tagline {
+  font-size: clamp(14px, 2vw, 1.05rem);
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.55;
+  max-width: 46ch;
+  margin-bottom: 1.35rem;
+}
+
+.fai-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+/* Ghost btn override for dark background */
+.fai-hero-panel .pl-btn-ghost {
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.9);
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: none;
+}
+.fai-hero-panel .pl-btn-ghost:hover {
+  background: rgba(255, 255, 255, 0.18);
+  color: #fff;
+  box-shadow: none;
+}
+
+.fai-hero-right {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+  min-width: 190px;
+}
+
+.fai-live-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 0.03em;
+}
+
+/* Pulsing live dot */
+.fai-pulse {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #22d3ee;
+  flex-shrink: 0;
+  animation: fai-pulse-ring 2.2s ease-in-out infinite;
+}
+
+@keyframes fai-pulse-ring {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(34, 211, 238, 0.65); }
+  50%       { box-shadow: 0 0 0 7px rgba(34, 211, 238, 0); }
+}
+
+.fai-hero-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.fai-hero-stat {
+  display: flex;
+  align-items: baseline;
+  gap: 0.45rem;
+}
+
+.fai-hero-stat-value {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #22d3ee;
+  line-height: 1;
+}
+
+.fai-hero-stat-label {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.38);
+}
+
+/* ── Shared block container ── */
+.fai-block {
+  margin-top: 1.1rem;
+  padding: 1.3rem 1.5rem;
+  background: rgba(255, 255, 255, 0.68);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--pl-border);
+  border-radius: 14px;
+}
+
+.fai-block-title {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--pl-accent2);
+  margin-bottom: 1rem;
+  padding-bottom: 0.55rem;
+  border-bottom: 1px solid rgba(124, 58, 237, 0.12);
+}
+
+/* ── Problem — three isolated silos ── */
+.fai-problem-grid {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.fai-silo {
+  flex: 1;
+  min-width: 130px;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(148, 163, 184, 0.38);
+  border-radius: 12px;
+  padding: 1rem 0.85rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.fai-silo-icon {
+  font-size: 1.55rem;
+  line-height: 1;
+}
+
+.fai-silo-name {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 10.5px;
+  font-weight: 700;
+  color: var(--pl-text);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.fai-silo-badge {
+  display: inline-block;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.fai-silo-badge-unified {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.fai-silo-q {
+  font-size: 11.5px;
+  color: var(--pl-muted);
+  font-style: italic;
+  line-height: 1.4;
+}
+
+.fai-silo-arrow {
+  font-size: 1.35rem;
+  color: #94a3b8;
+  flex-shrink: 0;
+  font-weight: 300;
+  line-height: 1;
+}
+
+.fai-platform-result {
+  flex: 1.25;
+  min-width: 150px;
+  background: linear-gradient(135deg, rgba(8, 145, 178, 0.07), rgba(99, 102, 241, 0.07));
+  border: 1.5px solid rgba(8, 145, 178, 0.28);
+  border-radius: 12px;
+  padding: 1rem 0.85rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+/* ── 5-layer stack ── */
+.fai-layers {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.fai-layer {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 0.7rem 0.9rem;
+  border-radius: 9px;
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  border-left: 4px solid;
+  transition: box-shadow 0.18s, transform 0.18s;
+}
+
+.fai-layer:hover {
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.07);
+  transform: translateX(2px);
+}
+
+.fai-layer-num {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 9.5px;
+  font-weight: 700;
+  color: #94a3b8;
+  min-width: 1.6rem;
+  flex-shrink: 0;
+}
+
+.fai-layer-content {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.4rem 0.9rem;
+}
+
+.fai-layer-name {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--pl-text);
+  min-width: 11rem;
+}
+
+.fai-layer-q {
+  font-size: 12.5px;
+  color: var(--pl-muted);
+  font-style: italic;
+}
+
+/* Each layer gets a distinct accent color */
+.fai-layer-1 { border-left-color: #d97706; } /* Observability  → amber   */
+.fai-layer-2 { border-left-color: #dc2626; } /* Anomaly        → red     */
+.fai-layer-3 { border-left-color: #2563eb; } /* Streaming      → blue    */
+.fai-layer-4 { border-left-color: #7c3aed; } /* Analytics      → violet  */
+.fai-layer-5 { border-left-color: #059669; } /* AI Reasoning   → emerald */
+
+/* ── Tables ── */
+.fai-table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.fai-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.fai-table th {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--pl-muted);
+  text-align: left;
+  padding: 0.5rem 0.8rem;
+  border-bottom: 2px solid rgba(99, 102, 241, 0.12);
+  background: rgba(99, 102, 241, 0.03);
+  white-space: nowrap;
+}
+
+.fai-table td {
+  padding: 0.6rem 0.8rem;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.15);
+  color: var(--pl-text);
+  line-height: 1.45;
+  vertical-align: middle;
+}
+
+.fai-table tr:last-child td {
+  border-bottom: none;
+}
+
+.fai-table tbody tr:hover td {
+  background: rgba(8, 145, 178, 0.04);
+}
+
+.fai-tech {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--pl-accent);
+  white-space: nowrap;
+}
+
+/* Business value table */
+.fai-value-table td:first-child {
+  font-weight: 600;
+  color: var(--pl-text);
+  white-space: nowrap;
+  font-size: 13px;
+}
+
+.fai-value-table td:last-child {
+  color: #475569;
+}
+
+.fai-value-table td strong {
+  color: #15803d;
+  font-weight: 700;
+}
+
+/* ── Hiring signals grid ── */
+.fai-signals-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr));
+  gap: 0.6rem;
+}
+
+.fai-signal {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+  padding: 0.85rem 1rem;
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  border-radius: 10px;
+  transition: border-color 0.18s, box-shadow 0.18s;
+}
+
+.fai-signal:hover {
+  border-color: rgba(8, 145, 178, 0.22);
+  box-shadow: 0 4px 14px rgba(8, 145, 178, 0.07);
+}
+
+.fai-signal-check {
+  font-size: 1.05rem;
+  flex-shrink: 0;
+  line-height: 1.45;
+}
+
+.fai-signal strong {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--pl-text);
+  margin-bottom: 0.15rem;
+  line-height: 1.3;
+}
+
+.fai-signal p {
+  font-size: 12px;
+  color: var(--pl-muted);
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* ── Status timeline inside fai-block ── */
+.fai-timeline {
+  margin-top: 0 !important;
+}
+
+/* ── Flagship card variant (links to #factory-ai from the project grid) ── */
+.pl-card-flagship {
+  cursor: pointer;
+}
+
+.pl-card-flagship .pl-card-meta {
+  color: #4f46e5 !important;
+  font-style: italic;
+}
+
+.pl-card-flagship:hover {
+  background: rgba(255, 255, 255, 0.96) !important;
+  border-left-color: rgba(99, 102, 241, 0.5) !important;
+  border-color: rgba(99, 102, 241, 0.35) !important;
+  color: var(--pl-card-ink) !important;
+  box-shadow: 0 10px 36px rgba(99, 102, 241, 0.1) !important;
+}
+
+.pl-card-flagship:hover h3,
+.pl-card-flagship:hover p { color: #0f172a !important; }
+
+.pl-card-flagship:hover .pl-card-meta { color: #4f46e5 !important; }
+
+/* ── Responsive ── */
+@media (max-width: 760px) {
+  .fai-hero-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .fai-hero-right {
+    min-width: unset;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem 1.5rem;
+  }
+
+  .fai-hero-stats {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.25rem;
+  }
+
+  .fai-hero-stat {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.1rem;
+  }
+
+  .fai-problem-grid {
+    flex-direction: column;
+  }
+
+  .fai-silo-arrow {
+    transform: rotate(90deg);
+  }
+
+  .fai-silo,
+  .fai-platform-result {
+    width: 100%;
+    min-width: unset;
+  }
+}
+
+@media (max-width: 480px) {
+  .fai-hero-panel {
+    padding: 1.25rem 1.1rem;
+  }
+
+  .fai-block {
+    padding: 1rem 1rem;
+  }
+
+  .fai-layer-name {
+    min-width: unset;
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   Theory & Programming — expanded learn section
+   ══════════════════════════════════════════════════════════════ */
+
+.pl-learn-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+.pl-learn-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--pl-border);
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+/* Hub card — clickable header of each column */
+.pl-learn-hub {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 1.1rem 1.25rem;
+  text-decoration: none;
+  color: var(--pl-card-ink);
+  border-bottom: 1px solid var(--pl-border);
+  background: rgba(255, 255, 255, 0.9);
+  transition: background 0.18s, color 0.18s;
+}
+
+.pl-learn-hub:hover {
+  background: linear-gradient(135deg, #4f46e5, #7c3aed);
+  color: white;
+  border-bottom-color: transparent;
+}
+
+.pl-learn-hub-icon {
+  font-size: 1.5rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.pl-learn-hub-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.pl-learn-hub-text strong {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.pl-learn-hub-text span {
+  font-size: 12px;
+  color: var(--pl-muted);
+  line-height: 1.35;
+  transition: color 0.18s;
+}
+
+.pl-learn-hub:hover .pl-learn-hub-text span {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.pl-learn-hub-arrow {
+  font-size: 1.1rem;
+  color: var(--pl-muted);
+  flex-shrink: 0;
+  transition: color 0.18s, transform 0.18s;
+}
+
+.pl-learn-hub:hover .pl-learn-hub-arrow {
+  color: rgba(255, 255, 255, 0.85);
+  transform: translateX(3px);
+}
+
+/* Individual topic links list */
+.pl-learn-links {
+  list-style: none;
+  padding: 0.5rem 0;
+  margin: 0;
+}
+
+.pl-learn-links li {
+  margin: 0;
+}
+
+.pl-learn-links a {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--pl-accent);
+  text-decoration: none;
+  padding: 0.48rem 1.25rem;
+  border-radius: 0;
+  transition: background 0.14s, color 0.14s, padding-left 0.14s;
+}
+
+.pl-learn-links a::before {
+  content: '·';
+  color: #cbd5e1;
+  font-size: 1rem;
+  line-height: 1;
+  flex-shrink: 0;
+  transition: color 0.14s;
+}
+
+.pl-learn-links a:hover {
+  background: rgba(8, 145, 178, 0.06);
+  color: #0e7490;
+  padding-left: 1.5rem;
+}
+
+.pl-learn-links a:hover::before {
+  color: var(--pl-accent);
+}
+
+@media (max-width: 640px) {
+  .pl-learn-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
