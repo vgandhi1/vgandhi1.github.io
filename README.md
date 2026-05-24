@@ -1,42 +1,136 @@
-# Vinay Gandhi — GitHub Pages
+# Vinay Gandhi — Portfolio & Engineering Hub
 
 **Live site:** [https://vgandhi1.github.io/](https://vgandhi1.github.io/)
 
-Personal portfolio and learning notes published with [GitHub Pages](https://pages.github.com/). The root site uses the [Minima](https://github.com/jekyll/minima) theme via Jekyll (`_config.yml`). The **portfolio home** (`index.html`) is a standalone landing page (`portfolio_home.css`); Jekyll-generated posts (if any) use Minima separately.
+Personal portfolio for AI systems, manufacturing software, and EV platforms. The site links to GitHub repositories for evidence, hosts illustrated theory and programming guides on this domain, and points to a separate **[interactive lab](https://vgandhi1.github.io/web-interactive-collection/)** for slide decks, EV references, and browser tools.
+
+| Site | Repository | URL |
+|------|------------|-----|
+| Portfolio (this repo) | [vgandhi1/vgandhi1.github.io](https://github.com/vgandhi1/vgandhi1.github.io) | `https://vgandhi1.github.io/` |
+| Interactive lab | [vgandhi1/web-interactive-collection](https://github.com/vgandhi1/web-interactive-collection) | `https://vgandhi1.github.io/web-interactive-collection/` |
 
 ---
 
-## What’s in this repository
+## What’s on the site
 
-| File | Description |
-|------|-------------|
-| [`index.html`](index.html) | Portfolio landing — repos, demos, Motel GIF, links to static library, theory & programming. |
-| [`portfolio_home.css`](portfolio_home.css) | Styles for the portfolio landing only. |
-| [`portfolio_hub.css`](portfolio_hub.css) | Legacy teal sidebar theme (still used only if you reintroduce sidebar pages). |
-| [`_config.yml`](_config.yml) | Jekyll settings: site title, description, Minima theme. |
-| [`theory/`](theory/) | Illustrated ML/DE/ops theory notes (`ml_theory.css`). |
-| [`programming/`](programming/) | Python 101 track, Go 101, SQL prep. |
-| [`assets/demos/`](assets/demos/) | Optional media for the portfolio index (e.g. Motel Web Portal screen recording). |
+The landing page (`index.html`) is a **custom static** experience (not a Jekyll theme page). It is organized into:
 
-### Static HTML library (separate repo)
+| Section | Anchor | Content |
+|---------|--------|---------|
+| **About** | `#about` | Background, skills, active build ([AEGIS](https://github.com/vgandhi1/aegis)) |
+| **Projects** | `#projects` | Curated GitHub work by domain (industrial AI, agentic/RAG, ML/CV, robotics, streaming, data/ELT, product) |
+| **Learn** | `#learn` | Links to theory notes and programming tracks on this domain |
+| **Interactive lab** | — | External hub for decks, EV docs, and simulators |
 
-Decks, Homelab portal, Monitron, EV reference pages, DSA, glossaries, and simulators live only in **[web-interactive-collection](https://github.com/vgandhi1/web-interactive-collection)** and are published at **[vgandhi1.github.io/web-interactive-collection/](https://vgandhi1.github.io/web-interactive-collection/)**. This user repo **does not** mirror that HTML under `interactive/` anymore.
+**Project domains** on the landing page include Industrial & Manufacturing Systems, Agentic AI & RAG, AI/ML & Computer Vision, Robotics & Embodied AI, Software Systems & Streaming, Data/ELT, and Product Management — with quick links to additional repos (EV/OTA, healthcare, web apps).
+
+**Product demo:** Motel Web Portal walkthrough GIF (`assets/demos/motel-portal-demo.gif`) — source: [Motel-web-portal](https://github.com/vgandhi1/Motel-web-portal).
+
+---
+
+## Repository structure
+
+```
+vgandhi1.github.io/
+├── index.html                 # Main portfolio landing page
+├── portfolio_home.css         # Styles for index.html
+├── portfolio_hub.css          # Shared/legacy hub styles
+├── _config.yml                # Jekyll / GitHub Pages metadata (remote Minima theme)
+├── assets/demos/              # Demo media (e.g. motel-portal-demo.gif)
+├── theory/                    # Illustrated ML/AI theory notes
+│   ├── ml_theory_hub.html     # Hub
+│   ├── ml_theory.css
+│   └── theory_*.html          # Topic pages (DE, classical ML, DL, RAG, MLOps, …)
+├── programming/               # Language & interview tracks
+│   ├── python_101.html        # Python hub (+ data/ML, PyTorch, FastAPI pages)
+│   ├── python_101_common.css
+│   ├── Go_101_Backend_Systems.html
+│   └── SQL_Interview_Prep_FactoryAnalytics.html
+├── Go_101_Backend_Systems.html              # Legacy copies at repo root
+├── SQL_Interview_Prep_FactoryAnalytics.html
+└── ml_theory_hub.html                       # Legacy redirect/hub at root
+```
+
+### Theory hub (`theory/`)
+
+Static, self-contained pages with inline SVG diagrams:
+
+- [Data engineering](theory/theory_data_engineering.html)
+- [Classical ML](theory/theory_classical_ml.html)
+- [Deep learning](theory/theory_deep_learning.html)
+- [Applied AI engineering](theory/theory_applied_ai_engineering.html)
+- [RAG vs fine-tuning](theory/theory_rag_vs_finetune.html)
+- [MLOps](theory/theory_mlops.html)
+- [LLMOps](theory/theory_llmops.html)
+- [DevOps](theory/theory_devops.html)
+
+Entry: [theory/ml_theory_hub.html](theory/ml_theory_hub.html)
+
+### Programming tracks (`programming/`)
+
+- **Python 101** — hub plus [Data & ML](programming/python_101_data_ml.html), [PyTorch](programming/python_101_pytorch.html), [FastAPI](programming/python_101_fastapi_eng.html)
+- **Go 101** — backend systems ([programming/Go_101_Backend_Systems.html](programming/Go_101_Backend_Systems.html))
+- **SQL interview prep** — factory analytics ([programming/SQL_Interview_Prep_FactoryAnalytics.html](programming/SQL_Interview_Prep_FactoryAnalytics.html))
+
+### Interactive lab (separate repo)
+
+Decks, EV references, homelab portal, and browser tools (DSA, AI glossaries, hedging simulator, Git 101, etc.) live in **[web-interactive-collection](https://github.com/vgandhi1/web-interactive-collection)** — not duplicated here.
+
+- Hub: [vgandhi1.github.io/web-interactive-collection/](https://vgandhi1.github.io/web-interactive-collection/)
+- Decks & EV: `#decks`
+- Tools: `#tools`
+
+---
+
+## Tech stack
+
+| Layer | Choice |
+|-------|--------|
+| Portfolio UI | Static HTML + CSS (`portfolio_home.css`) |
+| Theory / programming | Static HTML + shared CSS, JetBrains Mono + Source Sans 3 |
+| Hosting | [GitHub Pages](https://pages.github.com/) |
+| Optional build | Jekyll (`_config.yml`, `remote_theme: jekyll/minima`) for Pages compatibility; primary entry remains `index.html` |
 
 ---
 
 ## Local preview
 
-Open `index.html` in a browser, or serve the folder with any static server, for example:
+**Quick static server** (recommended for `index.html`, theory, and programming pages):
 
 ```bash
-# Python 3
-python -m http.server 8000
+cd vgandhi1.github.io-main   # or your clone path
+python3 -m http.server 8000
 ```
 
-Then visit `http://localhost:8000/`.
+Open [http://localhost:8000/](http://localhost:8000/).
+
+**Optional — Jekyll** (if you change `_config.yml` or add Jekyll posts):
+
+```bash
+bundle install
+bundle exec jekyll serve
+```
+
+---
+
+## Deploying to GitHub Pages
+
+1. Push to the default branch of the **`vgandhi1.github.io`** user/organization Pages repo.
+2. In **Settings → Pages**, set source to that branch (root `/`).
+3. Custom domain (optional): `vgandhi1.github.io` is the default user site URL.
+
+The interactive lab is deployed from its own repo as a **project site** at `/web-interactive-collection/`.
+
+---
+
+## Contact
+
+- **GitHub:** [@vgandhi1](https://github.com/vgandhi1)
+- **LinkedIn:** [vinaygandhi274](https://www.linkedin.com/in/vinaygandhi274/)
+- **Email:** gandhivinay2008@gmail.com
 
 ---
 
 ## License & attribution
 
-Content is provided for learning and portfolio use. If you fork or reuse pages, keep author attribution where it appears in the HTML.
+Content is provided for learning, demonstration, and portfolio use. If you fork or reuse layouts or copy, please keep attribution to **Vinay Gandhi** in source and visible credits where appropriate.
