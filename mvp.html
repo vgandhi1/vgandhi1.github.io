@@ -34,31 +34,63 @@
       <p>Shipped product-style web apps with UI walkthroughs. More demos will be added here over time.</p>
     </div>
 
-    <div class="mvp-grid">
+    <div class="mvp-grid" style="grid-template-columns:1fr;">
 
-      <article class="mvp-card mvp-card-live" id="motel-portal">
-        <div class="mvp-card-head">
-          <div class="mvp-card-title">
-            <span class="mvp-card-icon" aria-hidden="true">🏨</span>
-            <h3>Motel Web Portal</h3>
-          </div>
-          <span class="mvp-badge mvp-badge-live">Live demo</span>
-        </div>
-        <p class="mvp-card-desc">Real-time room management for motel operations — role-based access, live sync, and guest ID uploads.</p>
-        <p class="mvp-card-stack">React 19 · Node.js · Socket.IO · PostgreSQL · Docker Compose</p>
-        <div class="pl-demo mvp-demo" aria-label="Motel Web Portal demo recording">
-          <div class="pl-demo-inner">
-            <picture>
-              <source srcset="assets/demos/motel-portal-demo.webp" type="image/webp">
-              <img src="assets/demos/motel-portal-demo.gif" alt="Screen recording of the Motel Web Portal dashboard" loading="lazy" width="400" height="694">
-            </picture>
-          </div>
-        </div>
-        <div class="mvp-card-actions">
-          <a class="pl-btn pl-btn-primary" href="https://github.com/vgandhi1/Motel-web-portal" target="_blank" rel="noopener">Source on GitHub ↗</a>
-        </div>
-      </article>
+      <!-- Demo row: Motel Portal (1 unit) + Weather WebApp (2 units), equal height -->
+      <div style="display:grid;grid-template-columns:1fr 2fr;gap:1.25rem;align-items:stretch;">
 
+        <article class="mvp-card mvp-card-live" id="motel-portal">
+          <div class="mvp-card-head">
+            <div class="mvp-card-title">
+              <span class="mvp-card-icon" aria-hidden="true">🏨</span>
+              <h3>Motel Web Portal</h3>
+            </div>
+            <span class="mvp-badge mvp-badge-live">Live demo</span>
+          </div>
+          <p class="mvp-card-desc">Real-time room management for motel operations — role-based access, live sync, and guest ID uploads.</p>
+          <p class="mvp-card-stack">React 19 · Node.js · Socket.IO · PostgreSQL · Docker Compose</p>
+          <div class="pl-demo mvp-demo" aria-label="Motel Web Portal demo recording">
+            <div class="pl-demo-inner">
+              <picture>
+                <source srcset="assets/demos/motel-portal-demo.webp" type="image/webp">
+                <img src="assets/demos/motel-portal-demo.gif" alt="Screen recording of the Motel Web Portal dashboard" loading="lazy" width="400" height="694">
+              </picture>
+            </div>
+          </div>
+          <div class="mvp-card-actions">
+            <a class="pl-btn pl-btn-primary" href="https://github.com/vgandhi1/Motel-web-portal" target="_blank" rel="noopener">Source on GitHub ↗</a>
+          </div>
+        </article>
+
+        <article class="mvp-card mvp-card-live" id="weather-webapp">
+          <div class="mvp-card-head">
+            <div class="mvp-card-title">
+              <span class="mvp-card-icon" aria-hidden="true">⛅</span>
+              <h3>Weather WebApp</h3>
+            </div>
+            <span class="mvp-badge mvp-badge-live">Live embed</span>
+          </div>
+          <p class="mvp-card-desc">Real-time weather dashboard — location search, animated condition icons, and a clean responsive UI deployed on GitHub Pages.</p>
+          <p class="mvp-card-stack">React · GitHub Pages</p>
+          <div class="pl-demo mvp-demo" aria-label="Weather WebApp live embed">
+            <iframe
+              src="https://vgandhi1.github.io/weather-WebApp/"
+              title="Weather WebApp live demo"
+              width="100%"
+              height="694"
+              loading="lazy"
+              style="display:block;border:none;"
+            ></iframe>
+          </div>
+          <p class="mvp-card-note">Embed blocked by browser? <a href="https://vgandhi1.github.io/weather-WebApp/" target="_blank" rel="noopener">Open full app ↗</a></p>
+          <div class="mvp-card-actions">
+            <a class="pl-btn pl-btn-primary" href="https://vgandhi1.github.io/weather-WebApp/" target="_blank" rel="noopener">Open live app ↗</a>
+          </div>
+        </article>
+
+      </div>
+
+      <!-- Bottom row: upcoming demos -->
       <article class="mvp-card mvp-card-soon" aria-label="More demos coming soon">
         <div class="mvp-card-head">
           <div class="mvp-card-title">
@@ -69,7 +101,6 @@
         </div>
         <p class="mvp-card-desc">Additional product demos (dashboards, tools, and full-stack apps) will be published here as they reach demo-ready state.</p>
         <ul class="mvp-soon-list">
-          <li>Weather WebApp — live on GitHub Pages</li>
           <li>SmartFound — Industry 4.0 job board</li>
           <li>Overdrive OTA — command center UI</li>
         </ul>
