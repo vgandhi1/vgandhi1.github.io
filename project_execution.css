@@ -477,6 +477,114 @@ a.pex-flow-node:hover {
 }
 .pex-footer a { color: var(--pex-accent2); }
 
+/* --- Federated Data Mesh trilogy --- */
+.pex-hero-note {
+  margin-top: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: linear-gradient(135deg, rgba(99,102,241,0.07), rgba(8,145,178,0.05));
+  border: 1px solid var(--pex-border);
+  border-left: 3px solid var(--pex-accent);
+  border-radius: 8px;
+  font-size: 0.92rem;
+  color: var(--pex-text);
+  line-height: 1.5;
+}
+.pex-hero-note strong { color: var(--pex-accent2); }
+.pex-hero-note em { font-style: italic; color: var(--pex-accent); }
+
+.pex-flow-node-mesh {
+  background: linear-gradient(135deg, rgba(99,102,241,0.18), rgba(8,145,178,0.14));
+  border-color: rgba(99,102,241,0.35);
+  color: var(--pex-accent2);
+}
+a.pex-flow-node-mesh:hover {
+  background: linear-gradient(135deg, rgba(99,102,241,0.28), rgba(8,145,178,0.22));
+}
+
+.pex-step-mesh {
+  background: linear-gradient(135deg, rgba(99,102,241,0.06), rgba(8,145,178,0.05));
+  border-left: 3px solid var(--pex-accent);
+}
+
+.pex-status-demo {
+  background: linear-gradient(135deg, rgba(99,102,241,0.18), rgba(8,145,178,0.14));
+  color: var(--pex-accent2);
+}
+
+.pex-mesh-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.pex-card-mesh {
+  border-left: 3px solid var(--pex-accent);
+}
+.pex-card-cmd {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  color: var(--pex-accent2);
+  margin-top: 0.25rem;
+}
+.pex-card-cmd code {
+  background: rgba(99,102,241,0.1);
+  padding: 0.1rem 0.4rem;
+  border-radius: 4px;
+}
+
+.pex-mesh-compare {
+  margin-top: 0.5rem;
+  overflow-x: auto;
+  border: 1px solid var(--pex-border);
+  border-radius: var(--radius);
+  background: var(--pex-surface);
+}
+.pex-mesh-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+}
+.pex-mesh-table th,
+.pex-mesh-table td {
+  padding: 0.6rem 0.8rem;
+  border-bottom: 1px solid var(--pex-border);
+  text-align: left;
+  vertical-align: top;
+}
+.pex-mesh-table thead th {
+  background: rgba(99,102,241,0.06);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--pex-accent2);
+}
+.pex-mesh-table tbody th {
+  font-weight: 600;
+  color: var(--pex-muted);
+  font-size: 0.82rem;
+  white-space: nowrap;
+}
+.pex-mesh-table tbody tr:last-child td,
+.pex-mesh-table tbody tr:last-child th {
+  border-bottom: none;
+}
+
+.pex-track-label.mesh { color: var(--pex-accent2); }
+.pex-domain-label.d-mesh {
+  background: linear-gradient(135deg, rgba(99,102,241,0.18), rgba(8,145,178,0.14));
+  color: var(--pex-accent2);
+}
+
+.pex-group-note {
+  margin-top: 0.6rem;
+  font-size: 0.82rem;
+  color: var(--pex-muted);
+  font-style: italic;
+}
+.pex-group-note a { color: var(--pex-accent2); font-style: normal; }
+
 @media (max-width: 640px) {
   .pex-step {
     grid-template-columns: 2.5rem 1fr;
@@ -485,4 +593,6 @@ a.pex-flow-node:hover {
     grid-column: 2;
     white-space: normal;
   }
+  .pex-mesh-table { font-size: 0.78rem; }
+  .pex-mesh-table th, .pex-mesh-table td { padding: 0.45rem 0.55rem; }
 }

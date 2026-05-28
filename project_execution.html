@@ -16,6 +16,7 @@
     <nav class="pex-nav" aria-label="Primary">
       <a href="index.html">Portfolio</a>
       <a href="#phases" class="pex-nav-active">Roadmap</a>
+      <a href="#mesh">Mesh Trilogy</a>
       <a href="#tracks">Tracks</a>
       <a href="#projects">Projects</a>
       <a href="https://vgandhi1.github.io/web-interactive-collection/" target="_blank" rel="noopener">Lab</a>
@@ -30,6 +31,7 @@
     <p class="pex-badge">Portfolio roadmap</p>
     <h1 id="hero-heading">Where to start</h1>
     <p class="pex-hero-lead">A visual guide to exploring this portfolio — smart factories, EV software, streaming ML, and robotics — in a logical build order.</p>
+    <p class="pex-hero-note"><strong>Heads-up:</strong> a <em>data mesh</em> is a decentralized lakehouse where each business domain owns its pipelines under shared contracts. <a href="https://github.com/vgandhi1/MFG-MESH" target="_blank" rel="noopener">MFG-Mesh</a>, <a href="https://github.com/vgandhi1/heal-mesh" target="_blank" rel="noopener">HEAL-Mesh</a>, and <a href="https://github.com/vgandhi1/RoboMesh" target="_blank" rel="noopener">RoboMesh</a> are the same engineering blueprint applied to factories, healthcare, and robotics.</p>
     <div class="pex-pill-row" aria-label="Strategy overview">
       <span class="pex-pill"><strong>1</strong> Orient</span>
       <span class="pex-pill"><strong>2</strong> Foundation</span>
@@ -39,6 +41,14 @@
   </section>
 
   <section class="pex-section" aria-label="Flagship projects">
+    <div class="pex-flow">
+      <a class="pex-flow-node pex-flow-node-mesh" href="https://github.com/vgandhi1/MFG-MESH" target="_blank" rel="noopener">MFG-Mesh</a>
+      <span class="pex-flow-arrow">⟂</span>
+      <a class="pex-flow-node pex-flow-node-mesh" href="https://github.com/vgandhi1/heal-mesh" target="_blank" rel="noopener">HEAL-Mesh</a>
+      <span class="pex-flow-arrow">⟂</span>
+      <a class="pex-flow-node pex-flow-node-mesh" href="https://github.com/vgandhi1/RoboMesh" target="_blank" rel="noopener">RoboMesh</a>
+      <span class="pex-flow-arrow">← Federated Data Mesh trilogy</span>
+    </div>
     <div class="pex-flow">
       <a class="pex-flow-node" href="https://github.com/vgandhi1/MFG-MESH" target="_blank" rel="noopener">MFG-Mesh</a>
       <span class="pex-flow-arrow">→</span>
@@ -77,9 +87,9 @@
         <h3>Foundation</h3>
         <p class="pex-phase-time">Months 0–6</p>
         <ul>
-          <li>Telemetry + one flagship platform</li>
-          <li>EV security chain end-to-end</li>
-          <li>One ML project served via API</li>
+          <li>Telemetry baseline: <a href="https://github.com/vgandhi1/edge-telemetry-plane" target="_blank" rel="noopener">edge-telemetry-plane</a> → <a href="https://github.com/vgandhi1/MFG-MESH" target="_blank" rel="noopener">MFG-Mesh</a></li>
+          <li>EV security chain: <a href="https://github.com/vgandhi1/OTA-firmware-verifier" target="_blank" rel="noopener">OTA Verifier</a> → <a href="https://github.com/vgandhi1/automotive-key-provission" target="_blank" rel="noopener">Key Provision</a></li>
+          <li>One ML project served via API (<a href="https://github.com/vgandhi1/ecommerce-demand-forecast" target="_blank" rel="noopener">Demand forecast</a>)</li>
         </ul>
       </article>
       <article class="pex-phase">
@@ -87,9 +97,9 @@
         <h3>Integration</h3>
         <p class="pex-phase-time">Months 6–18</p>
         <ul>
-          <li>Vision QA + quality RAG into AEGIS</li>
-          <li>Streaming ML + MLOps patterns</li>
-          <li>Cross-project demo on portfolio</li>
+          <li>Same engine, new domains: <a href="https://github.com/vgandhi1/heal-mesh" target="_blank" rel="noopener">HEAL-Mesh</a> + <a href="https://github.com/vgandhi1/RoboMesh" target="_blank" rel="noopener">RoboMesh</a></li>
+          <li>Vision QA + quality RAG into <a href="https://github.com/vgandhi1/aegis" target="_blank" rel="noopener">AEGIS</a></li>
+          <li>Streaming ML + MLOps (<a href="https://github.com/vgandhi1/Sentinel-Stream" target="_blank" rel="noopener">Sentinel-Stream</a>)</li>
         </ul>
       </article>
       <article class="pex-phase">
@@ -97,9 +107,9 @@
         <h3>Deployment</h3>
         <p class="pex-phase-time">Months 18–36</p>
         <ul>
-          <li>Edge inference (Jetson / ESP32)</li>
-          <li>Full OTA orchestration</li>
-          <li>Robotics + VLA benchmarks</li>
+          <li>Edge inference: <a href="https://github.com/vgandhi1/RL-Pendulum" target="_blank" rel="noopener">RL-Pendulum</a> (ESP32), <a href="https://github.com/vgandhi1/semantic-SLAM-Rover" target="_blank" rel="noopener">Semantic SLAM</a> (Jetson)</li>
+          <li>Full OTA orchestration (<a href="https://github.com/vgandhi1/Overdrive-OTA-Manager" target="_blank" rel="noopener">Overdrive OTA</a>)</li>
+          <li>Robotics + VLA: <a href="https://github.com/vgandhi1/vla-bench" target="_blank" rel="noopener">VLA-bench</a> feeds <a href="https://github.com/vgandhi1/RoboMesh" target="_blank" rel="noopener">RoboMesh</a></li>
         </ul>
       </article>
     </div>
@@ -115,13 +125,64 @@
       <div class="pex-step"><span class="pex-step-num">1</span><div class="pex-step-body"><a href="https://github.com/vgandhi1/TeleOp-flywheel-dashboard" target="_blank" rel="noopener">TeleOp Flywheel</a><div class="pex-step-tag">Orient</div></div><span class="pex-step-meta">2 hrs</span></div>
       <div class="pex-step"><span class="pex-step-num">2</span><div class="pex-step-body"><a href="https://github.com/vgandhi1/OTA-firmware-verifier" target="_blank" rel="noopener">OTA Verifier</a> → <a href="https://github.com/vgandhi1/automotive-key-provission" target="_blank" rel="noopener">Key Provision</a><div class="pex-step-tag">EV</div></div><span class="pex-step-meta">1 wk</span></div>
       <div class="pex-step"><span class="pex-step-num">3</span><div class="pex-step-body"><a href="https://github.com/vgandhi1/edge-telemetry-plane" target="_blank" rel="noopener">edge-telemetry-plane</a><div class="pex-step-tag">Telemetry</div></div><span class="pex-step-meta">1–2 wk</span></div>
-      <div class="pex-step"><span class="pex-step-num">4</span><div class="pex-step-body"><a href="https://github.com/vgandhi1/MFG-MESH" target="_blank" rel="noopener">MFG-Mesh</a><div class="pex-step-tag">Data Mesh</div></div><span class="pex-step-meta">2–3 wk</span></div>
+      <div class="pex-step pex-step-mesh"><span class="pex-step-num">4</span><div class="pex-step-body"><strong>Data Mesh trilogy</strong> — deep-dive one, skim the others: <a href="https://github.com/vgandhi1/MFG-MESH" target="_blank" rel="noopener">MFG-Mesh</a> → <a href="https://github.com/vgandhi1/heal-mesh" target="_blank" rel="noopener">HEAL-Mesh</a> → <a href="https://github.com/vgandhi1/RoboMesh" target="_blank" rel="noopener">RoboMesh</a><div class="pex-step-tag">Data Mesh</div></div><span class="pex-step-meta">2–3 wk + 1 wk each</span></div>
       <div class="pex-step"><span class="pex-step-num">5</span><div class="pex-step-body"><strong>Pick one:</strong> <a href="https://github.com/vgandhi1/aegis" target="_blank" rel="noopener">AEGIS</a> or <a href="https://github.com/vgandhi1/SentinelFlow" target="_blank" rel="noopener">SentinelFlow</a><div class="pex-step-tag">Flagship</div></div><span class="pex-step-meta">3–6 wk</span></div>
       <div class="pex-step"><span class="pex-step-num">6</span><div class="pex-step-body"><a href="https://github.com/vgandhi1/factory-genius" target="_blank" rel="noopener">Factory Genius</a> → <a href="https://github.com/vgandhi1/QualityMind-RAG" target="_blank" rel="noopener">QualityMind-RAG</a><div class="pex-step-tag">Integrate</div></div><span class="pex-step-meta">2–4 wk</span></div>
-      <div class="pex-step"><span class="pex-step-num">7</span><div class="pex-step-body"><a href="https://github.com/vgandhi1/heal-mesh" target="_blank" rel="noopener">HEAL-Mesh</a><div class="pex-step-tag">Data Mesh</div></div><span class="pex-step-meta">2–3 wk</span></div>
-      <div class="pex-step"><span class="pex-step-num">8</span><div class="pex-step-body"><a href="https://github.com/vgandhi1/automotive-visual-qa-engine" target="_blank" rel="noopener">Visual QA</a> → <a href="https://github.com/vgandhi1/CLaimLens" target="_blank" rel="noopener">CLaimLens</a><div class="pex-step-tag">Vision</div></div><span class="pex-step-meta">3–5 wk</span></div>
-      <div class="pex-step"><span class="pex-step-num">9</span><div class="pex-step-body"><a href="https://github.com/vgandhi1/vla-bench" target="_blank" rel="noopener">VLA-bench</a> → <a href="https://github.com/vgandhi1/RoboMesh" target="_blank" rel="noopener">RoboMesh</a> → <a href="https://github.com/vgandhi1/apex-recovery" target="_blank" rel="noopener">APEX-recover</a><div class="pex-step-tag">Robotics</div></div><span class="pex-step-meta">3–5 wk</span></div>
-      <div class="pex-step"><span class="pex-step-num">10</span><div class="pex-step-body"><a href="https://github.com/vgandhi1/RL-Pendulum" target="_blank" rel="noopener">RL-Pendulum</a> → <a href="https://github.com/vgandhi1/semantic-SLAM-Rover" target="_blank" rel="noopener">Semantic SLAM</a><div class="pex-step-tag">Deploy</div></div><span class="pex-step-meta">Ongoing</span></div>
+      <div class="pex-step"><span class="pex-step-num">7</span><div class="pex-step-body"><a href="https://github.com/vgandhi1/automotive-visual-qa-engine" target="_blank" rel="noopener">Visual QA</a> → <a href="https://github.com/vgandhi1/CLaimLens" target="_blank" rel="noopener">CLaimLens</a><div class="pex-step-tag">Vision</div></div><span class="pex-step-meta">3–5 wk</span></div>
+      <div class="pex-step"><span class="pex-step-num">8</span><div class="pex-step-body"><a href="https://github.com/vgandhi1/vla-bench" target="_blank" rel="noopener">VLA-bench</a> → <a href="https://github.com/vgandhi1/apex-recovery" target="_blank" rel="noopener">APEX-recover</a><div class="pex-step-tag">Robotics</div></div><span class="pex-step-meta">3–5 wk</span></div>
+      <div class="pex-step"><span class="pex-step-num">9</span><div class="pex-step-body"><a href="https://github.com/vgandhi1/RL-Pendulum" target="_blank" rel="noopener">RL-Pendulum</a> → <a href="https://github.com/vgandhi1/semantic-SLAM-Rover" target="_blank" rel="noopener">Semantic SLAM</a><div class="pex-step-tag">Deploy</div></div><span class="pex-step-meta">Ongoing</span></div>
+    </div>
+  </section>
+
+  <section id="mesh" class="pex-section" aria-labelledby="mesh-heading">
+    <div class="pex-sec-head">
+      <h2 id="mesh-heading">Federated Data Mesh trilogy</h2>
+      <p>Three runnable lakehouses — same engineering blueprint (Apache Iceberg + dbt medallion + Agentic RAG), three different industries. Deep-dive one; the others compound in ~1 week each.</p>
+    </div>
+
+    <div class="pex-mesh-grid">
+      <a class="pex-card pex-card-mesh" href="https://github.com/vgandhi1/MFG-MESH" target="_blank" rel="noopener">
+        <div class="pex-card-head">
+          <h3>🏗️ MFG-Mesh</h3>
+          <span class="pex-status pex-status-demo">Runnable demo</span>
+        </div>
+        <p>Industrial IT/OT — OPC UA telemetry → Kafka → Iceberg → dbt contracts → DuckDB SLA enforcement → Agentic RAG over failure events.</p>
+        <p class="pex-card-cmd"><code>make demo</code> · 5 phases end-to-end</p>
+        <span class="pex-card-repo">github.com/vgandhi1/MFG-MESH</span>
+      </a>
+      <a class="pex-card pex-card-mesh" href="https://github.com/vgandhi1/heal-mesh" target="_blank" rel="noopener">
+        <div class="pex-card-head">
+          <h3>🩺 HEAL-Mesh</h3>
+          <span class="pex-status pex-status-demo">Runnable demo</span>
+        </div>
+        <p>HIPAA-aware federated mesh — wearable telemetry + clinical PHI + subscription metrics unified on Iceberg with dbt medallion + SHA-256 PHI masking + Agentic RAG.</p>
+        <p class="pex-card-cmd"><code>make orchestrate</code> · 5 phases end-to-end</p>
+        <span class="pex-card-repo">github.com/vgandhi1/heal-mesh</span>
+      </a>
+      <a class="pex-card pex-card-mesh" href="https://github.com/vgandhi1/RoboMesh" target="_blank" rel="noopener">
+        <div class="pex-card-head">
+          <h3>🤖 RoboMesh</h3>
+          <span class="pex-status pex-status-demo">Runnable demo</span>
+        </div>
+        <p>Federated robotics data mesh — VLA training flywheel (frozen ResNet → WebDataset shards → Ray Data / DDP), dbt contracts, SHA-256 RBAC masking, Agentic RAG over failure taxonomies.</p>
+        <p class="pex-card-cmd"><code>make demo</code> · 5 phases end-to-end</p>
+        <span class="pex-card-repo">github.com/vgandhi1/RoboMesh</span>
+      </a>
+    </div>
+
+    <div class="pex-mesh-compare" role="region" aria-label="Trilogy comparison">
+      <table class="pex-mesh-table">
+        <thead>
+          <tr><th></th><th>MFG-Mesh</th><th>HEAL-Mesh</th><th>RoboMesh</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">Domain</th><td>Factory IIoT</td><td>Healthcare</td><td>Robotics / VLA</td></tr>
+          <tr><th scope="row">Source data</th><td>OPC UA / PLC telemetry</td><td>Wearables + clinical + subs</td><td>WebDataset demonstration shards</td></tr>
+          <tr><th scope="row">Sensitive data</th><td>Operator IDs (BLAKE2b)</td><td>PHI (SHA-256, HIPAA)</td><td>Robot serials (SHA-256 RBAC)</td></tr>
+          <tr><th scope="row">RAG corpus</th><td>Failure events</td><td>Clinical encounters</td><td>Failure taxonomies</td></tr>
+          <tr><th scope="row">Engine</th><td colspan="3" style="text-align:center;font-style:italic;color:var(--pex-muted);">Apache Iceberg · dbt medallion · DuckDB · Dagster · ChromaDB · fail-closed masking</td></tr>
+        </tbody>
+      </table>
     </div>
   </section>
 
@@ -132,6 +193,10 @@
     </div>
     <div class="pex-tracks">
       <article class="pex-track">
+        <p class="pex-track-label mesh">Federated Data Mesh</p>
+        <p class="pex-track-flow"><a href="https://github.com/vgandhi1/MFG-MESH" target="_blank" rel="noopener">MFG-Mesh</a> → <a href="https://github.com/vgandhi1/heal-mesh" target="_blank" rel="noopener">HEAL-Mesh</a> → <a href="https://github.com/vgandhi1/RoboMesh" target="_blank" rel="noopener">RoboMesh</a></p>
+      </article>
+      <article class="pex-track">
         <p class="pex-track-label industrial">Manufacturing / IIoT</p>
         <p class="pex-track-flow"><a href="https://github.com/vgandhi1/edge-telemetry-plane" target="_blank" rel="noopener">edge-telemetry-plane</a> → <a href="https://github.com/vgandhi1/MFG-MESH" target="_blank" rel="noopener">MFG-Mesh</a> → <a href="https://github.com/vgandhi1/aegis" target="_blank" rel="noopener">AEGIS</a> → <a href="https://github.com/vgandhi1/QualityMind-RAG" target="_blank" rel="noopener">QualityMind-RAG</a></p>
       </article>
@@ -141,7 +206,7 @@
       </article>
       <article class="pex-track">
         <p class="pex-track-label ml">Data / ML</p>
-        <p class="pex-track-flow"><a href="https://github.com/vgandhi1/ecommerce-demand-forecast" target="_blank" rel="noopener">Demand forecast</a> → <a href="https://github.com/vgandhi1/Sentinel-Stream" target="_blank" rel="noopener">Sentinel-Stream</a> → <a href="https://github.com/vgandhi1/MARKET_MOOD_RING" target="_blank" rel="noopener">Market Mood Ring</a> → <a href="https://github.com/vgandhi1/heal-mesh" target="_blank" rel="noopener">HEAL-Mesh</a></p>
+        <p class="pex-track-flow"><a href="https://github.com/vgandhi1/ecommerce-demand-forecast" target="_blank" rel="noopener">Demand forecast</a> → <a href="https://github.com/vgandhi1/Sentinel-Stream" target="_blank" rel="noopener">Sentinel-Stream</a> → <a href="https://github.com/vgandhi1/MARKET_MOOD_RING" target="_blank" rel="noopener">Market Mood Ring</a></p>
       </article>
       <article class="pex-track">
         <p class="pex-track-label pm">PM / Robotics</p>
@@ -158,6 +223,27 @@
     <div class="pex-sec-head">
       <h2 id="projects-heading">All projects</h2>
       <p>Click any card — links match the main portfolio.</p>
+    </div>
+
+    <div class="pex-group">
+      <span class="pex-domain-label d-mesh">Federated Data Mesh</span>
+      <div class="pex-grid">
+        <a class="pex-card pex-card-mesh" href="https://github.com/vgandhi1/MFG-MESH" target="_blank" rel="noopener">
+          <div class="pex-card-head"><h3>🏗️ MFG-Mesh</h3><span class="pex-status pex-status-demo">Runnable demo</span></div>
+          <p>Industrial IT/OT — OPC UA → Kafka → Iceberg, dbt Mesh contracts, DuckDB quality, Agentic RAG over failure events.</p>
+          <span class="pex-card-repo">github.com/vgandhi1/MFG-MESH</span>
+        </a>
+        <a class="pex-card pex-card-mesh" href="https://github.com/vgandhi1/heal-mesh" target="_blank" rel="noopener">
+          <div class="pex-card-head"><h3>🩺 HEAL-Mesh</h3><span class="pex-status pex-status-demo">Runnable demo</span></div>
+          <p>HIPAA-aware data mesh — Iceberg + dbt medallion + SHA-256 PHI masking + Agentic RAG.</p>
+          <span class="pex-card-repo">github.com/vgandhi1/heal-mesh</span>
+        </a>
+        <a class="pex-card pex-card-mesh" href="https://github.com/vgandhi1/RoboMesh" target="_blank" rel="noopener">
+          <div class="pex-card-head"><h3>🤖 RoboMesh</h3><span class="pex-status pex-status-demo">Runnable demo</span></div>
+          <p>Robotics data mesh — VLA flywheel, WebDataset shards, dbt contracts, Agentic RAG.</p>
+          <span class="pex-card-repo">github.com/vgandhi1/RoboMesh</span>
+        </a>
+      </div>
     </div>
 
     <div class="pex-group">
@@ -198,12 +284,8 @@
           <p>Edge CLIP + cloud VLM for paint/weld inspection.</p>
           <span class="pex-card-repo">github.com/vgandhi1/automotive-visual-qa-engine</span>
         </a>
-        <a class="pex-card" href="https://github.com/vgandhi1/MFG-MESH" target="_blank" rel="noopener">
-          <div class="pex-card-head"><h3>MFG-Mesh</h3><span class="pex-status pex-status-live">Production-style</span></div>
-          <p>Industrial IT/OT data platform — OPC UA → Kafka → Iceberg, dbt Mesh contracts, DuckDB quality enforcement, Agentic RAG over failure events.</p>
-          <span class="pex-card-repo">github.com/vgandhi1/MFG-MESH</span>
-        </a>
       </div>
+      <p class="pex-group-note">MFG-Mesh lives in <a href="#mesh">Federated Data Mesh</a> above (sibling of HEAL-Mesh and RoboMesh).</p>
     </div>
 
     <div class="pex-group">
@@ -255,12 +337,8 @@
           <p>Federated learning with Flower.</p>
           <span class="pex-card-repo">github.com/vgandhi1/Prism-Federated</span>
         </a>
-        <a class="pex-card" href="https://github.com/vgandhi1/heal-mesh" target="_blank" rel="noopener">
-          <div class="pex-card-head"><h3>HEAL-Mesh</h3><span class="pex-status pex-status-live">Production-style</span></div>
-          <p>HIPAA-aware data mesh — Iceberg + dbt medallion + PHI masking + Agentic RAG.</p>
-          <span class="pex-card-repo">github.com/vgandhi1/heal-mesh</span>
-        </a>
       </div>
+      <p class="pex-group-note">HEAL-Mesh lives in <a href="#mesh">Federated Data Mesh</a> above.</p>
     </div>
 
     <div class="pex-group">
@@ -291,12 +369,8 @@
           <p>ROS 2 + YOLO + Nav2 semantic navigation.</p>
           <span class="pex-card-repo">github.com/vgandhi1/semantic-SLAM-Rover</span>
         </a>
-        <a class="pex-card" href="https://github.com/vgandhi1/RoboMesh" target="_blank" rel="noopener">
-          <div class="pex-card-head"><h3>RoboMesh</h3><span class="pex-status pex-status-live">Production-style</span></div>
-          <p>Robotics data mesh — VLA flywheel, WebDataset shards, dbt contracts, Agentic RAG.</p>
-          <span class="pex-card-repo">github.com/vgandhi1/RoboMesh</span>
-        </a>
       </div>
+      <p class="pex-group-note">RoboMesh lives in <a href="#mesh">Federated Data Mesh</a> above (engineering substrate is a data mesh; robotics is the consumer).</p>
     </div>
 
     <div class="pex-group">
@@ -328,9 +402,10 @@
 
   <section class="pex-cta" aria-label="Get started">
     <h2>Start this week</h2>
-    <p>Two quick wins: TeleOp dashboard (~30 min) and OTA Verifier (<code>cargo test</code>). Then pick manufacturing or EV track.</p>
+    <p>Two quick wins (30 min each): <a href="https://github.com/vgandhi1/TeleOp-flywheel-dashboard" target="_blank" rel="noopener">TeleOp</a> + <a href="https://github.com/vgandhi1/OTA-firmware-verifier" target="_blank" rel="noopener">OTA Verifier</a>. Going deeper? Clone any trilogy repo and run <code>make demo</code> for a full Iceberg + dbt + RAG pipeline end-to-end.</p>
     <div class="pex-cta-actions">
-      <a class="pex-btn pex-btn-primary" href="https://github.com/vgandhi1/TeleOp-flywheel-dashboard" target="_blank" rel="noopener">TeleOp on GitHub</a>
+      <a class="pex-btn pex-btn-primary" href="https://github.com/vgandhi1/MFG-MESH" target="_blank" rel="noopener">Data engineer? Clone MFG-Mesh</a>
+      <a class="pex-btn pex-btn-ghost" href="https://github.com/vgandhi1/TeleOp-flywheel-dashboard" target="_blank" rel="noopener">TeleOp on GitHub</a>
       <a class="pex-btn pex-btn-ghost" href="https://github.com/vgandhi1/OTA-firmware-verifier" target="_blank" rel="noopener">OTA Verifier</a>
       <a class="pex-btn pex-btn-ghost" href="index.html#projects">All projects</a>
     </div>
