@@ -18,14 +18,14 @@ The landing page (`index.html`) is a **custom static** experience (not a Jekyll 
 | Section | Anchor | Content |
 |---------|--------|---------|
 | **About** | `#about` | Background, skills, active build ([AEGIS](https://github.com/vgandhi1/aegis)) |
-| **Projects** | `#projects` | Curated GitHub work by domain (industrial AI, agentic/RAG, ML/CV, robotics, streaming, data/ELT, product) |
+| **Projects** | `#projects` | GitHub work grouped by engineering pillar (Data, AI, Software, Product) with filter tabs |
 | **Learn** | `#learn` | Links to theory notes and programming tracks on this domain |
 | **Interactive lab** | — | External hub for decks, EV docs, and simulators |
-| **Project execution guide** | [project_execution.html](project_execution.html) | Visual roadmap — recommended project order |
+| **Project execution guide** | [project_execution.html](project_execution.html) | Visual roadmap — build order and three-pillar entry paths |
 | **Factory AI Platform** | [factory-ai.html](factory-ai.html) | Flagship build deep-dive (AEGIS / SentinelFlow) |
 | **MVP demos** | [mvp.html](mvp.html) | Live product walkthroughs |
 
-**Project domains** on the landing page include Industrial & Manufacturing Systems, Agentic AI & RAG, AI/ML & Computer Vision, Robotics & Embodied AI, Software Systems & Streaming, Data/ELT, and Product Management — with quick links to additional repos (EV/OTA, healthcare, web apps).
+**Project pillars** on the landing page: **Data Engineering** (OMNI-Mesh, telemetry, ELT), **AI Engineering** (factory AI, agentic/RAG, CV/ML, robotics), **Software Systems** (streaming backends, EV/OTA, web apps), and **Product Management** (APEX-recover, TeleOp). Use the filter tabs on `#projects` or the [roadmap pillars section](project_execution.html#pillars) for role-aligned entry paths.
 
 **Product demo:** Motel Web Portal walkthrough GIF (`assets/demos/motel-portal-demo.gif`) — source: [Motel-web-portal](https://github.com/vgandhi1/Motel-web-portal).
 
