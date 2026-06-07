@@ -4,23 +4,24 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Vinay Gandhi | Data-Focused, AI-Driven Engineer</title>
-<meta name="description" content="Vinay Gandhi — data-focused, AI-driven engineer. Python/SQL data pipelines, analytics, and applied AI (RAG, NLP, ML) across factory and field systems.">
+<meta name="description" content="Vinay Gandhi — data-focused, AI-driven engineer. Python/SQL pipelines, analytics, and applied AI (RAG, NLP, ML) across factory and field systems. Next: systems engineering.">
 <meta property="og:title" content="Vinay Gandhi | Data-Focused, AI-Driven Engineer">
-<meta property="og:description" content="Data pipelines + applied AI. Python/SQL, analytics, RAG/NLP/ML, and factory systems engineering.">
+<meta property="og:description" content="Data pipelines + applied AI. Python/SQL, analytics, RAG/NLP/ML, factory systems — moving into systems engineering.">
 <meta property="og:url" content="https://vgandhi1.github.io/">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Vinay Gandhi | Data-Focused, AI-Driven Engineer">
 <meta name="twitter:description" content="Data pipelines + applied AI. Python/SQL, analytics, RAG/NLP/ML, factory systems.">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,800;0,9..144,900;1,9..144,500&family=JetBrains+Mono:wght@400;500;600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;0,800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="portfolio_home.css">
+<link rel="canonical" href="https://vgandhi1.github.io/">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,800;0,9..144,900;1,9..144,500&family=JetBrains+Mono:wght@400;500;600&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="portfolio_min.css">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Person",
   "name": "Vinay Gandhi",
   "jobTitle": "Data & AI Engineer",
-  "description": "Data-focused, AI-driven engineer with 13+ years across factory and field environments — building Python/SQL data pipelines and applied AI (RAG, NLP, ML) on top of data, AI, and factory systems.",
+  "description": "Data-focused, AI-driven engineer with 15+ years across factory and field environments — building Python/SQL data pipelines and applied AI (RAG, NLP, ML), now moving into systems engineering.",
   "url": "https://vgandhi1.github.io/",
   "email": "gandhivinay2008@gmail.com",
   "sameAs": [
@@ -43,767 +44,216 @@
 }
 </script>
 <style>
-  /* === Three-pillar project architecture === */
-  .pl-pillars { display: flex; flex-wrap: wrap; gap: .5rem; margin: 1.25rem 0 2.25rem; }
-  .pl-pillar-tab {
-    font: inherit; font-weight: 600; cursor: pointer; padding: .45rem 1rem;
-    border: 1px solid var(--pl-border); border-radius: 999px;
-    background: var(--pl-surface); color: var(--pl-text); transition: all .15s ease;
+  /* scoped extras for minimal landing — proof strip, badge trajectory, systems tile */
+  .min-badge .min-badge-next { color: var(--min-accent); font-weight: 600; }
+  .min-proof {
+    display: flex; flex-wrap: wrap; gap: 0.4rem 0.6rem;
+    margin-top: 1.15rem;
   }
-  .pl-pillar-tab:hover { background: var(--pl-surface2); }
-  .pl-pillar-tab { font-family: var(--pl-mono); font-size: 11px; letter-spacing: .04em; text-transform: uppercase; }
-  .pl-pillar-tab.is-active { background: var(--pl-accent-c, var(--pl-accent)); color: #fff; border-color: transparent; }
-
-  .pl-pillar { margin: 2.75rem 0; scroll-margin-top: 90px; }
-  .pl-pillar-head {
-    display: flex; align-items: baseline; flex-wrap: wrap; gap: .25rem 1rem;
-    padding-bottom: .55rem; margin-bottom: 1.5rem;
-    border-bottom: 2px solid var(--pl-accent-c, var(--pl-accent));
+  .min-proof-chip {
+    font-family: var(--min-mono); font-size: 10px; font-weight: 600;
+    letter-spacing: 0.04em; color: var(--min-text);
+    background: var(--min-paper); border: 1px solid var(--min-hair);
+    border-radius: 999px; padding: 0.3rem 0.7rem;
   }
-  .pl-pillar-title { font-family: var(--pl-display); font-weight: 800; font-size: 1.65rem; letter-spacing: -0.02em; margin: 0; color: var(--pl-text); }
-  .pl-pillar-title .pl-pillar-letter {
-    display: inline-grid; place-items: center; width: 1.7rem; height: 1.7rem; margin-right: .5rem;
-    border-radius: 8px; font-size: .95rem; color: #fff; background: var(--pl-accent-c, var(--pl-accent));
-    vertical-align: middle;
-  }
-  .pl-pillar-sub { color: var(--pl-muted); font-size: .92rem; margin: 0; }
-
-  .pl-subgroup-label {
-    font-family: "JetBrains Mono", monospace; font-size: .72rem; font-weight: 600;
-    letter-spacing: .08em; text-transform: uppercase; color: var(--pl-muted);
-    margin: 1.4rem 0 .7rem;
-  }
-  .pl-subgroup-label::before {
-    content: ""; display: inline-block; width: .5rem; height: .5rem; margin-right: .5rem;
-    border-radius: 2px; background: var(--pl-accent-c, var(--pl-accent)); vertical-align: middle;
-  }
-
-  /* secondary cross-pillar chip on a card */
-  .pl-xchip {
-    display: inline-block; font-size: .65rem; font-weight: 600; letter-spacing: .04em;
-    padding: .12rem .5rem; margin-left: .4rem; border-radius: 999px;
-    background: var(--pl-surface2); color: var(--pl-muted); vertical-align: middle;
-  }
-
-  /* per-pillar accents — DATA + AI emphasized (rust), software/product quiet */
-  #pillar-data     { --pl-accent-c: var(--pl-accent); }   /* rust — primary focus */
-  #pillar-ai       { --pl-accent-c: var(--pl-accent); }   /* rust — primary focus */
-  #pillar-software { --pl-accent-c: #5f5a4e; }            /* muted charcoal */
-  #pillar-product  { --pl-accent-c: #5f5a4e; }            /* muted charcoal */
-
-  .pl-pillar[hidden] { display: none; }
+  .min-proof-chip strong { color: var(--min-accent); }
+  .min-tile.min-tile-soon { border-style: dashed; }
+  .min-tile-soon .min-tile-arrow { color: var(--min-faint); }
 </style>
 </head>
-<body class="portfolio-landing">
-<a href="#main-content" class="skip-link">Skip to main content</a>
+<body class="min-portfolio">
+<a href="#main" class="skip-link">Skip to content</a>
 
-<header class="pl-top" role="banner">
-  <div class="pl-top-inner">
-    <a class="pl-brand" href="index.html">Vinay<span>.</span>Gandhi</a>
-    <nav class="pl-nav" aria-label="Primary">
-      <a href="#projects">Projects</a>
-      <a href="#flagship">Flagship</a>
+<header class="min-top" role="banner">
+  <div class="min-top-inner">
+    <a class="min-brand" href="index.html">Vinay<span>.</span>Gandhi</a>
+    <nav class="min-nav" aria-label="Primary">
+      <a href="#work">Work</a>
       <a href="#about">About</a>
       <a href="#learn">Learn</a>
-      <a href="factory-ai.html">Factory AI</a>
-      <a href="mvp.html">MVP</a>
-      <a href="project_execution.html">Roadmap</a>
-      <a href="https://vgandhi1.github.io/web-interactive-collection/" target="_blank" rel="noopener" class="pl-nav-cta">Interactive lab →</a>
       <a href="https://github.com/vgandhi1" target="_blank" rel="noopener">GitHub</a>
-      <a href="https://www.linkedin.com/in/vinaygandhi274/" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="mailto:gandhivinay2008@gmail.com">Email</a>
+      <a href="https://vinaygandhi.notion.site/Engineering-Portfolio-3789e26ff47c80339cbeee72d8485557" target="_blank" rel="noopener">Notion</a>
+      <a href="mailto:gandhivinay2008@gmail.com" class="min-nav-cta">Email</a>
     </nav>
   </div>
 </header>
 
-<main id="main-content" class="pl-wrap">
-  <section class="pl-hero">
-    <p class="pl-hero-badge">Data-Focused · AI-Driven Engineer</p>
-    <h1 class="pl-hero-name">Vinay Gandhi</h1>
-    <p class="pl-hero-tagline">Built on <em>data</em>, driven by AI</p>
-    <p class="pl-hero-lead">13+ years across factory and field environments, now building Python/SQL data pipelines and applied AI — RAG, NLP, and ML — that turn raw telemetry and narratives into structured, queryable insight. Focused on <em>data</em>, AI, and factory systems.</p>
-    <div class="pl-hero-actions">
-      <a class="pl-btn pl-btn-primary" href="#projects">Data &amp; AI projects</a>
-      <a class="pl-btn pl-btn-ghost" href="https://github.com/vgandhi1/QualityMind-RAG" target="_blank" rel="noopener">QualityMind-RAG</a>
-      <a class="pl-btn pl-btn-ghost" href="https://github.com/vgandhi1" target="_blank" rel="noopener">All repositories</a>
+<main id="main" class="min-wrap">
+  <section class="min-hero">
+    <p class="min-badge"><span class="min-badge-dot" aria-hidden="true"></span>Data · AI · Factory Systems <span class="min-badge-next">→ systems next</span></p>
+    <h1>Vinay Gandhi</h1>
+    <p class="min-tagline">Built on <em>data</em>, driven by AI</p>
+    <p class="min-lead">15+ years across factory and field environments. Python/SQL pipelines and applied AI — RAG, NLP, ML — that turn telemetry and narratives into structured, queryable insight. Now extending into systems engineering.</p>
+    <div class="min-proof" aria-label="Proof points">
+      <span class="min-proof-chip">Warranty-narrative NLP → field RCA</span>
+      <span class="min-proof-chip">Hybrid RAG + Text-to-SQL</span>
+      <span class="min-proof-chip">MQTT → Kafka telemetry</span>
+    </div>
+    <div class="min-hero-actions">
+      <a class="min-btn min-btn-primary" href="#work">Selected work</a>
+      <a class="min-btn min-btn-ghost" href="https://github.com/vgandhi1/QualityMind-RAG" target="_blank" rel="noopener">QualityMind-RAG</a>
+      <a class="min-btn min-btn-ghost" href="https://www.linkedin.com/in/vinaygandhi274/" target="_blank" rel="noopener">LinkedIn</a>
     </div>
   </section>
 
-  <div class="pl-callout">
-    <strong>Focus:</strong> data first — Python/SQL pipelines, analytics, and applied AI (RAG, NLP, ML) — extended into factory-systems engineering. Projects below are grouped by pillar; <a href="#projects">Data</a> and <a href="#pillar-ai">AI</a> lead.
-  </div>
-
-  <section id="about" class="pl-section" aria-labelledby="about-heading">
-    <div class="pl-sec-head">
-      <h2 id="about-heading">About</h2>
-      <p>Data first — AI and factory systems on top.</p>
+  <section id="work" class="min-section" aria-labelledby="work-heading">
+    <div class="min-sec-head">
+      <h2 id="work-heading">Selected work</h2>
+      <p>Flagship data + AI projects — full catalog on GitHub and the expanded portfolio.</p>
     </div>
-    <div class="pl-about">
-      <div class="pl-about-left">
-        <p class="pl-about-bio">Data-focused, AI-driven engineer with 13+ years across factory and field environments. I build Python/SQL data pipelines and applied AI — RAG, NLP, and ML — that turn raw telemetry and free-text narratives into structured, queryable insight. Strong on data engineering and analytics, with factory-systems experience (MES, streaming, IIoT) underneath.</p>
-        <div class="pl-about-skills">
-          <div class="pl-about-skill-row">
-            <span class="pl-about-skill-area">Data &amp; analytics</span>
-            <span class="pl-about-skill-list">Advanced SQL (window fns, CTEs) · Python (Pandas, scikit-learn) · ETL pipelines · Databricks · Power BI · streaming ingestion</span>
+    <ul class="min-projects">
+      <li>
+        <a class="min-project" href="https://github.com/vgandhi1/QualityMind-RAG" target="_blank" rel="noopener">
+          <div class="min-project-top">
+            <h3>QualityMind-RAG</h3>
+            <span class="min-project-tag">Data + AI</span>
           </div>
-          <div class="pl-about-skill-row">
-            <span class="pl-about-skill-area">AI / ML</span>
-            <span class="pl-about-skill-list">NLP (TF-IDF) · Agentic RAG (LangGraph) · Text-to-SQL · PyTorch · AWS serverless</span>
-          </div>
-          <div class="pl-about-skill-row">
-            <span class="pl-about-skill-area">Factory systems</span>
-            <span class="pl-about-skill-list">MES (MARS 2.0) · IIoT · Kafka · streaming pipelines · EOL test &amp; conveyance</span>
-          </div>
-        </div>
-      </div>
-      <div class="pl-about-right">
-        <div class="pl-about-links">
-          <a href="project_execution.html">Project roadmap →</a>
-          <a href="#projects">Browse all projects ↓</a>
-          <a href="https://vgandhi1.github.io/web-interactive-collection/" target="_blank" rel="noopener">Interactive lab ↗</a>
-          <a href="mailto:gandhivinay2008@gmail.com">Get in touch</a>
-        </div>
-        <div class="pl-about-stat pl-about-stat-active">
-          <div class="pl-about-stat-label">Next · 6-month roadmap</div>
-          <div class="pl-about-stat-value">AEGIS — real-time manufacturing intelligence platform</div>
-          <div class="pl-about-stat-sub">Apr–Dec 2026</div>
-          <a class="pl-about-stat-link" href="factory-ai.html">Full platform story →</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="flagship" class="pl-section" aria-labelledby="flagship-heading">
-    <div class="pl-sec-head">
-      <h2 id="flagship-heading">★ Flagship — Data + AI</h2>
-      <p>Lead projects: free-text narratives and telemetry turned into structured, queryable data with applied AI.</p>
-    </div>
-    <div class="pl-grid">
-      <a class="pl-card pl-card-ext pl-card-feature" href="https://github.com/vgandhi1/QualityMind-RAG" target="_blank" rel="noopener">
-        <div class="pl-card-head">
-          <div class="pl-card-title-wrap">
-            <div class="pl-card-icon" aria-hidden="true">🧠</div>
-            <h3>QualityMind-RAG <span class="pl-xchip">Data + AI</span></h3>
-          </div>
-          <span class="pl-status pl-status-production">Production-style</span>
-        </div>
-        <p>Conversational analytics over manufacturing data — Hybrid RAG (Pinecone) plus Text-to-SQL (Vanna 2.0, PostgreSQL), orchestrated with LangGraph agents to query structured + unstructured records.</p>
-        <div class="pl-card-meta">FastAPI · AWS Lambda · LangGraph · Pinecone · PostgreSQL · Redis</div>
-      </a>
-
-      <a class="pl-card pl-card-ext pl-card-feature" href="https://github.com/vgandhi1/CLaimLens" target="_blank" rel="noopener">
-        <div class="pl-card-head">
-          <div class="pl-card-title-wrap">
-            <div class="pl-card-icon" aria-hidden="true">📝</div>
-            <h3>ClaimLens <span class="pl-xchip">Data + AI</span></h3>
-          </div>
-          <span class="pl-status pl-status-production">Production-style</span>
-        </div>
-        <p>Warranty-narrative NLP for field-quality RCA — classifies overcycle anomalies (Soft Reset, Cloud Sync) at <strong>macro-F1 0.90</strong> and rolls free-text claims into Pareto failure trends that feed 5-Why / 8D.</p>
-        <div class="pl-card-meta">scikit-learn · FastAPI · github.com/vgandhi1/CLaimLens</div>
-      </a>
-
-      <a class="pl-card pl-card-ext pl-card-feature" href="https://github.com/vgandhi1/automotive-visual-qa-engine" target="_blank" rel="noopener">
-        <div class="pl-card-head">
-          <div class="pl-card-title-wrap">
-            <div class="pl-card-icon" aria-hidden="true">👁️</div>
-            <h3>Automotive visual QA <span class="pl-xchip">Data + AI</span></h3>
-          </div>
-          <span class="pl-status pl-status-research">Research</span>
-        </div>
-        <p>Vision inference pipeline — edge CLIP, AWS serverless path, MES-style FastAPI integration for inline image classification.</p>
-        <div class="pl-card-meta">github.com/vgandhi1/automotive-visual-qa-engine</div>
-      </a>
-    </div>
-  </section>
-
-  <section id="projects" class="pl-section" aria-labelledby="projects-heading">
-    <div class="pl-sec-head">
-      <h2 id="projects-heading">Projects</h2>
-      <p>Grouped by pillar, <strong>Data</strong> and <strong>AI</strong> first — the field-quality &amp; warranty work hiring managers care about. Filter below, or scroll all.</p>
-    </div>
-
-    <div class="pl-pillars" role="tablist" aria-label="Project pillars">
-      <button class="pl-pillar-tab is-active" role="tab" aria-selected="true" data-pillar="all">All</button>
-      <button class="pl-pillar-tab" role="tab" aria-selected="false" data-pillar="data">Data &amp; Analytics</button>
-      <button class="pl-pillar-tab" role="tab" aria-selected="false" data-pillar="ai">AI Engineering</button>
-      <button class="pl-pillar-tab" role="tab" aria-selected="false" data-pillar="software">Software / Factory Systems</button>
-      <button class="pl-pillar-tab" role="tab" aria-selected="false" data-pillar="product">Product</button>
-    </div>
-
-    <!-- ============================ PILLAR A — DATA ENGINEERING ============================ -->
-    <section class="pl-pillar" id="pillar-data" data-pillar="data" aria-label="Data Engineering">
-      <header class="pl-pillar-head">
-        <h2 class="pl-pillar-title"><span class="pl-pillar-letter" aria-hidden="true">A</span>Data &amp; Analytics</h2>
-        <p class="pl-pillar-sub">Warranty / field analytics · SQL &amp; Python pipelines · lakehouses · streaming ingestion · SPC</p>
-      </header>
-
-      <p class="pl-subgroup-label">Federated Data Mesh</p>
-      <div class="pl-grid">
-        <a class="pl-card pl-card-ext pl-card-mesh" href="https://github.com/vgandhi1/OMNI-Mesh" target="_blank" rel="noopener">
-          <div class="pl-card-head">
-            <div class="pl-card-title-wrap">
-              <div class="pl-card-icon" aria-hidden="true">🧩</div>
-              <h3>OMNI-Mesh <span class="pl-xchip">+ AI</span></h3>
-            </div>
-            <span class="pl-status pl-status-demo">Runnable demo</span>
-          </div>
-          <p>Universal polymorphic cyber-physical data mesh. One codebase runs three domains — 🏗️ MANUFACTURING (OPC UA telemetry → SLA enforcement), 🩺 HEALTH_TECH (HIPAA-aware PHI masking), and 🤖 ROBOTICS (VLA training flywheel) — over a shared Iceberg + dbt medallion + Agentic RAG skeleton with fail-closed keyed-HMAC masking.</p>
-          <div class="pl-card-meta">Apache Iceberg · dbt · Dagster · DuckDB · PyTorch · Ray · ChromaDB</div>
+          <p>Conversational analytics over manufacturing data — Hybrid RAG (Pinecone) plus Text-to-SQL, orchestrated with LangGraph agents.</p>
+          <div class="min-project-meta">LangGraph · Pinecone · PostgreSQL · FastAPI</div>
         </a>
-      </div>
-
-      <p class="pl-subgroup-label">Data / ELT &amp; Analytics</p>
-      <div class="pl-grid">
-        <a class="pl-card pl-card-ext" href="https://github.com/vgandhi1/Crypto-Data-ETL" target="_blank" rel="noopener">
-          <div class="pl-card-head">
-            <div class="pl-card-title-wrap">
-              <div class="pl-card-icon" aria-hidden="true">⛓️</div>
-              <h3>Crypto data ETL</h3>
-            </div>
-            <span class="pl-status pl-status-research">Research</span>
+      </li>
+      <li>
+        <a class="min-project" href="https://github.com/vgandhi1/claimlens" target="_blank" rel="noopener">
+          <div class="min-project-top">
+            <h3>ClaimLens</h3>
+            <span class="min-project-tag">NLP</span>
           </div>
-          <p>Data pipelines and extraction patterns for crypto-market style analytical workloads.</p>
-          <div class="pl-card-meta">github.com/vgandhi1/Crypto-Data-ETL</div>
+          <p>Warranty-narrative NLP for field-quality RCA — macro-F1 0.90 on a 1,200-narrative synthetic eval, Pareto trends for 5-Why / 8D.</p>
+          <div class="min-project-meta">scikit-learn · FastAPI</div>
         </a>
-
-        <a class="pl-card pl-card-ext" href="https://github.com/vgandhi1/MARKET_MOOD_RING" target="_blank" rel="noopener">
-          <div class="pl-card-head">
-            <div class="pl-card-title-wrap">
-              <div class="pl-card-icon" aria-hidden="true">📈</div>
-              <h3>Market Mood Ring</h3>
-            </div>
-            <span class="pl-status pl-status-research">Research</span>
+      </li>
+      <li>
+        <a class="min-project" href="https://github.com/vgandhi1/OMNI-Mesh" target="_blank" rel="noopener">
+          <div class="min-project-top">
+            <h3>OMNI-Mesh</h3>
+            <span class="min-project-tag">Data mesh</span>
           </div>
-          <p>Market sentiment analytics — real-time data aggregation, scoring, and visualization across financial instruments.</p>
-          <div class="pl-card-meta">github.com/vgandhi1/MARKET_MOOD_RING</div>
+          <p>Polymorphic cyber-physical data mesh — manufacturing, health, and robotics domains over Iceberg + dbt + Agentic RAG.</p>
+          <div class="min-project-meta">Iceberg · dbt · Dagster · ChromaDB</div>
         </a>
-
-        <a class="pl-card pl-card-ext" href="https://github.com/vgandhi1/Big-Data-Analytics-in-Healthcare" target="_blank" rel="noopener">
-          <div class="pl-card-head">
-            <div class="pl-card-title-wrap">
-              <div class="pl-card-icon" aria-hidden="true">🏥</div>
-              <h3>Healthcare analytics</h3>
-            </div>
-            <span class="pl-status pl-status-research">Research</span>
+      </li>
+      <li>
+        <a class="min-project" href="https://github.com/vgandhi1/edge-telemetry-plane" target="_blank" rel="noopener">
+          <div class="min-project-top">
+            <h3>Edge telemetry plane</h3>
+            <span class="min-project-tag">Streaming</span>
           </div>
-          <p>Large-scale analytics over healthcare datasets — big-data processing and feature pipelines.</p>
-          <div class="pl-card-meta">github.com/vgandhi1/Big-Data-Analytics-in-Healthcare</div>
+          <p>MQTT → Rust edge (NATS) → gRPC → Go cloud (Kafka → TimescaleDB) for factory and fleet telemetry.</p>
+          <div class="min-project-meta">Rust · Go · Kafka · TimescaleDB</div>
         </a>
-
-        <a class="pl-card pl-card-ext" href="https://github.com/vgandhi1/LLSPIN-Project" target="_blank" rel="noopener">
-          <div class="pl-card-head">
-            <div class="pl-card-title-wrap">
-              <div class="pl-card-icon" aria-hidden="true">🔬</div>
-              <h3>LLSPIN</h3>
-            </div>
-            <span class="pl-status pl-status-research">Research</span>
-          </div>
-          <p>Healthcare research project — data analysis and modeling pipeline.</p>
-          <div class="pl-card-meta">github.com/vgandhi1/LLSPIN-Project</div>
-        </a>
-      </div>
-
-      <p class="pl-subgroup-label">Streaming &amp; Telemetry</p>
-      <div class="pl-grid">
-        <a class="pl-card pl-card-ext" href="https://github.com/vgandhi1/edge-telemetry-plane" target="_blank" rel="noopener">
-          <div class="pl-card-head">
-            <div class="pl-card-title-wrap">
-              <div class="pl-card-icon" aria-hidden="true">📡</div>
-              <h3>Edge telemetry plane <span class="pl-xchip">+ Software</span></h3>
-            </div>
-            <span class="pl-status pl-status-production">Production-style</span>
-          </div>
-          <p>DETCP reference stack — MQTT → Rust edge (NATS JetStream) → gRPC → Go cloud (Kafka → TimescaleDB) for factory &amp; fleet telemetry.</p>
-          <div class="pl-card-meta">github.com/vgandhi1/edge-telemetry-plane</div>
-        </a>
-
-        <a class="pl-card pl-card-ext" href="https://github.com/vgandhi1/SentinelFlow" target="_blank" rel="noopener">
-          <div class="pl-card-head">
-            <div class="pl-card-title-wrap">
-              <div class="pl-card-icon" aria-hidden="true">🌊</div>
-              <h3>SentinelFlow</h3>
-            </div>
-            <span class="pl-status pl-status-production">Production-style</span>
-          </div>
-          <p>IIoT telemetry — PLCs, OPC UA, Kafka, and GraphQL for digital-twin style dashboards.</p>
-          <div class="pl-card-meta">github.com/vgandhi1/SentinelFlow</div>
-        </a>
-      </div>
-    </section>
-
-    <!-- ============================ PILLAR B — AI ENGINEERING ============================ -->
-    <section class="pl-pillar" id="pillar-ai" data-pillar="ai" aria-label="AI Engineering">
-      <header class="pl-pillar-head">
-        <h2 class="pl-pillar-title"><span class="pl-pillar-letter" aria-hidden="true">B</span>AI Engineering</h2>
-        <p class="pl-pillar-sub">ML · computer vision · agentic AI / RAG · robotics ML · forecasting</p>
-      </header>
-
-      <p class="pl-subgroup-label">Industrial &amp; Factory AI</p>
-      <div class="pl-grid">
-        <a class="pl-card pl-card-ext" href="https://github.com/vgandhi1/aegis" target="_blank" rel="noopener">
-          <div class="pl-card-head">
-            <div class="pl-card-title-wrap">
-              <div class="pl-card-icon" aria-hidden="true">🛡️</div>
-              <h3>AEGIS <span class="pl-xchip">+ Data</span></h3>
-            </div>
-            <span class="pl-status pl-status-in-progress">Next · 6-mo roadmap</span>
+      </li>
+      <li>
+        <a class="min-project" href="https://github.com/vgandhi1/aegis" target="_blank" rel="noopener">
+          <div class="min-project-top">
+            <h3>AEGIS</h3>
+            <span class="min-project-tag">Building</span>
           </div>
           <p>Manufacturing correlation engine — PLC telemetry, MES work orders, and streaming ML inference.</p>
-          <div class="pl-card-meta">github.com/vgandhi1/aegis</div>
+          <div class="min-project-meta">In build · Apr–Dec 2026</div>
         </a>
-      </div>
-      <p class="pl-group-note"><strong>Factory AI Platform</strong> — the next 6-month flagship roadmap, featured in <a href="#spotlights">Factory systems &amp; demos</a> below (full story: <a href="factory-ai.html">factory-ai.html</a>).</p>
-
-      <p class="pl-subgroup-label">Agentic AI &amp; RAG</p>
-      <div class="pl-grid">
-        <a class="pl-card pl-card-ext" href="https://github.com/vgandhi1/rag-qa-system" target="_blank" rel="noopener">
-          <div class="pl-card-head">
-            <div class="pl-card-title-wrap">
-              <div class="pl-card-icon" aria-hidden="true">💬</div>
-              <h3>RAG QA system</h3>
-            </div>
-            <span class="pl-status pl-status-research">Research</span>
+      </li>
+      <li>
+        <a class="min-project" href="https://github.com/vgandhi1/automotive-visual-qa-engine" target="_blank" rel="noopener">
+          <div class="min-project-top">
+            <h3>Automotive visual QA</h3>
+            <span class="min-project-tag">Vision</span>
           </div>
-          <p>Question answering over documents with retrieval-augmented generation patterns.</p>
-          <div class="pl-card-meta">github.com/vgandhi1/rag-qa-system</div>
+          <p>Edge CLIP + AWS serverless vision pipeline with MES-style FastAPI integration for inline classification.</p>
+          <div class="min-project-meta">CLIP · AWS Lambda · FastAPI</div>
         </a>
-
-        <a class="pl-card pl-card-ext" href="https://github.com/vgandhi1/data-analytics-ai-agents" target="_blank" rel="noopener">
-          <div class="pl-card-head">
-            <div class="pl-card-title-wrap">
-              <div class="pl-card-icon" aria-hidden="true">📊</div>
-              <h3>Data analytics AI agents</h3>
-            </div>
-            <span class="pl-status pl-status-research">Research</span>
-          </div>
-          <p>Agent-oriented flows for analytics workloads and structured reasoning over data.</p>
-          <div class="pl-card-meta">github.com/vgandhi1/data-analytics-ai-agents</div>
-        </a>
-
-        <a class="pl-card pl-card-ext" href="https://github.com/vgandhi1/factory-genius" target="_blank" rel="noopener">
-          <div class="pl-card-head">
-            <div class="pl-card-title-wrap">
-              <div class="pl-card-icon" aria-hidden="true">⚙️</div>
-              <h3>Factory Genius</h3>
-            </div>
-            <span class="pl-status pl-status-research">Reference</span>
-          </div>
-          <p>Conveyance &amp; rotating equipment PM: MQTT anomalies, BM25 RAG over manuals, optional LLM diagnosis, React dashboard.</p>
-          <div class="pl-card-meta">github.com/vgandhi1/factory-genius</div>
-        </a>
-      </div>
-
-      <p class="pl-subgroup-label">Computer Vision &amp; ML</p>
-      <div class="pl-grid">
-        <a class="pl-card pl-card-ext" href="https://github.com/vgandhi1/cell-to-pack" target="_blank" rel="noopener">
-          <div class="pl-card-head">
-            <div class="pl-card-title-wrap">
-              <div class="pl-card-icon" aria-hidden="true">🔋</div>
-              <h3>Cell-to-Pack</h3>
-            </div>
-            <span class="pl-status pl-status-research">Reference</span>
-          </div>
-          <p>EV battery assembly vision stack: 2.5D RGB+depth fusion, VLM-style inference API, PLC halt &amp; MES audit trail.</p>
-          <div class="pl-card-meta">github.com/vgandhi1/cell-to-pack</div>
-        </a>
-
-        <a class="pl-card pl-card-ext" href="https://github.com/vgandhi1/AutoClaim-VLM" target="_blank" rel="noopener">
-          <div class="pl-card-head">
-            <div class="pl-card-title-wrap">
-              <div class="pl-card-icon" aria-hidden="true">🚗</div>
-              <h3>AutoClaim-VLM</h3>
-            </div>
-            <span class="pl-status pl-status-research">Research</span>
-          </div>
-          <p>VLM vehicle-damage assessment ETL for insurance / fleet claims — Glue → SageMaker (PaliGemma 3B) → Redshift / DynamoDB with confidence-based routing. Latency / accuracy figures are projected design targets.</p>
-          <div class="pl-card-meta">AWS Glue · SageMaker · Redshift · github.com/vgandhi1/AutoClaim-VLM</div>
-        </a>
-
-        <a class="pl-card pl-card-ext" href="https://github.com/vgandhi1/OCR-Expense-Intelligence" target="_blank" rel="noopener">
-          <div class="pl-card-head">
-            <div class="pl-card-title-wrap">
-              <div class="pl-card-icon" aria-hidden="true">🧾</div>
-              <h3>OCR Expense Intelligence <span class="pl-xchip">+ Product</span></h3>
-            </div>
-            <span class="pl-status pl-status-in-progress">GitHub repo</span>
-          </div>
-          <p>AI-powered receipt OCR — extract merchant, date, totals, and line items; auto-categorize spend; dashboard analytics with CSV/Excel export. FARM-stack codebase (codename Extracta AI).</p>
-          <div class="pl-card-meta">github.com/vgandhi1/OCR-Expense-Intelligence</div>
-        </a>
-
-        <a class="pl-card pl-card-ext" href="https://github.com/vgandhi1/ecommerce-demand-forecast" target="_blank" rel="noopener">
-          <div class="pl-card-head">
-            <div class="pl-card-title-wrap">
-              <div class="pl-card-icon" aria-hidden="true">📦</div>
-              <h3>eCommerce Demand Forecasting</h3>
-            </div>
-            <span class="pl-status pl-status-research">Research</span>
-          </div>
-          <p>ARIMA(2,1,1) baseline upgraded to LSTM + TFT + N-BEATS ensemble — dbt feature mart, Airflow DAG, MLflow experiment tracking, FastAPI serving, Kafka streaming, and Prometheus drift monitoring.</p>
-          <div class="pl-card-meta">PyTorch Lightning · dbt · Airflow · MLflow · FastAPI · Kafka · DuckDB</div>
-        </a>
-
-        <a class="pl-card pl-card-ext" href="https://github.com/vgandhi1/Prism-Federated" target="_blank" rel="noopener">
-          <div class="pl-card-head">
-            <div class="pl-card-title-wrap">
-              <div class="pl-card-icon" aria-hidden="true">🔐</div>
-              <h3>Prism-Federated</h3>
-            </div>
-            <span class="pl-status pl-status-research">Research</span>
-          </div>
-          <p>Privacy-preserving distributed intelligence and federated learning for sensitive data silos.</p>
-          <div class="pl-card-meta">github.com/vgandhi1/Prism-Federated</div>
-        </a>
-      </div>
-
-      <p class="pl-subgroup-label">Robotics &amp; Embodied AI</p>
-      <div class="pl-grid">
-        <a class="pl-card pl-card-ext" href="https://github.com/vgandhi1/vla-bench" target="_blank" rel="noopener">
-          <div class="pl-card-head">
-            <div class="pl-card-title-wrap">
-              <div class="pl-card-icon" aria-hidden="true">🚀</div>
-              <h3>VLA-bench <span class="pl-xchip">+ Data</span></h3>
-            </div>
-            <span class="pl-status pl-status-research">Research</span>
-          </div>
-          <p>Sim-to-real VLA fine-tuning profiler: WebDataset → FlashAttention-2 → FSDP. 3.3× throughput, −65% training cost per 500K-frame run.</p>
-          <div class="pl-card-meta">github.com/vgandhi1/vla-bench</div>
-        </a>
-
-        <a class="pl-card pl-card-ext" href="https://github.com/vgandhi1/RL-Pendulum" target="_blank" rel="noopener">
-          <div class="pl-card-head">
-            <div class="pl-card-title-wrap">
-              <div class="pl-card-icon" aria-hidden="true">⚖️</div>
-              <h3>RL-Pendulum</h3>
-            </div>
-            <span class="pl-status pl-status-research">Research</span>
-          </div>
-          <p>Sim-to-real RL pipeline: PPO policy trained in Gymnasium, exported to TFLite, deployed on ESP32 for physical pendulum balance.</p>
-          <div class="pl-card-meta">github.com/vgandhi1/RL-Pendulum</div>
-        </a>
-
-        <a class="pl-card pl-card-ext" href="https://github.com/vgandhi1/semantic-SLAM-Rover" target="_blank" rel="noopener">
-          <div class="pl-card-head">
-            <div class="pl-card-title-wrap">
-              <div class="pl-card-icon" aria-hidden="true">🗺️</div>
-              <h3>Semantic SLAM Rover</h3>
-            </div>
-            <span class="pl-status pl-status-research">Research</span>
-          </div>
-          <p>Ground rover with semantic scene understanding — ROS 2 Humble, LiDAR SLAM, TensorRT FP16 on Jetson Orin Nano at ≥30 FPS.</p>
-          <div class="pl-card-meta">github.com/vgandhi1/semantic-SLAM-Rover</div>
-        </a>
-      </div>
-    </section>
-
-    <!-- ============================ PILLAR C — SOFTWARE SYSTEMS ============================ -->
-    <section class="pl-pillar" id="pillar-software" data-pillar="software" aria-label="Software Systems">
-      <header class="pl-pillar-head">
-        <h2 class="pl-pillar-title"><span class="pl-pillar-letter" aria-hidden="true">C</span>Software / Factory Systems</h2>
-        <p class="pl-pillar-sub">Distributed backends · streaming infra · MES / EOL · EV / OTA · full-stack web</p>
-      </header>
-
-      <p class="pl-subgroup-label">Streaming &amp; Backend</p>
-      <div class="pl-grid">
-        <a class="pl-card pl-card-ext" href="https://github.com/vgandhi1/Sentinel-Stream" target="_blank" rel="noopener">
-          <div class="pl-card-head">
-            <div class="pl-card-title-wrap">
-              <div class="pl-card-icon" aria-hidden="true">⚡</div>
-              <h3>Sentinel-Stream <span class="pl-xchip">+ AI</span></h3>
-            </div>
-            <span class="pl-status pl-status-production">Production-style</span>
-          </div>
-          <p>High-throughput, sub-100ms ML engine for real-time financial defense using Kappa-style streaming design.</p>
-          <div class="pl-card-meta">github.com/vgandhi1/Sentinel-Stream</div>
-        </a>
-      </div>
-
-      <p class="pl-subgroup-label">EV &amp; OTA</p>
-      <div class="pl-grid">
-        <a class="pl-card pl-card-ext" href="https://github.com/vgandhi1/Overdrive-OTA-Manager" target="_blank" rel="noopener">
-          <div class="pl-card-head">
-            <div class="pl-card-title-wrap">
-              <div class="pl-card-icon" aria-hidden="true">🚗</div>
-              <h3>Overdrive OTA Manager</h3>
-            </div>
-            <span class="pl-status pl-status-production">Production-style</span>
-          </div>
-          <p>Enterprise fleet OTA orchestration — NATS control plane, S3 data plane, Go orchestrator, and React command center.</p>
-          <div class="pl-card-meta">github.com/vgandhi1/Overdrive-OTA-Manager</div>
-        </a>
-
-        <a class="pl-card pl-card-ext" href="https://github.com/vgandhi1/OTA-firmware-verifier" target="_blank" rel="noopener">
-          <div class="pl-card-head">
-            <div class="pl-card-title-wrap">
-              <div class="pl-card-icon" aria-hidden="true">✅</div>
-              <h3>OTA firmware verifier</h3>
-            </div>
-            <span class="pl-status pl-status-research">Reference</span>
-          </div>
-          <p>Signature &amp; integrity verification for OTA firmware images before they reach vehicle ECUs.</p>
-          <div class="pl-card-meta">github.com/vgandhi1/OTA-firmware-verifier</div>
-        </a>
-
-        <a class="pl-card pl-card-ext" href="https://github.com/vgandhi1/automotive-key-provission" target="_blank" rel="noopener">
-          <div class="pl-card-head">
-            <div class="pl-card-title-wrap">
-              <div class="pl-card-icon" aria-hidden="true">🔑</div>
-              <h3>Key provisioning</h3>
-            </div>
-            <span class="pl-status pl-status-research">Reference</span>
-          </div>
-          <p>Automotive key provisioning — secure key lifecycle and distribution for vehicle ECUs.</p>
-          <div class="pl-card-meta">github.com/vgandhi1/automotive-key-provission</div>
-        </a>
-      </div>
-
-      <p class="pl-subgroup-label">Full-stack &amp; Web</p>
-      <div class="pl-grid">
-        <a class="pl-card pl-card-ext" href="https://github.com/vgandhi1/OCR-Expense-Intelligence" target="_blank" rel="noopener">
-          <div class="pl-card-head">
-            <div class="pl-card-title-wrap">
-              <div class="pl-card-icon" aria-hidden="true">🧾</div>
-              <h3>OCR Expense Intelligence <span class="pl-xchip">+ AI</span></h3>
-            </div>
-            <span class="pl-status pl-status-in-progress">GitHub repo</span>
-          </div>
-          <p>SaaS-style expense tracker — upload receipt photos, async OCR pipeline (EasyOCR + PyTorch), MongoDB persistence, React dashboard with spend analytics and exports.</p>
-          <div class="pl-card-meta">FastAPI · React · MongoDB · Celery · Docker · github.com/vgandhi1/OCR-Expense-Intelligence</div>
-        </a>
-
-        <a class="pl-card pl-card-ext" href="https://vgandhi1.github.io/weather-WebApp/" target="_blank" rel="noopener">
-          <div class="pl-card-head">
-            <div class="pl-card-title-wrap">
-              <div class="pl-card-icon" aria-hidden="true">🌦️</div>
-              <h3>Weather WebApp</h3>
-            </div>
-            <span class="pl-status pl-status-production">Live demo</span>
-          </div>
-          <p>Responsive weather application — live API integration and a clean front-end build.</p>
-          <div class="pl-card-meta">vgandhi1.github.io/weather-WebApp</div>
-        </a>
-
-        <a class="pl-card pl-card-ext" href="https://github.com/vgandhi1/SmartFound" target="_blank" rel="noopener">
-          <div class="pl-card-head">
-            <div class="pl-card-title-wrap">
-              <div class="pl-card-icon" aria-hidden="true">🔎</div>
-              <h3>SmartFound</h3>
-            </div>
-            <span class="pl-status pl-status-research">Research</span>
-          </div>
-          <p>Lost-and-found style full-stack application with search and matching workflows.</p>
-          <div class="pl-card-meta">github.com/vgandhi1/SmartFound</div>
-        </a>
-
-        <a class="pl-card pl-card-ext" href="https://github.com/vgandhi1/HabitArc" target="_blank" rel="noopener">
-          <div class="pl-card-head">
-            <div class="pl-card-title-wrap">
-              <div class="pl-card-icon" aria-hidden="true">📅</div>
-              <h3>HabitArc</h3>
-            </div>
-            <span class="pl-status pl-status-research">Research</span>
-          </div>
-          <p>Habit-tracking application — front-end state management and persistence patterns.</p>
-          <div class="pl-card-meta">github.com/vgandhi1/HabitArc</div>
-        </a>
-
-        <a class="pl-card pl-card-ext" href="https://github.com/vgandhi1/ToDoApp" target="_blank" rel="noopener">
-          <div class="pl-card-head">
-            <div class="pl-card-title-wrap">
-              <div class="pl-card-icon" aria-hidden="true">🗒️</div>
-              <h3>ToDo app (FARM stack)</h3>
-            </div>
-            <span class="pl-status pl-status-research">Research</span>
-          </div>
-          <p>Task manager built on the FARM stack (FastAPI · React · MongoDB).</p>
-          <div class="pl-card-meta">github.com/vgandhi1/ToDoApp</div>
-        </a>
-      </div>
-      <p class="pl-group-note"><strong>MVP demos</strong> (Motel Portal, OCR Expense Intelligence, and more) — featured in <a href="#spotlights">Deep dives &amp; demos</a> above (full walkthroughs: <a href="mvp.html">mvp.html</a>).</p>
-    </section>
-
-    <!-- ============================ BAND D — PRODUCT MANAGEMENT ============================ -->
-    <section class="pl-pillar" id="pillar-product" data-pillar="product" aria-label="Product Management">
-      <header class="pl-pillar-head">
-        <h2 class="pl-pillar-title"><span class="pl-pillar-letter" aria-hidden="true">D</span>Product Management</h2>
-        <p class="pl-pillar-sub">PRDs · product demos · value-attribution dashboards</p>
-      </header>
-
-      <p class="pl-subgroup-label">Product &amp; Strategy</p>
-      <div class="pl-grid">
-        <a class="pl-card pl-card-ext" href="https://github.com/vgandhi1/apex-recovery" target="_blank" rel="noopener">
-          <div class="pl-card-head">
-            <div class="pl-card-title-wrap">
-              <div class="pl-card-icon" aria-hidden="true">🔄</div>
-              <h3>APEX-recover</h3>
-            </div>
-            <span class="pl-status pl-status-production">Production-style</span>
-          </div>
-          <p>PM-authored PRD and React/TypeScript prototype for the human-in-the-loop recovery workflow when a robot's autonomous policy fails on the factory floor.</p>
-          <div class="pl-card-meta">github.com/vgandhi1/apex-recovery · live demo at vgandhi1.github.io/apex-recovery</div>
-        </a>
-
-        <a class="pl-card pl-card-ext" href="https://github.com/vgandhi1/TeleOp-flywheel-dashboard" target="_blank" rel="noopener">
-          <div class="pl-card-head">
-            <div class="pl-card-title-wrap">
-              <div class="pl-card-icon" aria-hidden="true">🎮</div>
-              <h3>TeleOp Flywheel Dashboard</h3>
-            </div>
-            <span class="pl-status pl-status-production">Production-style</span>
-          </div>
-          <p>Attribute exact dollar value to human-in-the-loop robotic teleoperation data — Streamlit dashboard surfacing operator quality at per-session granularity.</p>
-          <div class="pl-card-meta">github.com/vgandhi1/TeleOp-flywheel-dashboard</div>
-        </a>
-
-        <a class="pl-card pl-card-ext" href="https://github.com/vgandhi1/OCR-Expense-Intelligence" target="_blank" rel="noopener">
-          <div class="pl-card-head">
-            <div class="pl-card-title-wrap">
-              <div class="pl-card-icon" aria-hidden="true">🧾</div>
-              <h3>OCR Expense Intelligence <span class="pl-xchip">+ AI</span></h3>
-            </div>
-            <span class="pl-status pl-status-in-progress">GitHub repo</span>
-          </div>
-          <p>B2B document-intelligence concept — receipt upload to structured expenses, categorization, and spending analytics; Dockerized FARM stack.</p>
-          <div class="pl-card-meta">github.com/vgandhi1/OCR-Expense-Intelligence</div>
-        </a>
-      </div>
-    </section>
-
-    <p class="pl-more-tail">Browse everything on <a href="https://github.com/vgandhi1?tab=repositories" target="_blank" rel="noopener">GitHub</a>. Product demos live on <a href="mvp.html">MVP</a>. Deck-style pages and EV references live in the <a href="https://vgandhi1.github.io/web-interactive-collection/#decks" target="_blank" rel="noopener">interactive lab → Decks &amp; EV</a>.</p>
-
+      </li>
+    </ul>
   </section>
 
-  <section id="spotlights" class="pl-section" aria-labelledby="spotlights-heading">
-    <div class="pl-sec-head">
-      <h2 id="spotlights-heading">Factory systems &amp; demos</h2>
-      <p>Deep-dive pages — flagship factory platform and live product MVPs.</p>
+  <section id="about" class="min-section" aria-labelledby="about-heading">
+    <div class="min-sec-head">
+      <h2 id="about-heading">About</h2>
+      <p>Data first — AI today, systems next.</p>
     </div>
-    <div class="pl-spotlight-grid">
-      <a class="pl-spotlight-card pl-spotlight-fai" href="factory-ai.html">
-        <div class="pl-spotlight-top">
-          <span class="pl-spotlight-icon" aria-hidden="true">🏭</span>
-          <span class="pl-spotlight-badge">Next · 6-mo roadmap</span>
-        </div>
-        <h3>Factory AI Platform</h3>
-        <p>PLC + MES + streaming ML — architecture, tech stack, business value, and AEGIS build status.</p>
-        <span class="pl-spotlight-cta">View full breakdown →</span>
+    <dl class="min-skills">
+      <div class="min-skill">
+        <dt>Data &amp; analytics</dt>
+        <dd>Advanced SQL · Python · ETL pipelines · Databricks · Power BI · streaming ingestion</dd>
+      </div>
+      <div class="min-skill">
+        <dt>AI / ML</dt>
+        <dd>NLP · Agentic RAG · Text-to-SQL · PyTorch · AWS serverless</dd>
+      </div>
+      <div class="min-skill">
+        <dt>Systems (building)</dt>
+        <dd>MES · IIoT · Kafka · Rust/Go edge · streaming infra · EOL test &amp; conveyance</dd>
+      </div>
+    </dl>
+  </section>
+
+  <section class="min-section" aria-labelledby="explore-heading">
+    <div class="min-sec-head">
+      <h2 id="explore-heading">Explore</h2>
+      <p>Deep-dive pages and the full project catalog.</p>
+    </div>
+    <div class="min-tiles">
+      <a class="min-tile" href="factory-ai.html">
+        <strong>Factory AI platform</strong>
+        <span>PLC + MES + streaming ML — AEGIS roadmap and architecture.</span>
+        <span class="min-tile-arrow">View →</span>
       </a>
-      <a class="pl-spotlight-card pl-spotlight-mvp" href="mvp.html">
-        <div class="pl-spotlight-top">
-          <span class="pl-spotlight-icon" aria-hidden="true">🚀</span>
-          <span class="pl-spotlight-badge">Product MVPs</span>
-        </div>
-        <h3>MVP Demos</h3>
-        <p>Live product walkthroughs — Motel Web Portal, OCR Expense Intelligence, and more full-stack demos over time.</p>
-        <span class="pl-spotlight-cta">Watch demos →</span>
+      <a class="min-tile min-tile-soon" href="project_execution.html">
+        <strong>Systems (building)</strong>
+        <span>Edge telemetry, streaming infra, EV/OTA — build order and sequencing.</span>
+        <span class="min-tile-arrow">Roadmap →</span>
+      </a>
+      <a class="min-tile" href="mvp.html">
+        <strong>MVP demos</strong>
+        <span>Live product walkthroughs — Motel Portal, OCR Expense, and more.</span>
+        <span class="min-tile-arrow">Watch →</span>
+      </a>
+      <a class="min-tile" href="https://github.com/vgandhi1?tab=repositories" target="_blank" rel="noopener">
+        <strong>All repositories</strong>
+        <span>30+ projects across data, AI, software, and product.</span>
+        <span class="min-tile-arrow">GitHub →</span>
+      </a>
+      <a class="min-tile" href="https://vgandhi1.github.io/web-interactive-collection/" target="_blank" rel="noopener">
+        <strong>Interactive lab</strong>
+        <span>Slide decks, EV references, and browser tools.</span>
+        <span class="min-tile-arrow">Launch →</span>
       </a>
     </div>
   </section>
 
-  <section id="learn" class="pl-section" aria-labelledby="learn-heading">
-    <div class="pl-sec-head">
-      <h2 id="learn-heading">Theory &amp; Programming</h2>
-      <p>9 illustrated theory topics and 6 programming tracks — all hosted on this domain.</p>
+  <section id="learn" class="min-section" aria-labelledby="learn-heading">
+    <div class="min-sec-head">
+      <h2 id="learn-heading">Learn</h2>
+      <p>Illustrated theory and programming tracks on this domain.</p>
     </div>
-
-    <div class="pl-learn-grid">
-
-      <!-- Theory column -->
-      <div class="pl-learn-col">
-        <a class="pl-learn-hub" href="theory/ml_theory_hub.html" aria-label="Open Theory Hub — 8 illustrated guides">
-          <span class="pl-learn-hub-icon" aria-hidden="true">📐</span>
-          <div class="pl-learn-hub-text">
-            <strong>Theory Hub</strong>
-            <span>8 illustrated deep-dives into ML/AI systems</span>
-          </div>
-          <span class="pl-learn-hub-arrow" aria-hidden="true">→</span>
-        </a>
-        <ul class="pl-learn-links" aria-label="Theory topics">
-          <li><a href="theory/theory_mlops.html">MLOps</a></li>
-          <li><a href="theory/theory_rag_vs_finetune.html">RAG vs Fine-Tuning</a></li>
-          <li><a href="theory/theory_data_engineering.html">Data Engineering</a></li>
-          <li><a href="theory/theory_applied_ai_engineering.html">Applied AI Engineering</a></li>
-          <li><a href="theory/theory_classical_ml.html">Classical Machine Learning</a></li>
-          <li><a href="theory/theory_deep_learning.html">Deep Learning &amp; Neural Networks</a></li>
-          <li><a href="theory/theory_llmops.html">LLMOps</a></li>
-          <li><a href="theory/theory_devops.html">DevOps</a></li>
-        </ul>
-      </div>
-
-      <!-- Programming column -->
-      <div class="pl-learn-col">
-        <a class="pl-learn-hub" href="programming/python_101.html" aria-label="Open Code Tracks — 5 programming courses">
-          <span class="pl-learn-hub-icon" aria-hidden="true">⌨️</span>
-          <div class="pl-learn-hub-text">
-            <strong>Code Tracks</strong>
-            <span>Python, PyTorch, FastAPI, Go, and SQL</span>
-          </div>
-          <span class="pl-learn-hub-arrow" aria-hidden="true">→</span>
-        </a>
-        <ul class="pl-learn-links" aria-label="Programming tracks">
-          <li><a href="programming/python_101_data_ml.html">Python — Data Science &amp; ML</a></li>
-          <li><a href="programming/python_101_pytorch.html">Python — PyTorch &amp; AI Engineering</a></li>
-          <li><a href="programming/python_101_fastapi_eng.html">Python — FastAPI &amp; Data Engineering</a></li>
-          <li><a href="programming/Go_101_Backend_Systems.html">Go 101 — Backend Systems</a></li>
-          <li><a href="programming/SQL_Interview_Prep_FactoryAnalytics.html">SQL — Factory Analytics Edition</a></li>
-        </ul>
-      </div>
-
+    <div class="min-learn">
+      <a class="min-learn-hub" href="theory/ml_theory_hub.html">
+        <span class="min-learn-icon" aria-hidden="true">📐</span>
+        <div class="min-learn-text">
+          <strong>Theory hub</strong>
+          <span>8 illustrated deep-dives into ML/AI systems</span>
+        </div>
+        <span class="min-learn-arrow" aria-hidden="true">→</span>
+      </a>
+      <a class="min-learn-hub" href="programming/python_101.html">
+        <span class="min-learn-icon" aria-hidden="true">⌨️</span>
+        <div class="min-learn-text">
+          <strong>Code tracks</strong>
+          <span>Python, PyTorch, FastAPI, Go, and SQL</span>
+        </div>
+        <span class="min-learn-arrow" aria-hidden="true">→</span>
+      </a>
     </div>
   </section>
 
-  <footer class="pl-footer">
-    <nav class="pl-footer-nav" aria-label="Footer">
-      <div class="pl-footer-col">
-        <h3 class="pl-footer-col-title">Explore</h3>
-        <ul class="pl-footer-list">
-          <li><a href="project_execution.html">Project roadmap</a></li>
-          <li><a href="factory-ai.html">Factory AI Platform</a></li>
-          <li><a href="mvp.html">MVP demos</a></li>
-          <li><a href="#projects">Projects by pillar</a></li>
-          <li><a href="#learn">Learning paths</a></li>
-          <li><a href="https://vgandhi1.github.io/web-interactive-collection/" target="_blank" rel="noopener">Interactive lab</a></li>
-        </ul>
-      </div>
-      <div class="pl-footer-col">
-        <h3 class="pl-footer-col-title">Code</h3>
-        <ul class="pl-footer-list">
-          <li><a href="https://github.com/vgandhi1" target="_blank" rel="noopener">GitHub profile</a></li>
-          <li><a href="https://github.com/vgandhi1/vgandhi1.github.io" target="_blank" rel="noopener">Portfolio source</a></li>
-        </ul>
-      </div>
-      <div class="pl-footer-col">
-        <h3 class="pl-footer-col-title">Contact</h3>
-        <ul class="pl-footer-list">
-          <li><a href="https://www.linkedin.com/in/vinaygandhi274/" target="_blank" rel="noopener">LinkedIn</a></li>
-          <li><a href="mailto:gandhivinay2008@gmail.com">Email</a></li>
-        </ul>
-      </div>
-    </nav>
-    <p class="pl-footer-copy">&copy; 2026 Vinay Gandhi. Data-focused, AI-driven engineering.</p>
+  <footer class="min-footer">
+    <p>&copy; 2026 Vinay Gandhi</p>
+    <div class="min-footer-links">
+      <a href="https://github.com/vgandhi1" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/vinaygandhi274/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://vinaygandhi.notion.site/Engineering-Portfolio-3789e26ff47c80339cbeee72d8485557" target="_blank" rel="noopener">Notion</a>
+      <a href="mailto:gandhivinay2008@gmail.com">Email</a>
+    </div>
   </footer>
 </main>
-
-<script>
-  // Three-pillar filter — progressive enhancement. Without JS, all pillars stay visible.
-  (function () {
-    var tabs = document.querySelectorAll('.pl-pillar-tab');
-    var pillars = document.querySelectorAll('.pl-pillar');
-    tabs.forEach(function (tab) {
-      tab.addEventListener('click', function () {
-        var sel = tab.dataset.pillar;
-        tabs.forEach(function (t) {
-          var on = t === tab;
-          t.classList.toggle('is-active', on);
-          t.setAttribute('aria-selected', String(on));
-        });
-        pillars.forEach(function (p) {
-          p.hidden = !(sel === 'all' || p.dataset.pillar === sel);
-        });
-      });
-    });
-  })();
-</script>
 </body>
 </html>
