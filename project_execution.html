@@ -64,7 +64,7 @@
       <a class="pex-flow-node" href="https://github.com/vgandhi1/aegis" target="_blank" rel="noopener">AEGIS</a>
       <span class="pex-flow-arrow">+</span>
       <a class="pex-flow-node" href="https://github.com/vgandhi1/SentinelFlow" target="_blank" rel="noopener">SentinelFlow</a>
-      <span class="pex-flow-arrow">← factory AI</span>
+      <span class="pex-flow-arrow">← factory systems AI</span>
       <span class="pex-flow-arrow">|</span>
       <a class="pex-flow-node" href="https://github.com/vgandhi1/OTA-firmware-verifier" target="_blank" rel="noopener">OTA Verifier</a>
       <span class="pex-flow-arrow">→</span>
@@ -78,49 +78,58 @@
   <section id="phases" class="pex-section" aria-labelledby="phases-heading">
     <div class="pex-sec-head">
       <h2 id="phases-heading">Four phases</h2>
-      <p>Progress from overview to production-style demos.</p>
+      <p>Overview → production-style demos.</p>
     </div>
-    <div class="pex-phases">
-      <article class="pex-phase">
-        <div class="pex-phase-num">0</div>
-        <h3>Orientation</h3>
-        <p class="pex-phase-time">Week 1</p>
-        <ul>
-          <li><a href="index.html">Portfolio site</a></li>
-          <li><a href="https://vgandhi1.github.io/interactive-lab/" target="_blank" rel="noopener">Interactive lab</a></li>
-          <li><a href="https://github.com/vgandhi1/TeleOp-flywheel-dashboard" target="_blank" rel="noopener">TeleOp dashboard</a> — quick demo</li>
-        </ul>
-      </article>
-      <article class="pex-phase">
-        <div class="pex-phase-num">1</div>
-        <h3>Foundation</h3>
-        <p class="pex-phase-time">Months 0–6</p>
-        <ul>
-          <li>Telemetry baseline: <a href="https://github.com/vgandhi1/edge-telemetry-plane" target="_blank" rel="noopener">edge-telemetry-plane</a> → <a href="https://github.com/vgandhi1/OMNI-Mesh" target="_blank" rel="noopener">OMNI-Mesh</a> (MANUFACTURING profile)</li>
-          <li>EV security chain: <a href="https://github.com/vgandhi1/OTA-firmware-verifier" target="_blank" rel="noopener">OTA Verifier</a> → <a href="https://github.com/vgandhi1/automotive-key-provission" target="_blank" rel="noopener">Key Provision</a></li>
-          <li>One ML project served via API (<a href="https://github.com/vgandhi1/ecommerce-demand-forecast" target="_blank" rel="noopener">Demand forecast</a>)</li>
-        </ul>
-      </article>
-      <article class="pex-phase">
-        <div class="pex-phase-num">2</div>
-        <h3>Integration</h3>
-        <p class="pex-phase-time">Months 6–18</p>
-        <ul>
-          <li>Same engine, new domains: <a href="https://github.com/vgandhi1/OMNI-Mesh" target="_blank" rel="noopener">OMNI-Mesh</a> HEALTH_TECH + ROBOTICS profiles</li>
-          <li>Vision QA + quality RAG into <a href="https://github.com/vgandhi1/aegis" target="_blank" rel="noopener">AEGIS</a></li>
-          <li>Streaming ML + MLOps (<a href="https://github.com/vgandhi1/Sentinel-Stream" target="_blank" rel="noopener">Sentinel-Stream</a>)</li>
-        </ul>
-      </article>
-      <article class="pex-phase">
-        <div class="pex-phase-num">3</div>
-        <h3>Deployment</h3>
-        <p class="pex-phase-time">Months 18–36</p>
-        <ul>
-          <li>Edge inference: <a href="https://github.com/vgandhi1/RL-Pendulum" target="_blank" rel="noopener">RL-Pendulum</a> (ESP32), <a href="https://github.com/vgandhi1/semantic-SLAM-Rover" target="_blank" rel="noopener">Semantic SLAM</a> (Jetson)</li>
-          <li>Full OTA orchestration (<a href="https://github.com/vgandhi1/Overdrive-OTA-Manager" target="_blank" rel="noopener">Overdrive OTA</a>)</li>
-          <li>Robotics + VLA: <a href="https://github.com/vgandhi1/vla-bench" target="_blank" rel="noopener">VLA-bench</a> feeds <a href="https://github.com/vgandhi1/OMNI-Mesh" target="_blank" rel="noopener">OMNI-Mesh</a> (ROBOTICS profile)</li>
-        </ul>
-      </article>
+    <div class="pex-timeline">
+      <div class="pex-tl-phase">
+        <div class="pex-tl-marker">0</div>
+        <div class="pex-tl-body">
+          <h3>Orient</h3>
+          <span class="pex-tl-time">Week 1</span>
+          <div class="pex-tl-chips">
+            <a class="pex-chip" href="index.html">Portfolio</a>
+            <a class="pex-chip" href="https://vgandhi1.github.io/interactive-lab/" target="_blank" rel="noopener">Interactive lab</a>
+            <a class="pex-chip" href="https://github.com/vgandhi1/TeleOp-flywheel-dashboard" target="_blank" rel="noopener">TeleOp demo</a>
+          </div>
+        </div>
+      </div>
+      <div class="pex-tl-phase">
+        <div class="pex-tl-marker">1</div>
+        <div class="pex-tl-body">
+          <h3>Foundation</h3>
+          <span class="pex-tl-time">Months 0–6</span>
+          <div class="pex-tl-chips">
+            <a class="pex-chip" href="https://github.com/vgandhi1/edge-telemetry-plane" target="_blank" rel="noopener">edge-telemetry-plane</a>
+            <a class="pex-chip pex-chip-mesh" href="#mesh">OMNI-Mesh · MFG</a>
+            <a class="pex-chip" href="https://github.com/vgandhi1/OTA-firmware-verifier" target="_blank" rel="noopener">OTA → Key Provision</a>
+          </div>
+        </div>
+      </div>
+      <div class="pex-tl-phase">
+        <div class="pex-tl-marker">2</div>
+        <div class="pex-tl-body">
+          <h3>Integration</h3>
+          <span class="pex-tl-time">Months 6–18</span>
+          <div class="pex-tl-chips">
+            <a class="pex-chip" href="https://github.com/vgandhi1/aegis" target="_blank" rel="noopener">AEGIS</a>
+            <a class="pex-chip" href="https://github.com/vgandhi1/Sentinel-Stream" target="_blank" rel="noopener">Sentinel-Stream</a>
+            <a class="pex-chip pex-chip-mesh" href="#mesh">Mesh · +2 domains</a>
+          </div>
+        </div>
+      </div>
+      <div class="pex-tl-phase">
+        <div class="pex-tl-marker">3</div>
+        <div class="pex-tl-body">
+          <h3>Deployment</h3>
+          <span class="pex-tl-time">Months 18–36</span>
+          <div class="pex-tl-chips">
+            <a class="pex-chip" href="https://github.com/vgandhi1/RL-Pendulum" target="_blank" rel="noopener">RL-Pendulum</a>
+            <a class="pex-chip" href="https://github.com/vgandhi1/semantic-SLAM-Rover" target="_blank" rel="noopener">Semantic SLAM</a>
+            <a class="pex-chip" href="https://github.com/vgandhi1/Overdrive-OTA-Manager" target="_blank" rel="noopener">Overdrive OTA</a>
+            <a class="pex-chip" href="https://github.com/vgandhi1/vla-bench" target="_blank" rel="noopener">VLA-bench</a>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -135,8 +144,8 @@
       <div class="pex-step"><span class="pex-step-num">2</span><div class="pex-step-body"><a href="https://github.com/vgandhi1/OTA-firmware-verifier" target="_blank" rel="noopener">OTA Verifier</a> → <a href="https://github.com/vgandhi1/automotive-key-provission" target="_blank" rel="noopener">Key Provision</a> → <a href="https://github.com/vgandhi1/Overdrive-OTA-Manager" target="_blank" rel="noopener">Overdrive OTA</a><span class="pex-pillar-chip software">Software</span><div class="pex-step-tag">EV / OTA</div></div><span class="pex-step-meta">1–2 wk</span></div>
       <div class="pex-step"><span class="pex-step-num">3</span><div class="pex-step-body"><a href="https://github.com/vgandhi1/edge-telemetry-plane" target="_blank" rel="noopener">edge-telemetry-plane</a><span class="pex-pillar-chip data">Data</span><div class="pex-step-tag">Industrial / IIoT</div></div><span class="pex-step-meta">1–2 wk</span></div>
       <div class="pex-step pex-step-mesh"><span class="pex-step-num">4</span><div class="pex-step-body"><strong><a href="https://github.com/vgandhi1/OMNI-Mesh" target="_blank" rel="noopener">OMNI-Mesh</a></strong> — one polymorphic codebase, three domain profiles: MANUFACTURING → HEALTH_TECH → ROBOTICS (flip <code>OMNI_MESH_PROFILE</code>)<span class="pex-pillar-chip data">Data</span><div class="pex-step-tag">Data Mesh</div></div><span class="pex-step-meta">2–3 wk + 1 wk each</span></div>
-      <div class="pex-step"><span class="pex-step-num">5</span><div class="pex-step-body"><strong>Pick one:</strong> <a href="https://github.com/vgandhi1/aegis" target="_blank" rel="noopener">AEGIS</a> or <a href="https://github.com/vgandhi1/SentinelFlow" target="_blank" rel="noopener">SentinelFlow</a><span class="pex-pillar-chip ai">AI</span><div class="pex-step-tag">Factory AI</div></div><span class="pex-step-meta">3–6 wk</span></div>
-      <div class="pex-step"><span class="pex-step-num">6</span><div class="pex-step-body"><a href="https://github.com/vgandhi1/factory-genius" target="_blank" rel="noopener">Factory Genius</a> → <a href="https://github.com/vgandhi1/QualityMind-RAG" target="_blank" rel="noopener">QualityMind-RAG</a><span class="pex-pillar-chip ai">AI</span><div class="pex-step-tag">Agentic AI</div></div><span class="pex-step-meta">2–4 wk</span></div>
+      <div class="pex-step"><span class="pex-step-num">5</span><div class="pex-step-body"><strong>Factory Systems AI:</strong> <a href="https://github.com/vgandhi1/aegis" target="_blank" rel="noopener">AEGIS</a> + <a href="https://github.com/vgandhi1/factory-genius" target="_blank" rel="noopener">Factory Genius</a> + <a href="https://github.com/vgandhi1/cell-to-pack" target="_blank" rel="noopener">Cell-to-Pack</a> <span style="color:var(--pex-muted)">(or <a href="https://github.com/vgandhi1/SentinelFlow" target="_blank" rel="noopener">SentinelFlow</a> for telemetry)</span><span class="pex-pillar-chip ai">AI</span><div class="pex-step-tag">Factory Systems</div></div><span class="pex-step-meta">3–6 wk</span></div>
+      <div class="pex-step"><span class="pex-step-num">6</span><div class="pex-step-body"><a href="https://github.com/vgandhi1/QualityMind-RAG" target="_blank" rel="noopener">QualityMind-RAG</a><span class="pex-pillar-chip ai">AI</span><div class="pex-step-tag">Agentic AI</div></div><span class="pex-step-meta">2–4 wk</span></div>
       <div class="pex-step"><span class="pex-step-num">7</span><div class="pex-step-body"><a href="https://github.com/vgandhi1/automotive-visual-qa-engine" target="_blank" rel="noopener">Visual QA</a> → <a href="https://github.com/vgandhi1/claimlens" target="_blank" rel="noopener">CLaimLens</a><span class="pex-pillar-chip ai">AI</span><div class="pex-step-tag">AI / ML</div></div><span class="pex-step-meta">3–5 wk</span></div>
       <div class="pex-step"><span class="pex-step-num">8</span><div class="pex-step-body"><a href="https://github.com/vgandhi1/vla-bench" target="_blank" rel="noopener">VLA-bench</a> → <a href="https://github.com/vgandhi1/apex-recovery" target="_blank" rel="noopener">APEX-recover</a><span class="pex-pillar-chip ai">AI</span><div class="pex-step-tag">Robotics</div></div><span class="pex-step-meta">3–5 wk</span></div>
       <div class="pex-step"><span class="pex-step-num">9</span><div class="pex-step-body"><a href="https://github.com/vgandhi1/RL-Pendulum" target="_blank" rel="noopener">RL-Pendulum</a> → <a href="https://github.com/vgandhi1/semantic-SLAM-Rover" target="_blank" rel="noopener">Semantic SLAM</a><span class="pex-pillar-chip ai">AI</span><div class="pex-step-tag">Edge / Deploy</div></div><span class="pex-step-meta">Ongoing</span></div>
@@ -179,36 +188,55 @@
 
   <section id="pillars" class="pex-section" aria-labelledby="pillars-heading">
     <div class="pex-sec-head">
-      <h2 id="pillars-heading">Three pillars</h2>
-      <p>Entry paths by engineering pillar — the same model used on the <a href="index.html#projects">projects page</a>.</p>
+      <h2 id="pillars-heading">Four pillars</h2>
+      <p>Entry paths by engineering pillar — same model as the <a href="index.html#projects">projects page</a>.</p>
     </div>
-    <div class="pex-tracks">
-      <article class="pex-track">
-        <p class="pex-track-label data">Data Engineering</p>
-        <p class="pex-track-flow"><a href="https://github.com/vgandhi1/edge-telemetry-plane" target="_blank" rel="noopener">edge-telemetry-plane</a> → <a href="https://github.com/vgandhi1/OMNI-Mesh" target="_blank" rel="noopener">OMNI-Mesh</a> → <a href="https://github.com/vgandhi1/Crypto-Data-ETL" target="_blank" rel="noopener">Crypto-Data-ETL</a> → <a href="https://github.com/vgandhi1/MARKET_MOOD_RING" target="_blank" rel="noopener">Market Mood Ring</a></p>
+    <div class="pex-lanes">
+      <article class="pex-lane pex-lane-data">
+        <div class="pex-lane-head"><span class="pex-lane-letter">A</span>Data &amp; Analytics</div>
+        <div class="pex-lane-flow">
+          <a class="pex-chip" href="https://github.com/vgandhi1/edge-telemetry-plane" target="_blank" rel="noopener">edge-telemetry-plane</a><span class="pex-lane-arrow">→</span>
+          <a class="pex-chip pex-chip-mesh" href="#mesh">OMNI-Mesh</a><span class="pex-lane-arrow">→</span>
+          <a class="pex-chip" href="https://github.com/vgandhi1/Crypto-Data-ETL" target="_blank" rel="noopener">Crypto ETL</a><span class="pex-lane-arrow">→</span>
+          <a class="pex-chip" href="https://github.com/vgandhi1/MARKET_MOOD_RING" target="_blank" rel="noopener">Market Mood</a>
+        </div>
       </article>
-      <article class="pex-track">
-        <p class="pex-track-label ai">AI Engineering</p>
-        <p class="pex-track-flow"><a href="factory-ai.html">Factory AI</a> → <a href="https://github.com/vgandhi1/aegis" target="_blank" rel="noopener">AEGIS</a> → <a href="https://github.com/vgandhi1/QualityMind-RAG" target="_blank" rel="noopener">QualityMind-RAG</a> → <a href="https://github.com/vgandhi1/claimlens" target="_blank" rel="noopener">CLaimLens</a> → <a href="https://github.com/vgandhi1/vla-bench" target="_blank" rel="noopener">VLA-bench</a></p>
+      <article class="pex-lane pex-lane-ai">
+        <div class="pex-lane-head"><span class="pex-lane-letter">B</span>AI Engineering</div>
+        <div class="pex-lane-flow">
+          <a class="pex-chip" href="factory-ai.html">Factory AI</a><span class="pex-lane-arrow">→</span>
+          <a class="pex-chip" href="https://github.com/vgandhi1/aegis" target="_blank" rel="noopener">AEGIS</a><span class="pex-lane-arrow">→</span>
+          <a class="pex-chip" href="https://github.com/vgandhi1/factory-genius" target="_blank" rel="noopener">Factory Genius</a><span class="pex-lane-arrow">→</span>
+          <a class="pex-chip" href="https://github.com/vgandhi1/QualityMind-RAG" target="_blank" rel="noopener">QualityMind-RAG</a><span class="pex-lane-arrow">→</span>
+          <a class="pex-chip" href="https://github.com/vgandhi1/vla-bench" target="_blank" rel="noopener">VLA-bench</a>
+        </div>
       </article>
-      <article class="pex-track">
-        <p class="pex-track-label software">Software Systems</p>
-        <p class="pex-track-flow"><a href="https://github.com/vgandhi1/OTA-firmware-verifier" target="_blank" rel="noopener">OTA Verifier</a> → <a href="https://github.com/vgandhi1/automotive-key-provission" target="_blank" rel="noopener">Key Provision</a> → <a href="https://github.com/vgandhi1/Overdrive-OTA-Manager" target="_blank" rel="noopener">Overdrive OTA</a> → <a href="https://github.com/vgandhi1/Sentinel-Stream" target="_blank" rel="noopener">Sentinel-Stream</a></p>
+      <article class="pex-lane pex-lane-software">
+        <div class="pex-lane-head"><span class="pex-lane-letter">C</span>Software / Factory Systems</div>
+        <div class="pex-lane-flow">
+          <a class="pex-chip" href="https://github.com/vgandhi1/OTA-firmware-verifier" target="_blank" rel="noopener">OTA Verifier</a><span class="pex-lane-arrow">→</span>
+          <a class="pex-chip" href="https://github.com/vgandhi1/automotive-key-provission" target="_blank" rel="noopener">Key Provision</a><span class="pex-lane-arrow">→</span>
+          <a class="pex-chip" href="https://github.com/vgandhi1/Overdrive-OTA-Manager" target="_blank" rel="noopener">Overdrive OTA</a><span class="pex-lane-arrow">→</span>
+          <a class="pex-chip" href="https://github.com/vgandhi1/Sentinel-Stream" target="_blank" rel="noopener">Sentinel-Stream</a>
+        </div>
       </article>
-      <article class="pex-track">
-        <p class="pex-track-label product">Product</p>
-        <p class="pex-track-flow"><a href="https://github.com/vgandhi1/TeleOp-flywheel-dashboard" target="_blank" rel="noopener">TeleOp</a> → <a href="https://github.com/vgandhi1/apex-recovery" target="_blank" rel="noopener">APEX-recover</a></p>
+      <article class="pex-lane pex-lane-product">
+        <div class="pex-lane-head"><span class="pex-lane-letter">D</span>Product</div>
+        <div class="pex-lane-flow">
+          <a class="pex-chip" href="https://github.com/vgandhi1/TeleOp-flywheel-dashboard" target="_blank" rel="noopener">TeleOp</a><span class="pex-lane-arrow">→</span>
+          <a class="pex-chip" href="https://github.com/vgandhi1/apex-recovery" target="_blank" rel="noopener">APEX-recover</a>
+        </div>
       </article>
     </div>
   </section>
 
   <section class="pex-cta" aria-label="Get started">
     <h2>Start this week</h2>
-    <p>Two quick wins (30 min each): <a href="https://github.com/vgandhi1/TeleOp-flywheel-dashboard" target="_blank" rel="noopener">TeleOp</a> + <a href="https://github.com/vgandhi1/OTA-firmware-verifier" target="_blank" rel="noopener">OTA Verifier</a>. Going deeper? Clone <a href="https://github.com/vgandhi1/OMNI-Mesh" target="_blank" rel="noopener">OMNI-Mesh</a> and run <code>omni-mesh enforce</code> for a full Iceberg + dbt + RAG pipeline end-to-end — flip <code>OMNI_MESH_PROFILE</code> to switch domains.</p>
+    <p>Two 30-minute quick wins — then go deep with the data mesh.</p>
     <div class="pex-cta-actions">
-      <a class="pex-btn pex-btn-primary" href="https://github.com/vgandhi1/OMNI-Mesh" target="_blank" rel="noopener">Data engineer? Clone OMNI-Mesh</a>
-      <a class="pex-btn pex-btn-ghost" href="https://github.com/vgandhi1/TeleOp-flywheel-dashboard" target="_blank" rel="noopener">TeleOp on GitHub</a>
+      <a class="pex-btn pex-btn-primary" href="https://github.com/vgandhi1/TeleOp-flywheel-dashboard" target="_blank" rel="noopener">TeleOp demo</a>
       <a class="pex-btn pex-btn-ghost" href="https://github.com/vgandhi1/OTA-firmware-verifier" target="_blank" rel="noopener">OTA Verifier</a>
+      <a class="pex-btn pex-btn-ghost" href="#mesh">OMNI-Mesh deep dive</a>
       <a class="pex-btn pex-btn-ghost" href="index.html#projects">All projects</a>
     </div>
   </section>
