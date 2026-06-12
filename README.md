@@ -2,12 +2,12 @@
 
 **Live site:** [https://vgandhi1.github.io/](https://vgandhi1.github.io/)
 
-Personal portfolio for AI systems, manufacturing software, and EV platforms. The site links to GitHub repositories for evidence, hosts illustrated theory and programming guides on this domain, and points to a separate **[interactive lab](https://vgandhi1.github.io/web-interactive-collection/)** for slide decks, EV references, and browser tools.
+Personal portfolio for AI systems, manufacturing software, and EV platforms. The site links to GitHub repositories for evidence, hosts illustrated theory and programming guides on this domain, and points to a separate **[interactive lab](https://vgandhi1.github.io/interactive-lab/)** for slide decks, EV references, and browser tools.
 
 | Site | Repository | URL |
 |------|------------|-----|
 | Portfolio (this repo) | [vgandhi1/vgandhi1.github.io](https://github.com/vgandhi1/vgandhi1.github.io) | `https://vgandhi1.github.io/` |
-| Interactive lab | [vgandhi1/web-interactive-collection](https://github.com/vgandhi1/web-interactive-collection) | `https://vgandhi1.github.io/web-interactive-collection/` |
+| Interactive lab | [vgandhi1/interactive-lab](https://github.com/vgandhi1/interactive-lab) | `https://vgandhi1.github.io/interactive-lab/` |
 
 ---
 
@@ -81,10 +81,10 @@ Entry: [theory/ml_theory_hub.html](theory/ml_theory_hub.html)
 
 ### Interactive lab (separate repo)
 
-Decks, EV references, homelab portal, and browser tools (DSA, AI glossaries, hedging simulator, Git 101, etc.) live in **[web-interactive-collection](https://github.com/vgandhi1/web-interactive-collection)** — not duplicated here.
+Decks, EV references, homelab portal, and browser tools (DSA, AI glossaries, hedging simulator, Git 101, etc.) live in **[interactive-lab](https://github.com/vgandhi1/interactive-lab)** — not duplicated here.
 
-- Hub: [vgandhi1.github.io/web-interactive-collection/](https://vgandhi1.github.io/web-interactive-collection/)
-- Decks & EV: `#decks`
+- Hub: [vgandhi1.github.io/interactive-lab/](https://vgandhi1.github.io/interactive-lab/)
+- Case studies: `#case-studies`
 - Tools: `#tools`
 
 ---
@@ -126,7 +126,7 @@ bundle exec jekyll serve
 2. In **Settings → Pages**, set source to that branch (root `/`).
 3. Custom domain (optional): `vgandhi1.github.io` is the default user site URL.
 
-The interactive lab is deployed from its own repo as a **project site** at `/web-interactive-collection/`.
+The interactive lab is deployed from its own repo as a **project site** at `/interactive-lab/`.
 
 ---
 
