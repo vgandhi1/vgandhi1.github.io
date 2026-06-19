@@ -1,0 +1,1642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ML/AI Engineer Interview — Study Guide</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Barlow+Condensed:wght@300;400;600;700;900&family=Barlow:wght@300;400;500&display=swap');
+
+  :root {
+    --bg: #0a0b0d;
+    --surface: #111318;
+    --border: #1e2229;
+    --border-active: #2e3340;
+    --accent: #e86c2f;
+    --accent-dim: rgba(232,108,47,0.12);
+    --accent2: #3b9eff;
+    --accent2-dim: rgba(59,158,255,0.10);
+    --green: #3de87a;
+    --green-dim: rgba(61,232,122,0.10);
+    --yellow: #f0c040;
+    --text: #c8ccd6;
+    --text-dim: #5a5f6e;
+    --text-bright: #e8eaf0;
+    --mono: 'IBM Plex Mono', monospace;
+    --head: 'Barlow Condensed', sans-serif;
+    --body: 'Barlow', sans-serif;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--body);
+    font-size: 15px;
+    line-height: 1.65;
+    min-height: 100vh;
+  }
+
+  /* GRID BACKGROUND */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrap {
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+
+  /* HEADER */
+  .header {
+    border-left: 3px solid var(--accent);
+    padding-left: 20px;
+    margin-bottom: 52px;
+  }
+
+  .header-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  h1 {
+    font-family: var(--head);
+    font-size: clamp(36px, 6vw, 60px);
+    font-weight: 900;
+    letter-spacing: -0.01em;
+    line-height: 1.05;
+    color: var(--text-bright);
+    text-transform: uppercase;
+  }
+
+  h1 span { color: var(--accent); }
+
+  .header-sub {
+    margin-top: 12px;
+    font-size: 14px;
+    color: var(--text-dim);
+    font-family: var(--mono);
+  }
+
+  .header-sub em {
+    color: var(--accent2);
+    font-style: normal;
+  }
+
+  /* STATS ROW */
+  .stats {
+    display: flex;
+    gap: 2px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+  }
+
+  .stat {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 10px 18px;
+    font-family: var(--mono);
+    font-size: 12px;
+  }
+
+  .stat-val {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text-bright);
+    display: block;
+    margin-bottom: 2px;
+  }
+
+  .stat-val.orange { color: var(--accent); }
+  .stat-val.blue { color: var(--accent2); }
+  .stat-val.green { color: var(--green); }
+
+  /* FILTER TABS */
+  .filters {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+  }
+
+  .filter-btn {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 7px 14px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .filter-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .filter-btn.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #000;
+    font-weight: 600;
+  }
+
+  /* SECTION */
+  .section {
+    margin-bottom: 8px;
+  }
+
+  .section.hidden { display: none; }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 20px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    cursor: pointer;
+    transition: border-color 0.15s;
+    user-select: none;
+  }
+
+  .section-header:hover {
+    border-color: var(--border-active);
+  }
+
+  .section-header.open {
+    border-color: var(--accent);
+    border-bottom-color: transparent;
+  }
+
+  .section-tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border: 1px solid;
+    flex-shrink: 0;
+  }
+
+  .tag-llm { color: var(--accent); border-color: var(--accent); background: var(--accent-dim); }
+  .tag-prompt { color: var(--accent2); border-color: var(--accent2); background: var(--accent2-dim); }
+  .tag-rag { color: var(--green); border-color: var(--green); background: var(--green-dim); }
+  .tag-mlops { color: var(--yellow); border-color: var(--yellow); background: rgba(240,192,64,0.10); }
+  .tag-cost { color: #c97bff; border-color: #c97bff; background: rgba(201,123,255,0.10); }
+  .tag-system { color: #ff6b6b; border-color: #ff6b6b; background: rgba(255,107,107,0.10); }
+  .tag-scenario { color: #40d0d8; border-color: #40d0d8; background: rgba(64,208,216,0.10); }
+  .tag-industrial { color: #f0c040; border-color: #f0c040; background: rgba(240,192,64,0.10); }
+  .tag-advanced { color: #ff8fab; border-color: #ff8fab; background: rgba(255,143,171,0.10); }
+
+  .section-title {
+    font-family: var(--head);
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--text-bright);
+    flex: 1;
+  }
+
+  .section-count {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-dim);
+    flex-shrink: 0;
+  }
+
+  .chevron {
+    color: var(--text-dim);
+    font-size: 12px;
+    transition: transform 0.2s;
+    flex-shrink: 0;
+  }
+
+  .section-header.open .chevron { transform: rotate(90deg); }
+
+  /* SECTION BODY */
+  .section-body {
+    display: none;
+    border: 1px solid var(--accent);
+    border-top: none;
+    background: #0d0f12;
+  }
+
+  .section-body.open { display: block; }
+
+  /* QUESTION ITEM */
+  .q-item {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .q-item:last-child { border-bottom: none; }
+
+  .q-trigger {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 16px 20px;
+    cursor: pointer;
+    transition: background 0.12s;
+  }
+
+  .q-trigger:hover { background: rgba(255,255,255,0.02); }
+
+  .q-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-dim);
+    flex-shrink: 0;
+    margin-top: 2px;
+    min-width: 28px;
+  }
+
+  .q-text {
+    font-size: 14.5px;
+    font-weight: 500;
+    color: var(--text);
+    flex: 1;
+    line-height: 1.5;
+  }
+
+  .q-arrow {
+    font-size: 11px;
+    color: var(--text-dim);
+    flex-shrink: 0;
+    margin-top: 3px;
+    transition: transform 0.18s, color 0.18s;
+  }
+
+  .q-trigger.open .q-arrow {
+    transform: rotate(90deg);
+    color: var(--accent);
+  }
+
+  /* ANSWER */
+  .q-answer {
+    display: none;
+    padding: 0 20px 20px 62px;
+  }
+
+  .q-answer.open { display: block; }
+
+  .answer-block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    padding: 16px 18px;
+    font-size: 13.5px;
+    line-height: 1.75;
+    color: var(--text);
+  }
+
+  .answer-block p { margin-bottom: 10px; }
+  .answer-block p:last-child { margin-bottom: 0; }
+
+  .answer-block strong {
+    color: var(--text-bright);
+    font-weight: 600;
+  }
+
+  .answer-block code {
+    font-family: var(--mono);
+    font-size: 12px;
+    background: rgba(255,255,255,0.06);
+    padding: 1px 5px;
+    border-radius: 2px;
+    color: var(--accent2);
+  }
+
+  .answer-block ul {
+    padding-left: 18px;
+    margin: 8px 0;
+  }
+
+  .answer-block li {
+    margin-bottom: 5px;
+  }
+
+  .tag-inline {
+    font-family: var(--mono);
+    font-size: 10px;
+    padding: 2px 6px;
+    background: var(--accent-dim);
+    color: var(--accent);
+    border: 1px solid rgba(232,108,47,0.3);
+    margin-right: 4px;
+  }
+
+  .note {
+    margin-top: 12px;
+    padding: 10px 14px;
+    background: rgba(59,158,255,0.06);
+    border-left: 2px solid var(--accent2);
+    font-size: 12.5px;
+    color: #8ab4d4;
+    font-family: var(--mono);
+  }
+
+  /* PROGRESS */
+  .progress-bar {
+    height: 2px;
+    background: var(--border);
+    margin-top: 40px;
+    margin-bottom: 4px;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: var(--accent);
+    transition: width 0.3s;
+  }
+
+  .progress-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-dim);
+    text-align: right;
+  }
+
+  /* TOP NAV */
+  .topnav {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    padding: 12px 24px;
+    background: rgba(10,11,13,0.85);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+  }
+  .topnav-brand {
+    font-family: var(--head);
+    font-weight: 900;
+    font-size: 16px;
+    letter-spacing: 0.02em;
+    color: var(--text-bright);
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+  .topnav-brand span { color: var(--accent); }
+  .topnav-links { display: flex; gap: 4px; flex-wrap: wrap; }
+  .topnav-links a {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    text-decoration: none;
+    padding: 5px 10px;
+    border: 1px solid var(--border);
+    transition: all 0.15s;
+  }
+  .topnav-links a:hover { color: var(--accent); border-color: var(--accent); }
+
+  /* EXPAND ALL */
+  .ctrl-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+
+  .ctrl-btn {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    font-family: var(--mono);
+    font-size: 11px;
+    padding: 6px 12px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .ctrl-btn:hover {
+    border-color: var(--accent2);
+    color: var(--accent2);
+  }
+</style>
+</head>
+<body>
+
+<nav class="topnav" aria-label="Primary">
+  <a class="topnav-brand" href="../index.html">Vinay<span>.</span>Gandhi</a>
+  <div class="topnav-links">
+    <a href="../index.html">← Portfolio</a>
+    <a href="../factory-ai.html">Factory AI</a>
+    <a href="../project_execution.html">Roadmap</a>
+    <a href="../theory/ml_theory_hub.html">Theory hub</a>
+    <a href="https://github.com/vgandhi1" target="_blank" rel="noopener">GitHub</a>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <div class="header">
+    <div class="header-label">// interview prep — staff / lead ML·AI engineer track</div>
+    <h1>ML·AI Engineer<br><span>Interview Guide</span></h1>
+    <div class="header-sub">9 domains · 48 questions · <em>built for a factory + data + systems engineering background</em></div>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><span class="stat-val orange">9</span>Domains</div>
+    <div class="stat"><span class="stat-val blue">48</span>Questions</div>
+    <div class="stat"><span class="stat-val green">Adv</span>Staff-Level Depth</div>
+    <div class="stat"><span class="stat-val" style="color:var(--yellow)">~8h</span>Study Time</div>
+  </div>
+
+  <div class="filters">
+    <button class="filter-btn active" onclick="filterSections('all', this)">All</button>
+    <button class="filter-btn" onclick="filterSections('llm', this)">LLM Fundamentals</button>
+    <button class="filter-btn" onclick="filterSections('prompt', this)">Prompting</button>
+    <button class="filter-btn" onclick="filterSections('rag', this)">RAG</button>
+    <button class="filter-btn" onclick="filterSections('mlops', this)">MLOps</button>
+    <button class="filter-btn" onclick="filterSections('cost', this)">Cost/Latency</button>
+    <button class="filter-btn" onclick="filterSections('system', this)">System Design</button>
+    <button class="filter-btn" onclick="filterSections('industrial', this)">Industrial ML</button>
+    <button class="filter-btn" onclick="filterSections('advanced', this)">Staff-Level</button>
+    <button class="filter-btn" onclick="filterSections('scenario', this)">Scenarios</button>
+  </div>
+
+  <div class="ctrl-row">
+    <span style="font-family:var(--mono);font-size:11px;color:var(--text-dim)">// click questions to reveal answers</span>
+    <button class="ctrl-btn" onclick="expandAll()">EXPAND ALL</button>
+  </div>
+
+  <!-- ===================== SECTION 1: LLM FUNDAMENTALS ===================== -->
+  <div class="section" data-tag="llm">
+    <div class="section-header" onclick="toggleSection(this)">
+      <span class="section-tag tag-llm">LLM</span>
+      <span class="section-title">Fundamentals</span>
+      <span class="section-count">5 questions</span>
+      <span class="chevron">▶</span>
+    </div>
+    <div class="section-body">
+
+      <div class="q-item">
+        <div class="q-trigger" onclick="toggleQ(this)">
+          <span class="q-num">01</span>
+          <span class="q-text">What is tokenization, and how does it affect generation?</span>
+          <span class="q-arrow">▶</span>
+        </div>
+        <div class="q-answer">
+          <div class="answer-block">
+            <p>Tokenization converts raw text into integer IDs from a fixed vocabulary (e.g., 50K tokens for GPT-4 using BPE). The model never sees characters — only token IDs and their embeddings.</p>
+            <p><strong>Why it matters for generation:</strong></p>
+            <ul>
+              <li><strong>Cost</strong>: billing is per token. "manufacturing" might be 1 token; "Weirton" might be 2–3. Know your domain vocabulary.</li>
+              <li><strong>Arithmetic</strong>: models are notoriously bad at math because "1234" may be tokenized as ["12", "34"] — the model sees two chunks, not a single number.</li>
+              <li><strong>Context window</strong>: 1 token ≈ 0.75 English words. 128K context ≠ 128K words.</li>
+              <li><strong>Rare/domain terms</strong>: "FeO" or "OEE" may split unexpectedly. Test your prompts with a tokenizer (<code>tiktoken</code> for OpenAI).</li>
+            </ul>
+            <p><strong>For factory AI</strong>: sensor tags like <code>CELL_3_TEMP_AVG</code> are often split 4–6 ways. Pre-processing matters.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-trigger" onclick="toggleQ(this)">
+          <span class="q-num">02</span>
+          <span class="q-text">How do embeddings really work?</span>
+          <span class="q-arrow">▶</span>
+        </div>
+        <div class="q-answer">
+          <div class="answer-block">
+            <p>An embedding is a dense vector (e.g., 768 or 1536 dimensions) that encodes semantic meaning. Tokens → embeddings via a learned lookup table. The transformer then operates in this vector space.</p>
+            <p><strong>Key intuitions:</strong></p>
+            <ul>
+              <li>Semantically similar text → nearby vectors (cosine similarity)</li>
+              <li>Embeddings capture context: "iron" near "battery" is different from "iron" near "steel"</li>
+              <li>They're not human-interpretable — there's no "dimension 42 = temperature"</li>
+            </ul>
+            <p><strong>In RAG systems</strong>: you embed chunks at index time and embed queries at retrieval time, then find nearest neighbors. Embedding model consistency matters — switching models requires full reindex.</p>
+            <div class="note">⚡ INTERVIEWER TRAP: Don't confuse token embeddings (learned lookup table) with sentence/document embeddings (pooled or special [CLS] token from an encoder model like BERT/E5).</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-trigger" onclick="toggleQ(this)">
+          <span class="q-num">03</span>
+          <span class="q-text">What's the role of attention and positional encoding?</span>
+          <span class="q-arrow">▶</span>
+        </div>
+        <div class="q-answer">
+          <div class="answer-block">
+            <p><strong>Attention</strong> lets each token attend to every other token in the sequence. For each token, you compute a weighted sum of all other token values, where weights come from query-key dot products (scaled, softmaxed).</p>
+            <p>Multi-head attention runs this in parallel across multiple subspaces, allowing the model to simultaneously capture different types of relationships (syntactic, semantic, coreference).</p>
+            <p><strong>Positional encoding</strong> solves the problem that attention itself is order-agnostic — the same set of tokens in any order would produce the same output. Positional encodings inject token position information into the embedding before attention. Modern models use <strong>RoPE</strong> (Rotary Position Embedding) which applies rotation to Q/K vectors, enabling better length extrapolation (and tricks like NTK-aware / YaRN scaling to stretch context at inference).</p>
+            <p><strong>Staff-level depth:</strong> full attention is O(n²) in sequence length, which is why context is expensive. The key optimizations to name:</p>
+            <ul>
+              <li><strong>KV-cache</strong>: past K/V computed once, reused per decode step — turns generation from O(n²) recompute into O(n) incremental.</li>
+              <li><strong>FlashAttention</strong>: IO-aware kernel that tiles the attention computation in SRAM and never materializes the full n×n matrix — same math, far less memory bandwidth.</li>
+              <li><strong>GQA / MQA</strong> (Grouped/Multi-Query Attention): share K/V heads across query heads to shrink the KV-cache — the main lever for serving long context cheaply (Llama 3, Mistral use GQA).</li>
+            </ul>
+            <div class="note">⚡ Interviewer trap: "why is the KV-cache the bottleneck for long-context serving?" → it grows linearly with sequence × layers × heads and lives in VRAM; GQA and PagedAttention (see Staff-Level §) exist to manage exactly this.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-trigger" onclick="toggleQ(this)">
+          <span class="q-num">04</span>
+          <span class="q-text">What changes during fine-tuning? (optimizers, schedulers, layer freezing)</span>
+          <span class="q-arrow">▶</span>
+        </div>
+        <div class="q-answer">
+          <div class="answer-block">
+            <p>Fine-tuning updates model weights on a task-specific dataset. Key decisions:</p>
+            <ul>
+              <li><strong>What to freeze</strong>: early layers encode general syntax/features; later layers are task-specific. Freeze early layers, train later layers to preserve general capability.</li>
+              <li><strong>Optimizer</strong>: AdamW (Adam + weight decay) is standard. Weight decay prevents overfitting on small datasets. Use smaller LR than pretraining (e.g., 1e-5 vs 3e-4).</li>
+              <li><strong>LR Scheduler</strong>: warmup (linear or cosine) prevents early large updates from destabilizing pretrained weights. Cosine annealing for smooth decay.</li>
+              <li><strong>Catastrophic forgetting</strong>: fine-tuning too aggressively destroys pretrained capability. Addressed by LoRA (see next question) or lower LR + fewer steps.</li>
+              <li><strong>Data quality</strong>: 10K high-quality examples beats 1M noisy ones.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-trigger" onclick="toggleQ(this)">
+          <span class="q-num">05</span>
+          <span class="q-text">LoRA vs QLoRA vs full fine-tune — tradeoffs?</span>
+          <span class="q-arrow">▶</span>
+        </div>
+        <div class="q-answer">
+          <div class="answer-block">
+            <p><strong>Full fine-tune</strong>: update all weights. Best quality, but requires massive GPU memory and compute. Risk of catastrophic forgetting. Only justified if you have massive domain data.</p>
+            <p><strong>LoRA</strong> (Low-Rank Adaptation): freeze base weights, inject small trainable rank-decomposition matrices (A×B) into attention layers. Train only ~0.1–1% of parameters. Nearly equivalent quality to full fine-tune for most tasks.</p>
+            <p><strong>QLoRA</strong>: LoRA on a 4-bit quantized base model. Reduces VRAM from ~80GB to ~12GB for a 13B model. Some quality degradation from quantization but acceptable for most applications. The practical choice for most teams.</p>
+            <p><strong>Decision matrix</strong>:</p>
+            <ul>
+              <li>Limited GPU, domain adaptation → QLoRA</li>
+              <li>Good GPU, production model → LoRA</li>
+              <li>Massive domain shift, unlimited compute → Full fine-tune</li>
+              <li>No data, just behavior tuning → Prompt engineering first</li>
+            </ul>
+            <div class="note">⚡ Factory AI angle: for anomaly detection or alert classification on sensor data, QLoRA on Llama 3.1 8B is my default. Cheaper than GPT-4, deployable on-prem.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===================== SECTION 2: PROMPTING ===================== -->
+  <div class="section" data-tag="prompt">
+    <div class="section-header" onclick="toggleSection(this)">
+      <span class="section-tag tag-prompt">PROMPT</span>
+      <span class="section-title">Prompting & Context Engineering</span>
+      <span class="section-count">5 questions</span>
+      <span class="chevron">▶</span>
+    </div>
+    <div class="section-body">
+
+      <div class="q-item">
+        <div class="q-trigger" onclick="toggleQ(this)">
+          <span class="q-num">06</span>
+          <span class="q-text">Few-shot vs zero-shot — which works better where?</span>
+          <span class="q-arrow">▶</span>
+        </div>
+        <div class="q-answer">
+          <div class="answer-block">
+            <p><strong>Zero-shot</strong>: just a task description. Works well for large models (GPT-4, Claude 3.5+) on common tasks. Faster iteration, less prompt engineering.</p>
+            <p><strong>Few-shot</strong>: include 3–8 input/output examples in the prompt. Critical when: (1) output format is non-standard, (2) domain terminology is unusual, (3) task requires specific reasoning patterns, or (4) using smaller/open-source models.</p>
+            <p><strong>When few-shot wins</strong>: classification of manufacturing defect codes, extracting structured JSON from sensor logs, domain-specific summarization. The examples calibrate format + tone.</p>
+            <p><strong>Pitfall</strong>: poor-quality examples are worse than zero-shot. Garbage few-shot = garbage output.</p>
+            <div class="note">⚡ Chain-of-thought prompting (add "think step by step") is its own category — empirically improves multi-step reasoning even at zero-shot.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-trigger" onclick="toggleQ(this)">
+          <span class="q-num">07</span>
+          <span class="q-text">How do you design system prompts that are robust across users?</span>
+          <span class="q-arrow">▶</span>
+        </div>
+        <div class="q-answer">
+          <div class="answer-block">
+            <p>Robust system prompts must handle adversarial inputs, edge cases, and diverse user styles without breaking. Key principles:</p>
+            <ul>
+              <li><strong>Explicit over implicit</strong>: don't say "be helpful" — say exactly what actions are in-scope and out-of-scope</li>
+              <li><strong>Constrain output format</strong>: specify JSON schema, length limits, field names. Don't leave format to the model's discretion in production</li>
+              <li><strong>Persona + boundary</strong>: "You are a manufacturing process assistant. You only answer questions about this factory's equipment. If asked about unrelated topics, respond: 'I can only help with plant floor questions.'"</li>
+              <li><strong>Inject context slots</strong>: use template variables (<code>{{user_role}}</code>, <code>{{shift}}</code>, <code>{{equipment_id}}</code>) — same base prompt, parameterized per user</li>
+              <li><strong>Test with adversarial prompts</strong>: jailbreak attempts, out-of-distribution queries, empty inputs</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-trigger" onclick="toggleQ(this)">
+          <span class="q-num">08</span>
+          <span class="q-text">How do you make LLM output deterministic?</span>
+          <span class="q-arrow">▶</span>
+        </div>
+        <div class="q-answer">
+          <div class="answer-block">
+            <p><strong>Temperature = 0</strong> is the primary lever. This makes sampling greedy (always pick highest probability token). Not fully deterministic in practice due to floating-point nondeterminism across GPU runs, but functionally stable.</p>
+            <p><strong>Additional controls</strong>:</p>
+            <ul>
+              <li><code>top_p = 1.0</code>, <code>top_k = disabled</code> — no sampling variation</li>
+              <li><strong>Seed parameter</strong> (supported by OpenAI API) — same seed + same prompt ≈ same output</li>
+              <li><strong>Output structure</strong>: JSON mode or function calling constrain the output space mechanically</li>
+              <li><strong>Constrained decoding</strong>: libraries like <code>outlines</code> or <code>guidance</code> enforce grammar-based output — guarantees valid JSON/SQL regardless of temperature</li>
+            </ul>
+            <p><strong>Honest answer for interviews</strong>: you can get high reproducibility but not true determinism across different hardware/versions. Design systems to handle occasional variation.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-trigger" onclick="toggleQ(this)">
+          <span class="q-num">09</span>
+          <span class="q-text">How do you track, version, and backfill changing context?</span>
+          <span class="q-arrow">▶</span>
+        </div>
+        <div class="q-answer">
+          <div class="answer-block">
+            <p>Context evolves: system prompts change, docs get updated, new equipment is added. Treat context like code:</p>
+            <ul>
+              <li><strong>Prompt versioning</strong>: store prompts in Git (not hardcoded). Tag releases. Log which prompt version generated each output.</li>
+              <li><strong>Context metadata</strong>: each stored context chunk gets <code>version</code>, <code>created_at</code>, <code>source</code>, <code>hash</code> fields</li>
+              <li><strong>Backfill strategy</strong>: when a source document updates, mark old chunks as stale, re-embed, swap atomically (blue/green embedding index)</li>
+              <li><strong>Audit trail</strong>: every LLM call logs <code>(prompt_version, context_chunks_used, model_version, output_hash)</code> — essential for debugging regressions</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-trigger" onclick="toggleQ(this)">
+          <span class="q-num">10</span>
+          <span class="q-text">How do you build and maintain memory in an LLM system?</span>
+          <span class="q-arrow">▶</span>
+        </div>
+        <div class="q-answer">
+          <div class="answer-block">
+            <p>Memory types and when to use each:</p>
+            <ul>
+              <li><strong>In-context (short-term)</strong>: include recent conversation turns in the prompt. Cheap but limited by context window. Truncate with sliding window or summarization.</li>
+              <li><strong>External vector store (long-term episodic)</strong>: embed past interactions, retrieve relevant ones. Good for "what did we discuss about Cell 3 last week?"</li>
+              <li><strong>Structured memory (entity/state)</strong>: maintain a JSON/DB record of known entities. "User is a process engineer, prefers metric units, works Line 2." Update programmatically, not via LLM.</li>
+              <li><strong>Semantic compression</strong>: periodically summarize old context into a compact representation, discard raw turns</li>
+            </ul>
+            <p><strong>Anti-pattern</strong>: using the LLM itself to manage memory state. LLMs hallucinate; your memory store must be a reliable database with deterministic reads/writes.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===================== SECTION 3: RAG ===================== -->
+  <div class="section" data-tag="rag">
+    <div class="section-header" onclick="toggleSection(this)">
+      <span class="section-tag tag-rag">RAG</span>
+      <span class="section-title">RAG Systems</span>
+      <span class="section-count">4 questions</span>
+      <span class="chevron">▶</span>
+    </div>
+    <div class="section-body">
+
+      <div class="q-item">
+        <div class="q-trigger" onclick="toggleQ(this)">
+          <span class="q-num">11</span>
+          <span class="q-text">What's your chunking strategy — by length, semantics, or structure?</span>
+          <span class="q-arrow">▶</span>
+        </div>
+        <div class="q-answer">
+          <div class="answer-block">
+            <p>No single strategy is universal. Match chunking to document structure:</p>
+            <ul>
+              <li><strong>Fixed-size with overlap</strong>: simple, 512 tokens, 50-token overlap. Baseline. Works for homogeneous docs.</li>
+              <li><strong>Semantic chunking</strong>: split on embedding similarity drops between sentences. Preserves topical coherence. More expensive to index but better retrieval.</li>
+              <li><strong>Structural chunking</strong>: for docs with known structure (SOPs, manuals, tables) — split by section headers, table rows, or numbered steps. Best precision for technical docs.</li>
+              <li><strong>Hierarchical (parent-child)</strong>: index small chunks for retrieval, but return larger parent chunk as context. Best of both worlds — precision in retrieval, completeness in generation.</li>
+            </ul>
+            <p><strong>My default for factory SOPs</strong>: structural chunking by section, with metadata injection (doc title, section header, last updated) into every chunk.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-trigger" onclick="toggleQ(this)">
+          <span class="q-num">12</span>
+          <span class="q-text">How do you choose a vector DB — Chroma, Pinecone, OpenSearch?</span>
+          <span class="q-arrow">▶</span>
+        </div>
+        <div class="q-answer">
+          <div class="answer-block">
+            <ul>
+              <li><strong>Chroma</strong>: local dev, prototyping. No ops overhead. Not for production scale.</li>
+              <li><strong>Pinecone</strong>: managed, fast, good filtering. But vendor lock-in, no on-prem. Good for cloud-native teams.</li>
+              <li><strong>OpenSearch / Elasticsearch</strong>: hybrid search (BM25 + vector) in one system. Strong if you already run ES. Operationally complex.</li>
+              <li><strong>pgvector</strong>: PostgreSQL extension. Best if you're already on Postgres and scale is ≤10M vectors. Zero new infrastructure.</li>
+              <li><strong>Weaviate / Qdrant</strong>: open-source, self-hosted, production-grade. Qdrant is particularly fast with good filtering support.</li>
+            </ul>
+            <p><strong>Decision criteria</strong>: (1) do you need on-prem? → Qdrant/Weaviate, (2) already on Postgres? → pgvector, (3) need hybrid BM25+vector? → OpenSearch, (4) cloud-only, fast start? → Pinecone</p>
+            <div class="note">⚡ For FactoryOps: on-prem requirement + ClickHouse already in stack → pgvector or Qdrant. Don't add Pinecone to an air-gapped factory network.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-trigger" onclick="toggleQ(this)">
+          <span class="q-num">13</span>
+          <span class="q-text">Can you update or backfill embeddings with zero downtime?</span>
+          <span class="q-arrow">▶</span>
+        </div>
+        <div class="q-answer">
+          <div class="answer-block">
+            <p>Yes — treat it like a database migration:</p>
+            <ul>
+              <li><strong>Dual-index strategy</strong>: keep the old index live while building the new one in parallel. Route queries to old index until new is ready.</li>
+              <li><strong>Shadow indexing</strong>: new documents go into both old and new indexes simultaneously during migration window</li>
+              <li><strong>Atomic cutover</strong>: flip router to new index, verify, then decommission old</li>
+              <li><strong>Incremental backfill</strong>: batch-process stale chunks in background, mark each as <code>re_embedded=true</code> when done</li>
+            </ul>
+            <p><strong>Key constraint</strong>: you cannot mix embeddings from different models in the same index (different vector spaces). Plan model upgrades as full migrations, not in-place updates.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-trigger" onclick="toggleQ(this)">
+          <span class="q-num">14</span>
+          <span class="q-text">How do you evaluate retrieval quality — precision@k, reranking, citation?</span>
+          <span class="q-arrow">▶</span>
+        </div>
+        <div class="q-answer">
+          <div class="answer-block">
+            <p><strong>Offline metrics</strong>:</p>
+            <ul>
+              <li><strong>Precision@k</strong>: of top-k retrieved chunks, what % are relevant? Build a golden QA dataset with labeled relevant chunks.</li>
+              <li><strong>Recall@k</strong>: does the correct answer appear in top-k? More important for RAG than precision alone.</li>
+              <li><strong>MRR</strong> (Mean Reciprocal Rank): rewards systems that put the best chunk at position 1</li>
+            </ul>
+            <p><strong>Reranking</strong>: after initial vector retrieval (top-20), use a cross-encoder (e.g., Cohere rerank, BGE-reranker) that scores query+chunk jointly. More expensive but significantly improves precision.</p>
+            <p><strong>Citation tracking</strong>: every answer chunk gets <code>source_doc</code>, <code>chunk_id</code>, <code>page</code> metadata. Expose citations in the UI — the best hallucination detector is asking users "does this match the source?"</p>
+            <p><strong>Online evaluation</strong>: thumbs up/down on answers, correction tracking, time-to-answer as proxy for user confidence.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===================== SECTION 4: MLOPS ===================== -->
+  <div class="section" data-tag="mlops">
+    <div class="section-header" onclick="toggleSection(this)">
+      <span class="section-tag tag-mlops">MLOPS</span>
+      <span class="section-title">MLOps & LLMOps</span>
+      <span class="section-count">4 questions</span>
+      <span class="chevron">▶</span>
+    </div>
+    <div class="section-body">
+
+      <div class="q-item">
+        <div class="q-trigger" onclick="toggleQ(this)">
+          <span class="q-num">15</span>
+          <span class="q-text">Sketch a pipeline: raw data → model → serving → feedback</span>
+          <span class="q-arrow">▶</span>
+        </div>
+        <div class="q-answer">
+          <div class="answer-block">
+            <p><strong>Data</strong>: ingest → validate schema → clean → version with DVC or Delta Lake</p>
+            <p><strong>Training</strong>: feature store → model training → experiment tracking (MLflow/W&B) → model registry with metadata (dataset hash, metrics, training config)</p>
+            <p><strong>Serving</strong>: containerized model (Docker) → serving layer (FastAPI/Triton/vLLM) → load balancer → API gateway with auth + rate limiting</p>
+            <p><strong>Observability</strong>: log every prediction (input, output, latency, model version) → Prometheus metrics → Grafana dashboard → alerting on latency spikes or confidence drops</p>
+            <p><strong>Feedback loop</strong>: user corrections → label store → periodic retraining trigger → A/B test new model → canary deploy (5% traffic) → full rollout</p>
+            <div class="note">⚡ For LLMs specifically: add prompt/output logging to S3/ClickHouse, LLM-as-judge evals on a sample, and human review queue for low-confidence outputs.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-trigger" onclick="toggleQ(this)">
+          <span class="q-num">16</span>
+          <span class="q-text">How would you monitor performance drift or hallucinations?</span>
+          <span class="q-arrow">▶</span>
+        </div>
+        <div class="q-answer">
+          <div class="answer-block">
+            <p><strong>Drift detection</strong>:</p>
+            <ul>
+              <li>Statistical tests (PSI, KL divergence) on input feature distributions vs training baseline</li>
+              <li>Output distribution shifts — if answer length, topic distribution, or confidence scores change significantly</li>
+              <li>Model accuracy on a held-out reference set run weekly</li>
+            </ul>
+            <p><strong>Hallucination detection</strong>:</p>
+            <ul>
+              <li><strong>LLM-as-judge</strong>: secondary call to Claude/GPT-4 asking "does this answer contradict the provided context?" on a sample</li>
+              <li><strong>Factual consistency score</strong>: NLI models (e.g., DeBERTa) to check entailment between retrieved context and generated answer</li>
+              <li><strong>Citation grounding</strong>: structured outputs that include source reference — verify reference exists and contains claimed content</li>
+              <li><strong>Human review queue</strong>: route low-confidence outputs (or random 2%) to human reviewers</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-trigger" onclick="toggleQ(this)">
+          <span class="q-num">17</span>
+          <span class="q-text">How do you log prompts and outputs for debugging and auditing?</span>
+          <span class="q-arrow">▶</span>
+        </div>
+        <div class="q-answer">
+          <div class="answer-block">
+            <p>Every LLM call should emit a structured log event with:</p>
+            <ul>
+              <li><code>request_id</code>, <code>session_id</code>, <code>user_id</code></li>
+              <li><code>model</code>, <code>model_version</code>, <code>prompt_version</code></li>
+              <li><code>system_prompt_hash</code>, <code>rendered_prompt</code> (or hash + pointer to S3)</li>
+              <li><code>context_chunks</code>: list of chunk IDs used</li>
+              <li><code>raw_output</code>, <code>parsed_output</code></li>
+              <li><code>latency_ms</code>, <code>input_tokens</code>, <code>output_tokens</code>, <code>cost_usd</code></li>
+              <li><code>temperature</code>, <code>timestamp</code></li>
+            </ul>
+            <p>Store full prompts in object storage (S3/GCS), log only the pointer. ClickHouse is excellent for aggregating LLM telemetry at scale — fast on cost analysis, latency percentiles, error rates by prompt version.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-trigger" onclick="toggleQ(this)">
+          <span class="q-num">18</span>
+          <span class="q-text">CI/CD for LLM workflows — what's different from standard ML?</span>
+          <span class="q-arrow">▶</span>
+        </div>
+        <div class="q-answer">
+          <div class="answer-block">
+            <p>Standard ML CI/CD: test code, validate model metrics, deploy container. LLM adds:</p>
+            <ul>
+              <li><strong>Prompt regression testing</strong>: a golden test suite of input/expected_output pairs run against every prompt change. Catch regressions before deploy.</li>
+              <li><strong>Eval harness</strong>: automated LLM-as-judge scoring on your test suite (not just unit tests — semantic correctness)</li>
+              <li><strong>Non-determinism</strong>: run each test case 3–5x at temp=0 and check consistency. Flag high variance outputs.</li>
+              <li><strong>Model version pinning</strong>: <code>gpt-4o-2024-11-20</code> not <code>gpt-4o</code>. API model aliases change. Pin exact versions in prod.</li>
+              <li><strong>Shadow deployment</strong>: new prompt version serves 5% traffic, compare output quality vs control before full rollout</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===================== SECTION 5: COST & LATENCY ===================== -->
+  <div class="section" data-tag="cost">
+    <div class="section-header" onclick="toggleSection(this)">
+      <span class="section-tag tag-cost">COST</span>
+      <span class="section-title">Cost & Latency Tradeoffs</span>
+      <span class="section-count">4 questions</span>
+      <span class="chevron">▶</span>
+    </div>
+    <div class="section-body">
+
+      <div class="q-item">
+        <div class="q-trigger" onclick="toggleQ(this)">
+          <span class="q-num">19</span>
+          <span class="q-text">How do you reduce token usage?</span>
+          <span class="q-arrow">▶</span>
+        </div>
+        <div class="q-answer">
+          <div class="answer-block">
+            <ul>
+              <li><strong>Compress system prompts</strong>: audit prompts for redundancy. "Please be concise and helpful and professional" → cut to task definition only.</li>
+              <li><strong>Selective retrieval</strong>: retrieve top-3 chunks, not top-10. Each chunk = ~200 tokens. Know what you're spending.</li>
+              <li><strong>Output constraints</strong>: <code>max_tokens</code> limit + format constraints. JSON outputs are cheaper than prose for structured tasks.</li>
+              <li><strong>Smaller model routing</strong>: classify query complexity first (fast, cheap), route simple queries to GPT-3.5/Haiku, complex to GPT-4/Sonnet</li>
+              <li><strong>Cache identical prompts</strong>: semantic deduplication. Same question asked 50 times → serve cached response (see Q21)</li>
+              <li><strong>Summarize history</strong>: instead of appending full conversation, maintain a 200-token running summary</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-trigger" onclick="toggleQ(this)">
+          <span class="q-num">20</span>
+          <span class="q-text">When should you quantize a model?</span>
+          <span class="q-arrow">▶</span>
+        </div>
+        <div class="q-answer">
+          <div class="answer-block">
+            <p>Quantization reduces weight precision (FP32 → INT8/INT4) to shrink model size and speed up inference.</p>
+            <p><strong>Use when</strong>:</p>
+            <ul>
+              <li>Deploying on-prem with limited GPU VRAM (quantize to fit a 7B/13B on a single GPU)</li>
+              <li>Latency is critical and you can accept minor quality degradation</li>
+              <li>Cost optimization on self-hosted models (more requests per GPU)</li>
+            </ul>
+            <p><strong>Avoid when</strong>:</p>
+            <ul>
+              <li>Task requires high numerical precision (math, code)</li>
+              <li>You're already using a tiny model (further quantization hits quality cliff)</li>
+            </ul>
+            <p><strong>Methods</strong>: GPTQ (post-training, accurate), AWQ (fast inference), GGUF (CPU-friendly via llama.cpp). INT8 is safe for most tasks; INT4 needs testing.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-trigger" onclick="toggleQ(this)">
+          <span class="q-num">21</span>
+          <span class="q-text">What's your batching and caching strategy to reduce latency?</span>
+          <span class="q-arrow">▶</span>
+        </div>
+        <div class="q-answer">
+          <div class="answer-block">
+            <p><strong>KV-cache (built-in)</strong>: transformers cache key-value pairs for the prompt prefix. Constant system prompts are cached automatically — keep them at the top of the prompt.</p>
+            <p><strong>Semantic caching</strong>: embed incoming queries, check vector similarity against recent queries. If cosine sim > 0.97, serve cached response. Redis + pgvector works well. Reduces API cost dramatically for repetitive use cases.</p>
+            <p><strong>Request batching</strong>: group multiple requests into a single model call (for offline/async tasks). vLLM's continuous batching is the standard for high-throughput serving.</p>
+            <p><strong>Streaming</strong>: use SSE/streaming responses to reduce perceived latency — user sees first tokens in 200ms instead of waiting 5s for full response.</p>
+            <p><strong>Speculative decoding</strong>: small draft model generates tokens, large model verifies in parallel. 2–3x throughput improvement for large models.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-trigger" onclick="toggleQ(this)">
+          <span class="q-num">22</span>
+          <span class="q-text">When to use hosted APIs vs open-source models?</span>
+          <span class="q-arrow">▶</span>
+        </div>
+        <div class="q-answer">
+          <div class="answer-block">
+            <p><strong>Hosted API (OpenAI, Anthropic, Gemini)</strong>:</p>
+            <ul>
+              <li>Best model quality today, no infra overhead</li>
+              <li>Use for: prototypes, low-volume production, tasks needing frontier capability</li>
+              <li>Avoid for: data privacy requirements, air-gapped environments, high-volume low-margin workloads</li>
+            </ul>
+            <p><strong>Open-source (Llama 3, Mistral, Qwen)</strong>:</p>
+            <ul>
+              <li>Self-host on-prem or cloud VMs. Full data control.</li>
+              <li>Use for: factory/OT environments with data sovereignty, high-volume inference where cost matters, fine-tuning for domain specialization</li>
+              <li>Requires: GPU infra, model serving (vLLM/Triton), ongoing ops</li>
+            </ul>
+            <p><strong>My rule</strong>: prototype on hosted API, productionize on open-source if volume justifies it or data can't leave the building. For Form Energy: everything stays on-prem.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===================== SECTION 6: SYSTEM DESIGN ===================== -->
+  <div class="section" data-tag="system">
+    <div class="section-header" onclick="toggleSection(this)">
+      <span class="section-tag tag-system">SYSTEM</span>
+      <span class="section-title">System Design Thinking</span>
+      <span class="section-count">4 questions</span>
+      <span class="chevron">▶</span>
+    </div>
+    <div class="section-body">
+
+      <div class="q-item">
+        <div class="q-trigger" onclick="toggleQ(this)">
+          <span class="q-num">23</span>
+          <span class="q-text">How do you make an AI system more deterministic and less brittle?</span>
+          <span class="q-arrow">▶</span>
+        </div>
+        <div class="q-answer">
+          <div class="answer-block">
+            <ul>
+              <li><strong>Constrained outputs</strong>: JSON schema validation, function calling, constrained decoding (outlines/guidance). Never trust free-text output as structured data.</li>
+              <li><strong>Parse → validate → act</strong>: three-layer pipeline. LLM generates, deterministic parser validates, business logic executes. Failures at layer 2 never reach layer 3.</li>
+              <li><strong>Idempotent tools</strong>: if the LLM calls a tool twice, the second call should be safe. Write-once, append-only designs reduce blast radius.</li>
+              <li><strong>Explicit state machine</strong>: for agentic workflows, maintain system state in a deterministic FSM. The LLM suggests transitions; the FSM validates and executes.</li>
+              <li><strong>Fallback chains</strong>: LLM call fails → structured fallback → human escalation. Never a dead end.</li>
+              <li><strong>Input normalization</strong>: pre-process user input (lowercase, strip noise, canonical forms) before it hits the model. Garbage in = garbage out.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-trigger" onclick="toggleQ(this)">
+          <span class="q-num">24</span>
+          <span class="q-text">What fallback do you use if the LLM fails mid-task?</span>
+          <span class="q-arrow">▶</span>
+        </div>
+        <div class="q-answer">
+          <div class="answer-block">
+            <p><strong>Fail modes</strong>: API timeout, malformed JSON output, rate limit, context overflow, hallucinated tool call.</p>
+            <p><strong>Fallback strategy</strong>:</p>
+            <ul>
+              <li><strong>Retry with backoff</strong>: transient errors (timeout, 429). Exponential backoff, max 3 attempts.</li>
+              <li><strong>Model fallback</strong>: primary GPT-4 fails → fallback Claude Haiku or local Llama. Accept lower quality over downtime.</li>
+              <li><strong>Prompt retry</strong>: if output failed schema validation, retry with explicit error feedback in the prompt: "Your previous response was invalid JSON. Fix it."</li>
+              <li><strong>Graceful degradation</strong>: if LLM copilot is down, fall back to keyword search + static templates. System still works, just dumber.</li>
+              <li><strong>Human escalation</strong>: for high-stakes decisions (maintenance approval, alert acknowledgment), route to human if LLM confidence is low or system has retried 3+ times.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-trigger" onclick="toggleQ(this)">
+          <span class="q-num">25</span>
+          <span class="q-text">Can you solve this without an LLM or vector DB?</span>
+          <span class="q-arrow">▶</span>
+        </div>
+        <div class="q-answer">
+          <div class="answer-block">
+            <p>This is the most important question an AI engineer can ask. <strong>LLMs are expensive, slow, and non-deterministic</strong>. Before reaching for one, check:</p>
+            <ul>
+              <li>Can a regex or rule engine handle this? → Yes: use it.</li>
+              <li>Can a traditional ML model (XGBoost, logistic regression) solve it? → Yes: use it. Faster, cheaper, explainable.</li>
+              <li>Can BM25 full-text search replace the vector DB? → For many doc retrieval tasks, yes.</li>
+              <li>Is the "AI" feature actually just a pre-built NLP library? spaCy, HuggingFace classifiers, sentence-transformers?</li>
+            </ul>
+            <p><strong>Use LLMs when</strong>: the task requires reasoning, generation, or language understanding that structured approaches genuinely can't provide. Not just because it's cool.</p>
+            <div class="note">⚡ Interviewers love this mindset. It signals engineering judgment over hype.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-trigger" onclick="toggleQ(this)">
+          <span class="q-num">26</span>
+          <span class="q-text">What's the right database for this task — SQL, NoSQL, or vector?</span>
+          <span class="q-arrow">▶</span>
+        </div>
+        <div class="q-answer">
+          <div class="answer-block">
+            <ul>
+              <li><strong>SQL (PostgreSQL, ClickHouse)</strong>: structured data, ACID transactions, complex joins, analytics. Time-series OEE data → ClickHouse. Transactional records → PostgreSQL.</li>
+              <li><strong>NoSQL (MongoDB, Cassandra)</strong>: schema-flexible documents, high write throughput, no complex joins needed. Event logs, session data, device metadata.</li>
+              <li><strong>Vector DB (pgvector, Qdrant)</strong>: semantic similarity search. Required for RAG. Not for structured queries.</li>
+              <li><strong>Graph DB (Neo4j)</strong>: highly connected data, relationship traversal. Equipment dependency graphs, supply chain linkages.</li>
+              <li><strong>Hybrid</strong>: most real systems use 2–3. PostgreSQL + pgvector covers both relational and semantic. ClickHouse + Redis covers analytics + low-latency cache.</li>
+            </ul>
+            <p>The anti-pattern: using a vector DB as a general-purpose store because it's "AI." Know what each database is optimized for.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===================== SECTION 7: INDUSTRIAL / MANUFACTURING ML ===================== -->
+  <div class="section" data-tag="industrial">
+    <div class="section-header" onclick="toggleSection(this)">
+      <span class="section-tag tag-industrial">INDUSTRIAL</span>
+      <span class="section-title">Industrial &amp; Time-Series ML</span>
+      <span class="section-count">7 questions</span>
+      <span class="chevron">▶</span>
+    </div>
+    <div class="section-body">
+
+      <div class="q-item">
+        <div class="q-trigger" onclick="toggleQ(this)">
+          <span class="q-num">27</span>
+          <span class="q-text">How do you frame predictive maintenance as an ML problem?</span>
+          <span class="q-arrow">▶</span>
+        </div>
+        <div class="q-answer">
+          <div class="answer-block">
+            <p>"Predict failures" is not one problem — it's a family of framings, and choosing the right one is the senior signal:</p>
+            <ul>
+              <li><strong>Anomaly detection (unsupervised)</strong>: when you have almost no labeled failures. Learn "normal" from healthy operation, flag deviations. Most factory starting points live here because failures are rare and labels are weak.</li>
+              <li><strong>Binary classification (will it fail in horizon H?)</strong>: needs labeled failure events. Define a prediction window and a lead time; beware label leakage from post-failure sensor readings.</li>
+              <li><strong>Remaining Useful Life (RUL regression)</strong>: predict time-to-failure. Powerful but needs run-to-failure histories (rare) — often synthesized or transfer-learned.</li>
+              <li><strong>Survival analysis</strong>: models censored data correctly (most assets haven't failed yet). Underused but the statistically honest choice.</li>
+            </ul>
+            <p><strong>The hard part is labels, not models.</strong> Failure labels come from CMMS / work orders and are noisy: wrong timestamps, "replaced X but Y was the cause," preventive vs reactive maintenance mixed together. Spend your effort on label quality and a leakage-free temporal split (train on past, validate on future), not on swapping XGBoost for a transformer.</p>
+            <div class="note">⚡ Factory angle: I'd start with anomaly detection + a rules baseline on the top 5 failure modes by downtime cost, prove ROI, then graduate to RUL only where run-to-failure data exists.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-trigger" onclick="toggleQ(this)">
+          <span class="q-num">28</span>
+          <span class="q-text">Time-series anomaly detection on sensor data — methods and pitfalls?</span>
+          <span class="q-arrow">▶</span>
+        </div>
+        <div class="q-answer">
+          <div class="answer-block">
+            <p><strong>Methods, roughly increasing in power/cost:</strong></p>
+            <ul>
+              <li><strong>Statistical / control charts</strong>: rolling mean ± kσ, EWMA, CUSUM, Western Electric rules. Cheap, explainable, and often the right answer on the plant floor.</li>
+              <li><strong>Decomposition</strong>: STL / seasonal-trend decomposition, then threshold the residual — handles shift patterns and seasonality.</li>
+              <li><strong>Distance / density</strong>: Isolation Forest, matrix profile (great for motifs/discords in univariate signals).</li>
+              <li><strong>Reconstruction-based</strong>: autoencoders / LSTM-AE / VAE for multivariate; high reconstruction error = anomaly. Captures cross-sensor correlations a single-tag threshold misses.</li>
+              <li><strong>Forecast-residual</strong>: predict next value, alarm on large residual.</li>
+            </ul>
+            <p><strong>Pitfalls that sink projects:</strong></p>
+            <ul>
+              <li><strong>No ground truth</strong> → you can't compute precision/recall. Build a labeled incident set with operators or you're flying blind.</li>
+              <li><strong>Concept drift</strong>: "normal" changes with product mix, tooling, season. A static threshold becomes an alarm flood.</li>
+              <li><strong>Alarm fatigue</strong>: precision matters more than recall here. One credible alert beats 50 noisy ones. Add hysteresis / minimum-duration / debounce.</li>
+              <li><strong>Sensor faults masquerade as anomalies</strong>: a stuck or dropped sensor looks "anomalous" — validate data quality before model output.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-trigger" onclick="toggleQ(this)">
+          <span class="q-num">29</span>
+          <span class="q-text">Data drift vs model drift in OT environments — detect and handle?</span>
+          <span class="q-arrow">▶</span>
+        </div>
+        <div class="q-answer">
+          <div class="answer-block">
+            <p><strong>Distinguish three things:</strong></p>
+            <ul>
+              <li><strong>Covariate / data drift</strong>: input distribution moves (new raw material lot, ambient temperature, recalibrated sensor). Detect with PSI / KS test / population stability on key features.</li>
+              <li><strong>Concept drift</strong>: the input→output relationship changes (same vibration profile now means something different after a retrofit). Only detectable with fresh labels or proxy outcomes.</li>
+              <li><strong>Data-quality drift</strong>: missing tags, unit changes, clock skew, OPC-UA gaps. In OT this is the most common and most ignored.</li>
+            </ul>
+            <p><strong>Handling</strong>: schema + range validation at ingest (Great Expectations-style), a drift monitor that compares live windows to the training baseline, scheduled re-fit cadence tied to known process changes (tool change, line requal), and a fast rollback path. Tie drift alerts to a human-in-the-loop review, not auto-retrain — auto-retraining on drifted/garbage data is how you bake a bad state in permanently.</p>
+            <div class="note">⚡ Senior framing: in manufacturing, "the model degraded" is usually a data pipeline or instrumentation problem, not a modeling problem. Instrument the pipeline first.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-trigger" onclick="toggleQ(this)">
+          <span class="q-num">30</span>
+          <span class="q-text">Edge vs cloud inference for factory ML — how do you decide?</span>
+          <span class="q-arrow">▶</span>
+        </div>
+        <div class="q-answer">
+          <div class="answer-block">
+            <p>Decide on four axes — <strong>latency, connectivity, data gravity, and safety</strong>:</p>
+            <ul>
+              <li><strong>Edge</strong> when: control-loop or closed-loop latency (&lt;10–100ms), intermittent/air-gapped network, the line must keep running if the cloud is down, or data volume is too large to ship (high-rate vibration, vision frames). Run quantized models on an industrial PC / Jetson / PLC-adjacent gateway.</li>
+              <li><strong>Cloud</strong> when: heavy models, cross-line/fleet aggregation, retraining, and analytics that tolerate seconds of latency.</li>
+              <li><strong>Hybrid (the real answer)</strong>: inference at the edge for real-time decisions, stream features/results to cloud for fleet learning, push model updates back down (MLOps over OT). This is the classic OT/IT split.</li>
+            </ul>
+            <p><strong>OT realities to name</strong>: determinism &gt; raw accuracy near safety functions, change control / validation (you can't hot-swap a model on a safety-rated line casually), and the IT/OT trust boundary (a model service should never have write access to control logic without an interlock).</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-trigger" onclick="toggleQ(this)">
+          <span class="q-num">31</span>
+          <span class="q-text">How do you handle extreme class imbalance (rare defects/failures)?</span>
+          <span class="q-arrow">▶</span>
+        </div>
+        <div class="q-answer">
+          <div class="answer-block">
+            <ul>
+              <li><strong>Pick the right metric first</strong>: accuracy is meaningless at 0.1% defect rate. Use PR-AUC, recall at a fixed precision, or cost-weighted metrics tied to scrap/escape cost. Align the threshold to the business cost ratio of false-alarm vs missed-defect.</li>
+              <li><strong>Resampling</strong>: class weights or focal loss before SMOTE; SMOTE on high-dim sensor/image data often fabricates unrealistic samples. Undersample the majority for speed.</li>
+              <li><strong>Reframe as anomaly detection</strong>: if defects are rare and varied, model "good" and flag outliers rather than learning every defect class.</li>
+              <li><strong>Threshold + human review</strong>: ship a high-recall model that routes flagged units to inspection, not auto-reject. Capture the inspector's verdict to grow the labeled set (active learning).</li>
+            </ul>
+            <div class="note">⚡ The escape (missed defect reaching the customer) usually costs 10–100× the false reject. Make that ratio explicit and let it set the operating point.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-trigger" onclick="toggleQ(this)">
+          <span class="q-num">32</span>
+          <span class="q-text">How do you build a feature store / pipeline for streaming sensor data?</span>
+          <span class="q-arrow">▶</span>
+        </div>
+        <div class="q-answer">
+          <div class="answer-block">
+            <p>Sensor ML lives or dies on <strong>point-in-time correctness</strong> and <strong>train/serve consistency</strong>:</p>
+            <ul>
+              <li><strong>Ingest</strong>: PLC/OPC-UA → MQTT/Kafka → a time-series store (TimescaleDB/ClickHouse) for raw, plus a feature layer.</li>
+              <li><strong>Windowed features</strong>: rolling stats (mean/std/min/max/RMS), FFT bands for vibration, rate-of-change, time-since-last-event. Define them once and compute the same way offline (training) and online (serving) — the #1 source of training/serving skew.</li>
+              <li><strong>Point-in-time joins</strong>: when labeling a failure, only join features available <em>before</em> the event. No peeking into the future = no leakage.</li>
+              <li><strong>Online/offline parity</strong>: a feature store (Feast-style) or a shared transformation library guarantees the serving path uses identical logic.</li>
+              <li><strong>Late / out-of-order data</strong>: OT networks drop and reorder. Use event-time windows with watermarks, not processing-time.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-trigger" onclick="toggleQ(this)">
+          <span class="q-num">33</span>
+          <span class="q-text">Where does an LLM/RAG layer actually add value on the plant floor?</span>
+          <span class="q-arrow">▶</span>
+        </div>
+        <div class="q-answer">
+          <div class="answer-block">
+            <p>Be the engineer who knows where <em>not</em> to use an LLM. Real-time control and anomaly detection are classical/streaming ML — an LLM in a control loop is an anti-pattern. LLMs earn their place at the <strong>human-interface and knowledge layer</strong>:</p>
+            <ul>
+              <li><strong>Tribal-knowledge RAG</strong>: query SOPs, maintenance manuals, and historical work orders in natural language ("what's the fix when Cell 3 throws torque fault 0x4?").</li>
+              <li><strong>Alert enrichment</strong>: when the anomaly model fires, an LLM drafts the likely root cause + recommended action by retrieving similar past incidents — the classical model decides, the LLM explains.</li>
+              <li><strong>Text-to-SQL / conversational analytics</strong> over OEE and downtime data for engineers who don't write SQL.</li>
+              <li><strong>Shift handover & 8D/5-Why drafting</strong> from structured event logs.</li>
+            </ul>
+            <p>Architecture: deterministic ML and rules make decisions; the LLM sits on top for retrieval, explanation, and natural-language access — always with citations back to the source SOP/record.</p>
+            <div class="note">⚡ This is exactly the QualityMind-RAG / AEGIS split: streaming correlation engine for detection, RAG + Text-to-SQL for the human layer.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===================== SECTION 8: STAFF-LEVEL SYSTEMS ===================== -->
+  <div class="section" data-tag="advanced">
+    <div class="section-header" onclick="toggleSection(this)">
+      <span class="section-tag tag-advanced">STAFF</span>
+      <span class="section-title">Staff-Level: Serving, Training &amp; Advanced RAG</span>
+      <span class="section-count">6 questions</span>
+      <span class="chevron">▶</span>
+    </div>
+    <div class="section-body">
+
+      <div class="q-item">
+        <div class="q-trigger" onclick="toggleQ(this)">
+          <span class="q-num">34</span>
+          <span class="q-text">How does vLLM / PagedAttention improve throughput?</span>
+          <span class="q-arrow">▶</span>
+        </div>
+        <div class="q-answer">
+          <div class="answer-block">
+            <p>The bottleneck in LLM serving is the <strong>KV-cache</strong>, not FLOPs. Naive serving pre-allocates a contiguous cache for max sequence length per request → massive internal fragmentation and wasted VRAM, which caps batch size.</p>
+            <ul>
+              <li><strong>PagedAttention</strong>: treats the KV-cache like OS virtual memory — non-contiguous fixed-size blocks (pages) with a block table. Near-zero fragmentation → fit far more concurrent sequences in the same VRAM.</li>
+              <li><strong>Continuous (in-flight) batching</strong>: instead of waiting for a whole batch to finish, finished sequences are evicted and new requests join mid-flight every step. Keeps the GPU saturated → 10–20× throughput vs static batching under real traffic.</li>
+              <li><strong>Prefix caching</strong>: shared prompt prefixes (your big system prompt, few-shot examples) share KV blocks across requests — pay for the prefix once.</li>
+            </ul>
+            <div class="note">⚡ Crisp takeaway: vLLM wins by managing memory, not by faster matmuls. Pair with GQA models to shrink the cache further.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-trigger" onclick="toggleQ(this)">
+          <span class="q-num">35</span>
+          <span class="q-text">Distributed training: DP vs TP vs PP vs FSDP/ZeRO — when each?</span>
+          <span class="q-arrow">▶</span>
+        </div>
+        <div class="q-answer">
+          <div class="answer-block">
+            <ul>
+              <li><strong>Data Parallel (DDP)</strong>: replicate the full model on each GPU, split the batch, all-reduce gradients. Use when the model fits on one GPU and you just want to go faster. Simplest, communication-light.</li>
+              <li><strong>FSDP / ZeRO</strong>: shard optimizer states (ZeRO-1), gradients (ZeRO-2), and parameters (ZeRO-3) across GPUs, gather just-in-time. The default for training models that don't fit in one GPU's memory — keeps DP's simplicity, removes the redundant memory.</li>
+              <li><strong>Tensor Parallel (TP)</strong>: split individual matmuls (attention/MLP) across GPUs. High communication → keep it <em>within</em> a node over NVLink. Needed when a single layer is too big.</li>
+              <li><strong>Pipeline Parallel (PP)</strong>: split layers into stages across nodes; micro-batches keep stages busy (watch the "bubble"). Scales across nodes where bandwidth is lower.</li>
+            </ul>
+            <p><strong>Reality</strong>: large training is <em>3D parallelism</em> — TP within a node, PP across nodes, DP/FSDP on top. For most teams fine-tuning, FSDP (or DeepSpeed ZeRO-3) + LoRA covers 90% of needs without touching TP/PP.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-trigger" onclick="toggleQ(this)">
+          <span class="q-num">36</span>
+          <span class="q-text">Advanced RAG beyond top-k: what's in a production pipeline?</span>
+          <span class="q-arrow">▶</span>
+        </div>
+        <div class="q-answer">
+          <div class="answer-block">
+            <p>"Embed → top-k → stuff" is a demo. Production retrieval is a pipeline:</p>
+            <ul>
+              <li><strong>Query transformation</strong>: rewriting, decomposition (split multi-hop questions), and <strong>HyDE</strong> (generate a hypothetical answer, embed <em>that</em> to retrieve) for vague queries.</li>
+              <li><strong>Hybrid retrieval</strong>: dense (vectors) + sparse (BM25), fused with <strong>Reciprocal Rank Fusion</strong>. Sparse catches exact part numbers / error codes that embeddings blur.</li>
+              <li><strong>Reranking</strong>: cross-encoder over the top-N candidates to re-order before context assembly — biggest precision win per dollar.</li>
+              <li><strong>Metadata filtering</strong>: pre-filter by equipment/line/doc-version so retrieval is scoped, not global.</li>
+              <li><strong>GraphRAG</strong>: build an entity/relationship graph for multi-hop and "summarize across many docs" questions that flat chunk retrieval can't answer.</li>
+              <li><strong>Context assembly</strong>: parent-child expansion, dedup, and ordering (put the strongest evidence where the model attends — not lost in the middle).</li>
+            </ul>
+            <div class="note">⚡ Don't add all of this at once. Instrument retrieval (recall@k on a golden set), then add the cheapest component that moves the metric — usually a reranker.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-trigger" onclick="toggleQ(this)">
+          <span class="q-num">37</span>
+          <span class="q-text">How do you evaluate an LLM system rigorously at scale?</span>
+          <span class="q-arrow">▶</span>
+        </div>
+        <div class="q-answer">
+          <div class="answer-block">
+            <p>Separate <strong>component evals</strong> from <strong>end-to-end evals</strong>:</p>
+            <ul>
+              <li><strong>Retrieval</strong>: recall@k / MRR on a labeled golden set (covered in §14).</li>
+              <li><strong>Generation</strong>: faithfulness/groundedness (does the answer follow from context?), answer relevance, and correctness vs reference. Frameworks: RAGAS, custom rubrics.</li>
+              <li><strong>LLM-as-judge</strong>: scalable but biased — position bias, verbosity bias, self-preference. Mitigate with pairwise comparison (A/B, not absolute scores), randomized order, a strong judge model, and periodic human calibration of the judge itself.</li>
+              <li><strong>Golden sets + regression gating</strong>: a versioned suite of cases that must pass before any prompt/model/index change ships. This is the unit test layer for LLM apps.</li>
+              <li><strong>Online</strong>: A/B tests, thumbs, edit-distance on user corrections, task completion — the only ground truth that matters long-term.</li>
+            </ul>
+            <p><strong>Senior point</strong>: evals are a dataset problem. Mine real production failures into the golden set continuously; an eval suite that never grows is already stale.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-trigger" onclick="toggleQ(this)">
+          <span class="q-num">38</span>
+          <span class="q-text">Design a production agent: tools, control, and failure containment</span>
+          <span class="q-arrow">▶</span>
+        </div>
+        <div class="q-answer">
+          <div class="answer-block">
+            <p>Agents fail in the gap between "works in a demo" and "safe in prod." Design for containment:</p>
+            <ul>
+              <li><strong>Bounded autonomy</strong>: an explicit state machine / graph (LangGraph-style) where the LLM proposes transitions and deterministic code validates and executes them. Don't let the model free-run.</li>
+              <li><strong>Typed tools + validation</strong>: every tool has a strict input schema; reject malformed calls before they execute. Read tools are free; write/irreversible tools require an interlock.</li>
+              <li><strong>Loop control</strong>: max steps, max cost/token budget, and a no-progress detector to kill runaway loops.</li>
+              <li><strong>Human-in-the-loop checkpoints</strong> for irreversible or high-cost actions (maintenance approval, anything that touches OT).</li>
+              <li><strong>Full traceability</strong>: log every step (thought, tool call, args, result) so you can replay and debug — same discipline as §17/§43.</li>
+              <li><strong>Failure containment</strong>: idempotent tools, retries with backoff, and a graceful fallback (degrade to retrieval/templated answer) so a failed step is never a dead end.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-trigger" onclick="toggleQ(this)">
+          <span class="q-num">39</span>
+          <span class="q-text">Walk me through a system design: real-time factory copilot</span>
+          <span class="q-arrow">▶</span>
+        </div>
+        <div class="q-answer">
+          <div class="answer-block">
+            <p>Treat it as a layered design and state assumptions up front (on-prem, ~50 lines, sub-second alerts, data can't leave the building):</p>
+            <ul>
+              <li><strong>Ingestion</strong>: PLC/OPC-UA → MQTT → Kafka. Raw to TimescaleDB/ClickHouse; features computed in stream.</li>
+              <li><strong>Detection (deterministic)</strong>: streaming anomaly/correlation models at the edge for &lt;100ms alerting — no LLM in this path.</li>
+              <li><strong>Knowledge layer</strong>: on-prem vector store (pgvector/Qdrant) over SOPs + work orders; hybrid retrieval + reranker.</li>
+              <li><strong>Copilot (LLM)</strong>: self-hosted (Llama/Qwen via vLLM) for data sovereignty. On alert → retrieve similar incidents → draft root cause + action with citations. On query → Text-to-SQL over OEE + RAG over docs.</li>
+              <li><strong>Serving</strong>: vLLM with continuous batching + prefix caching; semantic cache in Redis for repeat questions.</li>
+              <li><strong>Guardrails</strong>: schema-validated outputs, citations required, human approval for any write-back to MES/CMMS.</li>
+              <li><strong>Observability</strong>: log every prediction + LLM call (prompt version, chunks, model version, cost) to ClickHouse; drift + eval dashboards; golden-set regression gate in CI.</li>
+            </ul>
+            <p><strong>Scaling & tradeoffs to volunteer</strong>: classical ML for the real-time loop (cheap, deterministic, safe); LLM only at the human layer; everything on-prem for OT data sovereignty; graceful degradation to search + templates if the model is down so the line never depends on the copilot.</p>
+            <div class="note">⚡ The interviewer is testing judgment: lead with "what doesn't need an LLM," size the latency/safety budget, and show the IT/OT boundary.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===================== SECTION 9: REAL-WORLD SCENARIOS ===================== -->
+  <div class="section" data-tag="scenario">
+    <div class="section-header" onclick="toggleSection(this)">
+      <span class="section-tag tag-scenario">SCENARIO</span>
+      <span class="section-title">Real-World Scenarios</span>
+      <span class="section-count">4 questions</span>
+      <span class="chevron">▶</span>
+    </div>
+    <div class="section-body">
+
+      <div class="q-item">
+        <div class="q-trigger" onclick="toggleQ(this)">
+          <span class="q-num">40</span>
+          <span class="q-text">What happens if your embedding model changes — how do you migrate safely?</span>
+          <span class="q-arrow">▶</span>
+        </div>
+        <div class="q-answer">
+          <div class="answer-block">
+            <p>Embedding model change = incompatible vector space = you cannot query old embeddings with new model queries. Full reindex required.</p>
+            <p><strong>Migration plan</strong>:</p>
+            <ul>
+              <li><strong>Step 1</strong>: build new index in parallel using new model. Don't touch the live index.</li>
+              <li><strong>Step 2</strong>: shadow mode — route queries to both indexes, compare results. Log discrepancies.</li>
+              <li><strong>Step 3</strong>: run your eval suite against both indexes. New model should show precision@k improvement (otherwise, why migrate?)</li>
+              <li><strong>Step 4</strong>: atomic cutover — update the router config, switch all traffic to new index</li>
+              <li><strong>Step 5</strong>: keep old index for 2 weeks as rollback option</li>
+            </ul>
+            <p><strong>Prevention</strong>: version your embedding model in metadata (<code>embedding_model: "text-embedding-3-large"</code>) on every chunk. Detect staleness automatically when model changes.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-trigger" onclick="toggleQ(this)">
+          <span class="q-num">41</span>
+          <span class="q-text">How would you fine-tune a model on user behavior and deploy it?</span>
+          <span class="q-arrow">▶</span>
+        </div>
+        <div class="q-answer">
+          <div class="answer-block">
+            <p><strong>Data collection</strong>: log user queries + responses + explicit feedback (thumbs up/down) + implicit signals (did user follow up with "that's wrong"?). Build a preference dataset.</p>
+            <p><strong>Data cleaning</strong>: filter for high-quality examples. Remove low-confidence base model outputs. Deduplicate. Balance classes.</p>
+            <p><strong>Training approach</strong>: SFT (supervised fine-tuning) on preferred responses. For preference optimization, RLHF (complex) or DPO (simpler, often better) on (preferred, rejected) pairs.</p>
+            <p><strong>Deployment</strong>:</p>
+            <ul>
+              <li>Containerize with vLLM, push to registry</li>
+              <li>Canary deploy to 5% of traffic</li>
+              <li>A/B test fine-tuned vs base model on your eval suite</li>
+              <li>Gate on quality metric improvement before full rollout</li>
+              <li>Keep base model serving until fine-tuned model proves itself</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-trigger" onclick="toggleQ(this)">
+          <span class="q-num">42</span>
+          <span class="q-text">How would you make this system cheaper without killing quality?</span>
+          <span class="q-arrow">▶</span>
+        </div>
+        <div class="q-answer">
+          <div class="answer-block">
+            <p>Cost optimization in priority order:</p>
+            <ul>
+              <li><strong>1. Cache first</strong>: implement semantic caching. If 30% of queries are repeat or near-repeat, that's 30% cost eliminated immediately.</li>
+              <li><strong>2. Route by complexity</strong>: classify incoming queries as simple/medium/complex. Simple → Haiku/GPT-3.5 (~20x cheaper). Complex → Sonnet/GPT-4.</li>
+              <li><strong>3. Reduce context</strong>: audit how many tokens your average prompt uses. Often 40–60% is bloat. Tighten prompts, reduce retrieved chunks.</li>
+              <li><strong>4. Batch async work</strong>: non-real-time tasks (report generation, nightly analysis) → batch API at 50% discount.</li>
+              <li><strong>5. Self-host high-volume tasks</strong>: if one task generates 80% of your API cost, evaluate open-source model for that specific task.</li>
+            </ul>
+            <p>Measure cost-per-task, not total cost. A 3x latency increase may halve cost — worth it for async workflows.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-trigger" onclick="toggleQ(this)">
+          <span class="q-num">43</span>
+          <span class="q-text">Walk me through a debugging session for incorrect LLM outputs</span>
+          <span class="q-arrow">▶</span>
+        </div>
+        <div class="q-answer">
+          <div class="answer-block">
+            <p>Systematic debugging, not guesswork:</p>
+            <ul>
+              <li><strong>Step 1 — Reproduce</strong>: pull the exact logged prompt (system + user + context chunks) from your logging system. Replay it. Is it consistently wrong or flaky?</li>
+              <li><strong>Step 2 — Isolate</strong>: is the error in retrieval (wrong chunks returned) or generation (right chunks, wrong answer)? Check which chunks were injected.</li>
+              <li><strong>Step 3 — Retrieval audit</strong>: run the query manually in your vector DB. Are the top-3 chunks actually relevant? If not → chunking or embedding issue.</li>
+              <li><strong>Step 4 — Prompt audit</strong>: if retrieval is fine, is the system prompt ambiguous? Is the model ignoring the context? Try temp=0, add explicit instruction.</li>
+              <li><strong>Step 5 — Model issue</strong>: does switching to a stronger model fix it? If yes → capability gap, not a prompt bug.</li>
+              <li><strong>Step 6 — Fix and test</strong>: add the failing case to your regression test suite before deploying the fix.</li>
+            </ul>
+            <div class="note">⚡ Always have logging that lets you replay exact prompts. "I can't reproduce it" is not acceptable in production AI systems.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- BONUS RAPID-FIRE -->
+  <div class="section" data-tag="all bonus">
+    <div class="section-header" onclick="toggleSection(this)">
+      <span class="section-tag" style="color:#888;border-color:#888;background:rgba(136,136,136,0.08)">RAPID</span>
+      <span class="section-title">5 Bonus Rapid-Fire Concepts</span>
+      <span class="section-count">must-know terms</span>
+      <span class="chevron">▶</span>
+    </div>
+    <div class="section-body">
+
+      <div class="q-item">
+        <div class="q-trigger" onclick="toggleQ(this)">
+          <span class="q-num">R1</span>
+          <span class="q-text">What is RLHF and why does it matter?</span>
+          <span class="q-arrow">▶</span>
+        </div>
+        <div class="q-answer">
+          <div class="answer-block">
+            <p>Reinforcement Learning from Human Feedback. After SFT, a reward model is trained on human preference pairs, then the LLM is fine-tuned via PPO to maximize the reward model's score. It's how ChatGPT learned to be "helpful" rather than just next-token-predicting. <strong>DPO</strong> (Direct Preference Optimization) is the simpler modern alternative — same objective, no separate reward model, more stable training.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-trigger" onclick="toggleQ(this)">
+          <span class="q-num">R2</span>
+          <span class="q-text">What is a context window and what are its real limits?</span>
+          <span class="q-arrow">▶</span>
+        </div>
+        <div class="q-answer">
+          <div class="answer-block">
+            <p>The maximum tokens a model can process in one call (input + output combined). GPT-4o: 128K. Claude 3.5: 200K. But <strong>effective length is shorter</strong> — models lose coherence and "forget" middle content in very long contexts (the "lost in the middle" problem). For production RAG, treat 32K as the practical limit for reliable reasoning.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-trigger" onclick="toggleQ(this)">
+          <span class="q-num">R3</span>
+          <span class="q-text">What is an agent and what makes one production-ready?</span>
+          <span class="q-arrow">▶</span>
+        </div>
+        <div class="q-answer">
+          <div class="answer-block">
+            <p>An agent is an LLM with tool access that can take multi-step actions autonomously (perceive → plan → act → observe loop). Production-ready requires: (1) deterministic tool definitions with input validation, (2) max-step limits to prevent runaway loops, (3) human-in-the-loop checkpoints for irreversible actions, (4) full action logging, (5) graceful failure handling. Most "agents" in demos fail all 5.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-trigger" onclick="toggleQ(this)">
+          <span class="q-num">R4</span>
+          <span class="q-text">Explain the difference between encoder, decoder, and encoder-decoder models</span>
+          <span class="q-arrow">▶</span>
+        </div>
+        <div class="q-answer">
+          <div class="answer-block">
+            <p><strong>Encoder-only</strong> (BERT, E5): bidirectional attention, sees full context. Best for embeddings, classification, NER. Cannot generate text.<br><strong>Decoder-only</strong> (GPT, Llama): causal/autoregressive attention. Generates text one token at a time. All modern LLMs are decoder-only.<br><strong>Encoder-decoder</strong> (T5, BART): encoder processes input, decoder generates output. Good for translation, summarization. Less common now that decoder-only scales so well.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-trigger" onclick="toggleQ(this)">
+          <span class="q-num">R5</span>
+          <span class="q-text">What is prompt injection and how do you defend against it?</span>
+          <span class="q-arrow">▶</span>
+        </div>
+        <div class="q-answer">
+          <div class="answer-block">
+            <p>Prompt injection: user input overrides system prompt instructions ("Ignore previous instructions and..."). Defenses: (1) <strong>never interpolate raw user input directly into system prompt</strong>, (2) use separate message roles (system vs user), (3) output validation — check that the response matches expected schema, (4) sandboxed tool access — even if injected, tools should require explicit permission for destructive ops, (5) input filtering — detect and reject obvious injection patterns before LLM call.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+  <div class="progress-label" id="progressLabel">0 / 48 answers reviewed</div>
+
+</div>
+
+<script>
+  let openAnswers = new Set();
+
+  function toggleSection(header) {
+    const body = header.nextElementSibling;
+    header.classList.toggle('open');
+    body.classList.toggle('open');
+  }
+
+  function toggleQ(trigger) {
+    const answer = trigger.nextElementSibling;
+    const isOpen = trigger.classList.contains('open');
+    trigger.classList.toggle('open');
+    answer.classList.toggle('open');
+    const num = trigger.querySelector('.q-num').textContent;
+    if (!isOpen) openAnswers.add(num); else openAnswers.delete(num);
+    updateProgress();
+  }
+
+  function updateProgress() {
+    const total = 48;
+    const pct = Math.round((openAnswers.size / total) * 100);
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.getElementById('progressLabel').textContent = `${openAnswers.size} / ${total} answers reviewed`;
+  }
+
+  function filterSections(tag, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.section').forEach(sec => {
+      if (tag === 'all') { sec.classList.remove('hidden'); return; }
+      sec.classList.toggle('hidden', !sec.dataset.tag.includes(tag));
+    });
+  }
+
+  function expandAll() {
+    document.querySelectorAll('.section-header').forEach(h => {
+      h.classList.add('open');
+      h.nextElementSibling.classList.add('open');
+    });
+    document.querySelectorAll('.q-trigger').forEach(t => {
+      t.classList.add('open');
+      t.nextElementSibling.classList.add('open');
+      const num = t.querySelector('.q-num').textContent;
+      openAnswers.add(num);
+    });
+    updateProgress();
+  }
+</script>
+</body>
+</html>
