@@ -2,27 +2,33 @@
 
 **Live site:** [https://vgandhi1.github.io/](https://vgandhi1.github.io/)
 
-Personal portfolio for AI systems, manufacturing software, and EV platforms. The site links to GitHub repositories for evidence, hosts illustrated theory and programming guides on this domain, and points to a separate **[interactive lab](https://vgandhi1.github.io/interactive-lab/)** for slide decks, EV references, and browser tools.
+Personal portfolio for applied AI, manufacturing software, and EV platforms — GitHub repos as evidence, illustrated theory/programming guides hosted here, and a separate **[interactive lab](https://vgandhi1.github.io/interactive-lab/)** for decks, EV references, and browser tools.
 
 | Site | Repository | URL |
 |------|------------|-----|
-| Portfolio (this repo) | [vgandhi1/vgandhi1.github.io](https://github.com/vgandhi1/vgandhi1.github.io) | `https://vgandhi1.github.io/` |
-| Interactive lab | [vgandhi1/interactive-lab](https://github.com/vgandhi1/interactive-lab) | `https://vgandhi1.github.io/interactive-lab/` |
+| Portfolio — minimal landing | [vgandhi1/vgandhi1.github.io](https://github.com/vgandhi1/vgandhi1.github.io) | https://vgandhi1.github.io/ |
+| Portfolio — full catalog | (same repo) | https://vgandhi1.github.io/index-full.html |
+| Interactive lab | [vgandhi1/interactive-lab](https://github.com/vgandhi1/interactive-lab) | https://vgandhi1.github.io/interactive-lab/ |
 
 ---
 
 ## What’s on the site
 
-The landing page (`index.html`) is a **custom static** minimal landing (styled by `portfolio_min.css`) leading with applied AI + data work. A comprehensive **full project catalog** lives at [`index-full.html`](index-full.html) (`portfolio_home.css`) — every repo grouped by pillar with filter tabs; linked from the `index.html` footer (“Full catalog”). The minimal `index.html` is organized into:
+Two custom static landing pages:
+
+- **`index.html`** — minimal landing (`portfolio_min.css`), leading with applied AI + data work.
+- **[`index-full.html`](https://vgandhi1.github.io/index-full.html)** — full project catalog (`portfolio_home.css`): every repo grouped by pillar with filter tabs. Linked from the `index.html` footer (“Full catalog”).
+
+`index.html` sections:
 
 | Section | Anchor | Content |
 |---------|--------|---------|
-| **About** | `#about` | Background, skills, active build ([AEGIS](https://github.com/vgandhi1/aegis)) |
+| **About** | `#about` | Background, skills, and current focus |
 | **Projects** | `#projects` | GitHub work grouped by engineering pillar (Data, AI, Software, Product) with filter tabs |
 | **Learn** | `#learn` | Links to theory notes and programming tracks on this domain |
 | **Interactive lab** | — | External hub for decks, EV docs, and simulators |
 | **Project execution guide** | [project_execution.html](project_execution.html) | Visual roadmap — build order and three-pillar entry paths |
-| **Factory AI Platform** | [factory-ai.html](factory-ai.html) | Flagship build deep-dive (AEGIS / SentinelFlow) |
+| **Factory AI Platform** | [factory-ai.html](factory-ai.html) | Flagship factory-platform deep-dive |
 | **MVP demos** | [mvp.html](mvp.html) | Live product walkthroughs |
 
 **Project pillars** on the landing page: **Data Engineering** (OMNI-Mesh, telemetry, ELT), **AI Engineering** (factory AI, agentic/RAG, CV/ML, robotics), **Software Systems** (streaming backends, EV/OTA, web apps), and **Product Management** (APEX-recover, TeleOp). Use the filter tabs on `#projects` or the [roadmap pillars section](project_execution.html#pillars) for role-aligned entry paths.
@@ -36,7 +42,7 @@ The landing page (`index.html`) is a **custom static** minimal landing (styled b
 ```
 vgandhi1.github.io/
 ├── index.html                 # Main portfolio landing page (minimal)
-├── index-full.html            # Full project catalog (comprehensive archive; noindex)
+├── index-full.html            # Full project catalog — every repo by pillar (noindex)
 ├── portfolio_min.css          # Styles for index.html (minimal landing)
 ├── portfolio_home.css         # Styles for index-full.html (full catalog)
 ├── portfolio_hub.css          # Shared/legacy hub styles
