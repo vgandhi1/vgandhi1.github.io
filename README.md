@@ -13,7 +13,7 @@ Personal portfolio for AI systems, manufacturing software, and EV platforms. The
 
 ## What’s on the site
 
-The landing page (`index.html`) is a **custom static** experience (not a Jekyll theme page). It is organized into:
+The landing page (`index.html`) is a **custom static** minimal landing (styled by `portfolio_min.css`) leading with applied AI + data work. A comprehensive **full project catalog** lives at [`index-full.html`](index-full.html) (`portfolio_home.css`) — every repo grouped by pillar with filter tabs; linked from the `index.html` footer (“Full catalog”). The minimal `index.html` is organized into:
 
 | Section | Anchor | Content |
 |---------|--------|---------|
@@ -35,8 +35,10 @@ The landing page (`index.html`) is a **custom static** experience (not a Jekyll 
 
 ```
 vgandhi1.github.io/
-├── index.html                 # Main portfolio landing page
-├── portfolio_home.css         # Styles for index.html
+├── index.html                 # Main portfolio landing page (minimal)
+├── index-full.html            # Full project catalog (comprehensive archive; noindex)
+├── portfolio_min.css          # Styles for index.html (minimal landing)
+├── portfolio_home.css         # Styles for index-full.html (full catalog)
 ├── portfolio_hub.css          # Shared/legacy hub styles
 ├── _config.yml                # Jekyll / GitHub Pages metadata (remote Minima theme)
 ├── assets/demos/              # Demo media (e.g. motel-portal-demo.gif)
@@ -44,6 +46,8 @@ vgandhi1.github.io/
 │   ├── ml_theory_hub.html     # Hub
 │   ├── ml_theory.css
 │   └── theory_*.html          # Topic pages (DE, classical ML, DL, RAG, MLOps, …)
+├── interview-prep/            # Interview prep guides
+│   └── ml-ai-interview-guide.html
 ├── programming/               # Language & interview tracks
 │   ├── python_101.html        # Python hub (+ data/ML, PyTorch, FastAPI pages)
 │   ├── python_101_common.css
@@ -93,7 +97,7 @@ Decks, EV references, homelab portal, and browser tools (DSA, AI glossaries, hed
 
 | Layer | Choice |
 |-------|--------|
-| Portfolio UI | Static HTML + CSS (`portfolio_home.css`) |
+| Portfolio UI | Static HTML + CSS (`portfolio_min.css` for `index.html`, `portfolio_home.css` for `index-full.html`) |
 | Theory / programming | Static HTML + shared CSS, JetBrains Mono + Source Sans 3 |
 | Hosting | [GitHub Pages](https://pages.github.com/) |
 | Optional build | Jekyll (`_config.yml`, `remote_theme: jekyll/minima`) for Pages compatibility; primary entry remains `index.html` |

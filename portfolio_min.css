@@ -254,14 +254,17 @@ section[id] { scroll-margin-top: 4.5rem; }
 
 /* —— Project cards (compact) —— */
 .min-projects {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
   list-style: none;
 }
+.min-projects > li { display: flex; }
 
 .min-project {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
   text-decoration: none;
   color: inherit;
   background: var(--min-paper);
@@ -318,13 +321,23 @@ section[id] { scroll-margin-top: 4.5rem; }
   border-radius: 4px;
   background: var(--min-bg);
 }
+.min-project-tag.min-tag-live {
+  color: #c0392b;
+  border-color: #c0392b;
+  background: rgba(192, 57, 43, 0.07);
+}
+.min-project-tag.min-tag-live::first-letter { letter-spacing: 0.25em; }
 .min-project p {
   font-size: 14px;
   color: var(--min-muted);
   line-height: 1.55;
 }
+/* condensed pillar sections (Factory / Quality systems) */
+.min-pillar .min-sec-head { margin-bottom: 0.9rem; }
+.min-pillar .min-sec-head p { max-width: 62ch; }
 .min-project-meta {
-  margin-top: 0.55rem;
+  margin-top: auto;
+  padding-top: 0.55rem;
   font-family: var(--min-mono);
   font-size: 10px;
   letter-spacing: 0.02em;
@@ -448,6 +461,102 @@ section[id] { scroll-margin-top: 4.5rem; }
   flex-shrink: 0;
 }
 
+/* —— Ecosystem flow diagrams —— */
+.flow {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  gap: 0.4rem;
+  overflow-x: auto;
+  padding: 0.25rem 0 0.5rem;
+}
+.flow-col {
+  flex: 1 1 0;
+  min-width: 150px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+.flow-cap {
+  font-family: var(--min-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--min-faint);
+  margin-bottom: 0.1rem;
+}
+.flow-node {
+  background: var(--min-paper);
+  border: 1px solid var(--min-hair);
+  border-radius: 7px;
+  padding: 0.55rem 0.65rem;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--min-text);
+  line-height: 1.3;
+}
+.flow-node small {
+  display: block;
+  font-family: var(--min-mono);
+  font-size: 9.5px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--min-muted);
+  margin-top: 0.2rem;
+}
+.flow-node-accent {
+  border-color: var(--min-accent);
+  border-left-width: 3px;
+}
+.flow-link {
+  flex: 0 0 auto;
+  align-self: center;
+  font-family: var(--min-mono);
+  font-size: 16px;
+  color: var(--min-accent);
+  padding: 0 0.1rem;
+}
+.flow-platform {
+  flex: 2 1 0;
+  display: flex;
+  gap: 0.4rem;
+  border: 1px dashed var(--min-accent);
+  border-radius: 9px;
+  padding: 1.4rem 0.6rem 0.6rem;
+  position: relative;
+  background: var(--min-surface);
+}
+.flow-platform-tag {
+  position: absolute;
+  top: -0.6rem;
+  left: 0.7rem;
+  font-family: var(--min-mono);
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--min-accent);
+  background: var(--min-bg);
+  padding: 0.1rem 0.45rem;
+  border-radius: 4px;
+}
+.flow-note {
+  margin-top: 0.6rem;
+  font-family: var(--min-mono);
+  font-size: 11px;
+  letter-spacing: 0.01em;
+  color: var(--min-muted);
+  line-height: 1.5;
+}
+.flow-note strong { color: var(--min-accent); font-weight: 600; }
+
+@media (max-width: 720px) {
+  .flow { flex-direction: column; align-items: stretch; overflow-x: visible; }
+  .flow-link { transform: rotate(90deg); align-self: center; }
+  .flow-platform { flex-direction: column; }
+}
+
 /* —— Footer —— */
 .min-footer {
   margin-top: 3.5rem;
@@ -491,8 +600,12 @@ section[id] { scroll-margin-top: 4.5rem; }
 }
 .min-full-site a:hover { text-decoration: underline; }
 
+@media (max-width: 860px) {
+  .min-projects { grid-template-columns: repeat(2, 1fr); }
+}
 @media (max-width: 560px) {
   .min-top-inner { flex-direction: column; align-items: flex-start; }
   .min-hero { padding-top: 2rem; }
+  .min-projects { grid-template-columns: 1fr; }
   .min-project-top { flex-direction: column; align-items: flex-start; gap: 0.35rem; }
 }
